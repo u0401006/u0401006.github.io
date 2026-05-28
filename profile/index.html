@@ -139,10 +139,10 @@
 
     /* ─── Hero ─── */
     #hero {
-      min-height: 100vh;
+      min-height: 50vh;
       display: flex;
       align-items: center;
-      padding: 120px 0 80px;
+      padding: 120px 0 60px;
       position: relative;
       overflow: hidden;
     }
@@ -603,14 +603,14 @@
     /* ─── Hero Two-Column ─── */
     .hero-inner {
       display: grid;
-      grid-template-columns: 1fr 200px;
+      grid-template-columns: 200px 1fr;
       gap: 56px;
       align-items: center;
     }
 
     .hero-photo-col {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .hero-avatar {
@@ -627,15 +627,18 @@
 
     @media (max-width: 768px) {
       .hero-inner {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        grid-template-columns: 120px 1fr;
+        gap: 24px;
       }
-      .hero-photo-col {
-        grid-row: 1;
-        justify-content: flex-start;
-      }
-      .hero-text { grid-row: 2; }
       .hero-avatar { width: 120px; height: 156px; }
+    }
+
+    @media (max-width: 380px) {
+      .hero-inner {
+        grid-template-columns: 90px 1fr;
+        gap: 16px;
+      }
+      .hero-avatar { width: 90px; height: 117px; }
     }
 
     /* ─── Focus styles (a11y) ─── */
@@ -671,27 +674,13 @@
     <div class="container">
       <div class="hero-inner">
 
-        <div class="hero-text">
-          <h1 class="hero-name anim-fade-up delay-1" id="hero-name">宋育泰</h1>
-          <p class="hero-name-en anim-fade-up delay-1">Yutai Sung &nbsp;·&nbsp; Capo</p>
-          <div class="hero-title anim-fade-up delay-2">Media Lab Director &nbsp;·&nbsp; 2023.12 ～ 至今</div>
-
-          <blockquote class="hero-quote anim-fade-up delay-3">
-            <strong>「我不只是 AI 工具的使用者，我在為新聞業探索一個尚未成形的未來——Agent 中介的新聞傳播。」</strong>
-          </blockquote>
-
-          <p class="hero-bio anim-fade-up delay-4">
-            進入媒體業 16 年，我站在「內容、產品、數據分析、程式」的交會處，將不同部門與專業背景的觀點串連成系統化的解決方案。歷經新聞編輯、網站與 APP PM、產品企劃、AI 開發、管理職等綜合職能的歷練，能洞察編輯室的需求、結合開發經驗，快速找出可行技術或策略，並落實為具體可執行的專案。
-          </p>
-
-          <div class="hero-scroll anim-fade-up delay-5">
-            <span class="scroll-dot" aria-hidden="true"></span>
-            向下捲動了解更多
-          </div>
-        </div>
-
         <div class="hero-photo-col anim-fade-up delay-1">
           <img src="https://img-hosting.u0401006.workers.dev/i/5drAsra.png" alt="宋育泰 Yutai Sung" class="hero-avatar">
+        </div>
+
+        <div class="hero-text anim-fade-up delay-2">
+          <h1 class="hero-name" id="hero-name">宋育泰</h1>
+          <p class="hero-name-en">Sung Yutai</p>
         </div>
 
       </div>
