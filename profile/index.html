@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="宋育泰（Capo）— 中央社媒體實驗室主任，跨領域整合 AI、新聞、產品與數據分析的媒體科技專家。">
+  <meta property="og:title" content="宋育泰 Yutai Sung — 媒體實驗室主任">
+  <meta property="og:description" content="立足跨領域交點，持續開拓新戰場。Agentic coding、NLP、Multi-Agent Systems、Python、SEO。">
+  <meta property="og:type" content="profile">
+  <meta name="author" content="宋育泰 Yutai Sung">
+  <title>宋育泰 Yutai Sung</title>
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0d1117;
+      --bg-card:     #161b22;
+      --bg-card2:    #1c2330;
+      --border:      #30363d;
+      --accent:      #58a6ff;
+      --accent-glow: rgba(88, 166, 255, 0.18);
+      --accent2:     #f0883e;
+      --text:        #e6edf3;
+      --text-muted:  #8b949e;
+      --text-dim:    #6e7681;
+      --radius:      12px;
+      --radius-sm:   8px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.5);
+      --ff-sans:     'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'Segoe UI', system-ui, sans-serif;
+      --ff-mono:     'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── Typography ─── */
+    h1, h2, h3, h4 { line-height: 1.3; font-weight: 700; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+    a:hover { opacity: 0.75; }
+
+    /* ─── Layout ─── */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 80px 0; }
+
+    /* ─── Animations ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+      50%       { box-shadow: 0 0 32px 8px var(--accent-glow); }
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .anim-fade-up {
+      opacity: 0;
+      animation: fadeUp 0.7s var(--transition) forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+    .delay-4 { animation-delay: 0.46s; }
+    .delay-5 { animation-delay: 0.58s; }
+    .delay-6 { animation-delay: 0.70s; }
+
+    /* ─── Nav ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .nav-brand {
+      font-family: var(--ff-mono);
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ─── Hero ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(88,166,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,136,62,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--ff-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .hero-name {
+      background: linear-gradient(135deg, #e6edf3 0%, #58a6ff 60%, #a5c8ff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 6s linear infinite;
+      margin-bottom: 6px;
+    }
+
+    .hero-name-en {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      display: inline-block;
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      color: var(--accent2);
+      font-weight: 600;
+      background: rgba(240, 136, 62, 0.1);
+      border: 1px solid rgba(240, 136, 62, 0.3);
+      border-radius: 4px;
+      padding: 4px 12px;
+      margin-bottom: 40px;
+      font-family: var(--ff-mono);
+    }
+
+    .hero-quote {
+      max-width: 720px;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--text-muted);
+      line-height: 1.9;
+      border-left: 3px solid var(--accent);
+      padding-left: 24px;
+      margin-bottom: 32px;
+    }
+
+    .hero-quote strong {
+      color: var(--text);
+    }
+
+    .hero-bio {
+      max-width: 720px;
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    .hero-scroll {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 48px;
+      color: var(--text-dim);
+      font-size: 0.82rem;
+      font-family: var(--ff-mono);
+    }
+
+    .scroll-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    /* ─── Tags ─── */
+    #tags {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tags-label {
+      font-family: var(--ff-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      font-size: 0.82rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: var(--bg-card);
+      font-family: var(--ff-mono);
+      transition: all var(--transition);
+      cursor: default;
+    }
+
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    .tag.primary {
+      border-color: rgba(88,166,255,0.4);
+      color: var(--accent);
+      background: rgba(88,166,255,0.08);
+    }
+
+    /* ─── Section Headers ─── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      white-space: nowrap;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    .section-num {
+      font-family: var(--ff-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── Trait Cards ─── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+
+    .card:hover {
+      border-color: rgba(88,166,255,0.4);
+      background: var(--bg-card2);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow), 0 0 20px var(--accent-glow);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .card h3 {
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .card li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 4px;
+    }
+
+    /* ─── Timeline ─── */
+    #timeline { padding: 80px 0; }
+
+    .timeline-era {
+      margin-bottom: 60px;
+    }
+
+    .era-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .era-badge {
+      font-family: var(--ff-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .era-badge.ai {
+      background: rgba(88,166,255,0.12);
+      border: 1px solid rgba(88,166,255,0.3);
+      color: var(--accent);
+    }
+
+    .era-badge.python {
+      background: rgba(240,136,62,0.1);
+      border: 1px solid rgba(240,136,62,0.3);
+      color: var(--accent2);
+    }
+
+    .era-title {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .era-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .timeline-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 0 20px;
+      align-items: start;
+    }
+
+    .tl-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 6px;
+    }
+
+    .tl-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+      flex-shrink: 0;
+    }
+
+    .tl-line {
+      width: 2px;
+      flex: 1;
+      min-height: 30px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+      margin-top: 6px;
+    }
+
+    .tl-item-last .tl-line { display: none; }
+
+    .tl-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      transition: all var(--transition);
+      margin-bottom: 4px;
+    }
+
+    .tl-content:hover {
+      border-color: rgba(88,166,255,0.3);
+      background: var(--bg-card2);
+    }
+
+    .tl-content h4 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .tl-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .highlight-tag {
+      display: inline-block;
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 3px;
+      background: rgba(88,166,255,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(88,166,255,0.2);
+      margin-bottom: 10px;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-name {
+      font-family: var(--ff-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .footer-dot {
+      width: 4px; height: 4px;
+      background: var(--border);
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 8px;
+    }
+
+    /* ─── Scroll Reveal (intersection observer fallback handled via animation-fill-mode) ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+
+      .nav-links { display: none; }
+
+      #hero { padding-top: 100px; }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 28px 1fr;
+        gap: 0 14px;
+      }
+
+      .era-header {
+        flex-wrap: wrap;
+      }
+
+      .era-divider { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+
+      .tag { font-size: 0.76rem; }
+    }
+
+    /* ─── Focus styles (a11y) ─── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* ─── Selection ─── */
+    ::selection {
+      background: rgba(88,166,255,0.3);
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav role="navigation" aria-label="主導覽">
+    <div class="nav-inner">
+      <span class="nav-brand">YS / capo</span>
+      <ul class="nav-links">
+        <li><a href="#about">關於</a></li>
+        <li><a href="#traits">核心特質</a></li>
+        <li><a href="#timeline">近年成績</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" aria-labelledby="hero-name">
+    <div class="container">
+      <div class="hero-eyebrow anim-fade-up delay-1">中央社媒體實驗室主任</div>
+      <h1 class="hero-name anim-fade-up delay-2" id="hero-name">宋育泰</h1>
+      <p class="hero-name-en anim-fade-up delay-2">Yutai Sung &nbsp;·&nbsp; Capo</p>
+      <div class="hero-title anim-fade-up delay-3">Media Lab Director &nbsp;·&nbsp; 2023.12 ～ 至今</div>
+
+      <blockquote class="hero-quote anim-fade-up delay-4">
+        <strong>「我不只是 AI 工具的使用者，我在為新聞業探索一個尚未成形的未來——Agent 中介的新聞傳播。」</strong>
+      </blockquote>
+
+      <p class="hero-bio anim-fade-up delay-5">
+        進入媒體業 16 年，我站在「內容、產品、數據分析、程式」的交會處，將不同部門與專業背景的觀點串連成系統化的解決方案。歷經新聞編輯、網站與 APP PM、產品企劃、AI 開發、管理職等綜合職能的歷練，能洞察編輯室的需求、結合開發經驗，快速找出可行技術或策略，並落實為具體可執行的專案。
+      </p>
+
+      <div class="hero-scroll anim-fade-up delay-6">
+        <span class="scroll-dot" aria-hidden="true"></span>
+        向下捲動了解更多
+      </div>
+    </div>
+  </section>
+
+  <!-- Tags -->
+  <section id="tags" aria-label="關鍵字標籤">
+    <div class="container">
+      <p class="tags-label">關鍵字 / Keywords</p>
+      <div class="tags-row" role="list">
+        <span class="tag primary" role="listitem">Agentic Coding</span>
+        <span class="tag primary" role="listitem">Multi-Agent Systems</span>
+        <span class="tag primary" role="listitem">Python</span>
+        <span class="tag" role="listitem">NLP</span>
+        <span class="tag" role="listitem">SEO</span>
+        <span class="tag" role="listitem">Google Analytics</span>
+        <span class="tag" role="listitem">Product Management</span>
+        <span class="tag" role="listitem">Project Management</span>
+        <span class="tag" role="listitem">LLM Applications</span>
+        <span class="tag" role="listitem">News Technology</span>
+        <span class="tag" role="listitem">AI 編輯工具</span>
+        <span class="tag" role="listitem">MCP Server</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Traits -->
+  <section id="traits" aria-labelledby="traits-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">01</span>
+        <h2 id="traits-heading">核心特質與價值</h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="cards-grid">
+
+        <article class="card reveal" aria-label="跨領域整合力">
+          <span class="card-icon" aria-hidden="true">◈</span>
+          <h3>跨領域整合力</h3>
+          <ul>
+            <li>長期在媒體、產品、程式開發、數據分析等多重領域交會處深耕，能快速銜接文字、圖像影音、財務等不同專業背景，打造符合組織的整合解決方案。</li>
+            <li>熟悉新聞編輯作業流程與技術開發細節，兼顧內容團隊需求與工程效率。</li>
+          </ul>
+        </article>
+
+        <article class="card reveal" aria-label="AI 驅動的策略思考">
+          <span class="card-icon" aria-hidden="true">◉</span>
+          <h3>AI 驅動的策略思考</h3>
+          <ul>
+            <li>緊追 AI 與數據應用趨勢，落實在新聞產製與內容管理平台之革新。</li>
+            <li>除了技術，也考量產業趨勢與組織資源的配置，向外爭取補助資源。</li>
+            <li>督導並協調跨部門專案，以「策略＋執行」的方式確保計畫落地並創造可持續的價值。</li>
+          </ul>
+        </article>
+
+        <article class="card reveal" aria-label="創新與共享精神">
+          <span class="card-icon" aria-hidden="true">◐</span>
+          <h3>創新與共享精神</h3>
+          <ul>
+            <li>秉持 Hacker 思維，喜歡「解構」流程中不順暢的環節，主動開發或整合各種小工具，持續優化團隊效率。</li>
+            <li>熱衷分享，開設內部課程（Python 爬蟲、Spreadsheet、GA、SEO 等）提升團隊整體戰力；亦受邀外部機構分享媒體 AI 應用等議題。</li>
+          </ul>
+        </article>
+
+        <article class="card reveal" aria-label="高效執行與團隊領導">
+          <span class="card-icon" aria-hidden="true">◆</span>
+          <h3>高效執行與團隊領導</h3>
+          <ul>
+            <li>曾管理 20+ 人的內容與工程團隊，擅長建立以目標為導向的專案管理機制，並帶領新世代同仁勇於嘗試新工具。</li>
+            <li>強調「速度＋彈性」，鼓勵試錯迭代，讓團隊能在變動快速的數位時代不斷成長。</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section id="timeline" aria-labelledby="timeline-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">02</span>
+        <h2 id="timeline-heading">近年成績</h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <!-- Era 1: 2023–2026 -->
+      <div class="timeline-era reveal">
+        <div class="era-header">
+          <span class="era-badge ai">2023 ～ 2026</span>
+          <span class="era-title">生成式 AI 應用到新聞業的 AI 轉型</span>
+          <div class="era-divider" aria-hidden="true"></div>
+        </div>
+
+        <div class="timeline-items">
+
+          <div class="timeline-item">
+            <div class="tl-dot-col">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <div class="tl-line" aria-hidden="true"></div>
+            </div>
+            <div>
+              <div class="tl-content">
+                <div class="highlight-tag">Multi-Agent Systems</div>
+                <h4>Multi-Agent 新聞工作流系統</h4>
+                <p>主導中央社內部 AI 協作基礎設施設計，從眾多單一 AI 輔助端點，到 agentic workflow，並實作跨機器多 agent 協作機制。以 Discord 讓 coding、editorial、design、evaluator、analyst 等 agent 可在不同機器上穩定接力，將 AI 從單點工具提升為可運營的新聞工作流系統。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot-col">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <div class="tl-line" aria-hidden="true"></div>
+            </div>
+            <div>
+              <div class="tl-content">
+                <div class="highlight-tag">MCP / Zero-Click Era</div>
+                <h4>AskCNA MCP Server</h4>
+                <p>因應零點擊時代來臨，主導規劃 MCP Server 與 AskCNA 服務，超前部署 AI agent 中介新聞資訊的時代，確保中央社新聞資料庫不落伍。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot-col">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <div class="tl-line" aria-hidden="true"></div>
+            </div>
+            <div>
+              <div class="tl-content">
+                <div class="highlight-tag">AI 編輯工具</div>
+                <h4>中央社「志明」AI 編輯助手</h4>
+                <p>主持 AI 編輯工具專案：結合音檔／直播轉逐字稿、摘要、改錯字、NLP、相關推薦、多模態 Embedding 等功能，打造新世代編輯工作環境。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item tl-item-last">
+            <div class="tl-dot-col">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <div class="tl-line" aria-hidden="true"></div>
+            </div>
+            <div>
+              <div class="tl-content">
+                <div class="highlight-tag">資源爭取 / 外部分享</div>
+                <h4>爭取補助、推廣 AI 實務</h4>
+                <p>圍繞新聞編輯需求整合 AI 流程，爭取外部資源推動專案落地，順利爭取 Google 共榮基金 1,000 萬、667 萬共兩期補助案；多次受邀台大、政大、陽明交大等院校及公司分享 AI 應用實務經驗。</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Era 2: 2019–2023 -->
+      <div class="timeline-era reveal">
+        <div class="era-header">
+          <span class="era-badge python">2019 ～ 2023</span>
+          <span class="era-title">Python 新聞室應用</span>
+          <div class="era-divider" aria-hidden="true"></div>
+        </div>
+
+        <div class="timeline-items">
+
+          <div class="timeline-item">
+            <div class="tl-dot-col">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <div class="tl-line" aria-hidden="true"></div>
+            </div>
+            <div>
+              <div class="tl-content">
+                <div class="highlight-tag">Python / 即時數據</div>
+                <h4>疫情與選舉即時數據專案</h4>
+                <p>以 Python 撰寫程式爬取並更新疫情數據、處理選舉開票即時數據，達成精準且即時的新聞報導。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot-col">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <div class="tl-line" aria-hidden="true"></div>
+            </div>
+            <div>
+              <div class="tl-content">
+                <div class="highlight-tag">NLP / 商品化</div>
+                <h4>新聞關鍵字萃取 NLP 流程</h4>
+                <p>自力推動新聞關鍵字萃取的自然語言處理流程，關鍵字成果最終獲商品化，成為正式產品服務。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item tl-item-last">
+            <div class="tl-dot-col">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <div class="tl-line" aria-hidden="true"></div>
+            </div>
+            <div>
+              <div class="tl-content">
+                <div class="highlight-tag">SEO / GA / 自動化</div>
+                <h4>自動化流量分析與內部工具</h4>
+                <p>熟悉 SEO 技巧與 Google Analytics 流量分析，加以程式自動化產出流量分析報表、與內部使用 Line Chatbot，減少人工操作，讓團隊將心力聚焦在內容品質。</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">宋育泰 · Yutai Sung · Capo</span>
+        <p class="footer-copy">
+          中央社媒體實驗室
+          <span class="footer-dot" aria-hidden="true"></span>
+          宋育泰 &copy; 2026
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll-reveal
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!window.IntersectionObserver) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { observer.observe(el); });
+    }());
+  </script>
+
+</body>
+</html>
