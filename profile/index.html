@@ -55,10 +55,10 @@
 
     /* ─── Layout ─── */
     .container {
-      width: 100%;
-      max-width: 1100px;
+      width: 95%;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0;
     }
 
     section { padding: 80px 0; }
@@ -112,7 +112,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 14px 24px;
-      max-width: 1100px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -600,20 +600,42 @@
       .tag { font-size: 0.76rem; }
     }
 
-    /* ─── Hero Avatar ─── */
+    /* ─── Hero Two-Column ─── */
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero-photo-col {
+      display: flex;
+      justify-content: center;
+    }
+
     .hero-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+      width: 200px;
+      height: 260px;
+      border-radius: 14px;
       object-fit: cover;
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 0 6px rgba(88, 166, 255, 0.12), var(--shadow);
-      margin-bottom: 28px;
+      object-position: center top;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 6px rgba(88, 166, 255, 0.10), var(--shadow);
       display: block;
+      flex-shrink: 0;
     }
 
     @media (max-width: 768px) {
-      .hero-avatar { width: 96px; height: 96px; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+      .hero-photo-col {
+        grid-row: 1;
+        justify-content: flex-start;
+      }
+      .hero-text { grid-row: 2; }
+      .hero-avatar { width: 120px; height: 156px; }
     }
 
     /* ─── Focus styles (a11y) ─── */
@@ -647,22 +669,31 @@
   <!-- Hero -->
   <section id="hero" aria-labelledby="hero-name">
     <div class="container">
-      <img src="https://img-hosting.u0401006.workers.dev/i/5drAsra.png" alt="宋育泰 Yutai Sung" class="hero-avatar anim-fade-up delay-1">
-      <h1 class="hero-name anim-fade-up delay-2" id="hero-name">宋育泰</h1>
-      <p class="hero-name-en anim-fade-up delay-2">Yutai Sung &nbsp;·&nbsp; Capo</p>
-      <div class="hero-title anim-fade-up delay-3">Media Lab Director &nbsp;·&nbsp; 2023.12 ～ 至今</div>
+      <div class="hero-inner">
 
-      <blockquote class="hero-quote anim-fade-up delay-4">
-        <strong>「我不只是 AI 工具的使用者，我在為新聞業探索一個尚未成形的未來——Agent 中介的新聞傳播。」</strong>
-      </blockquote>
+        <div class="hero-text">
+          <h1 class="hero-name anim-fade-up delay-1" id="hero-name">宋育泰</h1>
+          <p class="hero-name-en anim-fade-up delay-1">Yutai Sung &nbsp;·&nbsp; Capo</p>
+          <div class="hero-title anim-fade-up delay-2">Media Lab Director &nbsp;·&nbsp; 2023.12 ～ 至今</div>
 
-      <p class="hero-bio anim-fade-up delay-5">
-        進入媒體業 16 年，我站在「內容、產品、數據分析、程式」的交會處，將不同部門與專業背景的觀點串連成系統化的解決方案。歷經新聞編輯、網站與 APP PM、產品企劃、AI 開發、管理職等綜合職能的歷練，能洞察編輯室的需求、結合開發經驗，快速找出可行技術或策略，並落實為具體可執行的專案。
-      </p>
+          <blockquote class="hero-quote anim-fade-up delay-3">
+            <strong>「我不只是 AI 工具的使用者，我在為新聞業探索一個尚未成形的未來——Agent 中介的新聞傳播。」</strong>
+          </blockquote>
 
-      <div class="hero-scroll anim-fade-up delay-6">
-        <span class="scroll-dot" aria-hidden="true"></span>
-        向下捲動了解更多
+          <p class="hero-bio anim-fade-up delay-4">
+            進入媒體業 16 年，我站在「內容、產品、數據分析、程式」的交會處，將不同部門與專業背景的觀點串連成系統化的解決方案。歷經新聞編輯、網站與 APP PM、產品企劃、AI 開發、管理職等綜合職能的歷練，能洞察編輯室的需求、結合開發經驗，快速找出可行技術或策略，並落實為具體可執行的專案。
+          </p>
+
+          <div class="hero-scroll anim-fade-up delay-5">
+            <span class="scroll-dot" aria-hidden="true"></span>
+            向下捲動了解更多
+          </div>
+        </div>
+
+        <div class="hero-photo-col anim-fade-up delay-1">
+          <img src="https://img-hosting.u0401006.workers.dev/i/5drAsra.png" alt="宋育泰 Yutai Sung" class="hero-avatar">
+        </div>
+
       </div>
     </div>
   </section>
@@ -673,7 +704,7 @@
       <p class="tags-label">關鍵字 / Keywords</p>
       <div class="tags-row" role="list">
         <span class="tag primary" role="listitem">Agentic Coding</span>
-        <span class="tag primary" role="listitem">Multi-Agent Systems</span>
+        <span class="tag primary" role="listitem">Multi-Agent System</span>
         <span class="tag primary" role="listitem">Python</span>
         <span class="tag" role="listitem">NLP</span>
         <span class="tag" role="listitem">SEO</span>
