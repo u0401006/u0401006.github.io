@@ -256,6 +256,29 @@
       animation: pulseGlow 2s ease-in-out infinite;
     }
 
+    /* ─── About ─── */
+    #about {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-quote {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: var(--text);
+      line-height: 1.9;
+      border-left: 3px solid var(--accent);
+      padding-left: 24px;
+      margin-bottom: 28px;
+      font-style: normal;
+    }
+
+    .about-bio {
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 820px;
+    }
+
     /* ─── Tags ─── */
     #tags {
       padding: 48px 0;
@@ -705,6 +728,18 @@
         <span class="tag" role="listitem">AI 編輯工具</span>
         <span class="tag" role="listitem">MCP Server</span>
       </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" aria-label="自我介紹">
+    <div class="container reveal">
+      <blockquote class="about-quote">
+        「我不只是 AI 工具的使用者，我在為新聞業探索一個尚未成形的未來——Agent 中介的新聞傳播。」
+      </blockquote>
+      <p class="about-bio">
+        進入媒體業 16 年，我站在「內容、產品、數據分析、程式」的交會處，將不同部門與專業背景的觀點串連成系統化的解決方案。歷經新聞編輯、網站與 APP PM、產品企劃、AI 開發、管理職等綜合職能的歷練，我能洞察編輯室的需求、結合開發經驗，快速找出可行技術或策略，並且落實為具體可執行的專案。
+      </p>
     </div>
   </section>
 
