@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nieman Lab 2026 文章重述：16 個為新聞編輯室未來而設計的新職位，含繁中整理、資訊卡與職涯地圖。">
+  <meta property="og:title" content="16 個新聞業新職位｜Nieman Lab 2026">
+  <meta property="og:description" content="繁中重述、資訊卡、職涯地圖，整理 AI、受眾、產品與工程驅動的新聞工作。">
+  <meta property="og:type" content="article">
+  <meta name="author" content="OpenAI Codex for Capo">
+  <title>16 個新聞業新職位｜Nieman Lab 2026</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --paper: rgba(255, 251, 244, 0.82);
+      --ink: #1d2430;
+      --muted: #5d6675;
+      --line: rgba(29, 36, 48, 0.12);
+      --navy: #183153;
+      --teal: #0f766e;
+      --gold: #c1842a;
+      --rust: #a34c2b;
+      --rose: #c75f6a;
+      --shadow: 0 18px 50px rgba(24, 49, 83, 0.12);
+      --radius: 24px;
+      --radius-sm: 18px;
+      --mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, monospace;
+      --sans: "Iansui", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(193, 132, 42, 0.16), transparent 28%),
+        radial-gradient(circle at right 12% top 18%, rgba(15, 118, 110, 0.16), transparent 22%),
+        linear-gradient(180deg, #f7f1e7 0%, #f2ece2 100%);
+      min-height: 100vh;
+    }
+
+    a { color: var(--navy); }
+
+    .page {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 64px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 251, 244, 0.72);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      font-family: var(--mono);
+      font-size: 0.84rem;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--ink);
+    }
+
+    section {
+      margin-top: 22px;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 42px 34px 36px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -70px;
+      top: -70px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(24, 49, 83, 0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--rust);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      max-width: 900px;
+      color: var(--navy);
+    }
+
+    .hero-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      align-items: end;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .meta-box {
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(180deg, rgba(24, 49, 83, 0.96), rgba(15, 40, 70, 0.92));
+      color: #eef4ff;
+    }
+
+    .meta-box p + p { margin-top: 10px; }
+
+    .hero-visual {
+      margin-top: 18px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    h2 {
+      font-size: clamp(1.45rem, 2.8vw, 2.3rem);
+      margin-bottom: 18px;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    p, li {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.54);
+      border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1.1;
+      color: var(--navy);
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .card ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    .cluster-grid,
+    .jobs-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .cluster-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .jobs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .cluster {
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      color: #fff;
+      min-height: 180px;
+    }
+
+    .cluster.navy { background: linear-gradient(160deg, #183153, #284d7f); }
+    .cluster.teal { background: linear-gradient(160deg, #0f766e, #1d9f94); }
+    .cluster.gold { background: linear-gradient(160deg, #9c6924, #d79b40); }
+    .cluster.rose { background: linear-gradient(160deg, #954753, #ca6b78); }
+
+    .cluster p,
+    .cluster li,
+    .job p,
+    .footnote,
+    footer p { color: inherit; }
+
+    .cluster ul {
+      margin-left: 18px;
+      margin-top: 10px;
+    }
+
+    .job {
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      background: #fff;
+      border: 1px solid var(--line);
+      position: relative;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      color: #fff;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pill.navy { background: var(--navy); }
+    .pill.teal { background: var(--teal); }
+    .pill.gold { background: var(--gold); }
+    .pill.rose { background: var(--rose); }
+
+    .job strong {
+      display: block;
+      font-size: 1.02rem;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .job small {
+      display: block;
+      color: var(--rust);
+      font-family: var(--mono);
+      margin-bottom: 8px;
+    }
+
+    .visual-box {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed rgba(24, 49, 83, 0.24);
+      background: rgba(255, 255, 255, 0.48);
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .map-note {
+      margin-top: 14px;
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .sources {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .footnote {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 22px;
+      padding: 24px 8px 4px;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .summary,
+      .cols,
+      .cluster-grid,
+      .jobs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page { width: min(100vw - 20px, 1180px); }
+      section { padding: 24px 18px; }
+      .hero { padding: 34px 18px 28px; }
+      .nav { border-radius: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="brand">Nieman Lab 2026 / zh-TW presentation</div>
+      <div class="nav-links">
+        <a href="#translation">文章重述</a>
+        <a href="#clusters">職位分群</a>
+        <a href="#jobs">16 個職位</a>
+        <a href="#career">職涯地圖</a>
+        <a href="#sources">來源</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <span class="eyebrow">Future Newsroom Jobs</span>
+      <h1>16 個為新聞編輯室未來而設計的新職位。</h1>
+      <div class="hero-grid">
+        <p class="lead">
+          這不是傳統「記者 / 編輯 / 攝影」的延伸，而是把新聞機構的核心工作重新切成四條能力線：
+          受眾營運、產品設計、AI 編輯創新、新聞室工程。Nieman Lab 援引 FT Strategies 與 WAN-IFRA 的研究指出，
+          各大媒體已開始用新職稱重組編輯室，以回應平台依賴、生成式 AI、影音分發與工作流程自動化。
+        </p>
+        <div class="meta-box">
+          <p><strong>來源：</strong>Nieman Lab，2026 年 6 月文章。</p>
+          <p><strong>資料補充：</strong>FT Strategies × WAN-IFRA 研究摘要頁。</p>
+          <p><strong>抓取時間：</strong>2026-06-04 Asia/Taipei。</p>
+          <p><strong>說明：</strong>本頁為繁中重述與整理，非原文逐字翻譯。</p>
+          <div class="hero-visual">
+            <img src="nieman-jobs-cover.png" alt="16個新聞業新職位主視覺圖">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="translation">
+      <h2>文章重述（zh-TW）</h2>
+      <div class="cols">
+        <div class="card">
+          <p>
+            這篇文章的核心意思是：新聞機構正在用新的職位設計，修補過去幾年在平台流量、產品能力與技術工作流上的斷層。
+            FT Strategies 與 WAN-IFRA 在研究中盤點 30 家新聞機構、98 個新職位後發現，媒體不再只把數位轉型交給單一「創新部門」，
+            而是直接把 AI、受眾、產品與工程職能放進編輯室日常。
+          </p>
+        </div>
+        <div class="card">
+          <p>
+            Nieman Lab 從研究中挑出 16 個代表性職缺，橫跨《紐約時報》、CNN、BBC、《經濟學人》、Politico、Bloomberg、
+            Vox、《大西洋》與《南華早報》等機構。這些職缺的共通點是：它們不是為了補人力空缺，而是為了重建新聞生產鏈。
+          </p>
+        </div>
+        <div class="card">
+          <p>
+            從工作內容來看，新聞工作已經從單點產出轉向多節點協作。有人專門處理站外受眾與平台分發，有人負責把多模態產品做成穩定體驗，
+            有人把 AI 工具嵌入採訪、編輯與素材處理流程，也有人在新聞室內部建立工程能力，讓內容平台與自動化流程可以持續迭代。
+          </p>
+        </div>
+        <div class="card">
+          <p>
+            文章沒有把這 16 個職位描寫成「新鮮頭銜」，而是把它們視為指標：若一間媒體開始大規模招聘這類職位，
+            代表它正在把未來競爭力押注在產品化、平台化與 AI 融入，而非只靠傳統採編人力擴張。
+          </p>
+        </div>
+      </div>
+
+      <div class="summary">
+        <div class="stat">
+          <strong>30</strong>
+          <span>研究涵蓋的新聞機構。</span>
+        </div>
+        <div class="stat">
+          <strong>98</strong>
+          <span>研究盤點的新型新聞職位。</span>
+        </div>
+        <div class="stat">
+          <strong>16</strong>
+          <span>Nieman Lab 挑出的代表性職缺。</span>
+        </div>
+        <div class="stat">
+          <strong>4</strong>
+          <span>可歸納的核心能力群：受眾、產品、AI、工程。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="clusters">
+      <h2>四大職位分群</h2>
+      <div class="cluster-grid">
+        <article class="cluster navy">
+          <h3>受眾與平台營運</h3>
+          <ul>
+            <li>站外流量、平台發布、頻道經營。</li>
+            <li>把新聞包裝成 YouTube、社群、Podcast 等多格式產品。</li>
+            <li>衡量的不只是點閱，而是觸及、回訪與社群黏著。</li>
+          </ul>
+        </article>
+        <article class="cluster teal">
+          <h3>產品與體驗設計</h3>
+          <ul>
+            <li>把新聞內容做成產品，而非單篇頁面。</li>
+            <li>涵蓋內容平台、設計系統、內容工作流與多模態體驗。</li>
+            <li>需要編輯、設計、技術三方共同決策。</li>
+          </ul>
+        </article>
+        <article class="cluster gold">
+          <h3>AI 編輯創新</h3>
+          <ul>
+            <li>測試生成式 AI 在採訪、整理、標註、素材處理上的應用。</li>
+            <li>把 AI 從實驗室帶進編輯室的可複製流程。</li>
+            <li>同時處理工具選型、規範與實務落地。</li>
+          </ul>
+        </article>
+        <article class="cluster rose">
+          <h3>新聞室工程</h3>
+          <ul>
+            <li>建立內容平台、內部工具與自動化管線。</li>
+            <li>讓編輯流程可擴充、可追蹤、可持續最佳化。</li>
+            <li>工程不再只是支援，而是編輯能力的一部分。</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="visual-box" aria-label="四大能力視覺整合資訊卡">
+        <svg viewBox="0 0 1100 430" role="img">
+          <title>四大能力整合資訊卡</title>
+          <rect x="20" y="28" width="250" height="150" rx="22" fill="#183153"></rect>
+          <rect x="290" y="28" width="250" height="150" rx="22" fill="#0f766e"></rect>
+          <rect x="560" y="28" width="250" height="150" rx="22" fill="#c1842a"></rect>
+          <rect x="830" y="28" width="250" height="150" rx="22" fill="#c75f6a"></rect>
+          <text x="46" y="74" fill="#ffffff" font-size="27" font-family="sans-serif">受眾與平台營運</text>
+          <text x="316" y="74" fill="#ffffff" font-size="27" font-family="sans-serif">產品與體驗設計</text>
+          <text x="586" y="74" fill="#ffffff" font-size="27" font-family="sans-serif">AI 編輯創新</text>
+          <text x="856" y="74" fill="#ffffff" font-size="27" font-family="sans-serif">新聞室工程</text>
+          <text x="46" y="112" fill="#dfe7f6" font-size="20" font-family="sans-serif">Audience</text>
+          <text x="316" y="112" fill="#dff6f2" font-size="20" font-family="sans-serif">Product</text>
+          <text x="586" y="112" fill="#fff4dd" font-size="20" font-family="sans-serif">AI Workflow</text>
+          <text x="856" y="112" fill="#ffe6eb" font-size="20" font-family="sans-serif">Engineering</text>
+          <line x1="145" y1="178" x2="145" y2="250" stroke="#183153" stroke-width="6"></line>
+          <line x1="415" y1="178" x2="415" y2="250" stroke="#0f766e" stroke-width="6"></line>
+          <line x1="685" y1="178" x2="685" y2="250" stroke="#c1842a" stroke-width="6"></line>
+          <line x1="955" y1="178" x2="955" y2="250" stroke="#c75f6a" stroke-width="6"></line>
+          <rect x="80" y="250" width="940" height="120" rx="28" fill="#fffaf2" stroke="#d7c9b0" stroke-width="3"></rect>
+          <text x="130" y="308" fill="#1d2430" font-size="30" font-family="sans-serif">未來編輯室 = 內容判斷 × 平台分發 × 產品化 × AI/工程內建</text>
+          <text x="130" y="342" fill="#5d6675" font-size="21" font-family="sans-serif">16 個職位分散在不同公司，但都在補同一件事：讓新聞工作可延伸、可量化、可持續。</text>
+        </svg>
+      </div>
+    </section>
+
+    <section id="jobs">
+      <h2>16 個職位有哪些</h2>
+      <div class="jobs-grid">
+        <article class="job">
+          <span class="pill navy">Audience</span>
+          <strong>1. Editor, Newsroom Development and Support</strong>
+          <small>The New York Times</small>
+          <p>協助編輯室能力建設、支援流程與跨團隊落地，屬於新聞室營運與組織支援型角色。</p>
+        </article>
+        <article class="job">
+          <span class="pill navy">Audience</span>
+          <strong>2. Audience Deputy, Off-Platform</strong>
+          <small>The New York Times</small>
+          <p>專注站外受眾，把新聞送到第三方平台與新分發環境，而不是只經營自家首頁。</p>
+        </article>
+        <article class="job">
+          <span class="pill teal">Product</span>
+          <strong>3. Product Director, Multimodal, News Product</strong>
+          <small>The New York Times</small>
+          <p>把文字、音訊、影像與互動格式整合成同一套新聞產品體驗。</p>
+        </article>
+        <article class="job">
+          <span class="pill teal">Product</span>
+          <strong>4. Head of Product Design</strong>
+          <small>The Washington Post</small>
+          <p>主導產品設計方向，讓新聞內容在介面、流程與使用體驗上具有一致性。</p>
+        </article>
+        <article class="job">
+          <span class="pill rose">Engineering</span>
+          <strong>5. Technical Product Manager, Content Platform</strong>
+          <small>Bloomberg</small>
+          <p>管理內容平台與技術需求，在編輯需求與工程實作之間建立可交付的產品節奏。</p>
+        </article>
+        <article class="job">
+          <span class="pill gold">AI</span>
+          <strong>6. Senior Product Manager, AI Product</strong>
+          <small>USA Today / Gannett</small>
+          <p>負責 AI 產品策略與功能落地，把生成式 AI 從點狀工具變成產品能力。</p>
+        </article>
+        <article class="job">
+          <span class="pill teal">Product</span>
+          <strong>7. Senior Product Manager</strong>
+          <small>The Atlantic</small>
+          <p>偏向用戶體驗、內容產品與訂閱/互動流程的產品型職位。</p>
+        </article>
+        <article class="job">
+          <span class="pill gold">AI</span>
+          <strong>8. Senior Editor, AI Innovation</strong>
+          <small>CNN</small>
+          <p>由編輯端主導 AI 實驗與規範，把技術應用轉成可供新聞室採用的工作法。</p>
+        </article>
+        <article class="job">
+          <span class="pill navy">Audience</span>
+          <strong>9. Editor, Audience - News</strong>
+          <small>CNN</small>
+          <p>以受眾策略調整新聞分發與呈現，連結即時新聞與平台表現。</p>
+        </article>
+        <article class="job">
+          <span class="pill navy">Audience</span>
+          <strong>10. Podcast Social Video Editor</strong>
+          <small>Vox Media</small>
+          <p>把 Podcast 內容改造成適合社群平台傳播的影音切片與短內容。</p>
+        </article>
+        <article class="job">
+          <span class="pill navy">Audience</span>
+          <strong>11. Senior Channel Manager, YouTube</strong>
+          <small>BBC Children’s and Education</small>
+          <p>以頻道成長、平台策略與內容包裝來經營 YouTube 作為主要分發場域。</p>
+        </article>
+        <article class="job">
+          <span class="pill gold">AI</span>
+          <strong>12. Senior AI Engineer, AI Lab</strong>
+          <small>The Economist</small>
+          <p>從工程端打造 AI 能力，支援內容生成、整理、搜尋與編輯工作流。</p>
+        </article>
+        <article class="job">
+          <span class="pill rose">Engineering</span>
+          <strong>13. Editorial Director, Newsroom Engineering</strong>
+          <small>Politico</small>
+          <p>把工程能力直接嵌進編輯室，由編輯視角管理技術團隊與內部工具建設。</p>
+        </article>
+        <article class="job">
+          <span class="pill teal">Product</span>
+          <strong>14. Manager, Product Design</strong>
+          <small>The Philadelphia Inquirer</small>
+          <p>負責產品設計團隊管理，讓新聞體驗與產品目標可以同步推進。</p>
+        </article>
+        <article class="job">
+          <span class="pill gold">AI</span>
+          <strong>15. Assistant Manager, Content and AI Innovation</strong>
+          <small>South China Morning Post</small>
+          <p>聚焦內容與 AI 創新交界，屬於將技術導入編輯實務的中階管理角色。</p>
+        </article>
+        <article class="job">
+          <span class="pill rose">Engineering</span>
+          <strong>16. Technical Product Manager</strong>
+          <small>The Sun</small>
+          <p>整合技術、產品與內容流程，讓新聞產品能持續快速迭代。</p>
+        </article>
+      </div>
+      <p class="footnote">
+        註：上述中文描述為依據職稱與文章脈絡的整理式重述；個別職位細節仍以原文與原招聘說明為準。
+      </p>
+    </section>
+
+    <section id="career">
+      <h2>職涯地圖</h2>
+      <div class="cols">
+        <div class="card">
+          <h3>四條主要路徑</h3>
+          <ul>
+            <li>受眾路徑：社群編輯 → 平台策略 → 頻道經理 → 受眾主管。</li>
+            <li>產品路徑：內容企劃/PM → 產品經理 → 設計或多模態產品主管。</li>
+            <li>AI 路徑：資料/工具實驗 → AI 編輯或 AI PM → AI Lab/創新主管。</li>
+            <li>工程路徑：新聞工具開發 → 技術 PM → 新聞室工程主管。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>可轉職能力</h3>
+          <ul>
+            <li>採編背景可轉受眾、AI 編輯創新、內容產品。</li>
+            <li>設計背景可轉產品設計管理、多模態新聞體驗。</li>
+            <li>工程背景可往內容平台、AI Lab、新聞室工程前進。</li>
+            <li>最稀缺的是同時懂內容判斷、資料流程與跨部門協作的人。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="visual-box" aria-label="新聞業未來職涯地圖">
+        <svg viewBox="0 0 1100 700" role="img">
+          <title>新聞業未來職涯地圖</title>
+          <rect x="120" y="70" width="860" height="90" rx="20" fill="#183153"></rect>
+          <text x="170" y="126" fill="#ffffff" font-size="34" font-family="sans-serif">職涯地圖：從內容專才走向產品、AI、平台與工程</text>
+
+          <text x="60" y="245" fill="#5d6675" font-size="24" font-family="sans-serif">入門</text>
+          <text x="60" y="405" fill="#5d6675" font-size="24" font-family="sans-serif">中階</text>
+          <text x="60" y="565" fill="#5d6675" font-size="24" font-family="sans-serif">主管</text>
+
+          <rect x="140" y="190" width="180" height="90" rx="18" fill="#e7f0fb" stroke="#183153"></rect>
+          <rect x="360" y="190" width="180" height="90" rx="18" fill="#e6faf7" stroke="#0f766e"></rect>
+          <rect x="580" y="190" width="180" height="90" rx="18" fill="#fff4dd" stroke="#c1842a"></rect>
+          <rect x="800" y="190" width="180" height="90" rx="18" fill="#ffe7ea" stroke="#c75f6a"></rect>
+          <text x="188" y="228" fill="#183153" font-size="24" font-family="sans-serif">社群編輯</text>
+          <text x="392" y="228" fill="#0f766e" font-size="24" font-family="sans-serif">內容 PM</text>
+          <text x="614" y="228" fill="#9c6924" font-size="24" font-family="sans-serif">AI 實驗編輯</text>
+          <text x="840" y="228" fill="#954753" font-size="24" font-family="sans-serif">工具工程師</text>
+          <text x="166" y="258" fill="#5d6675" font-size="18" font-family="sans-serif">平台包裝</text>
+          <text x="404" y="258" fill="#5d6675" font-size="18" font-family="sans-serif">內容流程</text>
+          <text x="612" y="258" fill="#5d6675" font-size="18" font-family="sans-serif">工作流測試</text>
+          <text x="838" y="258" fill="#5d6675" font-size="18" font-family="sans-serif">內部工具</text>
+
+          <rect x="140" y="350" width="180" height="90" rx="18" fill="#e7f0fb" stroke="#183153"></rect>
+          <rect x="360" y="350" width="180" height="90" rx="18" fill="#e6faf7" stroke="#0f766e"></rect>
+          <rect x="580" y="350" width="180" height="90" rx="18" fill="#fff4dd" stroke="#c1842a"></rect>
+          <rect x="800" y="350" width="180" height="90" rx="18" fill="#ffe7ea" stroke="#c75f6a"></rect>
+          <text x="170" y="388" fill="#183153" font-size="24" font-family="sans-serif">受眾編輯 /</text>
+          <text x="166" y="416" fill="#183153" font-size="24" font-family="sans-serif">頻道經理</text>
+          <text x="394" y="388" fill="#0f766e" font-size="24" font-family="sans-serif">資深產品經理</text>
+          <text x="610" y="388" fill="#9c6924" font-size="24" font-family="sans-serif">AI 編輯 /</text>
+          <text x="608" y="416" fill="#9c6924" font-size="24" font-family="sans-serif">AI PM</text>
+          <text x="838" y="388" fill="#954753" font-size="24" font-family="sans-serif">技術 PM /</text>
+          <text x="836" y="416" fill="#954753" font-size="24" font-family="sans-serif">平台工程</text>
+
+          <rect x="140" y="510" width="180" height="90" rx="18" fill="#183153"></rect>
+          <rect x="360" y="510" width="180" height="90" rx="18" fill="#0f766e"></rect>
+          <rect x="580" y="510" width="180" height="90" rx="18" fill="#c1842a"></rect>
+          <rect x="800" y="510" width="180" height="90" rx="18" fill="#c75f6a"></rect>
+          <text x="176" y="548" fill="#ffffff" font-size="24" font-family="sans-serif">Audience Lead</text>
+          <text x="200" y="576" fill="#ffffff" font-size="18" font-family="sans-serif">或 Deputy</text>
+          <text x="388" y="548" fill="#ffffff" font-size="24" font-family="sans-serif">Head of Product</text>
+          <text x="410" y="576" fill="#ffffff" font-size="18" font-family="sans-serif">Design / Director</text>
+          <text x="618" y="548" fill="#ffffff" font-size="24" font-family="sans-serif">AI Innovation</text>
+          <text x="622" y="576" fill="#ffffff" font-size="18" font-family="sans-serif">Lead / AI Lab</text>
+          <text x="824" y="548" fill="#ffffff" font-size="24" font-family="sans-serif">Newsroom</text>
+          <text x="824" y="576" fill="#ffffff" font-size="18" font-family="sans-serif">Engineering Director</text>
+
+          <line x1="230" y1="280" x2="230" y2="350" stroke="#183153" stroke-width="5"></line>
+          <line x1="450" y1="280" x2="450" y2="350" stroke="#0f766e" stroke-width="5"></line>
+          <line x1="670" y1="280" x2="670" y2="350" stroke="#c1842a" stroke-width="5"></line>
+          <line x1="890" y1="280" x2="890" y2="350" stroke="#c75f6a" stroke-width="5"></line>
+          <line x1="230" y1="440" x2="230" y2="510" stroke="#183153" stroke-width="5"></line>
+          <line x1="450" y1="440" x2="450" y2="510" stroke="#0f766e" stroke-width="5"></line>
+          <line x1="670" y1="440" x2="670" y2="510" stroke="#c1842a" stroke-width="5"></line>
+          <line x1="890" y1="440" x2="890" y2="510" stroke="#c75f6a" stroke-width="5"></line>
+        </svg>
+      </div>
+      <p class="map-note">
+        這張地圖是依 16 個職位的功能相近性所做的整理，不代表原文逐一給出的官方晉升階梯。
+      </p>
+    </section>
+
+    <section id="sources">
+      <h2>來源與註記</h2>
+      <div class="sources">
+        <div class="card">
+          <h3>來源 1</h3>
+          <p>
+            Nieman Lab，
+            <a href="https://www.niemanlab.org/2026/06/these-16-new-journalism-jobs-are-designed-to-help-publishers-future-proof-their-newsrooms/" target="_blank" rel="noreferrer">
+              These 16 new journalism jobs are designed to help publishers future-proof their newsrooms
+            </a>。
+          </p>
+        </div>
+        <div class="card">
+          <h3>來源 2</h3>
+          <p>
+            FT Strategies，
+            <a href="https://www.ftstrategies.com/en-gb/insights/ft-strategies-and-wan-ifra-study-finds-newsrooms-are-rebuilding-around-ai-audiences-and-community" target="_blank" rel="noreferrer">
+              FT Strategies and WAN-IFRA study finds newsrooms are rebuilding around AI, audiences and community
+            </a>。
+          </p>
+        </div>
+      </div>
+      <p class="footnote">
+        版權說明：原始文章為受著作權保護內容，本頁提供的是繁體中文整理、重述與結構化呈現，而非全文逐字翻譯。
+      </p>
+    </section>
+
+    <footer>
+      <p>製作：Codex。發布目的：簡報與資料整理。最後更新：2026-06-04。</p>
+    </footer>
+  </div>
+</body>
+</html>
