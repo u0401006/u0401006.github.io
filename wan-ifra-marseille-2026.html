@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>媒體業 AI 轉型路線圖｜WAN-IFRA Marseille 2026</title>
+<style>
+  :root {
+    --bg: #0a0c14;
+    --surface: #141722;
+    --surface2: #1e2235;
+    --accent: #e8b84b;
+    --accent2: #4b9fe8;
+    --accent3: #e84b6b;
+    --accent4: #4be8a0;
+    --text: #e8ecf4;
+    --text-muted: #7a8499;
+    --border: #252a40;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* Progress bar */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #f5d98a);
+    transition: width .4s ease;
+    z-index: 100;
+  }
+
+  .slide-badge {
+    position: fixed;
+    top: 16px; right: 20px;
+    font-size: .75rem;
+    color: var(--text-muted);
+    letter-spacing: .05em;
+    z-index: 100;
+  }
+
+  /* Deck */
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 56px 80px;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity .4s ease, transform .4s ease;
+    pointer-events: none;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  .slide.exit {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  /* Slide variants */
+  .slide-title {
+    background: radial-gradient(ellipse at 30% 50%, #1a1530 0%, var(--bg) 70%);
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide-content {
+    background: var(--bg);
+    align-items: flex-start;
+  }
+
+  .slide-split {
+    background: var(--bg);
+    flex-direction: row;
+    align-items: stretch;
+    padding: 0;
+    gap: 0;
+  }
+
+  .slide-quote {
+    background: radial-gradient(ellipse at 70% 50%, #1a1215 0%, var(--bg) 70%);
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Split layout */
+  .split-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 56px 52px 56px 80px;
+    min-width: 0;
+  }
+
+  .split-right {
+    width: 420px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 48px 40px 24px;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+  }
+
+  .split-right img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  }
+
+  .split-right .img-caption {
+    font-size: .72rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  .split-right-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Typography */
+  .eyebrow {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .eyebrow.blue { color: var(--accent2); }
+  .eyebrow.green { color: var(--accent4); }
+  .eyebrow.red { color: var(--accent3); }
+
+  .slide-title h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.2;
+    max-width: 820px;
+    margin-bottom: 24px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent), #f5d98a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-blue {
+    background: linear-gradient(135deg, var(--accent2), #8fd4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-title .meta {
+    color: var(--text-muted);
+    font-size: .9rem;
+    line-height: 1.8;
+  }
+
+  h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+
+  h2 .tag {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(232,184,75,.12);
+    border: 1px solid rgba(232,184,75,.25);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-right: 10px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+  }
+
+  /* Points */
+  .points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 680px;
+    width: 100%;
+  }
+
+  .slide-split .points { max-width: 100%; }
+
+  .points li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: clamp(.85rem, 1.5vw, 1rem);
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  .points li .icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    width: 22px;
+    color: var(--accent);
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: clamp(.82rem, 1.4vw, .95rem);
+    line-height: 1.7;
+    color: var(--text);
+    max-width: 680px;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .highlight-box.blue { border-left-color: var(--accent2); }
+  .highlight-box.red  { border-left-color: var(--accent3); }
+  .highlight-box.green { border-left-color: var(--accent4); }
+  .slide-split .highlight-box { max-width: 100%; }
+
+  /* Stat row */
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    max-width: 680px;
+    width: 100%;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    flex: 1;
+    min-width: 150px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+
+  .stat-card .val {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-card .val.blue { color: var(--accent2); }
+  .stat-card .val.red { color: var(--accent3); }
+  .stat-card .val.green { color: var(--accent4); }
+
+  .stat-card .label {
+    font-size: .78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Gap grid (Future Newsrooms) */
+  .gap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 680px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .gap-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .gap-card .gap-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent3);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .gap-card .gap-label {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .gap-card .gap-desc {
+    font-size: .75rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Quote */
+  .big-quote {
+    font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.45;
+    max-width: 820px;
+    margin-bottom: 28px;
+  }
+
+  .big-quote em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .quote-source {
+    color: var(--text-muted);
+    font-size: .85rem;
+    letter-spacing: .05em;
+  }
+
+  /* Summary grid */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 820px;
+    width: 100%;
+  }
+
+  .summary-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .s-num {
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .s-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .s-desc {
+    font-size: .8rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* Index dots */
+  .index-dots {
+    position: fixed;
+    bottom: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 100;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background .3s, transform .3s;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background: var(--accent);
+    transform: scale(1.4);
+  }
+
+  /* Nav */
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .nav-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-btn:hover:not(:disabled) {
+    background: var(--surface);
+    border-color: var(--accent);
+  }
+
+  .nav-btn:disabled { opacity: .3; cursor: default; }
+
+  .slide-counter {
+    font-size: .8rem;
+    color: var(--text-muted);
+    min-width: 52px;
+    text-align: center;
+  }
+
+  .kbd-hint {
+    position: fixed;
+    bottom: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: .72rem;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 12px;
+    transition: opacity .5s;
+    z-index: 100;
+    white-space: nowrap;
+  }
+
+  .kbd-hint.hidden { opacity: 0; pointer-events: none; }
+
+  /* Source link */
+  .source-link {
+    font-size: .7rem;
+    color: var(--text-muted);
+    margin-top: 14px;
+    opacity: .6;
+  }
+
+  .source-link a {
+    color: var(--accent2);
+    text-decoration: none;
+  }
+
+  /* Title cards row */
+  .title-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 28px;
+    max-width: 700px;
+  }
+
+  .title-tag {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="slide-badge" id="badge">1 / 10</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1. Title -->
+  <div class="slide slide-title active" data-index="0">
+    <div class="eyebrow">WAN-IFRA World News Media Congress · Marseille 2026</div>
+    <h1>媒體業的<br><span class="gradient-text">AI 轉型路線圖</span></h1>
+    <div class="meta">
+      8 篇大會報導精選重點<br>
+      <span style="color:var(--accent);font-size:.8rem;margin-top:6px;display:block">2026年6月 · 整理自 WAN-IFRA</span>
+    </div>
+    <div class="title-tags">
+      <span class="title-tag">VG · Norway</span>
+      <span class="title-tag">New York Times</span>
+      <span class="title-tag">Politico</span>
+      <span class="title-tag">Spilnews</span>
+      <span class="title-tag">Innovation Report</span>
+      <span class="title-tag">Future Newsrooms</span>
+      <span class="title-tag">USA Today</span>
+      <span class="title-tag">Pressedruck</span>
+    </div>
+  </div>
+
+  <!-- 2. VG Speedboat -->
+  <div class="slide slide-split" data-index="1">
+    <div class="split-left">
+      <div class="eyebrow">01 · 挪威 VG</div>
+      <h2>「快艇策略」：AI 時代的產品實驗室</h2>
+      <ul class="points">
+        <li>
+          <span class="icon">→</span>
+          推出獨立實驗 app <strong>VGX</strong>：無首頁、無 CMS、feed 形式 + 即時影片，與主品牌隔離快速迭代
+        </li>
+        <li>
+          <span class="icon">→</span>
+          技術架構允許<strong>一名記者搭配 AI agents</strong> 管理全部內容；記者透過 chatbot 介面操作
+        </li>
+        <li>
+          <span class="icon">→</span>
+          主 app 已上線「個人化首頁更新」；Videofy / Podify 工具將文字自動轉影片、podcast
+        </li>
+        <li>
+          <span class="icon">→</span>
+          追蹤核心指標：<strong>「AI 無法複製的內容佔比」</strong>，以此衡量人的不可替代性
+        </li>
+      </ul>
+      <div class="highlight-box">
+        目標：把記者從生產線推向高價值報導，AI 做例行工作，人做 AI 做不到的事。
+      </div>
+      <div class="source-link">來源：<a href="https://wan-ifra.org/2026/06/inside-vgs-speedboat-strategy-to-outpace-ai-and-rethink-legacy-news-products/" target="_blank">wan-ifra.org</a></div>
+    </div>
+    <div class="split-right">
+      <div class="split-right-wrap">
+        <img src="https://cdn.wan-ifra.org/wp-content/uploads/2026/06/02162804/VG-X.jpg" alt="VGX app screenshot" onerror="this.style.display='none'">
+        <div class="img-caption">VGX app 實際介面截圖</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. NYT Video -->
+  <div class="slide slide-split" data-index="2">
+    <div class="split-left">
+      <div class="eyebrow blue">02 · New York Times</div>
+      <h2>影片策略：必須用影片說的故事</h2>
+      <ul class="points">
+        <li>
+          <span class="icon">→</span>
+          美國新聞影片週收看率：2021年 50% → 現在 <strong>75%</strong>（約 2.5 億人）
+        </li>
+        <li>
+          <span class="icon">→</span>
+          原則：不是每則新聞都拍影片，只做「非影片無法說清楚」的題目
+        </li>
+        <li>
+          <span class="icon">→</span>
+          五個專屬團隊：視覺調查（衛星+目擊者素材）、現場記者、報導擴散、即時新聞、長片節目
+        </li>
+        <li>
+          <span class="icon">→</span>
+          自有 <strong>Watch 分頁</strong>：仿社群的垂直影片 feed，專屬編輯把關節目流，減少平台依賴
+        </li>
+      </ul>
+      <div class="highlight-box blue">
+        現代受眾同時使用多種格式，不是「看影片 vs 讀文章」的取捨，而是同時並存。
+      </div>
+      <div class="source-link">來源：<a href="https://wan-ifra.org/2026/06/stories-that-must-be-watched-inside-the-new-york-times-video-strategy/" target="_blank">wan-ifra.org</a></div>
+    </div>
+    <div class="split-right">
+      <div class="split-right-wrap">
+        <img src="https://cdn.wan-ifra.org/wp-content/uploads/2026/06/04145628/NYT-video-Screenshot.png" alt="NYT Watch tab screenshot" onerror="this.style.display='none'">
+        <div class="img-caption">NYT Watch 分頁 — 自有垂直影片 feed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Politico -->
+  <div class="slide slide-content" data-index="3">
+    <div class="eyebrow green">03 · Politico</div>
+    <h2>地緣政治複雜度 = 最大訂閱機會</h2>
+    <div class="stat-row">
+      <div class="stat-card">
+        <span class="val green">60%+</span>
+        <span class="label">收入來自<br>專業訂閱</span>
+      </div>
+      <div class="stat-card">
+        <span class="val">8</span>
+        <span class="label">全球權力中心<br>（Washington · Brussels · London…）</span>
+      </div>
+      <div class="stat-card">
+        <span class="val blue">+2</span>
+        <span class="label">即將擴至<br>Madrid · Canberra</span>
+      </div>
+    </div>
+    <ul class="points">
+      <li>
+        <span class="icon">→</span>
+        AI 氾濫後，<strong>稀缺資源不是資訊，是信任</strong>：Politico 把核實報導定位為溢價產品
+      </li>
+      <li>
+        <span class="icon">→</span>
+        拓展至<strong>投資專業人士</strong>：把新聞直接內嵌進其工作流程系統（AI 整合）
+      </li>
+      <li>
+        <span class="icon">→</span>
+        實體活動（Politico Pub）不是附屬業務，是核心——「人與人直接連結」成為溢價產品
+      </li>
+    </ul>
+    <div class="highlight-box green">
+      AI 時代反而增加新聞室投資，而非削減。訂閱模式起點：2011年解碼《平價醫療法》。
+    </div>
+    <div class="source-link">來源：<a href="https://wan-ifra.org/2026/06/politico-is-turning-geopolitical-complexity-into-its-biggest-subscription-opportunity/" target="_blank">wan-ifra.org</a></div>
+  </div>
+
+  <!-- 5. Spilnews -->
+  <div class="slide slide-split" data-index="4">
+    <div class="split-left">
+      <div class="eyebrow red">04 · Spilnews（荷蘭）</div>
+      <h2>Gen Z 危機：連結斷了，不是內容少了</h2>
+      <ul class="points">
+        <li>
+          <span class="icon">→</span>
+          Gen Z <strong>跟 feed 不跟首頁、信個人不信機構、要參與不要被動接收</strong>——三個根本差異
+        </li>
+        <li>
+          <span class="icon">→</span>
+          選材邏輯反轉：先找 Gen Z 未被服務的主題，再選<strong>真正活在這主題裡的創作者</strong>，攝影機看得穿假熱情
+        </li>
+        <li>
+          <span class="icon">→</span>
+          社群三用途：出版前 DM 問線索、發布後留言討論、提供後續報導選題（社群 = 採訪台）
+        </li>
+        <li>
+          <span class="icon">→</span>
+          18人、均齡26歲、每週60-70篇；編輯型創作者<strong>不接業配</strong>，廣告交給外部創作者處理
+        </li>
+      </ul>
+      <div class="highlight-box red">
+        「鏡頭看得穿假熱情。創作者不真的活在那個主題裡，觀眾看得出來。」<br>
+        <span style="color:var(--text-muted);font-size:.82rem">— Christopher Kenis, Spilnews 發行人</span>
+      </div>
+      <div class="source-link">來源：<a href="https://wan-ifra.org/2026/06/a-crisis-of-connection-not-content-inside-spilnews-genz-model/" target="_blank">wan-ifra.org</a></div>
+    </div>
+    <div class="split-right">
+      <div class="split-right-wrap">
+        <img src="https://cdn.wan-ifra.org/wp-content/uploads/2026/06/02083839/34DE1E43-7FCE-432C-8F2B-B1D16725DCA4-e1780389561527.png" alt="Spilnews creator on TikTok" onerror="this.style.display='none'">
+        <div class="img-caption">Spilnews 創作者在 TikTok 的新聞呈現</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Innovation in Media Report -->
+  <div class="slide slide-content" data-index="5">
+    <div class="eyebrow">05 · Innovation in Media 2026/27 報告</div>
+    <h2>AI 是基礎建設，不是工具——媒體業的戰略岔路</h2>
+    <ul class="points">
+      <li>
+        <span class="icon">→</span>
+        <strong>內容供給已無限，分發管道不穩定</strong>：稀缺性從內容轉向信任與關係
+      </li>
+      <li>
+        <span class="icon">→</span>
+        岔路：用 AI 降成本（結果同質化）vs <strong>用 AI 創造新產品</strong>（競爭優勢）——選錯就是衰退
+      </li>
+      <li>
+        <span class="icon">→</span>
+        五大章節：收入模式多元化、AI 生態補償機制（版權授權）、人工新聞信任溢價、AI 原生新聞室重組、直接受眾平台
+      </li>
+      <li>
+        <span class="icon">→</span>
+        比喻：現在的壓力等同於 1998 年數位轉型的前夜，<strong>「延誤的代價不是中立，是衰退」</strong>
+      </li>
+    </ul>
+    <div class="highlight-box">
+      報告重點：AI 授權市場、訂閱、會員、智識產品、活動、商務、資料——七條收入路徑同時布局。
+    </div>
+    <div class="source-link">來源：<a href="https://wan-ifra.org/2026/06/new-innovation-in-media-report-unveiled-in-marseille/" target="_blank">wan-ifra.org</a></div>
+  </div>
+
+  <!-- 7. Future Newsrooms Study -->
+  <div class="slide slide-split" data-index="6">
+    <div class="split-left">
+      <div class="eyebrow blue">06 · Future Newsrooms Study 2026（FT Strategies / WAN-IFRA）</div>
+      <h2>四道鴻溝：86 國新聞室共同病徵</h2>
+      <div class="gap-grid">
+        <div class="gap-card">
+          <span class="gap-num">25%</span>
+          <span class="gap-label">策略≠執行</span>
+          <span class="gap-desc">新聞室仍靠直覺做編輯決策，受眾數據形同虛設</span>
+        </div>
+        <div class="gap-card">
+          <span class="gap-num">64%</span>
+          <span class="gap-label">頻道優先≠受眾優先</span>
+          <span class="gap-desc">先為舊頻道生產，只有 21% 從受眾需求出發</span>
+        </div>
+        <div class="gap-card">
+          <span class="gap-num">68%</span>
+          <span class="gap-label">員工培訓不足</span>
+          <span class="gap-desc">未充分支援記者轉型為 creator 的技能與時間</span>
+        </div>
+        <div class="gap-card">
+          <span class="gap-num">30%</span>
+          <span class="gap-label">受眾領導者缺席</span>
+          <span class="gap-desc">只有 30% 讓受眾/平台主管參與策略制定</span>
+        </div>
+      </div>
+      <div class="highlight-box blue" style="margin-top:0">
+        AI 採用三大障礙：技能落差 61%、內部抵制 52%、用途不明 45%。
+      </div>
+      <div class="source-link">來源：<a href="https://wan-ifra.org/2026/06/mind-the-gaps-how-tomorrows-newsrooms-are-bridging-todays-divides/" target="_blank">wan-ifra.org</a></div>
+    </div>
+    <div class="split-right">
+      <div class="split-right-wrap">
+        <img src="https://cdn.wan-ifra.org/wp-content/uploads/2026/06/02093311/core-assumptions-300x166.png" alt="Core assumptions chart" onerror="this.style.display='none'">
+        <div class="img-caption">Future Newsrooms Study 核心假設圖</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. USA Today -->
+  <div class="slide slide-split" data-index="7">
+    <div class="split-left">
+      <div class="eyebrow">07 · USA Today</div>
+      <h2>停止靠直覺，開始靠量測</h2>
+      <ul class="points">
+        <li>
+          <span class="icon">→</span>
+          「人工審核」無法規模化：記者的讚/踩反饋 + AI 自信出錯 = 人變成瓶頸與燃耗點
+        </li>
+        <li>
+          <span class="icon">→</span>
+          關鍵區分：<strong>輔助型 AI</strong>（需手動操作）vs <strong>代理型 AI</strong>（自主追求目標）——治理方式完全不同
+        </li>
+        <li>
+          <span class="icon">→</span>
+          案例：公共記錄申請 agent → 初版幻覺產出錯誤法條，引入結構化評估標準後，<strong>部署時間從數月壓縮到一週</strong>
+        </li>
+        <li>
+          <span class="icon">→</span>
+          解法：與記者<strong>共同定義成功標準</strong> → 建立評估框架 → 動態決定人工介入時機
+        </li>
+      </ul>
+      <div class="highlight-box">
+        評估框架 = 動態治理基礎。知道系統什麼時候能信任、什麼時候要人蓋章。
+      </div>
+      <div class="source-link">來源：<a href="https://wan-ifra.org/2026/06/stop-guessing-start-measuring-usa-today-on-ai-in-the-newsroom/" target="_blank">wan-ifra.org</a></div>
+    </div>
+    <div class="split-right">
+      <div class="split-right-wrap">
+        <img src="https://cdn.wan-ifra.org/wp-content/uploads/2026/06/03124859/WhatsApp-Image-2026-06-03-at-14.46.11-e1780491160731.jpeg" alt="USA Today panel discussion" onerror="this.style.display='none'">
+        <div class="img-caption">Jessica Davis（USA Today）在大會的主題討論</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Pressedruck -->
+  <div class="slide slide-split" data-index="8">
+    <div class="split-left">
+      <div class="eyebrow green">08 · Mediengruppe Pressedruck（德國）</div>
+      <h2>AI 幫記者搶回時間</h2>
+      <ul class="points">
+        <li>
+          <span class="icon">→</span>
+          痛點：編輯大量時間耗在把新聞稿/警察報告壓縮至<strong>精確版面字數</strong>，佔用原創報導時間
+        </li>
+        <li>
+          <span class="icon">→</span>
+          解法：訓練於 <strong>3 萬份原文+縮短版</strong> 對照資料的 AI 工具，整合進 Content Assistant 平台
+        </li>
+        <li>
+          <span class="icon">→</span>
+          功能：指定目標字數（±10%）、側邊對照顯示差異、段落高亮標注修改點
+        </li>
+        <li>
+          <span class="icon">→</span>
+          關鍵設計：<strong>自願使用</strong>，不強制，降低抗拒心理；由碩士論文專案起步，現已整合至日常工作流
+        </li>
+      </ul>
+      <div class="highlight-box green">
+        效果：每日多篇新聞稿處理速度加快，減少「從零想起」的腦力疲勞，讓記者回歸採訪工作。
+      </div>
+      <div class="source-link">來源：<a href="https://wan-ifra.org/2026/05/how-mediengruppe-pressedruck-uses-ai-to-reclaim-journalists-time/" target="_blank">wan-ifra.org</a></div>
+    </div>
+    <div class="split-right">
+      <div class="split-right-wrap">
+        <img src="https://cdn.wan-ifra.org/wp-content/uploads/2026/05/18122531/Gemini_Generated_Image_5e0um5e0um5e0um5-scaled-e1779107245219.png" alt="AI text adaptation pipeline" onerror="this.style.display='none'">
+        <div class="img-caption">AI 文字壓縮工具架構示意圖</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Summary -->
+  <div class="slide slide-quote" data-index="9">
+    <div class="divider"></div>
+    <p class="big-quote">
+      AI 不是威脅，也不是萬靈丹——<br>
+      <em>它是一面鏡子，照出你的策略清不清晰。</em>
+    </p>
+    <div class="summary-grid" style="margin-top:32px;text-align:left">
+      <div class="summary-card">
+        <span class="s-num">產品</span>
+        <span class="s-title">隔離快速實驗</span>
+        <span class="s-desc">VG 的快艇策略：新創意不要在主品牌上冒險，先在沙盒驗證。</span>
+      </div>
+      <div class="summary-card">
+        <span class="s-num">格式</span>
+        <span class="s-title">影片有其天花板</span>
+        <span class="s-desc">NYT：只做「非影片不可」的故事，不是為了影片而影片。</span>
+      </div>
+      <div class="summary-card">
+        <span class="s-num">商業</span>
+        <span class="s-title">信任是稀缺資源</span>
+        <span class="s-desc">Politico：AI 氾濫後，核實報導的訂閱價值只會上升。</span>
+      </div>
+      <div class="summary-card">
+        <span class="s-num">受眾</span>
+        <span class="s-title">連結比內容更難</span>
+        <span class="s-desc">Spilnews：Gen Z 要的不是更多新聞，是真正在乎他們的媒體。</span>
+      </div>
+      <div class="summary-card">
+        <span class="s-num">戰略</span>
+        <span class="s-title">延誤就是衰退</span>
+        <span class="s-desc">Innovation Report：AI 轉型的岔路已到，等待不是中立選項。</span>
+      </div>
+      <div class="summary-card">
+        <span class="s-num">執行</span>
+        <span class="s-title">量測取代直覺</span>
+        <span class="s-desc">USA Today：AI 規模化的前提是建立評估框架，不是加大人工審查。</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>←</button>
+  <span class="slide-counter" id="counter">1 / 10</span>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">→</button>
+</div>
+
+<div class="kbd-hint" id="kbdHint">← → 切換投影片 · 空白鍵下一張</div>
+
+<script>
+  const TOTAL = 10;
+  let current = 0;
+
+  const slides = document.querySelectorAll('.slide');
+  const progress = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const badge = document.getElementById('badge');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const kbdHint = document.getElementById('kbdHint');
+
+  function updateUI() {
+    slides.forEach(s => s.classList.remove('active', 'exit'));
+    slides[current].classList.add('active');
+    const pct = ((current + 1) / TOTAL) * 100;
+    progress.style.width = pct + '%';
+    counter.textContent = `${current + 1} / ${TOTAL}`;
+    badge.textContent = `${current + 1} / ${TOTAL}`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === TOTAL - 1;
+  }
+
+  function navigate(dir) {
+    const next = current + dir;
+    if (next < 0 || next >= TOTAL) return;
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit');
+    setTimeout(() => {
+      const old = document.querySelector('.slide.exit');
+      if (old) old.classList.remove('exit');
+    }, 400);
+    current = next;
+    updateUI();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault(); navigate(1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault(); navigate(-1);
+    }
+  });
+
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  });
+
+  setTimeout(() => kbdHint.classList.add('hidden'), 4000);
+  updateUI();
+</script>
+</body>
+</html>
