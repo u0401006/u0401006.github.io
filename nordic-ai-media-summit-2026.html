@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>AI 與新聞生態系的未來｜Nordic AI in Media Summit 2026</title>
+<style>
+  :root {
+    --bg: #0a0c14;
+    --surface: #141722;
+    --surface2: #1e2235;
+    --accent: #e8b84b;
+    --accent2: #4b9fe8;
+    --accent3: #e84b6b;
+    --accent4: #4be8a0;
+    --text: #e8ecf4;
+    --muted: #7a8499;
+    --border: #252a40;
+    --nav-h: 64px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Text', sans-serif;
+    overflow: hidden;
+  }
+
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #f5d98a);
+    transition: width .35s ease;
+    z-index: 200;
+  }
+
+  #badge {
+    position: fixed;
+    top: 10px; right: 14px;
+    font-size: 12px;
+    color: var(--muted);
+    z-index: 200;
+    letter-spacing: .04em;
+  }
+
+  #deck {
+    position: fixed;
+    inset: 0 0 var(--nav-h) 0;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateX(48px);
+    transition: opacity .35s ease, transform .35s ease;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  .slide.exit {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+
+  .slide-body {
+    flex: 1;
+    padding: 28px 32px 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── Title slide ── */
+  .slide-title {
+    background: radial-gradient(ellipse at 30% 40%, #1a1f38 0%, var(--bg) 70%);
+  }
+
+  .slide-title .slide-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .eyebrow.blue { color: var(--accent2); }
+  .eyebrow.green { color: var(--accent4); }
+  .eyebrow.red { color: var(--accent3); }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+  }
+
+  h2 {
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -.01em;
+    margin-bottom: 16px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent), #f5d98a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-blue {
+    background: linear-gradient(135deg, var(--accent2), #89d0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .title-meta {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .title-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .ttag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--surface2);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  /* ── Hero image ── */
+  .hero {
+    position: relative;
+    height: 200px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, var(--bg) 100%);
+  }
+
+  .hero-label {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .04em;
+  }
+
+  /* ── Points ── */
+  .points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .points li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #c8cfe0;
+  }
+
+  .icon {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-weight: 700;
+  }
+
+  /* ── Highlight box ── */
+  .hl {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    border-radius: 0 6px 6px 0;
+    color: #d8dff0;
+    margin-bottom: 12px;
+  }
+  .hl.blue { border-color: var(--accent2); }
+  .hl.green { border-color: var(--accent4); }
+  .hl.red { border-color: var(--accent3); }
+
+  .quote-attr {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ── Stats ── */
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .stat-card {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .stat-card .val {
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-card .val.blue { color: var(--accent2); }
+  .stat-card .val.green { color: var(--accent4); }
+  .stat-card .val.red { color: var(--accent3); }
+
+  .stat-card .label {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── Two-column compare ── */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .compare-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .compare-card .c-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .compare-card.old { border-color: #3a2535; }
+  .compare-card.new { border-color: #1e3535; }
+  .compare-card.old .c-label { color: var(--accent3); }
+  .compare-card.new .c-label { color: var(--accent4); }
+
+  .compare-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .compare-card ul li {
+    font-size: 13px;
+    color: #c8cfe0;
+    line-height: 1.45;
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .compare-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  /* ── Agent flow ── */
+  .agent-flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .af-node {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  .af-node.highlight {
+    border-color: var(--accent4);
+    color: var(--accent4);
+    background: #0e2020;
+  }
+
+  .af-arrow {
+    color: var(--muted);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ── Impl cards ── */
+  .impl-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .impl-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .impl-org {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    flex-shrink: 0;
+    min-width: 80px;
+    padding-top: 1px;
+  }
+
+  .impl-org.blue { color: var(--accent2); }
+  .impl-org.green { color: var(--accent4); }
+  .impl-org.red { color: var(--accent3); }
+
+  .impl-desc {
+    font-size: 13px;
+    color: #c8cfe0;
+    line-height: 1.5;
+  }
+
+  .impl-desc strong {
+    color: var(--text);
+  }
+
+  /* ── Paradigm shifts ── */
+  .shift-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .shift-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .shift-card .shift-from {
+    font-size: 11px;
+    color: var(--accent3);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .shift-card .shift-to {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent4);
+  }
+
+  .shift-card .shift-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* ── Summary grid ── */
+  .sum-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .sum-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .s-cat {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .s-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .s-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .big-q {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 300;
+    line-height: 1.6;
+    color: #c8cfe0;
+    margin-bottom: 8px;
+  }
+
+  .big-q em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .divider-line {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 18px;
+  }
+
+  /* ── Source ── */
+  .source {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .source a { color: var(--muted); }
+
+  /* ── Nav ── */
+  #nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+  }
+
+  .nav-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 18px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .2s, opacity .2s;
+  }
+
+  .nav-btn:hover:not(:disabled) { background: #252a40; }
+  .nav-btn:disabled { opacity: .3; cursor: default; }
+
+  #counter {
+    font-size: 13px;
+    color: var(--muted);
+    min-width: 64px;
+    text-align: center;
+  }
+
+  #kbdHint {
+    position: fixed;
+    bottom: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: opacity .5s ease;
+    z-index: 50;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  #kbdHint.hidden { opacity: 0; }
+
+  @media (max-width: 480px) {
+    .shift-grid, .compare-row, .sum-grid { grid-template-columns: 1fr; }
+    .stat-row { flex-direction: column; }
+    #kbdHint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="badge">1 / 10</div>
+
+<div id="deck">
+
+  <!-- 1. Title -->
+  <div class="slide slide-title active" data-index="0">
+    <div class="slide-body">
+      <div class="eyebrow">Nordic AI in Media Summit · Copenhagen 2026</div>
+      <h1>AI 將如何<br><span class="gradient-text">重塑新聞生態系</span></h1>
+      <p class="title-meta">第四屆 NAMS 峰會重點整理<br><span style="color:var(--accent);font-size:13px">2026年6月 · 整理自 Reuters Institute / Nordic AI Journalism Network</span></p>
+      <div class="title-tags">
+        <span class="ttag">Shuwei Fang · Harvard</span>
+        <span class="ttag">Nikita Roy</span>
+        <span class="ttag">Florent Daudens</span>
+        <span class="ttag">VG Norway</span>
+        <span class="ttag">Bonnier</span>
+        <span class="ttag">Polaris Media</span>
+        <span class="ttag">Aftonbladet</span>
+        <span class="ttag">Rasmus Kleis Nielsen · RISJ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 五大主題 Overview -->
+  <div class="slide" data-index="1">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="eyebrow">峰會核心</div>
+      <h2>從「如何用 AI 工具」到「AI 如何重塑新聞業」</h2>
+      <div class="impl-grid">
+        <div class="impl-card">
+          <span class="impl-org">01</span>
+          <span class="impl-desc"><strong>新聞經濟結構性重組</strong> — 稀缺變過剩、人類受眾變機器受眾</span>
+        </div>
+        <div class="impl-card">
+          <span class="impl-org blue">02</span>
+          <span class="impl-desc"><strong>重新定義「新聞」本身</strong> — 事實已夠，缺的是 sensemaking</span>
+        </div>
+        <div class="impl-card">
+          <span class="impl-org green">03</span>
+          <span class="impl-desc"><strong>AI Agents 作為新入口</strong> — 代理使用者瀏覽、篩選、決策（核心議題）</span>
+        </div>
+        <div class="impl-card">
+          <span class="impl-org red">04</span>
+          <span class="impl-desc"><strong>快艇策略</strong> — 傳統媒體在主體旁設隔離實驗團隊</span>
+        </div>
+        <div class="impl-card">
+          <span class="impl-org">05</span>
+          <span class="impl-desc"><strong>受眾信任挑戰</strong> — AI 普及後，信任成為稀缺資源</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 新聞經濟重組 -->
+  <div class="slide" data-index="2">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="eyebrow">01 · Shuwei Fang · Harvard Kennedy School</div>
+      <h2>新聞經濟：四個典範轉移</h2>
+      <div class="shift-grid">
+        <div class="shift-card">
+          <div class="shift-from">資訊稀缺</div>
+          <div class="shift-to">資訊過剩</div>
+          <div class="shift-desc">稀缺性從內容轉移到信任與注意力</div>
+        </div>
+        <div class="shift-card">
+          <div class="shift-from">人類受眾</div>
+          <div class="shift-to">機器受眾</div>
+          <div class="shift-desc">Agent 代替使用者閱讀、篩選、回答</div>
+        </div>
+        <div class="shift-card">
+          <div class="shift-from">注意力驅動</div>
+          <div class="shift-to">意圖驅動</div>
+          <div class="shift-desc">從爭奪眼球到服務明確需求</div>
+        </div>
+        <div class="shift-card">
+          <div class="shift-from">靜態製品</div>
+          <div class="shift-to">液態內容</div>
+          <div class="shift-desc">從「生產再消費」到「消費時才生成」</div>
+        </div>
+      </div>
+      <div class="hl">市場將走向兩極：<strong>奢侈品</strong>（品牌/信任驅動）vs <strong>基礎設施商品</strong>。傳統媒體若居中，恐遭淘空。
+        <span class="quote-attr">「要警惕那些要求最少改變的解決方案。」— Shuwei Fang</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 重新定義新聞 -->
+  <div class="slide" data-index="3">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="eyebrow blue">02 · Florent Daudens & Nikita Roy</div>
+      <h2>我們把容器誤認為新聞本身</h2>
+      <div class="compare-row">
+        <div class="compare-card old">
+          <span class="c-label">舊假設</span>
+          <ul>
+            <li>把事實報出來就夠了</li>
+            <li>讀者自己會理解</li>
+            <li>網站 / 文章格式 = 新聞</li>
+            <li>首頁是核心產品</li>
+          </ul>
+        </div>
+        <div class="compare-card new">
+          <span class="c-label">新現實</span>
+          <ul>
+            <li>資訊過剩，事實互相矛盾</li>
+            <li>讀者要的是定位框架</li>
+            <li>容器隨技術變化，價值不在容器</li>
+            <li>Agent 截走流量，網站不可見</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hl blue">
+        「人們不要事實的新聞，他們要的是<strong>意義建構（sensemaking）</strong>。」
+        <span class="quote-attr">— Florent Daudens</span>
+      </div>
+      <div class="hl" style="margin-top:10px">
+        「如果不依賴網站結構，你會建什麼？」— 這個問題在 Agent 時代更尖銳：<br>當使用者根本不打開你的網站，<strong>你還剩什麼？</strong>
+        <span class="quote-attr">— Nikita Roy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. AI Agents 核心概念 -->
+  <div class="slide" data-index="4">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="eyebrow green">03 · AI Agents — 峰會最關鍵議題</div>
+      <h2>Agents：瀏覽器之後最大的存取入口變革</h2>
+      <div class="agent-flow">
+        <div class="af-node">使用者</div>
+        <div class="af-arrow">→</div>
+        <div class="af-node highlight">Agent</div>
+        <div class="af-arrow">→</div>
+        <div class="af-node">搜尋 / 抓取</div>
+        <div class="af-arrow">→</div>
+        <div class="af-node">摘要 / 決策</div>
+        <div class="af-arrow">→</div>
+        <div class="af-node">回答使用者</div>
+      </div>
+      <ul class="points">
+        <li><span class="icon">→</span><span>Agent 代替人讀文章、篩選、回答——<strong>媒體的流量被截走，媒體不可見</strong></span></li>
+        <li><span class="icon">→</span><span>媒體需在網站嵌入 Agent 可讀指令，告訴 Agent 如何使用內容</span></li>
+        <li><span class="icon">→</span><span>現在必須<strong>雙讀者設計</strong>：同時為人類與 Agent 優化</span></li>
+        <li><span class="icon">→</span><span>幾乎沒有新聞機構好好結構化資料——<strong>「這是個大問題」</strong></span></li>
+      </ul>
+      <div class="hl green">
+        「等 Agents 夠可靠時，已經太晚了。<strong>現在就要實驗。</strong>」
+        <span class="quote-attr">— Nikita Roy</span>
+      </div>
+      <div class="hl" style="margin-top:10px">分析使用者透過 chatbot / agent 的提問行為 → 發現真實資訊需求缺口 → 反向決定選題方向</div>
+    </div>
+  </div>
+
+  <!-- 6. Agent 實作：VG -->
+  <div class="slide" data-index="5">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="eyebrow green">03 · Agent 實作案例 (1/2)</div>
+      <h2>北歐媒體怎麼做：VG Norway</h2>
+      <div class="impl-grid">
+        <div class="impl-card">
+          <span class="impl-org green">VG X</span>
+          <span class="impl-desc">
+            新 App，以 AI 管理的摘要取代傳統文章。用 <strong>clustering algorithm</strong> 將文章與影片自動歸組成「故事」，CMS 人工介入極少。
+          </span>
+        </div>
+        <div class="impl-card">
+          <span class="impl-org blue">VG Lab</span>
+          <span class="impl-desc">
+            只有「<strong>兩個人 + 一組 agents</strong>」的小團隊，負責評估新概念的可行性、市場需求、成本、競品——快速驗證，不動主編輯室。
+          </span>
+        </div>
+      </div>
+      <div class="hl green">模式：獨立小團隊 → agent 串接多步驟 → 人類仍在關鍵決策節點 → 不干擾原有運作</div>
+    </div>
+  </div>
+
+  <!-- 7. Agent 實作：Bonnier + Polaris + 瑞典 -->
+  <div class="slide" data-index="6">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="eyebrow green">03 · Agent 實作案例 (2/2)</div>
+      <h2>北歐媒體怎麼做：Bonnier · Polaris · 瑞典</h2>
+      <div class="impl-grid">
+        <div class="impl-card">
+          <span class="impl-org">Bonnier</span>
+          <span class="impl-desc">
+            工具名 <strong>Flows</strong>：讓記者自行組建 agentic 流程，串接研究 → 萃取 → 規劃 → 決策 → 撰寫。實際用途：<strong>自動監控新聞線索並摘要</strong>，供編輯判斷。
+          </span>
+        </div>
+        <div class="impl-card">
+          <span class="impl-org red">Polaris<br>Media</span>
+          <span class="impl-desc">
+            使用 agentic workflows 搭配 vibe coding。重點：<strong>非工程師記者也能自己建工具</strong>——降低技術門檻是核心設計目標。
+          </span>
+        </div>
+        <div class="impl-card">
+          <span class="impl-org blue">Aftonbladet<br>Expressen</span>
+          <span class="impl-desc">
+            瑞典兩大媒體為世足賽開發 <strong>chatbot</strong>，底層同樣是 agentic workflow——多步驟串接、動態回應使用者問題。
+          </span>
+        </div>
+      </div>
+      <div class="hl blue">共同特徵：現有人才 + agents 組合 → 小規模實驗 → 不等「夠成熟」才開始</div>
+    </div>
+  </div>
+
+  <!-- 8. 快艇策略 -->
+  <div class="slide" data-index="7">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="eyebrow red">04 · 快艇策略</div>
+      <h2>傳統媒體的「隔離實驗室」模式</h2>
+      <ul class="points">
+        <li><span class="icon">→</span><span><strong>Politiken</strong>（丹麥）：在傳統編輯室旁設獨立實驗小組，快速迭代不影響主品牌</span></li>
+        <li><span class="icon">→</span><span><strong>VG</strong>（挪威）：VGX app 與主 app 完全分離，失敗了不傷母艦</span></li>
+        <li><span class="icon">→</span><span>Interactive widgets、vibe-coded journalism——有些工具由<strong>非工程師記者</strong>自行構建</span></li>
+        <li><span class="icon">→</span><span>VG Lab 以「2人 + agents」評估可行性，<strong>失敗成本極低</strong></span></li>
+      </ul>
+      <div class="hl red">
+        「如果不改變，任何新創都能超越我們。」
+        <span class="quote-attr">— Gard Steiro，VG 總編輯</span>
+      </div>
+      <div class="hl" style="margin-top:10px">邏輯：不是「等想清楚再做」，而是「先隔離實驗，再擴規模」——降低試錯風險的組織設計。</div>
+    </div>
+  </div>
+
+  <!-- 9. 受眾信任 -->
+  <div class="slide" data-index="8">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="eyebrow">05 · Rasmus Kleis Nielsen · RISJ 所長</div>
+      <h2>AI 時代的信任悖論</h2>
+      <div class="stat-row">
+        <div class="stat-card">
+          <span class="val red">懷疑</span>
+          <span class="label">受眾對 AI 新聞<br>普遍抱持懷疑</span>
+        </div>
+        <div class="stat-card">
+          <span class="val green">信任</span>
+          <span class="label">AI 氾濫後<br>信任成稀缺資源</span>
+        </div>
+        <div class="stat-card">
+          <span class="val blue">品牌</span>
+          <span class="label">建立信任靠<br>傳統要素</span>
+        </div>
+      </div>
+      <ul class="points">
+        <li><span class="icon">→</span><span>信任建立靠：<strong>品牌、準確性、語言、偏見控制</strong>——不是展示技術能力</span></li>
+        <li><span class="icon">→</span><span>AI 工具越普及，能分辨真假的受眾越珍貴——<strong>新聞室的核心競爭力是核實，不是生產量</strong></span></li>
+        <li><span class="icon">→</span><span>Shuwei Fang：市場上層（品牌/信任驅動）vs 下層（基礎設施）—— 中間的傳統媒體最危險</span></li>
+      </ul>
+      <div class="hl">AI 的矛盾：可能讓更多人接觸新聞，也可能讓權力集中在少數平台手中。選擇在媒體機構的戰略決策。</div>
+    </div>
+  </div>
+
+  <!-- 10. Closing -->
+  <div class="slide" data-index="9">
+    <div class="slide-body" style="padding-top:28px">
+      <div class="divider-line"></div>
+      <p class="big-q">新聞業的危機不是 AI 太強——<br><em>是多數媒體還在用舊容器裝新世界。</em></p>
+      <div class="sum-grid">
+        <div class="sum-card">
+          <span class="s-cat">經濟</span>
+          <span class="s-title">市場走向兩極</span>
+          <span class="s-desc">信任溢價 vs 商品化——居中最危險。</span>
+        </div>
+        <div class="sum-card">
+          <span class="s-cat">定義</span>
+          <span class="s-title">容器 ≠ 新聞</span>
+          <span class="s-desc">網站是歷史偶然，核心能力才是資產。</span>
+        </div>
+        <div class="sum-card">
+          <span class="s-cat">Agents</span>
+          <span class="s-title">現在就要實驗</span>
+          <span class="s-desc">等 Agent 成熟再做已經太晚。</span>
+        </div>
+        <div class="sum-card">
+          <span class="s-cat">實作</span>
+          <span class="s-title">2人 + agents 可行</span>
+          <span class="s-desc">VG Lab 模式：小團隊 + agentic 流程 = 快速驗證。</span>
+        </div>
+        <div class="sum-card">
+          <span class="s-cat">組織</span>
+          <span class="s-title">隔離試錯</span>
+          <span class="s-desc">快艇策略：新品牌與主品牌分離，降低風險。</span>
+        </div>
+        <div class="sum-card">
+          <span class="s-cat">信任</span>
+          <span class="s-title">技術不等於信任</span>
+          <span class="s-desc">品牌、準確、偏見控制——這些才是護城河。</span>
+        </div>
+      </div>
+      <p class="source" style="margin-top:12px">來源：<a href="https://reutersinstitute.politics.ox.ac.uk/news/nordic-ai-media-summit-2026-deep-look-how-ai-about-revolutionise-news-ecosystem" target="_blank">Reuters Institute · Nordic AI in Media Summit 2026</a></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Nav -->
+<div id="nav">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>←</button>
+  <span id="counter">1 / 10</span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">→</button>
+</div>
+
+<div id="kbdHint">← → 切換 · 空白鍵下一張</div>
+
+<script>
+  const TOTAL = 10;
+  let cur = 0;
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const prog    = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const badge   = document.getElementById('badge');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const hint    = document.getElementById('kbdHint');
+
+  function render() {
+    slides.forEach(s => s.classList.remove('active','exit'));
+    slides[cur].classList.add('active');
+    const body = slides[cur].querySelector('.slide-body');
+    if (body) body.scrollTop = 0;
+    prog.style.width = ((cur + 1) / TOTAL * 100) + '%';
+    counter.textContent = `${cur + 1} / ${TOTAL}`;
+    badge.textContent = `${cur + 1} / ${TOTAL}`;
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === TOTAL - 1;
+  }
+
+  function go(dir) {
+    const nxt = cur + dir;
+    if (nxt < 0 || nxt >= TOTAL) return;
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('exit');
+    const old = cur;
+    cur = nxt;
+    setTimeout(() => slides[old].classList.remove('exit'), 380);
+    render();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(-1); }
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 44) go(dx < 0 ? 1 : -1);
+  });
+
+  setTimeout(() => hint.classList.add('hidden'), 3500);
+  render();
+</script>
+</body>
+</html>
