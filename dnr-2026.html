@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>數位新聞報告 2026｜Reuters Institute</title>
+<style>
+  :root {
+    --bg: #0a0c14;
+    --surface: #141722;
+    --surface2: #1e2235;
+    --accent: #e8463a;
+    --accent2: #4b9fe8;
+    --accent3: #f0c040;
+    --accent4: #4be8a0;
+    --text: #e8ecf4;
+    --muted: #7a8499;
+    --border: #252a40;
+    --nav-h: 64px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    overflow: hidden;
+  }
+
+  #progress {
+    position: fixed; top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    transition: width .35s ease;
+    z-index: 200;
+  }
+
+  #badge {
+    position: fixed; top: 10px; right: 14px;
+    font-size: 12px; color: var(--muted);
+    z-index: 200; letter-spacing: .04em;
+  }
+
+  #deck {
+    position: fixed;
+    inset: 0 0 var(--nav-h) 0;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    opacity: 0; transform: translateX(48px);
+    transition: opacity .35s ease, transform .35s ease;
+    pointer-events: none; overflow: hidden;
+  }
+  .slide.active { opacity: 1; transform: translateX(0); pointer-events: all; }
+  .slide.exit   { opacity: 0; transform: translateX(-48px); }
+
+  .slide-body {
+    flex: 1; overflow-y: auto; padding: 28px 32px 12px;
+  }
+  .slide-body::-webkit-scrollbar { width: 4px; }
+  .slide-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* COVER */
+  .cover {
+    background: linear-gradient(145deg, #0e1020 0%, #1a0a0a 100%);
+    justify-content: center; align-items: center; text-align: center; gap: 0;
+  }
+  .cover .slide-body {
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center; gap: 20px;
+  }
+  .cover-eyebrow {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+  }
+  .cover-title {
+    font-size: clamp(32px, 6vw, 64px); font-weight: 800; line-height: 1.1;
+    letter-spacing: -.02em;
+  }
+  .cover-title em { color: var(--accent); font-style: normal; }
+  .cover-sub {
+    font-size: clamp(14px, 2vw, 18px); color: var(--muted); max-width: 560px; line-height: 1.6;
+  }
+  .cover-meta {
+    font-size: 12px; color: var(--muted); border-top: 1px solid var(--border);
+    padding-top: 16px; width: 100%; max-width: 560px; text-align: left;
+  }
+  .cover-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 20px;
+    background: var(--surface2); color: var(--muted); border: 1px solid var(--border);
+  }
+
+  /* SECTION HEADER */
+  .slide-header {
+    padding: 20px 32px 0;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-num {
+    font-size: 11px; font-weight: 700; letter-spacing: .15em;
+    color: var(--accent); text-transform: uppercase;
+  }
+  .section-title {
+    font-size: clamp(20px, 3.5vw, 28px); font-weight: 700; line-height: 1.2;
+  }
+  .section-title span { color: var(--accent3); }
+
+  /* STAT CARDS */
+  .stat-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    margin-top: 20px;
+  }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 16px;
+  }
+  .stat-card.accent { border-color: var(--accent); }
+  .stat-card.accent2 { border-color: var(--accent2); }
+  .stat-card.accent3 { border-color: var(--accent3); }
+  .stat-num {
+    font-size: clamp(32px, 5vw, 52px); font-weight: 800; line-height: 1;
+    letter-spacing: -.03em;
+  }
+  .stat-num.red { color: var(--accent); }
+  .stat-num.blue { color: var(--accent2); }
+  .stat-num.yellow { color: var(--accent3); }
+  .stat-num.green { color: var(--accent4); }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+  .stat-delta { font-size: 11px; margin-top: 4px; color: var(--accent); }
+  .stat-delta.down { color: #e84b6b; }
+  .stat-delta.up { color: var(--accent4); }
+
+  /* DATA ROWS */
+  .data-rows { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .data-row {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .data-row .dr-label { flex: 1; font-size: 14px; }
+  .data-row .dr-label small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .data-row .dr-val { font-size: 22px; font-weight: 700; min-width: 56px; text-align: right; }
+  .data-row .dr-bar-wrap { width: 120px; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+  .data-row .dr-bar { height: 100%; border-radius: 3px; background: var(--accent2); }
+
+  /* COMPARE TABLE */
+  .compare-table { margin-top: 16px; width: 100%; border-collapse: collapse; font-size: 13px; }
+  .compare-table th {
+    text-align: left; padding: 10px 12px; color: var(--muted);
+    border-bottom: 1px solid var(--border); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); line-height: 1.4; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: var(--surface); }
+  .chip {
+    display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px;
+    font-weight: 600; margin-left: 4px;
+  }
+  .chip.red { background: rgba(232,70,58,.15); color: var(--accent); }
+  .chip.green { background: rgba(75,232,160,.15); color: var(--accent4); }
+  .chip.yellow { background: rgba(240,192,64,.15); color: var(--accent3); }
+  .chip.blue { background: rgba(75,159,232,.15); color: var(--accent2); }
+
+  /* PLATFORM CARDS */
+  .platform-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 16px;
+  }
+  .platform-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px;
+  }
+  .platform-name { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .platform-name .icon { font-size: 20px; margin-right: 6px; }
+  .pf-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .pf-key { font-size: 12px; color: var(--muted); }
+  .pf-val { font-size: 14px; font-weight: 600; }
+  .pf-note { font-size: 11px; color: var(--muted); margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; line-height: 1.5; }
+
+  /* ECOSYSTEM */
+  .eco-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-top: 16px;
+  }
+  .eco-card {
+    background: var(--surface); border-left: 3px solid var(--accent2);
+    border-radius: 0 10px 10px 0; padding: 14px 16px;
+  }
+  .eco-card.r { border-color: var(--accent); }
+  .eco-card.g { border-color: var(--accent4); }
+  .eco-card.y { border-color: var(--accent3); }
+  .eco-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 4px; }
+  .eco-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .eco-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .eco-example { font-size: 11px; margin-top: 8px; color: var(--accent3); }
+
+  /* INSIGHT BOX */
+  .insight {
+    background: rgba(232,70,58,.08); border: 1px solid rgba(232,70,58,.25);
+    border-radius: 10px; padding: 16px 18px; margin-top: 16px;
+    font-size: 14px; line-height: 1.6;
+  }
+  .insight strong { color: var(--accent); }
+  .insight-blue {
+    background: rgba(75,159,232,.08); border: 1px solid rgba(75,159,232,.25);
+    border-radius: 10px; padding: 16px 18px; margin-top: 12px;
+    font-size: 14px; line-height: 1.6;
+  }
+  .insight-blue strong { color: var(--accent2); }
+  .insight-yellow {
+    background: rgba(240,192,64,.08); border: 1px solid rgba(240,192,64,.25);
+    border-radius: 10px; padding: 16px 18px; margin-top: 12px;
+    font-size: 14px; line-height: 1.6;
+  }
+  .insight-yellow strong { color: var(--accent3); }
+
+  /* QUOTE */
+  .big-q {
+    font-size: clamp(16px, 2.5vw, 22px); font-weight: 600;
+    line-height: 1.5; color: var(--text); margin-top: 20px;
+    padding: 20px; border-left: 3px solid var(--accent3);
+    background: var(--surface); border-radius: 0 10px 10px 0;
+  }
+  .big-q em { color: var(--accent3); font-style: normal; }
+
+  /* SOURCE */
+  .source { font-size: 11px; color: var(--muted); margin-top: 16px; }
+  .source a { color: var(--muted); }
+
+  /* NAV */
+  #nav {
+    position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-h);
+    background: var(--surface); border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; gap: 24px;
+  }
+  .nav-btn {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); font-size: 18px; width: 40px; height: 40px;
+    border-radius: 8px; cursor: pointer; transition: background .15s;
+  }
+  .nav-btn:hover:not(:disabled) { background: var(--border); }
+  .nav-btn:disabled { opacity: .3; cursor: default; }
+  #counter { font-size: 13px; color: var(--muted); min-width: 60px; text-align: center; }
+
+  #kbdHint {
+    position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: var(--muted); background: var(--surface2);
+    padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border);
+    transition: opacity .5s; pointer-events: none;
+  }
+  #kbdHint.hidden { opacity: 0; }
+
+  /* two-col layout */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* summary */
+  .sum-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-top: 20px;
+  }
+  .sum-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .s-cat { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); font-weight: 700; }
+  .s-title { font-size: 14px; font-weight: 700; }
+  .s-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  .divider { height: 1px; background: var(--border); margin: 16px 0; }
+  .label-row { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<span id="badge">1 / 13</span>
+
+<div id="deck">
+
+<!-- ═══════════════════════ SLIDE 1: COVER ═══════════════════════ -->
+<div class="slide cover active">
+  <div class="slide-body">
+    <div class="cover-eyebrow">Reuters Institute for the Study of Journalism · Oxford</div>
+    <div class="cover-title">數位新聞報告<br><em>2026</em></div>
+    <div class="cover-sub">48個市場、近十萬名受訪者的全球新聞消費年度總報告。第15年追蹤。</div>
+    <div class="cover-meta">
+      <div>調查時間：2026年6月 &nbsp;·&nbsp; 覆蓋48個市場 &nbsp;·&nbsp; 每市場約2,000人</div>
+      <div class="cover-tags">
+        <span class="tag">平台化</span>
+        <span class="tag">AI 新聞</span>
+        <span class="tag">影音生態</span>
+        <span class="tag">Creator</span>
+        <span class="tag">傳統媒體</span>
+        <span class="tag">公正性</span>
+        <span class="tag">公共媒體</span>
+      </div>
+    </div>
+    <p class="source">來源：<a href="https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026" target="_blank">reutersinstitute.politics.ox.ac.uk</a></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 2: 核心警報 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">總覽</span>
+    <h2 class="section-title">五個你需要知道的<span>數字</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="stat-grid">
+      <div class="stat-card accent">
+        <div class="stat-num red">54%</div>
+        <div class="stat-label">全球用社群/影音平台取得新聞——首次超越傳統媒體（51%）</div>
+        <div class="stat-delta up">歷史首次</div>
+      </div>
+      <div class="stat-card accent2">
+        <div class="stat-num blue">37%</div>
+        <div class="stat-label">信任新聞的受訪者比例，2015年以來最低</div>
+        <div class="stat-delta down">↓ 29個市場同步下滑</div>
+      </div>
+      <div class="stat-card accent3">
+        <div class="stat-num yellow">46%</div>
+        <div class="stat-label">仍對新聞感興趣（2021年為59%）</div>
+        <div class="stat-delta down">↓ 13pp（5年）</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num green">10%</div>
+        <div class="stat-label">用 AI 聊天機器人取得新聞（去年7%）</div>
+        <div class="stat-delta up">↑ 3pp，加速成長</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--muted)">−33%</div>
+        <div class="stat-label">Google 引薦流量全球跌幅；美國達 −38%</div>
+        <div class="stat-delta down">出版商流量危機</div>
+      </div>
+    </div>
+    <div class="insight">
+      <strong>核心矛盾：</strong>受眾還在，但信任掉了、興趣掉了、入口也換了。媒體的內容生產與受眾觸達之間的斷裂正在加大。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 3: 平台化 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第一節</span>
+    <h2 class="section-title">平台首次<span>超越傳統媒體</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="label-row">每週新聞來源（全球平均）</div>
+    <div class="data-rows">
+      <div class="data-row">
+        <div class="dr-label">社群媒體 / 影音平台<small>2026，首次第一</small></div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:100%;background:var(--accent)"></div></div>
+        <div class="dr-val" style="color:var(--accent)">54%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">電視新聞<small>↓13pp（自2020）</small></div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:96%"></div></div>
+        <div class="dr-val">52%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">新聞網站 / App<small>↓12pp（自2020）</small></div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:94%"></div></div>
+        <div class="dr-val">51%</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="label-row">社群平台新聞使用（週）</div>
+    <div class="data-rows">
+      <div class="data-row">
+        <div class="dr-label">Facebook<small>近期反彈回升</small></div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:100%;background:var(--accent3)"></div></div>
+        <div class="dr-val" style="color:var(--accent3)">43%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">YouTube</div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:79%;background:var(--accent2)"></div></div>
+        <div class="dr-val" style="color:var(--accent2)">34%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">Instagram</div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:60%"></div></div>
+        <div class="dr-val">26%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">TikTok<small>成長最快</small></div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:47%;background:var(--accent4)"></div></div>
+        <div class="dr-val" style="color:var(--accent4)">20%</div>
+      </div>
+    </div>
+    <div class="insight-yellow">
+      <strong>世代警訊：</strong>18–24歲有 52% 以社群/影音/AI 為主要新聞來源；56% 從未定期讀過報紙。這批人的習慣不會隨年齡改變。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 4: AI 使用樣貌 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第二節</span>
+    <h2 class="section-title">AI 聊天機器人：<span>誰在用、怎麼用</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="two-col">
+      <div>
+        <div class="label-row">使用率（依族群）</div>
+        <div class="data-rows">
+          <div class="data-row">
+            <div class="dr-label">最年輕族群</div>
+            <div class="dr-val" style="color:var(--accent)">17%</div>
+          </div>
+          <div class="data-row">
+            <div class="dr-label">25–34歲 <span class="chip yellow">成長最快</span></div>
+            <div class="dr-val" style="color:var(--accent3)">+4pp</div>
+          </div>
+          <div class="data-row">
+            <div class="dr-label">重度新聞愛好者</div>
+            <div class="dr-val" style="color:var(--accent2)">18%</div>
+          </div>
+          <div class="data-row">
+            <div class="dr-label">政治極左/極右</div>
+            <div class="dr-val">15–16%</div>
+          </div>
+          <div class="data-row">
+            <div class="dr-label">55歲以上</div>
+            <div class="dr-val" style="color:var(--muted)">5%</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="label-row">主要用途（多選）</div>
+        <div class="data-rows">
+          <div class="data-row">
+            <div class="dr-label">追問後續問題</div>
+            <div class="dr-val" style="color:var(--accent)">42%</div>
+          </div>
+          <div class="data-row">
+            <div class="dr-label">取得最新新聞</div>
+            <div class="dr-val">35%</div>
+          </div>
+          <div class="data-row">
+            <div class="dr-label">摘要整理</div>
+            <div class="dr-val">34%</div>
+          </div>
+          <div class="data-row">
+            <div class="dr-label">評估來源可信度</div>
+            <div class="dr-val">33%</div>
+          </div>
+          <div class="data-row">
+            <div class="dr-label">簡化理解</div>
+            <div class="dr-val">30%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="insight-blue" style="margin-top:14px">
+      <strong>國家差異：</strong>台灣、南韓 → 用來「取得最新新聞」｜加拿大、英國 → 「摘要」｜奧地利、德國 → 「簡化理解」｜香港、土耳其、匈牙利 → 「查核消息來源」（新聞自由受限市場）
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 5: AI 信任悖論 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第二節（續）</span>
+    <h2 class="section-title">AI 的<span>信任悖論</span>與流量黑洞</h2>
+  </div>
+  <div class="slide-body">
+    <div class="label-row">信任度對比</div>
+    <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr)">
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--muted)">20%</div>
+        <div class="stat-label">一般大眾信任 AI 新聞</div>
+      </div>
+      <div class="stat-card accent3">
+        <div class="stat-num yellow">44%</div>
+        <div class="stat-label">AI 實際使用者的信任度</div>
+        <div class="stat-delta up">2.2倍差距</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--muted)">17%</div>
+        <div class="stat-label">非使用者對 AI 新聞的信任</div>
+      </div>
+    </div>
+
+    <div class="label-row" style="margin-top:20px">點閱率：從 AI 點進原始報導</div>
+    <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr)">
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--accent2)">19%</div>
+        <div class="stat-label">搜尋引擎點閱率</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--accent3)">17%</div>
+        <div class="stat-label">社群媒體點閱率</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-num red">4%</div>
+        <div class="stat-label">AI 聊天機器人點閱率</div>
+        <div class="stat-delta down">英國僅 1%</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <strong>對出版業的意涵：</strong>AI 成為新聞入口，但幾乎不把流量回傳。讀者「用 AI 取得新聞」但不去原始來源驗證——這對依賴流量的出版商是結構性威脅。<br><br>
+      報告建議：「複製 AI 通用功能的努力將被平台超越。出版商應聚焦在 <em>AI 無法輕易取代的價值</em>——可信來源、查核深度、調查報導。」
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 6: 影音三平台 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第三節</span>
+    <h2 class="section-title">影音平台：<span>三種本質不同的生態</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="platform-grid">
+      <div class="platform-card" style="border-color:rgba(75,159,232,.4)">
+        <div class="platform-name" style="color:var(--accent2)">▶ YouTube</div>
+        <div class="pf-row"><span class="pf-key">各年齡層使用率</span><span class="pf-val">~33%</span></div>
+        <div class="pf-row"><span class="pf-key">主動找新聞</span><span class="pf-val" style="color:var(--accent2)">55%</span></div>
+        <div class="pf-row"><span class="pf-key">看20分鐘以上</span><span class="pf-val">23%</span></div>
+        <div class="pf-row"><span class="pf-key">英國日均時長</span><span class="pf-val">51分鐘</span></div>
+        <div class="pf-note">目的地平台。橫跨世代，長短內容都有市場。是新聞影音最重要的主動觸達管道。</div>
+      </div>
+      <div class="platform-card" style="border-color:rgba(232,70,58,.4)">
+        <div class="platform-name" style="color:var(--accent)">♪ TikTok</div>
+        <div class="pf-row"><span class="pf-key">18–24歲使用率</span><span class="pf-val" style="color:var(--accent)">36%</span></div>
+        <div class="pf-row"><span class="pf-key">55歲以上</span><span class="pf-val" style="color:var(--muted)">12%</span></div>
+        <div class="pf-row"><span class="pf-key">偶然遇到新聞</span><span class="pf-val">54%</span></div>
+        <div class="pf-row"><span class="pf-key">2分鐘以下</span><span class="pf-val">55%</span></div>
+        <div class="pf-row"><span class="pf-key">英國日均時長</span><span class="pf-val">28分鐘</span></div>
+        <div class="pf-note">被動發現管道。年輕、短片、偶遇。2023–2026成長最快（+7pp）。</div>
+      </div>
+      <div class="platform-card" style="border-color:rgba(240,192,64,.4)">
+        <div class="platform-name" style="color:var(--accent3)">◉ Instagram</div>
+        <div class="pf-row"><span class="pf-key">18–24歲使用率</span><span class="pf-val" style="color:var(--accent3)">36%</span></div>
+        <div class="pf-row"><span class="pf-key">55歲以上</span><span class="pf-val" style="color:var(--muted)">15%</span></div>
+        <div class="pf-row"><span class="pf-key">偶然遇到新聞</span><span class="pf-val">55%</span></div>
+        <div class="pf-row"><span class="pf-key">英國日均時長</span><span class="pf-val">20分鐘</span></div>
+        <div class="pf-note">與TikTok相似，偶發接觸為主。2023–2026成長+5pp。</div>
+      </div>
+    </div>
+    <div class="insight-yellow">
+      <strong>平台成長 vs 出版商消退：</strong>出版商網站 2023–2026 流失 5pp；同期 TikTok +7pp、Instagram +5pp。戰場已在平台上，不在自己家門。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 7: 智慧電視 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第三節（續）</span>
+    <h2 class="section-title">智慧電視：<span>被忽略的新戰場</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="label-row">透過智慧電視看影音 App（各年齡層）</div>
+    <div class="data-rows">
+      <div class="data-row">
+        <div class="dr-label">18–24歲</div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:100%;background:var(--accent)"></div></div>
+        <div class="dr-val" style="color:var(--accent)">70%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">25–34歲</div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:101%"></div></div>
+        <div class="dr-val" style="color:var(--accent)">71%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">35–44歲</div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:96%;background:var(--accent3)"></div></div>
+        <div class="dr-val" style="color:var(--accent3)">67%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">45–54歲</div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:83%"></div></div>
+        <div class="dr-val">58%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">55歲以上</div>
+        <div class="dr-bar-wrap"><div class="dr-bar" style="width:63%;background:var(--muted)"></div></div>
+        <div class="dr-val" style="color:var(--muted)">44%</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="label-row">地理分布：每週影音新聞消費率</div>
+    <div class="two-col">
+      <div>
+        <div class="data-rows">
+          <div class="data-row"><div class="dr-label">泰國 / 印尼 / 秘魯 / 南非</div><div class="dr-val" style="color:var(--accent4)">&gt;80%</div></div>
+          <div class="data-row"><div class="dr-label">非洲（YouTube新聞）</div><div class="dr-val" style="color:var(--accent2)">54%</div></div>
+          <div class="data-row"><div class="dr-label">亞洲（YouTube新聞）</div><div class="dr-val" style="color:var(--accent2)">47%</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="data-rows">
+          <div class="data-row"><div class="dr-label">歐洲（YouTube新聞）</div><div class="dr-val" style="color:var(--muted)">24%</div></div>
+          <div class="data-row"><div class="dr-label">德國 / 英國 / 荷蘭</div><div class="dr-val" style="color:var(--muted)">~50%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="insight">
+      <strong>電視螢幕已變成另一個 YouTube 入口。</strong>年輕人不看線性電視，但他們用同一個螢幕看 Netflix 和 YouTube。新聞媒體幾乎沒有在這個入口佔位。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 8: Creator 四大生態 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第四節</span>
+    <h2 class="section-title">新聞 Creator：<span>四種生態、四種邏輯</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="eco-grid">
+      <div class="eco-card r">
+        <div class="eco-type">極化型</div>
+        <div class="eco-name">黨派評論者</div>
+        <div class="eco-desc">美國、巴西、墨西哥、波蘭、塞爾維亞。低信任、弱公共媒體、高社群依賴。Creator 放大政治對立。</div>
+        <div class="eco-example">Tucker Carlson（美）· Felipe Neto 8000萬粉（巴）· Nick Shirley 200萬粉（美右翼）</div>
+      </div>
+      <div class="eco-card">
+        <div class="eco-type">反對派型</div>
+        <div class="eco-name">異見填補者</div>
+        <div class="eco-desc">土耳其、匈牙利、印度、秘魯。政府管控主流媒體，Creator 填補問責空缺。多為被迫離開傳統媒體的前記者。</div>
+        <div class="eco-example">Péter Magyar（匈牙利，擊敗奧班政府）· Dhruv Rathee（印度）· 土耳其前記者群</div>
+      </div>
+      <div class="eco-card g">
+        <div class="eco-type">解說型</div>
+        <div class="eco-name">年輕世代新聞人</div>
+        <div class="eco-desc">法國、捷克、英國、義大利、西班牙。中立解說風格，YouTube+TikTok雙管，年輕受眾高度信任。</div>
+        <div class="eco-example">HugoDécrypte 28%法國35歲以下 · Dylan Page 1900萬TikTok粉（英）· Ac2ality 700萬（西）</div>
+      </div>
+      <div class="eco-card y">
+        <div class="eco-type">混合型</div>
+        <div class="eco-name">傳統媒體人 Creator 化</div>
+        <div class="eco-desc">北歐、德國、愛爾蘭、加拿大、日本。強大傳統媒體限制獨立 Creator 空間，傳統記者採用 creator 風格但仍附屬機構。</div>
+        <div class="eco-example">Jan Böhmermann（德，ZDF）· 愛爾蘭、加拿大仰賴「進口」Creator（Joe Rogan 等）</div>
+      </div>
+    </div>
+    <div class="insight-blue">
+      <strong>核心結論：</strong>Creator 27%全球覆蓋，但僅 3% 完全只看 Creator。他們的角色是「詮釋與評論新聞」，不是「產出新聞」。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 9: Creator vs 傳統 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第四節（續）</span>
+    <h2 class="section-title">Creator vs 傳統媒體：<span>受眾怎麼看</span></h2>
+  </div>
+  <div class="slide-body">
+    <table class="compare-table">
+      <tr>
+        <th>評估維度</th>
+        <th>Creator（年輕受眾感受）</th>
+        <th>傳統媒體</th>
+      </tr>
+      <tr>
+        <td>娛樂性 / 好看程度</td>
+        <td><strong style="color:var(--accent4)">✓ 更好</strong></td>
+        <td style="color:var(--muted)">—</td>
+      </tr>
+      <tr>
+        <td>易懂程度</td>
+        <td><strong style="color:var(--accent4)">✓ 更好</strong></td>
+        <td style="color:var(--muted)">—</td>
+      </tr>
+      <tr>
+        <td>真實感 / 真誠度</td>
+        <td><strong style="color:var(--accent4)">✓ 更好</strong></td>
+        <td style="color:var(--muted)">—</td>
+      </tr>
+      <tr>
+        <td>知識深度（年輕人）</td>
+        <td><strong style="color:var(--accent4)">✓ 更好</strong></td>
+        <td style="color:var(--muted)">—</td>
+      </tr>
+      <tr>
+        <td>可信度（一般大眾）</td>
+        <td style="color:var(--muted)">—</td>
+        <td><strong style="color:var(--accent2)">✓ 更好</strong></td>
+      </tr>
+      <tr>
+        <td>公正性（一般大眾）</td>
+        <td style="color:var(--muted)">—</td>
+        <td><strong style="color:var(--accent2)">✓ 更好</strong></td>
+      </tr>
+    </table>
+    <div class="insight">
+      <strong>危險訊號：</strong>完全仰賴 Creator 為新聞來源的受眾（3%），政治極端化程度是一般人的 <strong>3倍</strong>，且更傾向認為 Creator 比傳統媒體更可信。這是一個回聲腔效應的早期指標。
+    </div>
+    <div class="insight-yellow" style="margin-top:10px">
+      <strong>法國案例：</strong>HugoDécrypte 在35歲以下法國人的觸達率（28%）是 TF1 和 Le Figaro 的 2倍。TF1 已宣布與 YouTuber Gaspard G 合製 2027 年選舉節目。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 10: 傳統媒體 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第五節</span>
+    <h2 class="section-title">傳統媒體：<span>三種媒體、三種死法</span></h2>
+  </div>
+  <div class="slide-body">
+    <table class="compare-table">
+      <tr>
+        <th>媒體</th>
+        <th>採用率</th>
+        <th>留存率</th>
+        <th>問題核心</th>
+        <th>18–34留存</th>
+      </tr>
+      <tr>
+        <td><strong>電視新聞</strong></td>
+        <td><span class="chip green">79%</span></td>
+        <td>66%</td>
+        <td style="color:var(--accent)">留不住人（流失）</td>
+        <td><strong style="color:var(--accent)">51%</strong></td>
+      </tr>
+      <tr>
+        <td><strong>廣播新聞</strong></td>
+        <td><span class="chip yellow">53%</span></td>
+        <td>39%</td>
+        <td style="color:var(--accent3)">新人進不來（採用危機）</td>
+        <td style="color:var(--muted)">低</td>
+      </tr>
+      <tr>
+        <td><strong>報紙</strong></td>
+        <td><span class="chip red">49%</span></td>
+        <td>27%</td>
+        <td style="color:var(--accent)">兩頭燒（採用+流失）</td>
+        <td><strong style="color:var(--accent)">37%</strong></td>
+      </tr>
+    </table>
+    <div class="big-q">
+      「報紙受眾的社會再生機制，可能已經<em>全面崩解</em>。」
+    </div>
+    <div class="insight" style="margin-top:14px">
+      <strong>結構性問題：</strong>這不是短期趨勢。報告指出，年輕世代的媒體習慣不會隨年齡改變——現在18歲不看報紙，55歲後也不會。每個世代的遺棄，都是永久性的。
+    </div>
+    <p class="source">全球45個市場加權平均</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 11: 公正性 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第六節</span>
+    <h2 class="section-title">公正性需求：<span>沉默多數 vs 聲量最大的少數</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom:6px">
+      <div class="stat-card accent2">
+        <div class="stat-num blue">45%</div>
+        <div class="stat-label">偏好沒有立場的新聞</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--muted)">22%</div>
+        <div class="stat-label">偏好符合自己觀點的新聞</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num yellow">48%</div>
+        <div class="stat-label">認為他人也應該看公正新聞（↓3pp，6年來穩定）</div>
+      </div>
+    </div>
+    <div class="insight">
+      <strong>商業邏輯的諷刺：</strong>偏好黨派媒體的那 22% 雖是少數，但他們在社群上更活躍、政治興趣更高、更願意付費。結果商業邏輯反而鼓勵媒體走極化路線，違背多數受眾的需求。
+    </div>
+    <div class="insight-yellow">
+      <strong>社群媒體的腐蝕效應：</strong>社群媒體依賴度越高的國家，對公正新聞的需求越低（負相關）。7個重要的全球南方市場中，多數人反而偏好黨派新聞。
+    </div>
+    <div class="divider"></div>
+    <div class="label-row">6年來偏好變化（40個共同市場）</div>
+    <div class="data-rows">
+      <div class="data-row">
+        <div class="dr-label">偏好無立場新聞<small>2020 → 2026</small></div>
+        <div class="dr-val">51% → 48%</div>
+      </div>
+      <div class="data-row">
+        <div class="dr-label">偏好黨派新聞<small>2020 → 2026</small></div>
+        <div class="dr-val" style="color:var(--accent4)">24% → 20%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 12: 公共媒體 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">第七節</span>
+    <h2 class="section-title">公共媒體（PSM）：<span>用者愛它，不用者疑它</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr)">
+      <div class="stat-card accent2">
+        <div class="stat-num blue">37%</div>
+        <div class="stat-label">認為 PSM 對社會有正面影響（26個國家）</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--muted)">22%</div>
+        <div class="stat-label">認為有負面影響</div>
+      </div>
+      <div class="stat-card accent3">
+        <div class="stat-num yellow">+15pp</div>
+        <div class="stat-label">全球淨正面評價（正面−負面）</div>
+      </div>
+    </div>
+    <div class="label-row" style="margin-top:16px">「使用者 vs 非使用者」信任落差</div>
+    <table class="compare-table">
+      <tr><th>媒體</th><th>使用者正面</th><th>非使用者正面</th><th>落差</th></tr>
+      <tr><td>BBC（英國）</td><td style="color:var(--accent4)">39%</td><td style="color:var(--muted)">14%</td><td><strong style="color:var(--accent3)">+25pp</strong></td></tr>
+      <tr><td>NRK（挪威）</td><td style="color:var(--accent4)">66%</td><td style="color:var(--muted)">36%</td><td><strong style="color:var(--accent3)">+30pp</strong></td></tr>
+      <tr><td>NHK（日本）</td><td style="color:var(--accent4)">52%</td><td style="color:var(--muted)">22%</td><td><strong style="color:var(--accent3)">+30pp</strong></td></tr>
+    </table>
+    <div class="insight">
+      <strong>政治分裂效應：</strong>芬蘭左翼 +63pp 淨好感；右翼 +18pp。塞爾維亞整體 −23pp（最負面）。美國聯邦政府削減 PBS/NPR 11億美元補助後，信任數字同步惡化。
+    </div>
+    <div class="insight-blue" style="margin-top:10px">
+      <strong>台灣 / CNA 視角：</strong>「用者才信任」的模式在全球一致——這意味著接觸本身就是建立信任的最有效方式，而不是單靠品牌宣傳。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 13: 結論 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">結論</span>
+    <h2 class="section-title">對新聞業的<span>核心啟示</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="sum-grid">
+      <div class="sum-card">
+        <span class="s-cat" style="color:var(--accent)">入口</span>
+        <span class="s-title">你不在 AI 的答案裡就不存在</span>
+        <span class="s-desc">AI 點閱率 4%，但它已成為新聞入口。沒有進 AI 知識庫的媒體，等同對新世代隱形。</span>
+      </div>
+      <div class="sum-card">
+        <span class="s-cat" style="color:var(--accent2)">平台</span>
+        <span class="s-title">戰場在平台，不在自家網站</span>
+        <span class="s-desc">Google 流量 −33%、出版商網站 −5pp。受眾不來找你，你得去找他們——YouTube、智慧電視是相對低競爭的空間。</span>
+      </div>
+      <div class="sum-card">
+        <span class="s-cat" style="color:var(--accent3)">影音</span>
+        <span class="s-title">YouTube 是正式新聞媒體的機會</span>
+        <span class="s-desc">55% 主動找新聞、願意看長片——這是 TikTok 做不到的。傳統媒體在 YouTube 有差異化空間。</span>
+      </div>
+      <div class="sum-card">
+        <span class="s-cat" style="color:var(--accent4)">信任</span>
+        <span class="s-title">接觸才能建立信任</span>
+        <span class="s-desc">PSM 使用者信任度比非使用者高 25–30pp。信任不靠宣傳，靠讓受眾實際使用你的服務。</span>
+      </div>
+      <div class="sum-card">
+        <span class="s-cat" style="color:var(--accent)">Creator</span>
+        <span class="s-title">解說能力是護城河</span>
+        <span class="s-desc">Creator 打的是「易懂、真實、娛樂」，傳統媒體打「可信、查核、調查」。兩者可以合作，而非只有競爭。</span>
+      </div>
+      <div class="sum-card">
+        <span class="s-cat" style="color:var(--muted)">世代</span>
+        <span class="s-title">年輕人不是「以後的讀者」</span>
+        <span class="s-desc">56% 從未定期讀過報紙。這一代的習慣已固定，沒有等到他們「長大就會回來」的選項。</span>
+      </div>
+    </div>
+    <p class="source" style="margin-top:16px">
+      來源：<a href="https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026" target="_blank">Reuters Institute Digital News Report 2026</a>
+      &nbsp;·&nbsp; 整理：<a href="https://u0401006.github.io/profile" target="_blank">Yutai Sung</a>
+      &nbsp;·&nbsp; 2026年6月
+    </p>
+  </div>
+</div>
+
+</div><!-- #deck -->
+
+<!-- Nav -->
+<div id="nav">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>←</button>
+  <span id="counter">1 / 13</span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">→</button>
+</div>
+
+<div id="kbdHint">← → 切換 · 空白鍵下一張</div>
+
+<script>
+  const TOTAL = 13;
+  let cur = 0;
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const prog    = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const badge   = document.getElementById('badge');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const hint    = document.getElementById('kbdHint');
+
+  function render() {
+    slides.forEach(s => s.classList.remove('active','exit'));
+    slides[cur].classList.add('active');
+    const body = slides[cur].querySelector('.slide-body');
+    if (body) body.scrollTop = 0;
+    prog.style.width = ((cur + 1) / TOTAL * 100) + '%';
+    counter.textContent = `${cur + 1} / ${TOTAL}`;
+    badge.textContent = `${cur + 1} / ${TOTAL}`;
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === TOTAL - 1;
+  }
+
+  function go(dir) {
+    const nxt = cur + dir;
+    if (nxt < 0 || nxt >= TOTAL) return;
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('exit');
+    const old = cur;
+    cur = nxt;
+    setTimeout(() => slides[old].classList.remove('exit'), 380);
+    render();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(-1); }
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 44) go(dx < 0 ? 1 : -1);
+  });
+
+  setTimeout(() => hint.classList.add('hidden'), 3500);
+  render();
+</script>
+</body>
+</html>

@@ -8,6 +8,9 @@
 - `sulzberger-ai-journalism.html`：Sulzberger 2026 新聞 AI 簡報頁。
 - `nieman-journalism-jobs-2026.html`：Nieman Lab 2026「16 個新聞業新職位」簡報頁。
 - `nieman-jobs-cover.png`：該頁使用的主視覺圖。
+- `dnr-2026.html`：Reuters Institute Digital News Report 2026 簡報（13張投影片，七大主題）。
+- `nordic-ai-media-summit-2026.html`：Nordic AI in Media Summit 2026 簡報。
+- `wan-ifra-marseille-2026.html`：WAN-IFRA Marseille 2026 簡報。
 
 ## 發布方式
 
