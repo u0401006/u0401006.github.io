@@ -17,6 +17,7 @@
     --muted: #6b7280;
     --border: #dde1e8;
     --nav-h: 64px;
+    --src-h: 28px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -45,7 +46,7 @@
 
   #deck {
     position: fixed;
-    inset: 0 0 var(--nav-h) 0;
+    inset: 0 0 calc(var(--nav-h) + var(--src-h)) 0;
     overflow: hidden;
   }
 
@@ -257,6 +258,20 @@
     transition: opacity .5s; pointer-events: none;
   }
   #kbdHint.hidden { opacity: 0; }
+
+  #source-bar {
+    position: fixed;
+    bottom: var(--nav-h);
+    left: 0; right: 0;
+    height: var(--src-h);
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--muted);
+    z-index: 150;
+  }
+  #source-bar a { color: var(--muted); text-decoration: none; }
+  #source-bar a:hover { color: var(--text); }
 
   /* two-col layout */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
@@ -1124,13 +1139,15 @@
     </div>
     <p class="source" style="margin-top:16px">
       來源：<a href="https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026" target="_blank">Reuters Institute Digital News Report 2026</a>
-      &nbsp;·&nbsp; 整理：<a href="https://u0401006.github.io/profile" target="_blank">Yutai Sung</a>
+
       &nbsp;·&nbsp; 2026年6月
     </p>
   </div>
 </div>
 
 </div><!-- #deck -->
+
+<div id="source-bar">來源：<a href="https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026" target="_blank">Reuters Institute Digital News Report 2026</a></div>
 
 <!-- Nav -->
 <div id="nav">
