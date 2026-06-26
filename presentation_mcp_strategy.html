@@ -744,41 +744,67 @@ body {
   </div>
 
 <div class="slide slide-content" data-title="意見領袖與業界批評">
-    <h2>意見領袖與業界三種批評聲音</h2>
-    <div class="content-area" style="gap:12px;display:flex;flex-direction:column;justify-content:center;">
-      <div class="cards cards-2" style="gap:12px;">
-        <div class="card" style="display:flex;gap:14px;align-items:center;padding:14px 16px;">
-          <img src="https://img-hosting.u0401006.workers.dev/i/qvEKweb.jpg" alt="Vincent Peyrègne" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--blue);">
-          <div>
-            <h3 style="margin-bottom:2px;">Vincent Peyrègne</h3>
-            <p style="font-size:0.78rem;color:var(--blue);margin-bottom:4px;">WAN-IFRA 前執行長（2012–2025）</p>
-            <p style="font-size:0.8rem;color:var(--text2);">全球最大新聞出版商協會前掌舵者，率先轉發此公告並附完整功能說明。</p>
+    <h2>兩位意見領袖的立場</h2>
+    <div class="content-area" style="gap:14px;display:flex;flex-direction:column;justify-content:center;">
+      <div class="cards cards-2" style="gap:14px;align-items:stretch;">
+
+        <!-- Vincent Peyrègne：支持者／轉發者 -->
+        <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:14px;align-items:center;">
+            <img src="https://img-hosting.u0401006.workers.dev/i/qvEKweb.jpg" alt="Vincent Peyrègne" style="width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid var(--blue);">
+            <div>
+              <h3 style="margin-bottom:2px;">Vincent Peyrègne</h3>
+              <p style="font-size:0.75rem;color:var(--blue);font-weight:700;">WAN-IFRA 前執行長（2012–2025）</p>
+              <span style="font-size:0.7rem;background:rgba(27,95,170,0.1);color:var(--blue);padding:2px 8px;border-radius:10px;">支持立場：視為出版業可持續模型嘗試</span>
+            </div>
           </div>
-        </div>
-        <div class="card" style="display:flex;gap:14px;align-items:center;padding:14px 16px;">
-          <img src="https://img-hosting.u0401006.workers.dev/i/M01z1Pb.jpg" alt="Felix M. Simon" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--blue);">
-          <div>
-            <h3 style="margin-bottom:2px;">Felix M. Simon</h3>
-            <p style="font-size:0.78rem;color:var(--blue);margin-bottom:4px;">牛津路透研究所 AI 與新聞研究員</p>
-            <p style="font-size:0.8rem;color:var(--text2);">提出需求疑問（1% 用戶以 AI 為主要新聞來源）、Walmart 效應、分潤不透明等批評。</p>
+          <div style="font-size:0.8rem;color:var(--text2);line-height:1.7;border-left:3px solid var(--card-border);padding-left:12px;font-style:italic;">
+            「一般 LLM 散布假訊息比例約 35%，這款工具以 12,000 個審核來源為基礎，41 項編輯防護機制確保準確性，並標記 64,000 條已知假訊息。」
           </div>
+          <ul style="font-size:0.8rem;color:var(--text);line-height:1.7;padding-left:16px;margin:0;">
+            <li>50/50 分潤是讓出版商從 AI 引用中獲益的可操作模型</li>
+            <li>The Atlantic CEO：「人類辨別真假的能力，近期將是最重要的事」</li>
+            <li>教育場景：明確拒絕代寫論文，定位為研究工具而非替代思考</li>
+          </ul>
         </div>
+
+        <!-- Felix M. Simon：批評者／研究者 -->
+        <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:14px;align-items:center;">
+            <img src="https://img-hosting.u0401006.workers.dev/i/M01z1Pb.jpg" alt="Felix M. Simon" style="width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid #e53e3e;">
+            <div>
+              <h3 style="margin-bottom:2px;">Felix M. Simon</h3>
+              <p style="font-size:0.75rem;color:#e53e3e;font-weight:700;">牛津路透研究所 AI 與新聞研究員</p>
+              <span style="font-size:0.7rem;background:rgba(229,62,62,0.1);color:#e53e3e;padding:2px 8px;border-radius:10px;">懷疑立場：需求面與商業模式均存疑</span>
+            </div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text2);line-height:1.7;border-left:3px solid #e53e3e;padding-left:12px;font-style:italic;">
+            「$6/月 = Claude 基礎訂閱費的 30%，但功能刻意受限。只有 1% 的人以 AI 聊天機器人為主要新聞來源（2026 NRS 數據）——需求在哪？」
+          </div>
+          <ul style="font-size:0.8rem;color:var(--text);line-height:1.7;padding-left:16px;margin:0;">
+            <li>可信來源 ≠ 回答品質：仍可選擇性組合準確資訊產生誤導性答案</li>
+            <li>Walmart 效應：GPT / Claude 是一站超市，專門機器人難搶市場</li>
+            <li>50/50 僅針對「被引用」稿件，整體授權收入規模可能極小</li>
+          </ul>
+        </div>
+
       </div>
-      <div class="quotes-grid" style="gap:10px;">
-        <div class="quote-card" style="padding:14px 16px;">
-          <p class="quote-text" style="font-size:0.8rem;margin-bottom:8px;">「只是在現有 LLM 上套殼，誰控制模型，誰就控制敘事。」</p>
-          <div class="quote-author" style="font-size:0.78rem;">Jack Brewster</div>
-          <div class="quote-role" style="font-size:0.72rem;">Newsreel CEO ／ 前 NewsGuard 員工</div>
+      <!-- 其他批評聲音 -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        <div class="quote-card" style="padding:12px 14px;">
+          <p class="quote-text" style="font-size:0.78rem;margin-bottom:6px;">「底層幾乎確定是 ChatGPT / Claude 加殼。諷刺的是，pre-training 本就建立在新聞內容上——但分潤只算引用，不算訓練。」</p>
+          <div class="quote-author" style="font-size:0.75rem;">Jack Brewster</div>
+          <div class="quote-role" style="font-size:0.7rem;">Newsreel CEO ／ 前 NewsGuard 員工</div>
         </div>
-        <div class="quote-card" style="padding:14px 16px;">
-          <p class="quote-text" style="font-size:0.8rem;margin-bottom:8px;">「把新聞資料送進 LLM，等於餵訓練資料——這是木馬屠城。」</p>
-          <div class="quote-author" style="font-size:0.78rem;">Robert Caulk</div>
-          <div class="quote-role" style="font-size:0.72rem;">AskNews（Context Engineering 創始人）</div>
+        <div class="quote-card" style="padding:12px 14px;">
+          <p class="quote-text" style="font-size:0.78rem;margin-bottom:6px;">「把資料送進 LLM = 餵它下一輪訓練數據。我們合約明訂：新聞資料不得離開自有伺服器。出版商請問清楚你的資料去哪裡。」</p>
+          <div class="quote-author" style="font-size:0.75rem;">Robert Caulk</div>
+          <div class="quote-role" style="font-size:0.7rem;">AskNews ／ Context Engineering 提出者</div>
         </div>
-        <div class="quote-card" style="padding:14px 16px;">
-          <p class="quote-text" style="font-size:0.8rem;margin-bottom:8px;">「大型 LLM 是 Walmart，專門型機器人難搶市場。」</p>
-          <div class="quote-author" style="font-size:0.78rem;">Jay Barchas-Lichtenstein</div>
-          <div class="quote-role" style="font-size:0.72rem;">CNTI 新聞科技研究員</div>
+        <div class="quote-card" style="padding:12px 14px;">
+          <p class="quote-text" style="font-size:0.78rem;margin-bottom:6px;">「大型 LLM 是 Walmart——一站購物，即使不是最強也無所不包。建造目的地聊天機器人幾乎注定失敗。」</p>
+          <div class="quote-author" style="font-size:0.75rem;">Jay Barchas-Lichtenstein</div>
+          <div class="quote-role" style="font-size:0.7rem;">CNTI 新聞科技研究員</div>
         </div>
       </div>
     </div>
