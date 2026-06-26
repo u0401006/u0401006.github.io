@@ -928,6 +928,23 @@ body {
     </div>
   </div>
 
+<!-- Footer -->
+<div id="footer">
+  <button class="nav-btn" id="prev-btn" onclick="navigate(-1)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    上一張
+  </button>
+  <span id="page-indicator">1 / 8</span>
+  <button class="nav-btn" id="next-btn" onclick="navigate(1)">
+    下一張
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<!-- Thumbnail Nav -->
+<div id="thumb-nav">
+  <div id="thumb-track"></div>
+</div>
 
 <script>
 const slides = document.querySelectorAll('.slide');
