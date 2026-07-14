@@ -49,7 +49,7 @@ body{
   border-bottom:1px solid var(--border);transition:background .3s;
 }
 .brand{display:flex;align-items:center;gap:10px;}
-.brand-icon{width:46px;height:46px;border-radius:9px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.brand-icon{width:270px;height:auto;border-radius:0;display:flex;align-items:center;flex-shrink:0;}
 .brand-icon img{filter:brightness(0) invert(1);}
 .light .brand-icon img{filter:none;}
 .brand-name{font-size:11.5px;font-weight:500;color:var(--muted);line-height:1.4;}
@@ -129,7 +129,7 @@ ul li{margin-bottom:3px;}
 <!-- HEADER -->
 <header class="hdr">
   <div class="brand">
-    <div class="brand-icon"><img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png" style="width:46px;height:46px;object-fit:contain;"></div>
+    <div class="brand-icon"><img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png" style="width:270px;"></div>
   </div>
   <div class="hdr-right">
     <button class="btn-icon" id="themeBtn" title="切換明暗"></button>
@@ -152,7 +152,7 @@ ul li{margin-bottom:3px;}
   <div class="deco" style="width:300px;height:300px;background:#5d6043;bottom:-100px;left:-60px;opacity:.07;"></div>
   <div class="body" style="align-items:center;gap:20px;">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:6px;">
-      <img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png" style="height:56px;object-fit:contain;">
+      <img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png" style="width:270px;">
     </div>
     <h2 style="font-size:clamp(1.8rem,4vw,3rem);text-align:center;margin-bottom:6px;">真相韌性<br>永續計畫</h2>
     <p style="color:var(--accent);font-size:clamp(.9rem,1.6vw,1.1rem);font-weight:500;margin-bottom:20px;">財團法人新北市台灣事實查核教育基金會</p>
@@ -200,9 +200,9 @@ ul li{margin-bottom:3px;}
           </div>
         </div>
       </div>
-      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;min-height:260px;">
-        <div class="ph"><img src="https://img-hosting.u0401006.workers.dev/i/BIzdyWs.jpg" style="object-position:top;"></div>
-        <div class="ph"><img src="https://img-hosting.u0401006.workers.dev/i/fe9iBsY.jpg" style="object-position:top;"></div>
+      <div style="display:grid;grid-template-rows:auto auto;gap:10px;">
+        <div class="ph" style="height:360px;"><img src="https://img-hosting.u0401006.workers.dev/i/BIzdyWs.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:360px;"><img src="https://img-hosting.u0401006.workers.dev/i/fe9iBsY.jpg" style="object-position:top;"></div>
       </div>
     </div>
   </div>
@@ -213,7 +213,7 @@ ul li{margin-bottom:3px;}
   <div class="lbl">推廣觸及</div>
   <h2>跑遍全台・多媒體推廣</h2>
   <p class="muted" style="font-size:.82rem;margin-bottom:12px;flex-shrink:0;">全方位提升公民媒體素養與訊息辨識力</p>
-  <div class="body" style="justify-content:flex-start;">
+  <div class="body">
     <div class="grid2" style="gap:16px;align-items:start;">
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div class="card" style="border-left:3px solid var(--accent);">
@@ -232,11 +232,11 @@ ul li{margin-bottom:3px;}
           <p class="muted" style="font-size:.8rem;">收納 <strong style="color:var(--text);">200 套</strong>教學與自學資源</p>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;height:220px;">
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/CEGN2Iu.png"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/3DcC1eI.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/4nP7QJu.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/k4xTQTI.png"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/CEGN2Iu.png"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/3DcC1eI.jpg"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/4nP7QJu.jpg"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/k4xTQTI.png"></div>
       </div>
     </div>
   </div>
@@ -251,12 +251,12 @@ ul li{margin-bottom:3px;}
       <div style="display:flex;flex-direction:column;gap:12px;">
         <h3>連續六年舉辦青年查證挑戰賽</h3>
         <p>聯手日本、蒙古、泰國、印度舉辦亞洲青年挑戰賽，台灣場有近 <strong style="color:var(--accent);">500 人</strong>參加</p>
-        <div class="ph" style="height:180px;margin-top:4px;"><img src="https://img-hosting.u0401006.workers.dev/i/Qpenod4.jpg"></div>
+        <div class="ph" style="height:260px;margin-top:4px;"><img src="https://img-hosting.u0401006.workers.dev/i/Qpenod4.jpg"></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;">
         <h3>參與公視新益智節目《哈！真相大白了》</h3>
         <p>讓查核登陸黃金時段，提升大眾媒體識讀意識</p>
-        <div class="ph" style="height:180px;margin-top:4px;"><img src="https://img-hosting.u0401006.workers.dev/i/4gEHGQX.jpg"></div>
+        <div class="ph" style="height:260px;margin-top:4px;"><img src="https://img-hosting.u0401006.workers.dev/i/4gEHGQX.jpg"></div>
       </div>
     </div>
   </div>
@@ -266,7 +266,7 @@ ul li{margin-bottom:3px;}
 <div class="slide">
   <div class="lbl">查核專長</div>
   <h2>發揮事實查核專長，貢獻台灣</h2>
-  <div class="body" style="justify-content:flex-start;">
+  <div class="body">
     <div class="grid2" style="gap:16px;align-items:start;">
       <div style="display:flex;flex-direction:column;gap:9px;">
         <div class="bullet-item">
@@ -286,10 +286,10 @@ ul li{margin-bottom:3px;}
           <p>參與數發部網路詐騙通報網</p>
         </div>
       </div>
-      <div style="display:grid;grid-template-rows:1fr 1fr 1fr;gap:8px;height:360px;">
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/1P33LEL.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/XpNEdTl.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/AvPa8kJ.jpg" style="object-position:top;"></div>
+      <div style="display:grid;grid-template-rows:auto auto auto;gap:8px;">
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/1P33LEL.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/XpNEdTl.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/AvPa8kJ.jpg" style="object-position:top;"></div>
       </div>
     </div>
   </div>
@@ -319,11 +319,11 @@ ul li{margin-bottom:3px;}
           <div class="stat-desc">篇英文電子報，向國際發聲</div>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;height:100%;">
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/NRbFm31.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/LsQ6fKT.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/aPNHXGp.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/a9mUlIG.jpg"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="ph" style="height:360px;"><img src="https://img-hosting.u0401006.workers.dev/i/NRbFm31.jpg"></div>
+        <div class="ph" style="height:360px;"><img src="https://img-hosting.u0401006.workers.dev/i/LsQ6fKT.jpg"></div>
+        <div class="ph" style="height:360px;"><img src="https://img-hosting.u0401006.workers.dev/i/aPNHXGp.jpg"></div>
+        <div class="ph" style="height:360px;"><img src="https://img-hosting.u0401006.workers.dev/i/a9mUlIG.jpg"></div>
       </div>
     </div>
   </div>
@@ -363,7 +363,7 @@ ul li{margin-bottom:3px;}
 <div class="slide">
   <div class="lbl">國際輸出</div>
   <h2>國際影響力／台灣經驗輸出</h2>
-  <div class="body" style="justify-content:flex-start;">
+  <div class="body">
     <div class="grid2" style="gap:16px;align-items:start;">
       <div style="display:flex;flex-direction:column;gap:8px;">
         <ul style="font-size:.85rem;">
@@ -374,11 +374,11 @@ ul li{margin-bottom:3px;}
         </ul>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <div class="ph" style="height:150px;"><img src="https://img-hosting.u0401006.workers.dev/i/jo82Ajj.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:150px;"><img src="https://img-hosting.u0401006.workers.dev/i/CbPolIE.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:150px;"><img src="https://img-hosting.u0401006.workers.dev/i/e62nc0c.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:150px;"><img src="https://img-hosting.u0401006.workers.dev/i/LQHz8hk.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:130px;grid-column:1/-1;"><img src="https://img-hosting.u0401006.workers.dev/i/6qyqoc1.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/jo82Ajj.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/CbPolIE.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/e62nc0c.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/LQHz8hk.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;grid-column:1/-1;"><img src="https://img-hosting.u0401006.workers.dev/i/6qyqoc1.jpg" style="object-position:top;"></div>
       </div>
     </div>
   </div>
@@ -388,7 +388,7 @@ ul li{margin-bottom:3px;}
 <div class="slide">
   <div class="lbl">困境</div>
   <h2>面對的困境</h2>
-  <div class="body" style="justify-content:flex-start;overflow-y:auto;">
+  <div class="body" style="overflow-y:auto;">
     <div style="display:flex;flex-direction:column;gap:8px;">
       <div class="bullet-item">
         <div class="bullet-dot" style="margin-top:5px;"></div>
@@ -418,7 +418,7 @@ ul li{margin-bottom:3px;}
 <div class="slide">
   <div class="lbl">查核改變</div>
   <h2>查核產生的改變</h2>
-  <div class="body" style="justify-content:flex-start;">
+  <div class="body">
     <div class="grid2" style="gap:16px;align-items:start;">
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div class="card" style="border-left:3px solid var(--accent);">
@@ -435,7 +435,7 @@ ul li{margin-bottom:3px;}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <div class="ph" style="height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/kIHSJYQ.png"></div>
+        <div class="ph" style="height:360px;"><img src="https://img-hosting.u0401006.workers.dev/i/kIHSJYQ.png"></div>
         <p style="font-size:.75rem;color:var(--muted);text-align:center;">2020 事實查核報告大獎票數統計</p>
       </div>
     </div>
@@ -446,7 +446,7 @@ ul li{margin-bottom:3px;}
 <div class="slide">
   <div class="lbl">挑戰</div>
   <h2>挑戰</h2>
-  <div class="body" style="justify-content:flex-start;overflow-y:auto;">
+  <div class="body" style="overflow-y:auto;">
     <div class="card" style="border-left:3px solid var(--accent);margin-bottom:10px;">
       <p style="font-size:.82rem;font-weight:600;color:var(--accent);margin-bottom:4px;">不受政黨政府政治人物捐款・確保中立與信賴</p>
     </div>
@@ -475,7 +475,7 @@ ul li{margin-bottom:3px;}
 <div class="slide">
   <div class="lbl">八年基礎</div>
   <h2>八年工作基礎</h2>
-  <div class="body" style="justify-content:flex-start;">
+  <div class="body">
     <div class="grid2" style="gap:16px;align-items:start;">
       <div style="display:flex;flex-direction:column;gap:9px;">
         <div class="card" style="border-left:3px solid var(--accent);">
@@ -490,12 +490,12 @@ ul li{margin-bottom:3px;}
           <h3 style="font-size:.88rem;margin-bottom:5px;">事實查核與資訊生態圈</h3>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:6px;height:360px;">
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/s8bDwPp.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/JgVSnIl.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/tdvSZh7.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/ngljuxr.jpg" style="object-position:top;"></div>
-        <div class="ph" style="height:100%;grid-column:1/-1;"><img src="https://img-hosting.u0401006.workers.dev/i/xcHqbJO.jpg" style="object-position:top;"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/s8bDwPp.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/JgVSnIl.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/tdvSZh7.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/ngljuxr.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:260px;grid-column:1/-1;"><img src="https://img-hosting.u0401006.workers.dev/i/xcHqbJO.jpg" style="object-position:top;"></div>
       </div>
     </div>
   </div>
@@ -505,7 +505,7 @@ ul li{margin-bottom:3px;}
 <div class="slide">
   <div class="lbl">未來三年</div>
   <h2>未來三年</h2>
-  <div class="body" style="justify-content:flex-start;">
+  <div class="body">
     <div class="grid2" style="gap:16px;align-items:start;">
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div class="card" style="border-left:3px solid var(--accent);">
@@ -521,11 +521,11 @@ ul li{margin-bottom:3px;}
           <p style="font-size:.78rem;color:var(--muted);">AI 讓台灣站在資訊力的前沿，提供全世界應對假訊息最強示範</p>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;height:240px;">
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/91dOs3K.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/r84zXRV.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/CNcyK43.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/mUKu90E.jpg"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/91dOs3K.jpg"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/r84zXRV.jpg"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/CNcyK43.jpg"></div>
+        <div class="ph" style="height:260px;"><img src="https://img-hosting.u0401006.workers.dev/i/mUKu90E.jpg"></div>
       </div>
     </div>
   </div>
