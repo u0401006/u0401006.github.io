@@ -34,6 +34,7 @@
   --hdr: rgba(255,251,240,0.94);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:22.4px;}
 html,body{height:100%;overflow:hidden;}
 body{
   font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;
@@ -48,7 +49,9 @@ body{
   border-bottom:1px solid var(--border);transition:background .3s;
 }
 .brand{display:flex;align-items:center;gap:10px;}
-.brand-icon{width:34px;height:34px;border-radius:7px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.brand-icon{width:46px;height:46px;border-radius:9px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.brand-icon img{filter:brightness(0) invert(1);}
+.light .brand-icon img{filter:none;}
 .brand-name{font-size:11.5px;font-weight:500;color:var(--muted);line-height:1.4;}
 .hdr-right{display:flex;align-items:center;gap:8px;}
 .btn-icon{
@@ -126,8 +129,7 @@ ul li{margin-bottom:3px;}
 <!-- HEADER -->
 <header class="hdr">
   <div class="brand">
-    <div class="brand-icon"><img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png" style="width:34px;height:34px;object-fit:contain;"></div>
-    <div class="brand-name">財團法人新北市<br>台灣事實查核教育基金會</div>
+    <div class="brand-icon"><img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png" style="width:46px;height:46px;object-fit:contain;"></div>
   </div>
   <div class="hdr-right">
     <button class="btn-icon" id="themeBtn" title="切換明暗"></button>
@@ -167,7 +169,7 @@ ul li{margin-bottom:3px;}
   <div class="lbl">查核組織</div>
   <h2>台灣唯一事實查核公益組織</h2>
   <div class="body">
-    <div class="grid2" style="gap:20px;align-items:start;height:100%;">
+    <div class="grid2" style="gap:20px;align-items:stretch;height:100%;">
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div class="bubble-row">
           <span class="tag">謠言即時監測</span>
@@ -198,9 +200,9 @@ ul li{margin-bottom:3px;}
           </div>
         </div>
       </div>
-      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;height:100%;">
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/BIzdyWs.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/fe9iBsY.jpg"></div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;min-height:260px;">
+        <div class="ph"><img src="https://img-hosting.u0401006.workers.dev/i/BIzdyWs.jpg" style="object-position:top;"></div>
+        <div class="ph"><img src="https://img-hosting.u0401006.workers.dev/i/fe9iBsY.jpg" style="object-position:top;"></div>
       </div>
     </div>
   </div>
@@ -284,10 +286,10 @@ ul li{margin-bottom:3px;}
           <p>參與數發部網路詐騙通報網</p>
         </div>
       </div>
-      <div style="display:grid;grid-template-rows:1fr 1fr 1fr;gap:8px;height:240px;">
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/1P33LEL.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/XpNEdTl.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/AvPa8kJ.jpg"></div>
+      <div style="display:grid;grid-template-rows:1fr 1fr 1fr;gap:8px;height:360px;">
+        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/1P33LEL.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/XpNEdTl.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/AvPa8kJ.jpg" style="object-position:top;"></div>
       </div>
     </div>
   </div>
@@ -372,11 +374,11 @@ ul li{margin-bottom:3px;}
         </ul>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <div class="ph" style="height:100px;"><img src="https://img-hosting.u0401006.workers.dev/i/jo82Ajj.jpg"></div>
-        <div class="ph" style="height:100px;"><img src="https://img-hosting.u0401006.workers.dev/i/CbPolIE.jpg"></div>
-        <div class="ph" style="height:100px;"><img src="https://img-hosting.u0401006.workers.dev/i/e62nc0c.jpg"></div>
-        <div class="ph" style="height:100px;"><img src="https://img-hosting.u0401006.workers.dev/i/LQHz8hk.jpg"></div>
-        <div class="ph" style="height:100px;grid-column:1/-1;"><img src="https://img-hosting.u0401006.workers.dev/i/6qyqoc1.jpg"></div>
+        <div class="ph" style="height:150px;"><img src="https://img-hosting.u0401006.workers.dev/i/jo82Ajj.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:150px;"><img src="https://img-hosting.u0401006.workers.dev/i/CbPolIE.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:150px;"><img src="https://img-hosting.u0401006.workers.dev/i/e62nc0c.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:150px;"><img src="https://img-hosting.u0401006.workers.dev/i/LQHz8hk.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:130px;grid-column:1/-1;"><img src="https://img-hosting.u0401006.workers.dev/i/6qyqoc1.jpg" style="object-position:top;"></div>
       </div>
     </div>
   </div>
@@ -488,12 +490,12 @@ ul li{margin-bottom:3px;}
           <h3 style="font-size:.88rem;margin-bottom:5px;">事實查核與資訊生態圈</h3>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:6px;height:280px;">
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/s8bDwPp.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/JgVSnIl.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/tdvSZh7.jpg"></div>
-        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/ngljuxr.jpg"></div>
-        <div class="ph" style="height:100%;grid-column:1/-1;"><img src="https://img-hosting.u0401006.workers.dev/i/xcHqbJO.jpg"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:6px;height:360px;">
+        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/s8bDwPp.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/JgVSnIl.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/tdvSZh7.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:100%;"><img src="https://img-hosting.u0401006.workers.dev/i/ngljuxr.jpg" style="object-position:top;"></div>
+        <div class="ph" style="height:100%;grid-column:1/-1;"><img src="https://img-hosting.u0401006.workers.dev/i/xcHqbJO.jpg" style="object-position:top;"></div>
       </div>
     </div>
   </div>
