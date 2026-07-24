@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>領袖學院線上學習平台 · 專案現況</title>
+<style>
+  :root {
+    --bg: #14161c;
+    --surface: #1b1e26;
+    --surface-raised: #21242e;
+    --ink: #eae6dc;
+    --ink-soft: #9b9dab;
+    --line: #2b2e3a;
+    --accent: #c6a15b;
+    --accent-ink: #e0c383;
+    --accent-bg: rgba(198, 161, 91, 0.14);
+    --locked: #6fae82;
+    --locked-bg: rgba(111, 174, 130, 0.14);
+    --pending: #d9a441;
+    --pending-bg: rgba(217, 164, 65, 0.14);
+    --open: #c1685a;
+    --open-bg: rgba(193, 104, 90, 0.14);
+    --shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --surface-raised: #fbf9f4;
+    --ink: #201d17;
+    --ink-soft: #6b6659;
+    --line: #e4ddcd;
+    --accent: #9c7a2e;
+    --accent-ink: #7c5f1e;
+    --accent-bg: #f2e8d2;
+    --locked: #3f7d57;
+    --locked-bg: #e6f2e9;
+    --pending: #a97a1e;
+    --pending-bg: #f7ecd6;
+    --open: #a14435;
+    --open-bg: #f7e5e1;
+    --shadow: 0 1px 2px rgba(0,0,0,0.06);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f6f4ef;
+      --surface: #ffffff;
+      --surface-raised: #fbf9f4;
+      --ink: #201d17;
+      --ink-soft: #6b6659;
+      --line: #e4ddcd;
+      --accent: #9c7a2e;
+      --accent-ink: #7c5f1e;
+      --accent-bg: #f2e8d2;
+      --locked: #3f7d57;
+      --locked-bg: #e6f2e9;
+      --pending: #a97a1e;
+      --pending-bg: #f7ecd6;
+      --open: #a14435;
+      --open-bg: #f7e5e1;
+      --shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.65;
+  }
+
+  .display {
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  }
+
+  .mono {
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  header.hero {
+    margin-bottom: 44px;
+  }
+
+  .eyebrow {
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  h1.display {
+    font-size: clamp(28px, 4.2vw, 40px);
+    font-weight: 700;
+    margin: 0 0 12px;
+    text-wrap: balance;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-sub {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    max-width: 620px;
+    margin: 0 0 22px;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .meta-chip {
+    font-size: 12.5px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--surface-raised);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .meta-chip strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 56px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 12px;
+  }
+
+  h2.display {
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  .section-note {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* 現狀卡片 */
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+
+  .status-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .status-card .label {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .status-card .value {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .status-card .detail {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* Scope 三欄 */
+  .scope-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .scope-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .scope-card .scope-head {
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .scope-card.current .scope-head {
+    background: var(--accent-bg);
+  }
+
+  .scope-tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent-ink);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .scope-card .scope-title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .scope-body {
+    padding: 16px 20px 20px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
+  .scope-body ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .scope-body li {
+    margin-bottom: 6px;
+  }
+
+  .scope-body li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Mermaid 流程圖容器 */
+  .flow-block {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 20px;
+  }
+
+  .flow-block h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .flow-block .flow-caption {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+
+  .flow-block .mermaid-wrap {
+    overflow-x: auto;
+  }
+
+  /* Dig-down 表格 */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+    font-size: 13.5px;
+  }
+
+  thead th {
+    text-align: left;
+    padding: 13px 16px;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+  }
+
+  tbody td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  tbody td.num {
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-soft);
+    width: 32px;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .status-pill.locked { background: var(--locked-bg); color: var(--locked); }
+  .status-pill.pending { background: var(--pending-bg); color: var(--pending); }
+  .status-pill.open { background: var(--open-bg); color: var(--open); }
+
+  .status-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .blocks-note {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--open);
+  }
+
+  footer.page-footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
+  footer.page-footer a {
+    color: var(--accent-ink);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  footer.page-footer .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 40px 16px 72px; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">內部專案簡報 · 供合作團隊快速對齊</div>
+    <h1 class="display">領袖學院線上學習平台 — 專案現況</h1>
+    <p class="hero-sub">精品級線上課程平台，功能對標「知識衛星（sat.cool）」，商業模式採單課買斷（非募資預售）。以下彙整目前的決策現狀、開發範圍、關鍵流程，以及接下來需要繼續釐清的項目。</p>
+    <div class="meta-row">
+      <span class="meta-chip">需求書版本 <strong class="mono">v1.2</strong></span>
+      <span class="meta-chip">最後更新 <strong class="mono">2026-07-24</strong></span>
+      <span class="meta-chip">目前階段 <strong>技術決策 → Phase 1 開發準備</strong></span>
+      <span class="meta-chip">品牌名稱 <strong>暫定「領袖學院」，未定案</strong></span>
+      <span class="meta-chip">競品調查 <strong>7 家已完成</strong></span>
+    </div>
+  </header>
+
+  <section id="status">
+    <div class="section-head">
+      <h2 class="display">現狀一覽</h2>
+      <span class="section-note">已完成的研究與已拍板的技術決策</span>
+    </div>
+    <div class="status-grid">
+      <div class="status-card">
+        <div class="label">競品技術拆解</div>
+        <div class="value">7 家已完成</div>
+        <div class="detail">shifu.tw／sat.cool／pressplay.cc／六角學院／天下領袖學院／艾諾電影學院／Hahow，<strong>七家零自建影音底層</strong>，詳見下方總覽表</div>
+      </div>
+      <div class="status-card">
+        <div class="label">影音串流方案</div>
+        <div class="value" style="color:var(--locked)">Cloudflare Stream</div>
+        <div class="detail">已定案，詳見《影音串流服務廠商比較》附件；成本結構可預估、內建 Signed URL</div>
+      </div>
+      <div class="status-card">
+        <div class="label">內容保護等級</div>
+        <div class="value">Signed URL ＋ 動態浮水印</div>
+        <div class="detail">第一期不導入 DRM（Widevine/FairPlay），列入 Phase 2 依外流狀況評估</div>
+      </div>
+      <div class="status-card">
+        <div class="label">裝置數管控</div>
+        <div class="value">Redis Active Session</div>
+        <div class="detail">同帳號觀看裝置上限 2 部，由 Redis 維護 session 清單並執行踢除</div>
+      </div>
+      <div class="status-card">
+        <div class="label">待定案事項</div>
+        <div class="value" style="color:var(--open)">7 項</div>
+        <div class="detail">金流商、退費政策、講師版權條款等，詳見下方「待 Dig Down」（3 項已定案，含本輪新解出的退款收回機制）</div>
+      </div>
+      <div class="status-card">
+        <div class="label">App／離線觀看</div>
+        <div class="value">Phase 2</div>
+        <div class="detail">第一期僅 RWD 響應式網站，App 與離線觀看不在本期範圍內</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="competitors">
+    <div class="section-head">
+      <h2 class="display">競品技術總覽</h2>
+      <span class="section-note">7 家線上課程平台被動指紋辨識結果，零家自建影音底層</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>平台</th>
+            <th>影音方案</th>
+            <th>後端／主機</th>
+            <th>金流</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>shifu.tw</td>
+            <td><strong>Cloudflare Stream</strong>（正式課程）</td>
+            <td>ASP.NET Core + Cloudflare</td>
+            <td>公開頁未觀察到</td>
+          </tr>
+          <tr>
+            <td>sat.cool 知識衛星</td>
+            <td>Vimeo（含正課，登入牆後高度推論）</td>
+            <td>Nuxt SSR + AWS CloudFront/S3</td>
+            <td>LINE Pay 等</td>
+          </tr>
+          <tr>
+            <td>pressplay.cc</td>
+            <td>S3＋CloudFront 自組（signed URL）</td>
+            <td>PHP + GCP（主站）／AWS（影音）</td>
+            <td>TapPay＋藍新</td>
+          </tr>
+          <tr>
+            <td>六角學院 hexschool</td>
+            <td>Teachable 內建（白牌 SaaS）</td>
+            <td>Rails（Teachable）</td>
+            <td>Stripe／PayPal</td>
+          </tr>
+          <tr>
+            <td>天下領袖學院<span class="blocks-note" style="margin-top:2px">與本案品牌暫定名撞名，需注意區隔</span></td>
+            <td>未能確認（登入牆後）</td>
+            <td>PHP Laravel + Cloudflare/GCP</td>
+            <td>未確認</td>
+          </tr>
+          <tr>
+            <td>艾諾電影學院</td>
+            <td>Kajabi 內建（Wistia）</td>
+            <td>Rails（Kajabi）+ AWS</td>
+            <td>Stripe only，無台灣在地金流</td>
+          </tr>
+          <tr>
+            <td>Hahow 好學校</td>
+            <td>Vimeo 底層＋<strong>JW Player 自持播放層</strong></td>
+            <td>Node/Express + React SPA，GCP 台灣區</td>
+            <td>TapPay</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-note" style="margin-top:12px">白牌 SaaS（Teachable／Kajabi）天花板在金流在地化——Stripe-only 代表沒有台灣發票、LINE Pay、超商付款，這正是本案自建方案的價值主張。Hahow「底層外包＋播放層自建」與本案「Cloudflare Stream＋自製播放器＋動態浮水印」屬同一思路。</p>
+  </section>
+
+  <section id="scope">
+    <div class="section-head">
+      <h2 class="display">開發範圍（Scope）</h2>
+      <span class="section-note">三階段規劃，第一期為可販售、可上課之最小完整閉環</span>
+    </div>
+    <div class="scope-grid">
+      <div class="scope-card current">
+        <div class="scope-head">
+          <span class="scope-tag">Phase 1 · 進行中定案</span>
+          <span class="scope-title">MVP 上線</span>
+        </div>
+        <div class="scope-body">
+          <ul>
+            <li><strong>前台：</strong>首頁、課程列表／詳情、會員系統、購課金流＋發票、學習中心（播放、進度）</li>
+            <li><strong>後台：</strong>課程／影音／會員／訂單管理、基礎 Banner 與優惠碼</li>
+            <li><strong>影音：</strong>Cloudflare Stream＋Signed URL＋動態浮水印</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-head">
+          <span class="scope-tag">Phase 1.5 · 上線後 1–2 個月</span>
+          <span class="scope-title">體驗與經營迭代</span>
+        </div>
+        <div class="scope-body">
+          <ul>
+            <li>學員筆記、學習護照與證書</li>
+            <li>課程評價、問答留言</li>
+            <li>CRM 標籤分眾、EDM／LINE 推播、行銷模組完整功能</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-head">
+          <span class="scope-tag">Phase 2 · 依營運數據排序</span>
+          <span class="scope-title">擴張功能</span>
+        </div>
+        <div class="scope-body">
+          <ul>
+            <li>iOS／Android App（含離線觀看）</li>
+            <li>企業方案（B2B 團體授權）</li>
+            <li>自動化行銷劇本進階、DRM、訂閱制評估</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="flows">
+    <div class="section-head">
+      <h2 class="display">關鍵流程</h2>
+      <span class="section-note">目前設計中的三條核心流程</span>
+    </div>
+
+    <div class="flow-block">
+      <h3>會員身份流程</h3>
+      <p class="flow-caption">訪客 → 會員 → 學員的權限升級路徑；對應需求書第 2 節 RBAC 角色設計</p>
+      <div class="mermaid-wrap">
+        <div class="mermaid-diagram"><svg id="claude-mermaid-0" width="1276" xmlns="http://www.w3.org/2000/svg" class="flowchart" height="70" viewBox="0 0 1276 70" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#claude-mermaid-0{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:16px;fill:#42392e;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#claude-mermaid-0 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#claude-mermaid-0 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#claude-mermaid-0 .error-icon{fill:hsl(221.25, 42.1052631579%, 97.5490196078%);}#claude-mermaid-0 .error-text{fill:rgb(8.8815789475, 7.2368421054, 3.6184210527);stroke:rgb(8.8815789475, 7.2368421054, 3.6184210527);}#claude-mermaid-0 .edge-thickness-normal{stroke-width:1px;}#claude-mermaid-0 .edge-thickness-thick{stroke-width:3.5px;}#claude-mermaid-0 .edge-pattern-solid{stroke-dasharray:0;}#claude-mermaid-0 .edge-thickness-invisible{stroke-width:0;fill:none;}#claude-mermaid-0 .edge-pattern-dashed{stroke-dasharray:3;}#claude-mermaid-0 .edge-pattern-dotted{stroke-dasharray:2;}#claude-mermaid-0 .marker{fill:#8a7f6d;stroke:#8a7f6d;}#claude-mermaid-0 .marker.cross{stroke:#8a7f6d;}#claude-mermaid-0 svg{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:16px;}#claude-mermaid-0 p{margin:0;}#claude-mermaid-0 .label{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;color:#42392e;}#claude-mermaid-0 .cluster-label text{fill:#42392e;}#claude-mermaid-0 .cluster-label span{color:#42392e;}#claude-mermaid-0 .cluster-label span p{background-color:transparent;}#claude-mermaid-0 .label text,#claude-mermaid-0 span{fill:#42392e;color:#42392e;}#claude-mermaid-0 .node rect,#claude-mermaid-0 .node circle,#claude-mermaid-0 .node ellipse,#claude-mermaid-0 .node polygon,#claude-mermaid-0 .node path{fill:#f4efe4;stroke:#7a6c52;stroke-width:1px;}#claude-mermaid-0 .rough-node .label text,#claude-mermaid-0 .node .label text,#claude-mermaid-0 .image-shape .label,#claude-mermaid-0 .icon-shape .label{text-anchor:middle;}#claude-mermaid-0 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#claude-mermaid-0 .rough-node .label,#claude-mermaid-0 .node .label,#claude-mermaid-0 .image-shape .label,#claude-mermaid-0 .icon-shape .label{text-align:center;}#claude-mermaid-0 .node.clickable{cursor:pointer;}#claude-mermaid-0 .root .anchor path{fill:#8a7f6d!important;stroke-width:0;stroke:#8a7f6d;}#claude-mermaid-0 .arrowheadPath{fill:#090b10;}#claude-mermaid-0 .edgePath .path{stroke:#8a7f6d;stroke-width:1px;}#claude-mermaid-0 .flowchart-link{stroke:#8a7f6d;fill:none;}#claude-mermaid-0 .edgeLabel{background-color:rgb(246, 244, 239);text-align:center;}#claude-mermaid-0 .edgeLabel p{background-color:rgb(246, 244, 239);}#claude-mermaid-0 .edgeLabel rect{opacity:0.5;background-color:rgb(246, 244, 239);fill:rgb(246, 244, 239);}#claude-mermaid-0 .labelBkg{background-color:rgba(246, 244, 239, 0.5);}#claude-mermaid-0 .cluster rect{fill:rgba(127,127,127,0.07);stroke:#7a6c52;stroke-width:1px;}#claude-mermaid-0 .cluster text{fill:#42392e;}#claude-mermaid-0 .cluster span{color:#42392e;}#claude-mermaid-0 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:12px;background:hsl(221.25, 42.1052631579%, 97.5490196078%);border:1px solid hsl(221.25, 2.1052631579%, 87.5490196078%);border-radius:2px;pointer-events:none;z-index:100;}#claude-mermaid-0 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#42392e;}#claude-mermaid-0 rect.text{fill:none;stroke-width:0;}#claude-mermaid-0 .icon-shape,#claude-mermaid-0 .image-shape{background-color:rgb(246, 244, 239);text-align:center;}#claude-mermaid-0 .icon-shape p,#claude-mermaid-0 .image-shape p{background-color:rgb(246, 244, 239);padding:2px;}#claude-mermaid-0 .icon-shape .label rect,#claude-mermaid-0 .image-shape .label rect{opacity:0.5;background-color:rgb(246, 244, 239);fill:rgb(246, 244, 239);}#claude-mermaid-0 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#claude-mermaid-0 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#claude-mermaid-0 .node .neo-node{stroke:#7a6c52;}#claude-mermaid-0 [data-look="neo"].node rect,#claude-mermaid-0 [data-look="neo"].cluster rect,#claude-mermaid-0 [data-look="neo"].node polygon{stroke:url(#claude-mermaid-0-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-0 [data-look="neo"].node path{stroke:url(#claude-mermaid-0-gradient);stroke-width:1px;}#claude-mermaid-0 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-0 [data-look="neo"].node .neo-line path{stroke:#7a6c52;filter:none;}#claude-mermaid-0 [data-look="neo"].node circle{stroke:url(#claude-mermaid-0-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-0 [data-look="neo"].node circle .state-start{fill:#000000;}#claude-mermaid-0 [data-look="neo"].icon-shape .icon{fill:url(#claude-mermaid-0-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-0 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#claude-mermaid-0-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-0 .node rect,#claude-mermaid-0 .node circle,#claude-mermaid-0 .node polygon,#claude-mermaid-0 .node path,#claude-mermaid-0 .cluster rect{stroke-width:2px;}#claude-mermaid-0 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="claude-mermaid-0_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-0_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-0_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-0_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></polygon></marker><marker id="claude-mermaid-0_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-0_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-0_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-0_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-0_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-0_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-0_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5;"></path></marker><marker id="claude-mermaid-0_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M220,35L237.333,35C254.667,35,289.333,35,323.333,35C357.333,35,390.667,35,407.333,35L424,35" id="claude-mermaid-0-L_A_B_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_A_B_0" data-points="W3sieCI6MjIwLCJ5IjozNX0seyJ4IjozMjQsInkiOjM1fSx7IngiOjQyOCwieSI6MzV9XQ==" data-look="classic" marker-end="url(#claude-mermaid-0_flowchart-v2-pointEnd)"></path><path d="M616,35L625.5,35C635,35,654,35,672.333,35C690.667,35,708.333,35,717.167,35L726,35" id="claude-mermaid-0-L_B_C_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_B_C_0" data-points="W3sieCI6NjE2LCJ5IjozNX0seyJ4Ijo2NzMsInkiOjM1fSx7IngiOjczMCwieSI6MzV9XQ==" data-look="classic" marker-end="url(#claude-mermaid-0_flowchart-v2-pointEnd)"></path><path d="M950,35L962.167,35C974.333,35,998.667,35,1022.333,35C1046,35,1069,35,1080.5,35L1092,35" id="claude-mermaid-0-L_C_D_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_D_0" data-points="W3sieCI6OTUwLCJ5IjozNX0seyJ4IjoxMDIzLCJ5IjozNX0seyJ4IjoxMDk2LCJ5IjozNX1d" data-look="classic" marker-end="url(#claude-mermaid-0_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(324, 35)"><g class="label" data-id="L_A_B_0" transform="translate(-79, -12)"><foreignobject width="158" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>Email 或社群註冊登入</p></span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(673, 35)"><g class="label" data-id="L_B_C_0" transform="translate(-32, -12)"><foreignobject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>完成購課</p></span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(1023, 35)"><g class="label" data-id="L_C_D_0" transform="translate(-48, -12)"><foreignobject width="96" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>達成完課條件</p></span></div></foreignobject></g></g></g><g class="nodes"><g class="node default" id="claude-mermaid-0-flowchart-A-0" data-look="classic" transform="translate(114, 35)"><rect class="basic label-container" style="" x="-106" y="-27" width="212" height="54"></rect><g class="label" style="" transform="translate(-76, -12)"><rect></rect><foreignobject width="152" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>訪客瀏覽課程/講師頁</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-0-flowchart-B-1" data-look="classic" transform="translate(522, 35)"><rect class="basic label-container" style="" x="-94" y="-27" width="188" height="54"></rect><g class="label" style="" transform="translate(-64, -12)"><rect></rect><foreignobject width="128" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>會員可購課、收藏</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-0-flowchart-C-3" data-look="classic" transform="translate(840, 35)"><rect class="basic label-container" style="" x="-110" y="-27" width="220" height="54"></rect><g class="label" style="" transform="translate(-80, -12)"><rect></rect><foreignobject width="160" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>學員觀看課程、寫筆記</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-0-flowchart-D-5" data-look="classic" transform="translate(1182, 35)"><rect class="basic label-container" style="" x="-86" y="-27" width="172" height="54"></rect><g class="label" style="" transform="translate(-56, -12)"><rect></rect><foreignobject width="112" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>學習護照＋證書</p></span></div></foreignobject></g></g></g></g></g><defs><filter id="claude-mermaid-0-drop-shadow" height="130%" width="130%"><fedropshadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></fedropshadow></filter></defs><defs><filter id="claude-mermaid-0-drop-shadow-small" height="150%" width="150%"><fedropshadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></fedropshadow></filter></defs><lineargradient id="claude-mermaid-0-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7a6c52" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(-78.75, 2.1052631579%, 82.5490196078%)" stop-opacity="1"></stop></lineargradient></svg></div><pre class="mermaid" data-claude-mermaid-claimed="1" style="display: none;">flowchart LR
+  A["訪客<br>瀏覽課程/講師頁"] --&gt;|"Email 或社群註冊登入"| B["會員<br>可購課、收藏"]
+  B --&gt;|"完成購課"| C["學員<br>觀看課程、寫筆記"]
+  C --&gt;|"達成完課條件"| D["學習護照＋證書"]
+        </pre>
+      </div>
+    </div>
+
+    <div class="flow-block">
+      <h3>影音上傳與播放安全流程</h3>
+      <p class="flow-caption">對應需求書 3.8 影音播放器與 4.3 影音管理；Redis 為新增的裝置管控節點</p>
+      <div class="mermaid-wrap">
+        <div class="mermaid-diagram"><svg id="claude-mermaid-1" width="1831.171875" xmlns="http://www.w3.org/2000/svg" class="flowchart" height="294" viewBox="0 0 1831.171875 294" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#claude-mermaid-1{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:16px;fill:#42392e;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#claude-mermaid-1 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#claude-mermaid-1 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#claude-mermaid-1 .error-icon{fill:hsl(221.25, 42.1052631579%, 97.5490196078%);}#claude-mermaid-1 .error-text{fill:rgb(8.8815789475, 7.2368421054, 3.6184210527);stroke:rgb(8.8815789475, 7.2368421054, 3.6184210527);}#claude-mermaid-1 .edge-thickness-normal{stroke-width:1px;}#claude-mermaid-1 .edge-thickness-thick{stroke-width:3.5px;}#claude-mermaid-1 .edge-pattern-solid{stroke-dasharray:0;}#claude-mermaid-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#claude-mermaid-1 .edge-pattern-dashed{stroke-dasharray:3;}#claude-mermaid-1 .edge-pattern-dotted{stroke-dasharray:2;}#claude-mermaid-1 .marker{fill:#8a7f6d;stroke:#8a7f6d;}#claude-mermaid-1 .marker.cross{stroke:#8a7f6d;}#claude-mermaid-1 svg{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:16px;}#claude-mermaid-1 p{margin:0;}#claude-mermaid-1 .label{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;color:#42392e;}#claude-mermaid-1 .cluster-label text{fill:#42392e;}#claude-mermaid-1 .cluster-label span{color:#42392e;}#claude-mermaid-1 .cluster-label span p{background-color:transparent;}#claude-mermaid-1 .label text,#claude-mermaid-1 span{fill:#42392e;color:#42392e;}#claude-mermaid-1 .node rect,#claude-mermaid-1 .node circle,#claude-mermaid-1 .node ellipse,#claude-mermaid-1 .node polygon,#claude-mermaid-1 .node path{fill:#f4efe4;stroke:#7a6c52;stroke-width:1px;}#claude-mermaid-1 .rough-node .label text,#claude-mermaid-1 .node .label text,#claude-mermaid-1 .image-shape .label,#claude-mermaid-1 .icon-shape .label{text-anchor:middle;}#claude-mermaid-1 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#claude-mermaid-1 .rough-node .label,#claude-mermaid-1 .node .label,#claude-mermaid-1 .image-shape .label,#claude-mermaid-1 .icon-shape .label{text-align:center;}#claude-mermaid-1 .node.clickable{cursor:pointer;}#claude-mermaid-1 .root .anchor path{fill:#8a7f6d!important;stroke-width:0;stroke:#8a7f6d;}#claude-mermaid-1 .arrowheadPath{fill:#090b10;}#claude-mermaid-1 .edgePath .path{stroke:#8a7f6d;stroke-width:1px;}#claude-mermaid-1 .flowchart-link{stroke:#8a7f6d;fill:none;}#claude-mermaid-1 .edgeLabel{background-color:rgb(246, 244, 239);text-align:center;}#claude-mermaid-1 .edgeLabel p{background-color:rgb(246, 244, 239);}#claude-mermaid-1 .edgeLabel rect{opacity:0.5;background-color:rgb(246, 244, 239);fill:rgb(246, 244, 239);}#claude-mermaid-1 .labelBkg{background-color:rgba(246, 244, 239, 0.5);}#claude-mermaid-1 .cluster rect{fill:rgba(127,127,127,0.07);stroke:#7a6c52;stroke-width:1px;}#claude-mermaid-1 .cluster text{fill:#42392e;}#claude-mermaid-1 .cluster span{color:#42392e;}#claude-mermaid-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:12px;background:hsl(221.25, 42.1052631579%, 97.5490196078%);border:1px solid hsl(221.25, 2.1052631579%, 87.5490196078%);border-radius:2px;pointer-events:none;z-index:100;}#claude-mermaid-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#42392e;}#claude-mermaid-1 rect.text{fill:none;stroke-width:0;}#claude-mermaid-1 .icon-shape,#claude-mermaid-1 .image-shape{background-color:rgb(246, 244, 239);text-align:center;}#claude-mermaid-1 .icon-shape p,#claude-mermaid-1 .image-shape p{background-color:rgb(246, 244, 239);padding:2px;}#claude-mermaid-1 .icon-shape .label rect,#claude-mermaid-1 .image-shape .label rect{opacity:0.5;background-color:rgb(246, 244, 239);fill:rgb(246, 244, 239);}#claude-mermaid-1 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#claude-mermaid-1 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#claude-mermaid-1 .node .neo-node{stroke:#7a6c52;}#claude-mermaid-1 [data-look="neo"].node rect,#claude-mermaid-1 [data-look="neo"].cluster rect,#claude-mermaid-1 [data-look="neo"].node polygon{stroke:url(#claude-mermaid-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-1 [data-look="neo"].node path{stroke:url(#claude-mermaid-1-gradient);stroke-width:1px;}#claude-mermaid-1 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-1 [data-look="neo"].node .neo-line path{stroke:#7a6c52;filter:none;}#claude-mermaid-1 [data-look="neo"].node circle{stroke:url(#claude-mermaid-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-1 [data-look="neo"].node circle .state-start{fill:#000000;}#claude-mermaid-1 [data-look="neo"].icon-shape .icon{fill:url(#claude-mermaid-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-1 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#claude-mermaid-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-1 .node rect,#claude-mermaid-1 .node circle,#claude-mermaid-1 .node polygon,#claude-mermaid-1 .node path,#claude-mermaid-1 .cluster rect{stroke-width:2px;}#claude-mermaid-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="claude-mermaid-1_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-1_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-1_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-1_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></polygon></marker><marker id="claude-mermaid-1_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-1_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-1_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-1_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-1_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-1_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-1_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5;"></path></marker><marker id="claude-mermaid-1_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M164,147L168.167,147C172.333,147,180.667,147,188.333,147C196,147,203,147,206.5,147L210,147" id="claude-mermaid-1-L_U_CS_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_U_CS_0" data-points="W3sieCI6MTY0LCJ5IjoxNDd9LHsieCI6MTg5LCJ5IjoxNDd9LHsieCI6MjE0LCJ5IjoxNDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-1_flowchart-v2-pointEnd)"></path><path d="M474,147L478.167,147C482.333,147,490.667,147,498.333,147C506,147,513,147,516.5,147L520,147" id="claude-mermaid-1-L_CS_SU_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_CS_SU_0" data-points="W3sieCI6NDc0LCJ5IjoxNDd9LHsieCI6NDk5LCJ5IjoxNDd9LHsieCI6NTI0LCJ5IjoxNDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-1_flowchart-v2-pointEnd)"></path><path d="M757.172,147L761.339,147C765.505,147,773.839,147,781.505,147C789.172,147,796.172,147,799.672,147L803.172,147" id="claude-mermaid-1-L_SU_P_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_SU_P_0" data-points="W3sieCI6NzU3LjE3MTg3NSwieSI6MTQ3fSx7IngiOjc4Mi4xNzE4NzUsInkiOjE0N30seyJ4Ijo4MDcuMTcxODc1LCJ5IjoxNDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-1_flowchart-v2-pointEnd)"></path><path d="M947.172,147L951.339,147C955.505,147,963.839,147,971.505,147C979.172,147,986.172,147,989.672,147L993.172,147" id="claude-mermaid-1-L_P_RS_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_P_RS_0" data-points="W3sieCI6OTQ3LjE3MTg3NSwieSI6MTQ3fSx7IngiOjk3Mi4xNzE4NzUsInkiOjE0N30seyJ4Ijo5OTcuMTcxODc1LCJ5IjoxNDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-1_flowchart-v2-pointEnd)"></path><path d="M1243.432,115.26L1258.222,110.883C1273.012,106.507,1302.592,97.753,1326.215,93.377C1349.839,89,1367.505,89,1376.339,89L1385.172,89" id="claude-mermaid-1-L_RS_WM_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_RS_WM_0" data-points="W3sieCI6MTI0My40MzE3MTc1MTk2ODUsInkiOjExNS4yNTk4NDI1MTk2ODUwNH0seyJ4IjoxMzMyLjE3MTg3NSwieSI6ODl9LHsieCI6MTM4OS4xNzE4NzUsInkiOjg5fV0=" data-look="classic" marker-end="url(#claude-mermaid-1_flowchart-v2-pointEnd)"></path><path d="M1243.432,178.74L1258.222,183.117C1273.012,187.493,1302.592,196.247,1326.882,200.623C1351.172,205,1370.172,205,1379.672,205L1389.172,205" id="claude-mermaid-1-L_RS_BLK_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_RS_BLK_0" data-points="W3sieCI6MTI0My40MzE3MTc1MTk2ODUsInkiOjE3OC43NDAxNTc0ODAzMTQ5Nn0seyJ4IjoxMzMyLjE3MTg3NSwieSI6MjA1fSx7IngiOjEzOTMuMTcxODc1LCJ5IjoyMDV9XQ==" data-look="classic" marker-end="url(#claude-mermaid-1_flowchart-v2-pointEnd)"></path><path d="M1649.172,89L1653.339,89C1657.505,89,1665.839,89,1673.505,89C1681.172,89,1688.172,89,1691.672,89L1695.172,89" id="claude-mermaid-1-L_WM_PLAY_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_WM_PLAY_0" data-points="W3sieCI6MTY0OS4xNzE4NzUsInkiOjg5fSx7IngiOjE2NzQuMTcxODc1LCJ5Ijo4OX0seyJ4IjoxNjk5LjE3MTg3NSwieSI6ODl9XQ==" data-look="classic" marker-end="url(#claude-mermaid-1_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_U_CS_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_CS_SU_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_SU_P_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_P_RS_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(1332.171875, 89)"><g class="label" data-id="L_RS_WM_0" transform="translate(-32, -12)"><foreignobject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>未達上限</p></span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(1332.171875, 205)"><g class="label" data-id="L_RS_BLK_0" transform="translate(-32, -12)"><foreignobject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>已達上限</p></span></div></foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_WM_PLAY_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g></g><g class="nodes"><g class="node default" id="claude-mermaid-1-flowchart-U-0" data-look="classic" transform="translate(86, 147)"><rect class="basic label-container" style="" x="-78" y="-27" width="156" height="54"></rect><g class="label" style="" transform="translate(-48, -12)"><rect></rect><foreignobject width="96" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>後台上傳影片</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-1-flowchart-CS-1" data-look="classic" transform="translate(344, 147)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignobject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel"><p>Cloudflare Stream自動轉檔 HLS/DASH 多畫質</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-1-flowchart-SU-3" data-look="classic" transform="translate(640.5859375, 147)"><rect class="basic label-container" style="" x="-116.5859375" y="-27" width="233.171875" height="54"></rect><g class="label" style="" transform="translate(-86.5859375, -12)"><rect></rect><foreignobject width="173.171875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>簽發 Signed URL時效制</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-1-flowchart-P-5" data-look="classic" transform="translate(877.171875, 147)"><rect class="basic label-container" style="" x="-70" y="-27" width="140" height="54"></rect><g class="label" style="" transform="translate(-40, -12)"><rect></rect><foreignobject width="80" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>前台播放器</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-1-flowchart-RS-7" data-look="classic" transform="translate(1136.171875, 147)"><polygon points="139,0 278,-139 139,-278 0,-139" class="label-container" transform="translate(-138.5, 139)"></polygon><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignobject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel"><p>Redis 檢查裝置數是否達上限</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-1-flowchart-WM-9" data-look="classic" transform="translate(1519.171875, 89)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignobject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel"><p>疊加動態浮水印學員ID/Email</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-1-flowchart-BLK-11" data-look="classic" transform="translate(1519.171875, 205)"><rect class="basic label-container" style="" x="-126" y="-27" width="252" height="54"></rect><g class="label" style="" transform="translate(-96, -12)"><rect></rect><foreignobject width="192" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>阻擋新裝置或踢除最舊裝置</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-1-flowchart-PLAY-13" data-look="classic" transform="translate(1761.171875, 89)"><rect class="basic label-container" style="" x="-62" y="-27" width="124" height="54"></rect><g class="label" style="" transform="translate(-32, -12)"><rect></rect><foreignobject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>正常播放</p></span></div></foreignobject></g></g></g></g></g><defs><filter id="claude-mermaid-1-drop-shadow" height="130%" width="130%"><fedropshadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></fedropshadow></filter></defs><defs><filter id="claude-mermaid-1-drop-shadow-small" height="150%" width="150%"><fedropshadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></fedropshadow></filter></defs><lineargradient id="claude-mermaid-1-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7a6c52" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(-78.75, 2.1052631579%, 82.5490196078%)" stop-opacity="1"></stop></lineargradient></svg></div><pre class="mermaid" data-claude-mermaid-claimed="1" style="display: none;">flowchart LR
+  U["後台上傳影片"] --&gt; CS["Cloudflare Stream<br>自動轉檔 HLS/DASH 多畫質"]
+  CS --&gt; SU["簽發 Signed URL<br>時效制"]
+  SU --&gt; P["前台播放器"]
+  P --&gt; RS{"Redis 檢查<br>裝置數是否達上限"}
+  RS --&gt;|"未達上限"| WM["疊加動態浮水印<br>學員ID/Email"]
+  RS --&gt;|"已達上限"| BLK["阻擋新裝置或<br>踢除最舊裝置"]
+  WM --&gt; PLAY["正常播放"]
+        </pre>
+      </div>
+    </div>
+
+    <div class="flow-block">
+      <h3>購課與退款流程</h3>
+      <p class="flow-caption">對應需求書 3.6／4.6；紅框節點為尚未定案、需要 dig down 的環節</p>
+      <div class="mermaid-wrap">
+        <div class="mermaid-diagram"><svg id="claude-mermaid-2" width="1864" xmlns="http://www.w3.org/2000/svg" class="flowchart" height="94" viewBox="0 0 1864 94" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#claude-mermaid-2{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:16px;fill:#42392e;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#claude-mermaid-2 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#claude-mermaid-2 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#claude-mermaid-2 .error-icon{fill:hsl(221.25, 42.1052631579%, 97.5490196078%);}#claude-mermaid-2 .error-text{fill:rgb(8.8815789475, 7.2368421054, 3.6184210527);stroke:rgb(8.8815789475, 7.2368421054, 3.6184210527);}#claude-mermaid-2 .edge-thickness-normal{stroke-width:1px;}#claude-mermaid-2 .edge-thickness-thick{stroke-width:3.5px;}#claude-mermaid-2 .edge-pattern-solid{stroke-dasharray:0;}#claude-mermaid-2 .edge-thickness-invisible{stroke-width:0;fill:none;}#claude-mermaid-2 .edge-pattern-dashed{stroke-dasharray:3;}#claude-mermaid-2 .edge-pattern-dotted{stroke-dasharray:2;}#claude-mermaid-2 .marker{fill:#8a7f6d;stroke:#8a7f6d;}#claude-mermaid-2 .marker.cross{stroke:#8a7f6d;}#claude-mermaid-2 svg{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:16px;}#claude-mermaid-2 p{margin:0;}#claude-mermaid-2 .label{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;color:#42392e;}#claude-mermaid-2 .cluster-label text{fill:#42392e;}#claude-mermaid-2 .cluster-label span{color:#42392e;}#claude-mermaid-2 .cluster-label span p{background-color:transparent;}#claude-mermaid-2 .label text,#claude-mermaid-2 span{fill:#42392e;color:#42392e;}#claude-mermaid-2 .node rect,#claude-mermaid-2 .node circle,#claude-mermaid-2 .node ellipse,#claude-mermaid-2 .node polygon,#claude-mermaid-2 .node path{fill:#f4efe4;stroke:#7a6c52;stroke-width:1px;}#claude-mermaid-2 .rough-node .label text,#claude-mermaid-2 .node .label text,#claude-mermaid-2 .image-shape .label,#claude-mermaid-2 .icon-shape .label{text-anchor:middle;}#claude-mermaid-2 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#claude-mermaid-2 .rough-node .label,#claude-mermaid-2 .node .label,#claude-mermaid-2 .image-shape .label,#claude-mermaid-2 .icon-shape .label{text-align:center;}#claude-mermaid-2 .node.clickable{cursor:pointer;}#claude-mermaid-2 .root .anchor path{fill:#8a7f6d!important;stroke-width:0;stroke:#8a7f6d;}#claude-mermaid-2 .arrowheadPath{fill:#090b10;}#claude-mermaid-2 .edgePath .path{stroke:#8a7f6d;stroke-width:1px;}#claude-mermaid-2 .flowchart-link{stroke:#8a7f6d;fill:none;}#claude-mermaid-2 .edgeLabel{background-color:rgb(246, 244, 239);text-align:center;}#claude-mermaid-2 .edgeLabel p{background-color:rgb(246, 244, 239);}#claude-mermaid-2 .edgeLabel rect{opacity:0.5;background-color:rgb(246, 244, 239);fill:rgb(246, 244, 239);}#claude-mermaid-2 .labelBkg{background-color:rgba(246, 244, 239, 0.5);}#claude-mermaid-2 .cluster rect{fill:rgba(127,127,127,0.07);stroke:#7a6c52;stroke-width:1px;}#claude-mermaid-2 .cluster text{fill:#42392e;}#claude-mermaid-2 .cluster span{color:#42392e;}#claude-mermaid-2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;font-size:12px;background:hsl(221.25, 42.1052631579%, 97.5490196078%);border:1px solid hsl(221.25, 2.1052631579%, 87.5490196078%);border-radius:2px;pointer-events:none;z-index:100;}#claude-mermaid-2 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#42392e;}#claude-mermaid-2 rect.text{fill:none;stroke-width:0;}#claude-mermaid-2 .icon-shape,#claude-mermaid-2 .image-shape{background-color:rgb(246, 244, 239);text-align:center;}#claude-mermaid-2 .icon-shape p,#claude-mermaid-2 .image-shape p{background-color:rgb(246, 244, 239);padding:2px;}#claude-mermaid-2 .icon-shape .label rect,#claude-mermaid-2 .image-shape .label rect{opacity:0.5;background-color:rgb(246, 244, 239);fill:rgb(246, 244, 239);}#claude-mermaid-2 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#claude-mermaid-2 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#claude-mermaid-2 .node .neo-node{stroke:#7a6c52;}#claude-mermaid-2 [data-look="neo"].node rect,#claude-mermaid-2 [data-look="neo"].cluster rect,#claude-mermaid-2 [data-look="neo"].node polygon{stroke:url(#claude-mermaid-2-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-2 [data-look="neo"].node path{stroke:url(#claude-mermaid-2-gradient);stroke-width:1px;}#claude-mermaid-2 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-2 [data-look="neo"].node .neo-line path{stroke:#7a6c52;filter:none;}#claude-mermaid-2 [data-look="neo"].node circle{stroke:url(#claude-mermaid-2-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-2 [data-look="neo"].node circle .state-start{fill:#000000;}#claude-mermaid-2 [data-look="neo"].icon-shape .icon{fill:url(#claude-mermaid-2-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-2 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#claude-mermaid-2-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#claude-mermaid-2 .node rect,#claude-mermaid-2 .node circle,#claude-mermaid-2 .node polygon,#claude-mermaid-2 .node path,#claude-mermaid-2 .cluster rect{stroke-width:2px;}#claude-mermaid-2 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="claude-mermaid-2_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-2_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-2_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-2_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></polygon></marker><marker id="claude-mermaid-2_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-2_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-2_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-2_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="claude-mermaid-2_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-2_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="claude-mermaid-2_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5;"></path></marker><marker id="claude-mermaid-2_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M132,47L136.167,47C140.333,47,148.667,47,156.333,47C164,47,171,47,174.5,47L178,47" id="claude-mermaid-2-L_O_PAY_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_O_PAY_0" data-points="W3sieCI6MTMyLCJ5Ijo0N30seyJ4IjoxNTcsInkiOjQ3fSx7IngiOjE4MiwieSI6NDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-2_flowchart-v2-pointEnd)"></path><path d="M442,47L446.167,47C450.333,47,458.667,47,466.333,47C474,47,481,47,484.5,47L488,47" id="claude-mermaid-2-L_PAY_INV_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_PAY_INV_0" data-points="W3sieCI6NDQyLCJ5Ijo0N30seyJ4Ijo0NjcsInkiOjQ3fSx7IngiOjQ5MiwieSI6NDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-2_flowchart-v2-pointEnd)"></path><path d="M648,47L652.167,47C656.333,47,664.667,47,672.333,47C680,47,687,47,690.5,47L694,47" id="claude-mermaid-2-L_INV_ACC_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_INV_ACC_0" data-points="W3sieCI6NjQ4LCJ5Ijo0N30seyJ4Ijo2NzMsInkiOjQ3fSx7IngiOjY5OCwieSI6NDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-2_flowchart-v2-pointEnd)"></path><path d="M854,47L866.167,47C878.333,47,902.667,47,926.333,47C950,47,973,47,984.5,47L996,47" id="claude-mermaid-2-L_ACC_REV_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_ACC_REV_0" data-points="W3sieCI6ODU0LCJ5Ijo0N30seyJ4Ijo5MjcsInkiOjQ3fSx7IngiOjEwMDAsInkiOjQ3fV0=" data-look="classic" marker-end="url(#claude-mermaid-2_flowchart-v2-pointEnd)"></path><path d="M1260,47L1266.833,47C1273.667,47,1287.333,47,1300.333,47C1313.333,47,1325.667,47,1331.833,47L1338,47" id="claude-mermaid-2-L_REV_REF_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_REV_REF_0" data-points="W3sieCI6MTI2MCwieSI6NDd9LHsieCI6MTMwMSwieSI6NDd9LHsieCI6MTM0MiwieSI6NDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-2_flowchart-v2-pointEnd)"></path><path d="M1546,47L1550.167,47C1554.333,47,1562.667,47,1570.333,47C1578,47,1585,47,1588.5,47L1592,47" id="claude-mermaid-2-L_REF_RVK_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_REF_RVK_0" data-points="W3sieCI6MTU0NiwieSI6NDd9LHsieCI6MTU3MSwieSI6NDd9LHsieCI6MTU5NiwieSI6NDd9XQ==" data-look="classic" marker-end="url(#claude-mermaid-2_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_O_PAY_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_PAY_INV_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_INV_ACC_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(927, 47)"><g class="label" data-id="L_ACC_REV_0" transform="translate(-48, -12)"><foreignobject width="96" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>學員申請退款</p></span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(1301, 47)"><g class="label" data-id="L_REV_REF_0" transform="translate(-16, -12)"><foreignobject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>核准</p></span></div></foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_REF_RVK_0" transform="translate(0, 0)"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignobject></g></g></g><g class="nodes"><g class="node default" id="claude-mermaid-2-flowchart-O-0" data-look="classic" transform="translate(70, 47)"><rect class="basic label-container" style="" x="-62" y="-27" width="124" height="54"></rect><g class="label" style="" transform="translate(-32, -12)"><rect></rect><foreignobject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>確認訂單</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-2-flowchart-PAY-1" data-look="classic" transform="translate(312, 47)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignobject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel"><p>金流付款藍新/綠界/TapPay 待定案</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-2-flowchart-INV-3" data-look="classic" transform="translate(570, 47)"><rect class="basic label-container" style="" x="-78" y="-27" width="156" height="54"></rect><g class="label" style="" transform="translate(-48, -12)"><rect></rect><foreignobject width="96" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>電子發票開立</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-2-flowchart-ACC-5" data-look="classic" transform="translate(776, 47)"><rect class="basic label-container" style="" x="-78" y="-27" width="156" height="54"></rect><g class="label" style="" transform="translate(-48, -12)"><rect></rect><foreignobject width="96" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>開通課程權限</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-2-flowchart-REV-7" data-look="classic" transform="translate(1130, 47)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignobject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel"><p>後台審核退費政策門檻待定案</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-2-flowchart-REF-9" data-look="classic" transform="translate(1444, 47)"><rect class="basic label-container" style="" x="-102" y="-27" width="204" height="54"></rect><g class="label" style="" transform="translate(-72, -12)"><rect></rect><foreignobject width="144" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>執行退款＋發票折讓</p></span></div></foreignobject></g></g><g class="node default" id="claude-mermaid-2-flowchart-RVK-11" data-look="classic" transform="translate(1726, 47)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignobject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel"><p>課程權限收回Signed URL失效時機待補</p></span></div></foreignobject></g></g></g></g></g><defs><filter id="claude-mermaid-2-drop-shadow" height="130%" width="130%"><fedropshadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></fedropshadow></filter></defs><defs><filter id="claude-mermaid-2-drop-shadow-small" height="150%" width="150%"><fedropshadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></fedropshadow></filter></defs><lineargradient id="claude-mermaid-2-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7a6c52" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(-78.75, 2.1052631579%, 82.5490196078%)" stop-opacity="1"></stop></lineargradient></svg></div><pre class="mermaid" data-claude-mermaid-claimed="1" style="display: none;">flowchart LR
+  O["確認訂單"] --&gt; PAY["金流付款<br>藍新/綠界/TapPay 待定案"]
+  PAY --&gt; INV["電子發票開立"]
+  INV --&gt; ACC["開通課程權限"]
+  ACC -.學員申請退款.-&gt; REV["後台審核<br>退費政策門檻待定案"]
+  REV --&gt;|"核准"| REF["執行退款＋發票折讓"]
+  REF --&gt; RVK["課程權限收回<br>Signed URL失效時機待補"]
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="estimate">
+    <div class="section-head">
+      <h2 class="display">開發時程與平台費用估算</h2>
+      <span class="section-note">由下而上人日拆解＋Cloudflare Stream 官方計費公式（2026-07）</span>
+    </div>
+
+    <div class="table-wrap" style="margin-bottom:16px">
+      <table>
+        <thead>
+          <tr>
+            <th>模組</th>
+            <th>估算人日</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>會員系統（含社群登入）</td>
+            <td class="mono">8–12</td>
+            <td>每加一種社群登入 +1–2 天</td>
+          </tr>
+          <tr>
+            <td>課程列表／詳情／講師頁</td>
+            <td class="mono">10–15</td>
+            <td>含 SEO、篩選、搜尋建議</td>
+          </tr>
+          <tr>
+            <td>購課與結帳（金流＋發票）</td>
+            <td class="mono">12–18</td>
+            <td>金流商未定案，區間待收斂</td>
+          </tr>
+          <tr>
+            <td>學習中心＋影音播放器＋筆記</td>
+            <td class="mono">15–20</td>
+            <td>另見下方「影音＋內容保護核心」細拆，兩者互相印證</td>
+          </tr>
+          <tr>
+            <td>學習護照與證書</td>
+            <td class="mono">6–10</td>
+            <td>PDF 產生＋QR 驗證頁</td>
+          </tr>
+          <tr>
+            <td>後台管理全模組</td>
+            <td class="mono">30–45</td>
+            <td>常被低估，實際工作量常與前台打平</td>
+          </tr>
+          <tr>
+            <td>CRM 基礎模組</td>
+            <td class="mono">10–15</td>
+            <td>標籤／分眾／EDM 串接，容易膨脹</td>
+          </tr>
+          <tr>
+            <td>整合測試／UAT／上線調校</td>
+            <td class="mono">＋20–25%</td>
+            <td>不可省略的固定加成</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flow-block" style="margin-bottom:16px">
+      <h3>影音＋內容保護核心細拆（來自 Cloudflare Stream 落地調研）</h3>
+      <p class="flow-caption">Cloudflare 不會幫你做的三件事，實際落地工時</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>工作項目</th><th>內容</th><th>估算人日</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>短命 JWT Token＋續簽</td>
+              <td>Token 發出後 CF 端無法撤銷，靠 5–15 分鐘短效期＋續簽時查權限做即時收回</td>
+              <td class="mono">2–3</td>
+            </tr>
+            <tr>
+              <td>Redis 雙裝置控管</td>
+              <td>登入寫入、心跳更新、超額踢最舊裝置</td>
+              <td class="mono">4–6</td>
+            </tr>
+            <tr>
+              <td>自製播放器＋動態浮水印</td>
+              <td>官方 iframe 疊不了浮水印，須用 hls.js／Video.js 自架＋Email overlay</td>
+              <td class="mono">3–5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-note" style="margin-top:10px">合計約 <strong style="color:var(--ink)">16–24 人日</strong>（含 CF 設定、webhook、整合測試），與上表「學習中心＋播放器」15–20 人日的粗估基本吻合，可互相印證估算可信度。</p>
+    </div>
+
+    <div class="status-grid">
+      <div class="status-card" style="grid-column: 1 / -1">
+        <div class="label">Cloudflare Stream 費用公式（官方 2026-07 定價）</div>
+        <div class="value mono" style="font-size:14px">月費 ≈ 課程總分鐘 × $0.005（儲存）＋ 學員數 × 人均月觀看分鐘 × $0.001（觀看）</div>
+        <div class="detail">試算：3,000 學員、30 堂課、每人月觀 300 分鐘 ≈ US$990（約 NT$32,000）／月。課程數（儲存費）幾乎不痛，<strong>學員觀看量才是成本主體，且隨學員數線性成長</strong>——估算平台費用前務必先抓「預期月活躍學員數」區間。</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="digdown">
+    <div class="section-head">
+      <h2 class="display">接下來要 Dig Down 的部分</h2>
+      <span class="section-note">依是否卡住其他工作排序；狀態對應需求書第 8 節 Open Issues</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>事項</th>
+            <th>現況</th>
+            <th>說明／卡住的下游工作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">7</td>
+            <td>品牌識別（正式名稱／Logo／VI 色彩）</td>
+            <td><span class="status-pill open">未定案</span></td>
+            <td>直接卡住 UI 視覺設計啟動，建議優先確認<span class="blocks-note">阻擋：視覺設計、前端切版</span></td>
+          </tr>
+          <tr>
+            <td class="num">1</td>
+            <td>金流商定案（藍新／綠界／TapPay）</td>
+            <td><span class="status-pill open">未定案</span></td>
+            <td>需一併決定是否啟用信用卡分期（3/6/12 期）<span class="blocks-note">阻擋：購課結帳、電子發票串接</span></td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td>退費政策（鑑賞期天數／觀看比例門檻）</td>
+            <td><span class="status-pill open">未定案</span></td>
+            <td>影響退款流程與 Signed URL 有效期限設計<span class="blocks-note">阻擋：退款流程細節設計</span></td>
+          </tr>
+          <tr>
+            <td class="num">10</td>
+            <td>退款生效與課程權限收回即時性</td>
+            <td><span class="status-pill locked">技術解法已定案</span></td>
+            <td>短效期 JWT（5–15 分鐘）＋前端續簽，退款核准後於續簽 API 擋權限即可即時收回；仍待 Open Issue #4 退費政策定案後確認判斷條件</td>
+          </tr>
+          <tr>
+            <td class="num">9</td>
+            <td>講師版權與授權條款</td>
+            <td><span class="status-pill pending">規格待補</span></td>
+            <td>版權歸屬、終止合作後下架流程，待需求方與法務補充</td>
+          </tr>
+          <tr>
+            <td class="num">8</td>
+            <td>觀看期限政策</td>
+            <td><span class="status-pill open">未定案</span></td>
+            <td>購課後永久觀看或限期；對標網站多為無限制</td>
+          </tr>
+          <tr>
+            <td class="num">6</td>
+            <td>測驗功能是否列入完課條件</td>
+            <td><span class="status-pill open">未定案</span></td>
+            <td>影響單元類型設計與證書核發規則</td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td>講師後台開放度</td>
+            <td><span class="status-pill open">未定案</span></td>
+            <td>第一期是否開放講師登入檢視數據／分潤，或僅由內部管理</td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td>DRM 需求等級</td>
+            <td><span class="status-pill locked">已定案</span></td>
+            <td>第一期不導入，僅 Signed URL＋動態浮水印，Phase 2 依外流狀況評估</td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td>影音服務定案</td>
+            <td><span class="status-pill locked">已定案</span></td>
+            <td>Cloudflare Stream，詳見廠商比較附件</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    本頁彙整自 2026-07 期間與需求方的討論紀錄，供開發／設計團隊快速同步現況。
+    <div class="links">
+      <a href="https://claude.ai/code/artifact/460051bf-3b82-442b-ae52-14739633ada2">影音串流服務廠商比較（附件）</a>
+      <a href="https://claude.ai/code/artifact/eea06314-ebae-4820-abd2-c388e587c389">7 家競品技術調查＋Cloudflare Stream 落地細節（附件）</a>
+      <span>需求說明書 v1.2（docx，已另行傳送）</span>
+    </div>
+  </footer>
+</div>
+<script>(function(){
+var CFG={"palettes":{"light":{"surface":"#f4efe4","text":"#42392e","line":"#8a7f6d","border":"#7a6c52","bg":"#fffdf8"},"dark":{"surface":"#262b34","text":"#f2f3f5","line":"#a8adb8","border":"#9aa4b8","bg":"#1f232b"}}};
+var pres=Array.prototype.slice.call(document.querySelectorAll('pre.mermaid')).filter(function(p){if(p.hasAttribute('data-claude-mermaid-claimed'))return false;p.setAttribute('data-claude-mermaid-claimed','1');return true;});
+if(!pres.length||typeof mermaid==='undefined')return;
+var mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+var root=document.documentElement;
+var items=pres.map(function(pre){
+var mount=document.createElement('div');mount.className='mermaid-diagram';
+return {pre:pre,mount:mount,src:pre.textContent||''};
+});
+var seq=0;
+var renderGen=0;
+var lastKey='';
+function pageBg(fallback){
+var els=[document.body,document.documentElement];
+for(var i=0;i<els.length;i++){
+var c=els[i]&&getComputedStyle(els[i]).backgroundColor;
+if(c&&c!=='transparent'&&c!=='rgba(0, 0, 0, 0)')return c;
+}
+return fallback;
+}
+function render(){
+var theme=root.getAttribute('data-theme');
+var dark=theme==='dark'||(!!(mq&&mq.matches)&&theme!=='light');
+var pal=dark?CFG.palettes.dark:CFG.palettes.light;
+var bg=pageBg(pal.bg);
+var key=(dark?'d':'l')+'|'+bg;
+if(key===lastKey)return;
+lastKey=key;
+var gen=++renderGen;
+var font=getComputedStyle(document.body).fontFamily||'sans-serif';
+var nat={useMaxWidth:false};
+mermaid.initialize({
+startOnLoad:false,securityLevel:'strict',theme:'base',
+flowchart:nat,sequence:nat,er:nat,state:nat,class:nat,pie:nat,
+gantt:nat,journey:nat,timeline:nat,gitGraph:nat,mindmap:nat,xyChart:nat,
+quadrantChart:nat,sankey:nat,c4:nat,requirement:nat,block:nat,
+packet:nat,kanban:nat,architecture:nat,radar:nat,
+themeVariables:{background:bg,mainBkg:pal.surface,primaryColor:pal.surface,
+primaryTextColor:pal.text,lineColor:pal.line,primaryBorderColor:pal.border,
+nodeBorder:pal.border,clusterBorder:pal.border,edgeLabelBackground:bg,
+clusterBkg:'rgba(127,127,127,0.07)',titleColor:pal.text,
+darkMode:dark,rowOdd:bg,rowEven:'rgba(127,127,127,0.07)',
+attributeBackgroundColorOdd:bg,attributeBackgroundColorEven:'rgba(127,127,127,0.07)',
+fontSize:'16px',fontFamily:font},
+themeCSS:'.node rect, .node circle, .node polygon, .node path, .cluster rect { stroke-width: 2px; }'
+});
+items.forEach(function(it){
+var id='claude-mermaid-'+seq++;
+mermaid.render(id,it.src).then(function(r){
+if(gen!==renderGen)return;
+var prev=it.pre.previousElementSibling;
+if(prev&&prev.className==='mermaid-diagram'&&prev!==it.mount)return;
+it.mount.innerHTML=r.svg;
+if(!it.mount.parentNode)it.pre.parentNode.insertBefore(it.mount,it.pre);
+it.pre.style.display='none';
+},function(){
+var scratch=document.getElementById(id);
+if(scratch)scratch.parentNode.removeChild(scratch);
+scratch=document.getElementById('d'+id);
+if(scratch)scratch.parentNode.removeChild(scratch);
+if(gen!==renderGen)return;
+if(it.mount.parentNode)it.mount.parentNode.removeChild(it.mount);
+it.pre.style.display='';
+});
+});
+}
+render();
+if(mq&&mq.addEventListener)mq.addEventListener('change',render);
+if(typeof MutationObserver!=='undefined')new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['data-theme']});
+})();</script>
+<script>
+(function() {
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+    (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: isDark ? 'dark' : 'default',
+    securityLevel: 'loose'
+  });
+})();
+</script>
+</body>
+</html>
