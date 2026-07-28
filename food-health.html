@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最強飲食科技 — 田中逸郎教授</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--bg2:#181b25;--text:#f0ece0;--muted:rgba(240,236,224,0.5);--accent:#f5a623;--green:#6bcb77;--red:#ff6b6b;--blue:#4ecdc4;--card:rgba(255,255,255,0.05);--border:rgba(245,166,35,0.15);--hdr:rgba(15,17,23,0.95);}
+.light{--bg:#fffbf2;--bg2:#fff5e0;--text:#1a1200;--muted:rgba(26,18,0,0.5);--accent:#c47d00;--green:#2d8f38;--red:#c0392b;--blue:#1a7a74;--card:rgba(0,0,0,0.04);--border:rgba(196,125,0,0.18);--hdr:rgba(255,251,242,0.95);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:18px;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:"Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;}
+.hdr{position:fixed;top:0;left:0;right:0;height:52px;background:var(--hdr);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:200;border-bottom:1px solid var(--border);}
+.hdr-title{font-size:.75rem;font-weight:500;color:var(--muted);letter-spacing:1px;}
+.hdr-right{display:flex;gap:8px;}
+.btn{width:34px;height:34px;border-radius:7px;cursor:pointer;background:var(--card);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.btn:hover{background:var(--accent);color:#0f1117;border-color:var(--accent);}
+.prog{position:fixed;top:52px;left:0;height:2px;background:var(--accent);transition:width .4s ease;z-index:199;}
+.wrap{position:fixed;top:52px;left:0;right:0;bottom:44px;overflow:hidden;}
+.rail{display:flex;height:100%;transition:transform .42s cubic-bezier(.4,0,.2,1);}
+.slide{min-width:100%;height:100%;display:flex;flex-direction:column;padding:28px clamp(20px,5vw,80px) 12px;position:relative;overflow:hidden;}
+.slide-lbl{font-size:.6rem;font-weight:600;color:var(--accent);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:5px;flex-shrink:0;}
+.slide h2{font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:700;line-height:1.2;margin-bottom:14px;flex-shrink:0;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:min(1100px,90vw);}
+.centered{justify-content:center;align-items:center;text-align:center;}
+.centered .body{align-items:center;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;}
+p,li{font-size:clamp(.8rem,1.3vw,.95rem);line-height:1.7;}
+ul{padding-left:1.4em;list-style:disc;}
+ul li{margin-bottom:5px;}
+.muted{color:var(--muted);}
+.accent{color:var(--accent);}
+.big{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--accent);line-height:1;}
+.tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:600;margin:3px;}
+.tag-red{background:rgba(255,107,107,.12);color:var(--red);border:1px solid rgba(255,107,107,.3);}
+.tag-green{background:rgba(107,203,119,.12);color:var(--green);border:1px solid rgba(107,203,119,.3);}
+.tag-blue{background:rgba(78,205,196,.12);color:var(--blue);border:1px solid rgba(78,205,196,.3);}
+.tag-accent{background:rgba(245,166,35,.1);color:var(--accent);border:1px solid rgba(245,166,35,.28);}
+.anno{background:rgba(245,166,35,.08);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 14px;margin-top:8px;font-size:.8rem;color:var(--muted);}
+.anno strong{color:var(--accent);}
+.danger-num{font-size:2.5rem;font-weight:700;color:var(--red);line-height:1;margin-right:12px;flex-shrink:0;}
+.good-num{font-size:2.5rem;font-weight:700;color:var(--green);line-height:1;margin-right:12px;flex-shrink:0;}
+.item-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.item-content{flex:1;}
+.item-title{font-weight:700;font-size:1rem;margin-bottom:4px;}
+.item-title.red{color:var(--red);}
+.item-title.green{color:var(--green);}
+.item-title.blue{color:var(--blue);}
+.deco{position:absolute;border-radius:50%;pointer-events:none;opacity:.04;}
+.nav{position:fixed;top:52px;bottom:44px;width:72px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.nav:hover{opacity:1;}
+.nav-l{left:0;}.nav-r{right:0;}
+.nav-arr{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
+.ftr{position:fixed;bottom:0;left:0;right:0;height:44px;background:var(--hdr);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:200;border-top:1px solid var(--border);}
+.pgn{font-size:.7rem;color:var(--muted);font-weight:500;}
+.src-tag{font-size:.65rem;color:var(--muted);font-style:italic;}
+.t-trigger{position:fixed;bottom:44px;left:0;right:0;height:56px;z-index:97;}
+.t-strip{position:fixed;bottom:44px;left:50%;transform:translateX(-50%);display:flex;gap:6px;padding:8px 12px;background:rgba(15,17,23,.97);backdrop-filter:blur(16px);border-radius:10px 10px 0 0;border:1px solid var(--border);border-bottom:none;opacity:0;pointer-events:none;transition:opacity .22s;z-index:98;}
+.t-strip.vis{opacity:1;pointer-events:auto;}
+.thumb{width:88px;height:52px;border-radius:6px;border:2px solid transparent;background:var(--card);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:8.5px;color:var(--muted);text-align:center;padding:4px;transition:all .18s;flex-shrink:0;}
+.thumb:hover{border-color:var(--accent);}
+.thumb.act{border-color:var(--accent);background:rgba(245,166,35,.1);color:var(--accent);}
+.t-num{font-weight:700;font-size:11px;margin-bottom:2px;}
+.yt-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,0,0,.1);border:1px solid rgba(255,0,0,.25);color:#ff6b6b;padding:5px 12px;border-radius:20px;font-size:.72rem;font-weight:600;}
+@media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr;}.t-strip{display:none;}.slide{padding:18px 16px 10px;}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-title">最強飲食科技 · 田中逸郎教授</div>
+  <div class="hdr-right">
+    <button class="btn" id="themeBtn"></button>
+    <button class="btn" onclick="document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+    </button>
+  </div>
+</header>
+<div class="prog" id="prog"></div>
+<div class="nav nav-l" onclick="go(-1)"><div class="nav-arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></div></div>
+<div class="nav nav-r" onclick="go(1)"><div class="nav-arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+
+<div class="wrap"><div class="rail" id="rail">
+
+<!-- P1 封面 -->
+<div class="slide centered">
+  <div class="deco" style="width:600px;height:600px;background:#f5a623;top:-280px;right:-200px;"></div>
+  <div class="deco" style="width:400px;height:400px;background:#4ecdc4;bottom:-150px;left:-100px;"></div>
+  <div class="body" style="gap:16px;">
+    <div>
+      <span class="tag tag-accent">東京農業大學</span>
+    </div>
+    <h2 style="font-size:clamp(1.8rem,4vw,3rem);margin-bottom:6px;">最強飲食科技</h2>
+    <p style="font-size:1.1rem;color:var(--accent);font-weight:600;margin-bottom:12px;">田中逸郎 教授</p>
+    <p class="muted" style="font-size:.88rem;max-width:480px;">3大危險食物 · 3大健康食物 · 飲食迷思破解</p>
+    <div style="margin-top:20px;">
+      <a href="https://youtu.be/Of6ONsSKfJw" target="_blank" class="yt-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.84 1.55V6.79a4.85 4.85 0 0 1-1.07-.1z"/></svg>
+        YouTube 原影片
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- P2 3大危險食物 overview -->
+<div class="slide">
+  <div class="slide-lbl">危險食物</div>
+  <h2>❌ 三大危險食物</h2>
+  <div class="body">
+    <div class="grid3" style="gap:18px;">
+      <div class="card" style="border-color:rgba(255,107,107,.3);">
+        <div style="font-size:2rem;margin-bottom:8px;">🥤</div>
+        <div style="font-weight:700;color:var(--red);font-size:1.05rem;margin-bottom:6px;">No.1 甜飲料</div>
+        <p class="muted" style="font-size:.82rem;">果糖葡萄糖液糖導致飽足感遲鈍、血糖急升，戒掉可提升超過一半健康</p>
+      </div>
+      <div class="card" style="border-color:rgba(255,107,107,.3);">
+        <div style="font-size:2rem;margin-bottom:8px;">🛢️</div>
+        <div style="font-weight:700;color:var(--red);font-size:1.05rem;margin-bottom:6px;">No.2 劣化油脂</div>
+        <p class="muted" style="font-size:.82rem;">號稱健康的油（亞麻仁油等）最容易氧化；劣化油比劣質油更危險</p>
+      </div>
+      <div class="card" style="border-color:rgba(245,166,35,.3);">
+        <div style="font-size:2rem;margin-bottom:8px;">⚠️</div>
+        <div style="font-weight:700;color:var(--accent);font-size:1.05rem;margin-bottom:6px;">特別提醒</div>
+        <p class="muted" style="font-size:.82rem;">速食店奶昔 = 植物油（已氧化）+ 大量甜味劑，是最糟糕的組合</p>
+      </div>
+    </div>
+    <div class="anno" style="margin-top:16px;">
+      <strong>田中教授的結論：</strong>只要把甜飲料從生活中戒掉，健康可以提升超過一半。
+    </div>
+  </div>
+</div>
+
+<!-- P3 甜飲料深度解析 -->
+<div class="slide">
+  <div class="slide-lbl">深度解析</div>
+  <h2>甜飲料的真相：果糖葡萄糖液糖</h2>
+  <div class="body">
+    <div class="grid2" style="gap:20px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card">
+          <p style="font-weight:700;color:var(--accent);margin-bottom:6px;">什麼是果糖葡萄糖液糖？</p>
+          <ul class="muted" style="font-size:.82rem;">
+            <li>日本人發明，用玉米澱粉製造</li>
+            <li>比砂糖便宜，冷飲中甜度更明顯</li>
+            <li>1980年代開始普及</li>
+            <li>幾乎所有加工食品、飲料都含有</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color:rgba(255,107,107,.3);">
+          <p style="font-weight:700;color:var(--red);margin-bottom:6px;">為何危險？</p>
+          <ul class="muted" style="font-size:.82rem;">
+            <li>飲用後被快速吸收</li>
+            <li>讓大腦飽足感遲鈍，不知不覺攝取過多</li>
+            <li>大量使用後全球肥胖率急升</li>
+            <li>美國：贈送甜飲料 → 肥胖率高</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="text-align:center;padding:20px;border:2px dashed rgba(255,107,107,.3);border-radius:12px;">
+          <div class="big" style="color:var(--red);">50%+</div>
+          <p style="font-size:.85rem;margin-top:6px;">戒掉甜飲料後</p>
+          <p style="font-size:.85rem;color:var(--accent);font-weight:600;">健康提升幅度</p>
+        </div>
+        <div class="anno">
+          <strong>可樂的另一個危機：</strong>防腐劑中的強酸（比碳酸水強100–1000倍）會溶解牙齒。對策：喝後立即用水或茶漱口。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P4 油脂深度解析 -->
+<div class="slide">
+  <div class="slide-lbl">深度解析</div>
+  <h2>油脂的真相：好油≠多用</h2>
+  <div class="body">
+    <div class="grid3" style="gap:14px;margin-bottom:12px;">
+      <div class="card" style="border-color:rgba(255,107,107,.3);">
+        <p style="font-weight:700;color:var(--red);font-size:.9rem;margin-bottom:6px;">🚫 危險：劣化油</p>
+        <ul class="muted" style="font-size:.78rem;">
+          <li>亞麻仁油、橄欖油等易氧化</li>
+          <li>高溫、光照、重複加熱 → 過氧化物</li>
+          <li>居酒屋/速食的炸油不知換幾次</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p style="font-weight:700;color:var(--muted);font-size:.9rem;margin-bottom:6px;">⚖️ 飽和脂肪（動物油）</p>
+        <ul class="muted" style="font-size:.78rem;">
+          <li>沒有想像中那麼壞</li>
+          <li>不容易氧化劣化</li>
+          <li>吃肉的脂肪≠必需刻意避免</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(107,203,119,.3);">
+        <p style="font-weight:700;color:var(--green);font-size:.9rem;margin-bottom:6px;">✅ 正確做法</p>
+        <ul class="muted" style="font-size:.78rem;">
+          <li>不必特意額外補充橄欖油</li>
+          <li>正常飲食已有足夠油脂</li>
+          <li>確保油脂新鮮比選「好油」更重要</li>
+        </ul>
+      </div>
+    </div>
+    <div class="anno">
+      <strong>外食注意：</strong>天婦羅、炸物的油是否新鮮很難判斷。教授個人：盡量避免去速食店。
+    </div>
+  </div>
+</div>
+
+<!-- P5 迷思破解 -->
+<div class="slide">
+  <div class="slide-lbl">飲食迷思</div>
+  <h2>🔍 被過度神話的「健康食品」</h2>
+  <div class="body">
+    <div class="grid2" style="gap:20px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="item-row">
+          <div>
+            <div class="item-title red">❌ 黑烏龍茶燃脂</div>
+            <p class="muted" style="font-size:.82rem;">實際效果：吃一片拇指大的叉燒肉就完全抵消。本身不壞，但不能靠它「抵銷」不健康的飲食。</p>
+          </div>
+        </div>
+        <div class="item-row">
+          <div>
+            <div class="item-title red">❌ 橄欖油越多越健康</div>
+            <p class="muted" style="font-size:.82rem;">正常飲食已含足夠油脂，無需特意補充。而且容易氧化，未必比新鮮的普通油更好。</p>
+          </div>
+        </div>
+        <div class="item-row">
+          <div>
+            <div class="item-title red">❌ 蔬菜汁等於蔬菜</div>
+            <p class="muted" style="font-size:.82rem;">蔬菜汁≠蔬菜的完整營養。想補蔬菜，直接吃蔬菜更有效。</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="item-row">
+          <div>
+            <div class="item-title red">❌ 補充劑必要論</div>
+            <p class="muted" style="font-size:.82rem;">一般人不需要。過量蛋白質補充劑會增加腎臟、肝臟負擔。直接吃肉和魚更好。</p>
+          </div>
+        </div>
+        <div class="card" style="border-color:rgba(245,166,35,.3);margin-top:4px;">
+          <p style="font-weight:700;color:var(--accent);font-size:.88rem;margin-bottom:6px;">💡 正確心態</p>
+          <p class="muted" style="font-size:.8rem;">不要花錢在「效果有限」的保健品上；把那筆錢買更好的真食物（新鮮蔬菜、優質蛋白質）才是正道。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P6 安全量原則 -->
+<div class="slide">
+  <div class="slide-lbl">核心觀念</div>
+  <h2>世界上沒有安全的食物——只有安全的量</h2>
+  <div class="body">
+    <div class="grid2" style="gap:24px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card" style="border-color:rgba(78,205,196,.3);">
+          <p style="font-weight:700;color:var(--blue);margin-bottom:8px;">U形風險曲線</p>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px;background:rgba(78,205,196,.05);border-radius:8px;margin-bottom:8px;">
+            <div style="text-align:center;flex:1;">
+              <div style="font-size:.75rem;color:var(--red);">太少</div>
+              <div style="font-size:1.2rem;">⬇️</div>
+              <div style="font-size:.7rem;color:var(--muted);">缺乏 → 有害</div>
+            </div>
+            <div style="text-align:center;flex:1;">
+              <div style="font-size:.75rem;color:var(--green);">適量</div>
+              <div style="font-size:1.2rem;">✅</div>
+              <div style="font-size:.7rem;color:var(--muted);">安全範圍</div>
+            </div>
+            <div style="text-align:center;flex:1;">
+              <div style="font-size:.75rem;color:var(--red);">太多</div>
+              <div style="font-size:1.2rem;">⬇️</div>
+              <div style="font-size:.7rem;color:var(--muted);">過量 → 有害</div>
+            </div>
+          </div>
+          <p class="muted" style="font-size:.8rem;">例子：鹽、卡路里、任何食物都適用此法則。一次吃100顆番茄也會中毒。</p>
+        </div>
+        <div class="anno">
+          <strong>實用建議：</strong>不要每天嚴格計算卡路里，改以「一週平均值」來管理——今天多吃了，下幾天少一點調整即可。
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card">
+          <p style="font-weight:700;color:var(--accent);margin-bottom:8px;">個人化攝取量</p>
+          <ul class="muted" style="font-size:.82rem;">
+            <li>每人的最低需求因年齡、體型、活動量而異</li>
+            <li>別用別人的標準套在自己身上</li>
+            <li>不必精確計算（太難持續）</li>
+            <li>理解「大方向」即可</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color:rgba(255,107,107,.3);">
+          <p style="font-weight:700;color:var(--red);margin-bottom:8px;">健康檢查的真正目的</p>
+          <p class="muted" style="font-size:.82rem;">高膽固醇、高血壓的管控，<strong style="color:var(--text);">最終都是為了預防動脈硬化</strong>，進而預防心臟病和腦梗塞——年輕過勞者的猝死主因。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P7 味精真相 -->
+<div class="slide">
+  <div class="slide-lbl">迷思破解</div>
+  <h2>味精真相：從石油說到頭痛傳說</h2>
+  <div class="body">
+    <div class="grid2" style="gap:20px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="border-color:rgba(107,203,119,.3);">
+          <p style="font-weight:700;color:var(--green);margin-bottom:6px;">✅ 事實</p>
+          <ul class="muted" style="font-size:.82rem;">
+            <li>現代味精<strong style="color:var(--text);">不是從石油提煉</strong>的</li>
+            <li>幾十年前確曾用石油提煉（糧食危機技術）</li>
+            <li>現在已改用發酵方式製造</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color:rgba(255,107,107,.3);">
+          <p style="font-weight:700;color:var(--red);margin-bottom:6px;">❌ 「中國餐廳症候群」迷思</p>
+          <ul class="muted" style="font-size:.82rem;">
+            <li>某美國醫生投稿：吃中餐後頭痛</li>
+            <li>後來仔細調查：原因不是味精</li>
+            <li>但印象已傳播開來，難以消除</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card">
+          <p style="font-weight:700;color:var(--accent);margin-bottom:8px;">💡 口味偏好的形成</p>
+          <p class="muted" style="font-size:.82rem;margin-bottom:6px;">美味感幾乎在高中之前就已定型——「媽媽的味道」。小時候大量接觸某種味道（味精、甜飲料、美乃滋），長大後就會依賴那個味道。</p>
+          <p class="muted" style="font-size:.78rem;font-style:italic;">→ 對孩子飲食習慣的影響遠超一般認知</p>
+        </div>
+        <div class="anno">
+          <strong>真正的問題：</strong>不是「味精有沒有毒」，而是「過度依賴調味品會讓自然食物的滋味變得不夠」。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P8 三大健康食物 -->
+<div class="slide">
+  <div class="slide-lbl">健康食物</div>
+  <h2>✅ 三大強健食物</h2>
+  <div class="body">
+    <div class="grid3" style="gap:16px;margin-bottom:14px;">
+      <div class="card" style="border-color:rgba(107,203,119,.3);">
+        <div style="font-size:2rem;margin-bottom:8px;">🫘</div>
+        <div style="font-weight:700;color:var(--green);margin-bottom:6px;">No.1 納豆</div>
+        <ul class="muted" style="font-size:.8rem;">
+          <li>便宜且不易劣化</li>
+          <li>對血液循環有益</li>
+          <li>強化骨骼</li>
+          <li>發酵食品，腸道友好</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(107,203,119,.3);">
+        <div style="font-size:2rem;margin-bottom:8px;">🥩🥦</div>
+        <div style="font-weight:700;color:var(--green);margin-bottom:6px;">No.2 蛋白質＋蔬菜</div>
+        <ul class="muted" style="font-size:.8rem;">
+          <li>幫助消化代謝</li>
+          <li>午餐選擇可避免下午昏沉</li>
+          <li>避免攝取高糖食物</li>
+          <li>直接吃肉魚勝過補充劑</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(78,205,196,.3);">
+        <div style="font-size:2rem;margin-bottom:8px;">🎯</div>
+        <div style="font-weight:700;color:var(--blue);margin-bottom:6px;">No.3 平衡飲食原則</div>
+        <ul class="muted" style="font-size:.8rem;">
+          <li>超級食物效果有限，別過度期望</li>
+          <li>不需要補充劑（會加重腎臟負擔）</li>
+          <li>多樣化真食物 &gt; 單一保健品</li>
+          <li>以週為單位調整，不必每天完美</li>
+        </ul>
+      </div>
+    </div>
+    <div class="anno">
+      <strong>田中教授個人注意：</strong>鹽和油脂的攝取量。健康診斷若顯示腎臟有問題，特別要注意鹽與油。
+    </div>
+  </div>
+</div>
+
+<!-- P9 總結 -->
+<div class="slide centered">
+  <div class="deco" style="width:500px;height:500px;background:#6bcb77;top:-200px;right:-150px;"></div>
+  <div class="body" style="gap:18px;max-width:680px;">
+    <div class="slide-lbl" style="text-align:center;">總結</div>
+    <h2 style="text-align:center;font-size:clamp(1.4rem,3vw,2.2rem);">田中教授飲食法則</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;">
+      <div class="tag tag-red" style="padding:10px 14px;border-radius:10px;text-align:center;font-size:.8rem;">戒甜飲料（最優先）</div>
+      <div class="tag tag-red" style="padding:10px 14px;border-radius:10px;text-align:center;font-size:.8rem;">注意油脂新鮮度</div>
+      <div class="tag tag-green" style="padding:10px 14px;border-radius:10px;text-align:center;font-size:.8rem;">多吃納豆、蛋白質</div>
+      <div class="tag tag-green" style="padding:10px 14px;border-radius:10px;text-align:center;font-size:.8rem;">以週平均管理飲食</div>
+      <div class="tag tag-blue" style="padding:10px 14px;border-radius:10px;text-align:center;font-size:.8rem;">沒有絕對安全的食物</div>
+      <div class="tag tag-accent" style="padding:10px 14px;border-radius:10px;text-align:center;font-size:.8rem;">喝可樂後立即漱口</div>
+    </div>
+    <p class="muted" style="text-align:center;font-size:.82rem;font-style:italic;margin-top:8px;">「世界上沒有安全的食物，只有安全的量。」— 田中逸郎</p>
+  </div>
+</div>
+
+</div></div>
+
+<div class="t-trigger" id="tTrigger"></div>
+<div class="t-strip" id="tStrip"></div>
+<footer class="ftr">
+  <span class="src-tag">youtu.be/Of6ONsSKfJw · Whisper 轉錄翻譯</span>
+  <span class="pgn" id="pgn">1 / 9</span>
+</footer>
+
+<script>
+const TOTAL=9;let cur=0,tx0=0;
+const rail=document.getElementById('rail'),prog=document.getElementById('prog'),pgn=document.getElementById('pgn'),tStrip=document.getElementById('tStrip'),tTrigger=document.getElementById('tTrigger'),themeBtn=document.getElementById('themeBtn');
+const titles=['封面','3大危險食物','甜飲料解析','油脂解析','飲食迷思','安全量原則','味精真相','3大健康食物','總結'];
+titles.forEach((t,i)=>{const el=document.createElement('div');el.className='thumb'+(i===0?' act':'');el.innerHTML=`<div class="t-num">${i+1}</div><div style="font-size:8px;line-height:1.3;">${t}</div>`;el.addEventListener('click',()=>{goTo(i);hideThumb();});tStrip.appendChild(el);});
+function goTo(n){cur=Math.max(0,Math.min(TOTAL-1,n));rail.style.transform=`translateX(-${cur*100}%)`;pgn.textContent=`${cur+1} / ${TOTAL}`;prog.style.width=`${((cur+1)/TOTAL)*100}%`;document.querySelectorAll('.thumb').forEach((el,i)=>el.classList.toggle('act',i===cur));}
+function go(d){goTo(cur+d);}
+let tt;function showThumb(){tStrip.classList.add('vis');clearTimeout(tt);}function hideThumb(){tt=setTimeout(()=>tStrip.classList.remove('vis'),300);}
+tTrigger.addEventListener('mouseenter',showThumb);tStrip.addEventListener('mouseenter',()=>{clearTimeout(tt);tStrip.classList.add('vis');});tStrip.addEventListener('mouseleave',hideThumb);tTrigger.addEventListener('mouseleave',e=>{if(!tStrip.contains(e.relatedTarget))hideThumb();});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}});
+document.addEventListener('touchstart',e=>{tx0=e.touches[0].clientX;},{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx0;if(Math.abs(dx)>50)go(dx<0?1:-1);});
+const saved=localStorage.getItem('food-theme')||'dark';if(saved==='light')document.body.classList.add('light');
+function updateIcon(){const isLight=document.body.classList.contains('light');themeBtn.innerHTML=isLight?`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;}
+themeBtn.addEventListener('click',()=>{document.body.classList.toggle('light');localStorage.setItem('food-theme',document.body.classList.contains('light')?'light':'dark');updateIcon();});
+updateIcon();goTo(0);
+</script>
+</body>
+</html>
