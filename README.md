@@ -11,6 +11,7 @@
 - `dnr-2026.html`：Reuters Institute Digital News Report 2026 簡報（13張投影片，七大主題）。
 - `nordic-ai-media-summit-2026.html`：Nordic AI in Media Summit 2026 簡報。
 - `wan-ifra-marseille-2026.html`：WAN-IFRA Marseille 2026 簡報。
+- `sibling-reserved-portion-answer-quality.html`：「兄弟姊妹特留分」修法回答品質比較簡報（中央社 MCP vs. 一般網路研究，淺色系）。
 
 ## 發布方式
 
