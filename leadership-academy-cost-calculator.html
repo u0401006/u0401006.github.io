@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>領袖學院 · 技術平台費用試算</title>
+<style>
+  :root{
+    --bg:#14161c; --surface:#1b1e26; --surface-raised:#21242e; --ink:#eae6dc; --ink-soft:#9b9dab;
+    --line:#2b2e3a; --accent:#c6a15b; --accent-ink:#e0c383; --accent-bg:rgba(198,161,91,.14);
+    --cf:#e0894d; --cf-bg:rgba(224,137,77,.16); --gcp:#6ba4e0; --gcp-bg:rgba(107,164,224,.16);
+    --other:#9d8fe0; --other-bg:rgba(157,143,224,.16); --tax:#7a95a3; --tax-bg:rgba(122,149,163,.18);
+    --warn:#e0b458; --warn-bg:rgba(224,180,88,.16); --danger:#e08787; --danger-bg:rgba(224,135,135,.16);
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+  :root[data-theme="light"]{
+    --bg:#f6f4ef; --surface:#ffffff; --surface-raised:#fbf9f4; --ink:#201d17; --ink-soft:#6b6659;
+    --line:#e4ddcd; --accent:#9c7a2e; --accent-ink:#7c5f1e; --accent-bg:#f2e8d2;
+    --cf:#b5591e; --cf-bg:#f7e8dc; --gcp:#2b6cb0; --gcp-bg:#e2edf9;
+    --other:#5b4fb0; --other-bg:#e9e6f7; --tax:#3f5c6b; --tax-bg:#e3ecf0;
+    --warn:#a97a1e; --warn-bg:#f7ecd6; --danger:#a14435; --danger-bg:#f7e5e1;
+    --shadow:0 1px 2px rgba(0,0,0,.06);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#f6f4ef; --surface:#ffffff; --surface-raised:#fbf9f4; --ink:#201d17; --ink-soft:#6b6659;
+      --line:#e4ddcd; --accent:#9c7a2e; --accent-ink:#7c5f1e; --accent-bg:#f2e8d2;
+      --cf:#b5591e; --cf-bg:#f7e8dc; --gcp:#2b6cb0; --gcp-bg:#e2edf9;
+      --other:#5b4fb0; --other-bg:#e9e6f7; --tax:#3f5c6b; --tax-bg:#e3ecf0;
+      --warn:#a97a1e; --warn-bg:#f7ecd6; --danger:#a14435; --danger-bg:#f7e5e1;
+      --shadow:0 1px 2px rgba(0,0,0,.06);
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6;
+    font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;}
+  .display{font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;}
+  .mono{font-family:ui-monospace,"SF Mono",Consolas,monospace;font-variant-numeric:tabular-nums;}
+  .page{max-width:1120px;margin:0 auto;padding:48px 24px 90px;}
+  .eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);
+    font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent);display:inline-block;}
+  h1.display{font-size:clamp(26px,4vw,36px);font-weight:700;margin:0 0 10px;text-wrap:balance;}
+  .sub{color:var(--ink-soft);font-size:15px;max-width:680px;margin:0 0 24px;}
+  section{margin-bottom:44px;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:11px;}
+  h2.display{font-size:20px;font-weight:700;margin:0;}
+  .note{font-size:13px;color:var(--ink-soft);}
+
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:780px){.calc{grid-template-columns:1fr;}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);}
+  .card h3{margin:0 0 4px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .card .h-sub{font-size:12px;color:var(--ink-soft);margin:0 0 16px;}
+
+  .badge-pill{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;
+    background:var(--warn-bg);color:var(--warn);letter-spacing:.02em;}
+
+  .field{margin-bottom:18px;}
+  .field:last-child{margin-bottom:0;}
+  .field label{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;margin-bottom:7px;gap:8px;}
+  .field label .val{font-family:ui-monospace,Consolas,monospace;font-weight:700;color:var(--accent-ink);font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .field input[type=range]{width:100%;accent-color:var(--accent);height:4px;}
+  .field .rng-foot{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft);margin-top:3px;}
+  .field .hint{font-size:11.5px;color:var(--ink-soft);margin-top:5px;line-height:1.6;}
+  .field input[type=number]{width:100%;background:var(--surface-raised);border:1px solid var(--line);color:var(--ink);
+    border-radius:8px;padding:8px 10px;font-family:ui-monospace,Consolas,monospace;font-size:13.5px;}
+
+  .num-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;}
+  @media(max-width:520px){.num-grid{grid-template-columns:1fr;}}
+
+  .presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .preset{font-size:12.5px;padding:6px 13px;border-radius:999px;border:1px solid var(--line);
+    background:var(--surface-raised);color:var(--ink-soft);cursor:pointer;font-family:inherit;transition:.15s;}
+  .preset:hover{border-color:var(--accent);color:var(--accent-ink);}
+  .preset.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+  .tier-opts{display:flex;flex-direction:column;gap:9px;}
+  .tier-opt{display:flex;gap:11px;align-items:flex-start;padding:11px 13px;border:1px solid var(--line);
+    border-radius:10px;cursor:pointer;transition:.15s;}
+  .tier-opt:hover{border-color:var(--gcp);}
+  .tier-opt.sel{border-color:var(--gcp);background:var(--gcp-bg);}
+  .tier-opt input{margin-top:3px;accent-color:var(--gcp);flex:none;}
+  .tier-opt .tt{font-size:13.5px;font-weight:600;}
+  .tier-opt .td{font-size:12px;color:var(--ink-soft);margin-top:2px;line-height:1.6;}
+  .tier-opt .td b{color:var(--ink);font-weight:600;}
+
+  .scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+  @media(max-width:860px){.scenario-grid{grid-template-columns:1fr;}}
+  .scenario{background:var(--surface-raised);border:1px solid var(--line);border-radius:14px;padding:20px 22px;position:relative;}
+  .scenario.mid{border-color:var(--accent);}
+  .scenario.stress{border-color:var(--danger);}
+  .scenario .s-lab{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:6px;}
+  .scenario .s-lab .tag-mini{font-size:10px;padding:1px 7px;border-radius:999px;letter-spacing:0;text-transform:none;}
+  .scenario.mid .tag-mini{background:var(--accent-bg);color:var(--accent-ink);}
+  .scenario.stress .tag-mini{background:var(--danger-bg);color:var(--danger);}
+  .scenario .usd{font-family:ui-monospace,Consolas,monospace;font-size:26px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.15;}
+  .scenario .ntd-m{font-family:ui-monospace,Consolas,monospace;font-size:13px;color:var(--accent-ink);margin-top:6px;font-variant-numeric:tabular-nums;}
+  .scenario .ntd-y{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--ink-soft);margin-top:2px;font-variant-numeric:tabular-nums;}
+  .scenario .s-note{font-size:11.5px;color:var(--ink-soft);margin-top:10px;line-height:1.6;padding-top:10px;border-top:1px dashed var(--line);}
+
+  .bar{display:flex;height:16px;border-radius:6px;overflow:hidden;margin-bottom:8px;background:var(--line);}
+  .bar span{display:block;height:100%;}
+  .bar .b-store{background:var(--cf);opacity:.55;} .bar .b-deliver{background:var(--cf);}
+  .bar .b-gcp{background:var(--gcp);} .bar .b-other{background:var(--other);} .bar .b-tax{background:var(--tax);}
+  .bar-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-soft);margin-bottom:18px;}
+  .bar-legend .k{display:inline-flex;align-items:center;gap:6px;}
+  .bar-legend .sw{width:11px;height:11px;border-radius:3px;flex:none;}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);}
+  thead th{text-align:left;padding:11px 14px;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--ink-soft);border-bottom:1px solid var(--line);font-weight:600;}
+  tbody td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.r{text-align:right;font-family:ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .tag{display:inline-block;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:5px;margin-right:6px;}
+  .tag.cf{background:var(--cf-bg);color:var(--cf);} .tag.gcp{background:var(--gcp-bg);color:var(--gcp);}
+  .tag.other{background:var(--other-bg);color:var(--other);} .tag.tax{background:var(--tax-bg);color:var(--tax);}
+  tr.subtotal td{font-weight:700;background:var(--surface-raised);}
+  tr.total td{font-weight:700;background:var(--accent-bg);color:var(--accent-ink);}
+
+  .sens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+  .sens-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .sens-card .sv{font-family:ui-monospace,Consolas,monospace;font-size:20px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .sens-card .sl{font-size:12px;color:var(--ink-soft);margin-top:4px;line-height:1.6;}
+
+  .callout{background:var(--accent-bg);border:1px solid var(--accent);border-radius:10px;padding:14px 18px;font-size:13px;margin-top:18px;}
+  .callout b{color:var(--accent-ink);}
+  .callout.warn{background:var(--warn-bg);border-color:var(--warn);}
+  .callout.warn b{color:var(--warn);}
+  ul.notes{font-size:12.5px;color:var(--ink-soft);line-height:1.85;padding-left:18px;margin:14px 0 0;}
+  footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft);}
+  .fx{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);margin-top:16px;flex-wrap:wrap;}
+  .fx input{width:64px;background:var(--surface);border:1px solid var(--line);color:var(--ink);border-radius:6px;
+    padding:3px 7px;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">領袖學院 · 技術成本模型 · v1.2 內部預算版</div>
+  <h1 class="display">技術平台費用試算</h1>
+  <p class="sub">同時試算三種情境：<b>基準估算</b>（依目前輸入直接計算）、<b>建議預算</b>（基準 × 1.25，供編列緩衝）、
+  <b>壓力情境</b>（觀看量飆升＋GCP 需升級）。分三塊：<b style="color:var(--cf)">Cloudflare Stream</b>（影音，隨規模浮動）、
+  <b style="color:var(--gcp)">GCP 底層平台</b>（情境包價估算）、<b style="color:var(--other)">其他成本與稅金</b>（第三方服務、環境、稅金與付款成本）。</p>
+
+  <div class="callout warn">
+    <b>本工具僅估算「技術平台與雲端服務費」</b>，不包含開發、維運、客服、內容製作等人力成本。
+    Cloudflare Stream 單價來自官方公開價格；GCP 數字是內部情境估算，不是正式報價——實際費用會受區域、機型、
+    CPU/RAM 規格、min instances、請求量、資料庫儲存、備份、日誌與網路流量影響。正式編列預算前，
+    請以 GCP Pricing Calculator、廠商正式報價與上線後實際帳單校正。
+  </div>
+
+  <div class="callout" style="margin-top:14px;">
+    <b>MVP 已實測驗證：</b>Cloudflare Stream 簽章播放、Cloud Run、Memorystore(Redis)、Secret Manager、
+    Artifact Registry 這套組合已實際部署上線並跑通完整流程；下方 GCP 明細表的服務項目與本次 MVP
+    實際使用的服務一致。詳見《開發規格書 v0.2》第 14 章、repo：CNAmedialab/leadership-academy。
+  </div>
+
+  <section>
+    <div class="section-head"><h2 class="display">互動試算</h2><span class="note">選一個情境或自行調整</span></div>
+
+    <div class="presets" id="presets">
+      <button class="preset" data-p="mvp">MVP 起步</button>
+      <button class="preset active" data-p="growth">成長期</button>
+      <button class="preset" data-p="scale">規模化</button>
+    </div>
+
+    <div class="calc">
+      <div class="card">
+        <h3 style="color:var(--cf)">影音規模（Cloudflare Stream）</h3>
+        <div class="field">
+          <label>課程數（堂）<span class="val" id="vCourses">30</span></label>
+          <input type="range" id="courses" min="5" max="500" step="5" value="30">
+          <div class="rng-foot"><span>5</span><span>500</span></div>
+        </div>
+        <div class="field">
+          <label>每堂平均時長（小時）<span class="val" id="vHours">10</span></label>
+          <input type="range" id="hours" min="2" max="30" step="1" value="10">
+          <div class="rng-foot"><span>2</span><span>30</span></div>
+        </div>
+        <div class="field">
+          <label>每月活躍學員（人）<span class="val" id="vStudents">3,000</span></label>
+          <input type="range" id="students" min="100" max="20000" step="100" value="3000">
+          <div class="rng-foot"><span>100</span><span>20,000</span></div>
+        </div>
+        <div class="field">
+          <label>每位學員每月觀看（分鐘）<span class="val" id="vWatch">300</span></label>
+          <input type="range" id="watch" min="30" max="1200" step="30" value="300">
+          <div class="rng-foot"><span>30</span><span>1,200</span></div>
+        </div>
+        <div class="field">
+          <label>播放交付係數<span class="val" id="vDeliveryFactor">1.15</span></label>
+          <input type="range" id="deliveryFactor" min="1.0" max="1.5" step="0.05" value="1.15">
+          <div class="rng-foot"><span>1.0</span><span>1.5</span></div>
+          <div class="hint">Cloudflare 會計算播放器預載、buffer 與已交付的影片 segment，因此帳單分鐘數可能高於使用者實際觀看時間；此係數用來反映這個落差。</div>
+        </div>
+        <div class="field">
+          <label>額外影片版本／備份係數<span class="val" id="vStorageFactor">1.0</span></label>
+          <input type="range" id="storageFactor" min="1.0" max="2.0" step="0.1" value="1.0">
+          <div class="rng-foot"><span>1.0</span><span>2.0</span></div>
+          <div class="hint">反映舊版課程、預告片、重複上傳或直播錄影尚未刪除等情況——實際儲存量常高於「課程數 × 時長」的理論值。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="color:var(--gcp)">GCP 底層平台規模 <span class="badge-pill">情境包價估算</span></h3>
+        <p class="h-sub">以下三個 tier 為「情境包價」，不是精確的 usage-based 計算；用於預算編列的量級參考。</p>
+        <div class="tier-opts" id="tiers">
+          <label class="tier-opt" data-t="mvp"><input type="radio" name="tier" value="mvp">
+            <div><div class="tt">MVP / 起步</div><div class="td">
+              Cloud Run：低 min-instance、低流量；<b>Cloud SQL：單區</b>；<b>Redis：1GB Basic</b>。
+              適合上線初期至數百名同時使用者。</div></div></label>
+          <label class="tier-opt sel" data-t="growth"><input type="radio" name="tier" value="growth" checked>
+            <div><div class="tt">成長期</div><div class="td">
+              Cloud Run：較高產能；<b>Cloud SQL：HA 2 vCPU</b>；<b>Redis：2GB HA</b>（若實際配置到 4GB，應另外提高預算）。
+              適合千級同時使用者，<b>但仍須經壓力測試驗證</b>。</div></div></label>
+          <label class="tier-opt" data-t="scale"><input type="radio" name="tier" value="scale">
+            <div><div class="tt">規模化</div><div class="td">
+              Cloud Run：多實例；<b>Cloud SQL：HA 4 vCPU＋讀取副本</b>；<b>Redis：5GB HA</b>。
+              適合行銷檔期水平擴充，<b>但仍須經壓力測試驗證</b>。</div></div></label>
+        </div>
+        <div class="fx">匯率 US$1 =　NT$ <input type="number" id="fx" value="32.5" step="0.5" min="1" max="60"> 　（可自行調整，下方所有金額即時套用）</div>
+        <div class="callout" style="margin-top:16px;">
+          <b>提醒：</b>在目前 tier 的安全容量內，GCP 成本近似固定；超過容量門檻後，成本會階梯式增加——
+          不代表特定 tier「一定」能支撐某個併發量，實際上線前務必經壓力測試驗證。
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="color:var(--other)">其他成本與稅金</h3>
+      <p class="h-sub">這些是最容易在初期估算中被遺漏、但實際上線後一定會出現的費用。</p>
+      <div class="num-grid">
+        <div class="field">
+          <label>第三方服務（USD／月）</label>
+          <input type="number" id="thirdParty" value="30" min="0" step="5">
+          <div class="hint">Sentry、交易信／行銷 Email、簡訊等。</div>
+        </div>
+        <div class="field">
+          <label>額外環境（USD／月）</label>
+          <input type="number" id="extraEnv" value="0" min="0" step="5">
+          <div class="hint">Staging／Test 環境的額外 Cloud Run/SQL/Redis。</div>
+        </div>
+        <div class="field">
+          <label>Support／監控／安全服務（USD／月）</label>
+          <input type="number" id="support" value="0" min="0" step="5">
+          <div class="hint">進階支援方案、額外監控/WAF/Cloud Armor 等。</div>
+        </div>
+        <div class="field">
+          <label>其他費用（USD／月）</label>
+          <input type="number" id="misc" value="0" min="0" step="5">
+          <div class="hint">網域、SSL、雜項訂閱等。</div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:4px;">
+        <label>稅金與付款成本<span class="val" id="vTaxPct">5%</span></label>
+        <input type="range" id="taxPct" min="0" max="20" step="1" value="5">
+        <div class="rng-foot"><span>0%</span><span>20%</span></div>
+        <div class="hint">加值型營業稅、金流手續費等隨帳單比例增加的成本。</div>
+      </div>
+    </div>
+
+    <div class="result" style="margin-top:22px;">
+      <div class="section-head" style="border:none;padding-bottom:0;margin-bottom:16px;">
+        <h2 class="display" style="font-size:17px;">三種情境結果</h2>
+        <span class="note">計算順序：雲端與第三方成本小計 → 加稅金與付款成本 → 基準估算 → 建議預算／壓力情境</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario">
+          <div class="s-lab">基準估算</div>
+          <div class="usd mono" id="baseUSD">$0</div>
+          <div class="ntd-m mono" id="baseNTDm">約 NT$0／月</div>
+          <div class="ntd-y mono" id="baseNTDy">約 NT$0／年</div>
+          <div class="s-note">依目前輸入參數直接計算，含稅金與付款成本。</div>
+        </div>
+        <div class="scenario mid">
+          <div class="s-lab">建議預算 <span class="tag-mini">× 1.25</span></div>
+          <div class="usd mono" id="recUSD">$0</div>
+          <div class="ntd-m mono" id="recNTDm">約 NT$0／月</div>
+          <div class="ntd-y mono" id="recNTDy">約 NT$0／年</div>
+          <div class="s-note">基準估算再加 25% 緩衝，供內部編列預算使用。</div>
+        </div>
+        <div class="scenario stress">
+          <div class="s-lab">壓力情境 <span class="tag-mini">觀看 ×1.5</span></div>
+          <div class="usd mono" id="stressUSD">$0</div>
+          <div class="ntd-m mono" id="stressNTDm">約 NT$0／月</div>
+          <div class="ntd-y mono" id="stressNTDy">約 NT$0／年</div>
+          <div class="s-note" id="stressNote">假設：觀看交付量為基準 1.5 倍；GCP 提升一級。</div>
+        </div>
+      </div>
+
+      <div class="bar" id="bar">
+        <span class="b-store" id="barStore"></span>
+        <span class="b-deliver" id="barDeliver"></span>
+        <span class="b-gcp" id="barGcp"></span>
+        <span class="b-other" id="barOther"></span>
+        <span class="b-tax" id="barTax"></span>
+      </div>
+      <div class="bar-legend">
+        <span class="k"><span class="sw" style="background:var(--cf);opacity:.55;"></span>CF 影片儲存 <b class="mono" id="lgStore"></b></span>
+        <span class="k"><span class="sw" style="background:var(--cf);"></span>CF 觀看交付 <b class="mono" id="lgDeliver"></b></span>
+        <span class="k"><span class="sw" style="background:var(--gcp);"></span>GCP 平台 <b class="mono" id="lgGcp"></b></span>
+        <span class="k"><span class="sw" style="background:var(--other);"></span>其他成本 <b class="mono" id="lgOther"></b></span>
+        <span class="k"><span class="sw" style="background:var(--tax);"></span>稅金／付款 <b class="mono" id="lgTax"></b></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>項目（基準估算明細）</th><th>計算基礎</th><th style="text-align:right;">USD / 月</th></tr></thead>
+          <tbody id="breakdown"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2 class="display">成本敏感度</h2><span class="note">依目前輸入即時計算</span></div>
+    <div class="sens-grid">
+      <div class="sens-card">
+        <div class="sv mono" id="sensPer100"></div>
+        <div class="sl">每增加 100 名活躍學員<br>約增加的每月 Stream 觀看費</div>
+      </div>
+      <div class="sens-card">
+        <div class="sv mono" id="sensPerStudent"></div>
+        <div class="sl">每位活躍學員<br>每月平均平台成本（基準估算）</div>
+      </div>
+      <div class="sens-card">
+        <div class="sv mono" id="sensCfPct"></div>
+        <div class="sl">Cloudflare Stream 占總成本比例<br><span style="opacity:.75">（稅前小計為基準）</span></div>
+      </div>
+      <div class="sens-card">
+        <div class="sv mono" id="sensGcpPct"></div>
+        <div class="sl">GCP 占總成本比例<br><span style="opacity:.75">（稅前小計為基準）</span></div>
+      </div>
+      <div class="sens-card">
+        <div class="sv mono" id="sensOtherPct"></div>
+        <div class="sl">其他成本占總成本比例<br><span style="opacity:.75">（稅前小計為基準）</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2 class="display">Cloudflare Stream 規模對照</h2><span class="note" id="matrixNote">固定：每堂 10 小時、每人每月觀看 300 分鐘、播放交付係數 1.15</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>課程數 ＼ 學員數</th><th style="text-align:right;">500 人</th><th style="text-align:right;">3,000 人</th><th style="text-align:right;">10,000 人</th></tr></thead>
+        <tbody id="matrix"></tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:10px;">＊僅 Cloudflare Stream（儲存＋觀看，含播放交付係數），未含 GCP 平台費。NTD 換算即時套用上方匯率欄位目前的值。</p>
+  </section>
+
+  <section>
+    <div class="section-head"><h2 class="display">GCP 底層平台費用明細</h2><span class="note">三個規模層級的估算月費（USD）· 情境包價，非精確計算</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>服務</th><th style="text-align:right;">MVP</th><th style="text-align:right;">成長期</th><th style="text-align:right;">規模化</th></tr></thead>
+        <tbody id="gcpTable"></tbody>
+      </table>
+    </div>
+    <ul class="notes">
+      <li>以上為 asia-east1（台灣）概略估算，實際依機型、流量、設定而異；屬情境包價估算，非逐項 usage-based 計算。</li>
+      <li>部分服務可能適用 <b>Committed Use Discount（CUD）</b>，折扣率與適用資格依產品及合約而異，不宜假設一律省 20–40%。</li>
+      <li>Sentry、網域、SSL 等第三方費用已另列於上方「其他成本與稅金」卡片，不重複計入本表。</li>
+      <li>影音母帶備份放 Cloud Storage 的費用已含在「儲存/其他」；Cloudflare Stream 本身另計。</li>
+    </ul>
+  </section>
+
+  <footer>
+    費用為估算模型，供內部規劃與跨部門溝通使用，非正式報價。Cloudflare Stream 官方定價：儲存 US$0.005／分鐘·月；觀看 US$0.001／分鐘（皆未計入播放交付係數／額外版本係數前之單價）。定案前建議向 Cloudflare 與 GCP 業務窗口索取正式報價，並以 GCP Pricing Calculator 與上線後實際帳單校正。
+    <br>MVP 驗證：<a href="https://github.com/CNAmedialab/leadership-academy" style="color:var(--accent-ink);">CNAmedialab/leadership-academy</a>（Cloud Run 服務、簽章 token 後端、串流防護全流程已實測）。對應《開發規格書 v0.2》第 14 章。
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ───────────────────────── 常數 ─────────────────────────
+  var CF_STORE = 0.005;   // US$ / 分鐘 / 月（儲存）
+  var CF_DELIVER = 0.001; // US$ / 分鐘（觀看交付）
+  var RECOMMENDED_MULTIPLIER = 1.25;
+  var STRESS_DELIVER_MULTIPLIER = 1.5;
+  var STRESS_SCALE_MULTIPLIER = 1.3; // 已是規模化 tier 時，壓力情境的 GCP 加成
+
+  // GCP tier 情境包價（USD/月，估算，非精確 usage-based 計算）
+  var GCP = {
+    mvp:    { "Cloud Run（前端＋後端）":60, "Cloud SQL PostgreSQL":70, "Memorystore Redis":45, "Cloud Storage + CDN":10, "Cloud Load Balancing":20, "其他（Tasks/PubSub/Secret/監控）":15 },
+    growth: { "Cloud Run（前端＋後端）":180, "Cloud SQL PostgreSQL（HA 2vCPU）":160, "Memorystore Redis（2–4GB HA）":90, "Cloud Storage + CDN":30, "Cloud Load Balancing":25, "其他（Tasks/PubSub/Secret/監控）":30 },
+    scale:  { "Cloud Run（多實例）":450, "Cloud SQL（HA 4vCPU＋讀副本）":420, "Memorystore Redis（5GB HA）":200, "Cloud Storage + CDN":80, "Cloud Load Balancing":40, "其他（Tasks/PubSub/Secret/監控）":60 }
+  };
+  var TIER_ORDER = ["mvp", "growth", "scale"];
+
+  var PRESETS = {
+    mvp:    { courses:15,  hours:8,  students:500,   watch:240, deliveryFactor:1.15, storageFactor:1.0, tier:"mvp" },
+    growth: { courses:30,  hours:10, students:3000,  watch:300, deliveryFactor:1.15, storageFactor:1.1, tier:"growth" },
+    scale:  { courses:100, hours:12, students:10000, watch:360, deliveryFactor:1.2,  storageFactor:1.2, tier:"scale" }
+  };
+
+  // ───────────────────────── 純計算函式（集中、可測） ─────────────────────────
+  // 輸入清洗：非法值（NaN/Infinity/負數）一律退回安全預設值
+  function safeNum(v, fallback, min, max){
+    var n = parseFloat(v);
+    if (!isFinite(n)) n = fallback;
+    if (n < 0) n = fallback;
+    if (typeof min === "number" && n < min) n = min;
+    if (typeof max === "number" && n > max) n = max;
+    return n;
+  }
+
+  function gcpTierTotal(tier){
+    var svc = GCP[tier] || GCP.growth, s = 0;
+    for (var k in svc) s += svc[k];
+    return s;
+  }
+
+  function nextTier(tier){
+    var i = TIER_ORDER.indexOf(tier);
+    if (i < 0) return "growth";
+    return TIER_ORDER[Math.min(i + 1, TIER_ORDER.length - 1)];
+  }
+
+  // Cloudflare 儲存成本：課程數 × 每堂時長(hr) × 60 × 額外版本係數 × 單價
+  function cfStorageCost(courses, hoursPerCourse, storageFactor){
+    return courses * hoursPerCourse * 60 * storageFactor * CF_STORE;
+  }
+
+  // Cloudflare 觀看交付：學員數 × 每人每月觀看分鐘 × 播放交付係數 × (壓力倍數) × 單價
+  function cfDeliverMinutes(students, watchMinPerStudent, deliveryFactor, stressMultiplier){
+    return students * watchMinPerStudent * deliveryFactor * (stressMultiplier || 1);
+  }
+  function cfDeliverCost(minutes){
+    return minutes * CF_DELIVER;
+  }
+
+  function otherCostsTotal(o){
+    return o.thirdParty + o.extraEnv + o.support + o.misc;
+  }
+
+  // 情境組裝：小計 → 加稅金與付款成本 → 該情境總額
+  function buildScenario(storeCost, deliverCost, gcpCost, otherCost, taxPct){
+    var subtotal = storeCost + deliverCost + gcpCost + otherCost;
+    var tax = subtotal * (taxPct / 100);
+    var total = subtotal + tax;
+    return {
+      storeCost: storeCost, deliverCost: deliverCost, gcpCost: gcpCost,
+      otherCost: otherCost, subtotal: subtotal, tax: tax, total: total
+    };
+  }
+
+  // 完整試算：輸入一組參數，回傳 baseline / recommended / stress 三個情境
+  function computeAll(input){
+    var courses = input.courses, hours = input.hours, students = input.students, watch = input.watch;
+    var deliveryFactor = input.deliveryFactor, storageFactor = input.storageFactor;
+    var tier = input.tier, otherCosts = input.otherCosts, taxPct = input.taxPct;
+
+    var storeCost = cfStorageCost(courses, hours, storageFactor);
+    var otherTotal = otherCostsTotal(otherCosts);
+    var gcpBase = gcpTierTotal(tier);
+
+    // 基準估算
+    var baseDeliverMin = cfDeliverMinutes(students, watch, deliveryFactor, 1);
+    var baseDeliverCost = cfDeliverCost(baseDeliverMin);
+    var baseline = buildScenario(storeCost, baseDeliverCost, gcpBase, otherTotal, taxPct);
+
+    // 建議預算：基準估算總額 × 1.25（單純情境倍數，不重算稅金結構）
+    var recommendedTotal = baseline.total * RECOMMENDED_MULTIPLIER;
+
+    // 壓力情境：觀看交付 ×1.5；GCP 提升一級（若已是規模化則 ×1.3）
+    var stressDeliverMin = cfDeliverMinutes(students, watch, deliveryFactor, STRESS_DELIVER_MULTIPLIER);
+    var stressDeliverCost = cfDeliverCost(stressDeliverMin);
+    var stressGcp = (tier === "scale")
+      ? gcpTierTotal("scale") * STRESS_SCALE_MULTIPLIER
+      : gcpTierTotal(nextTier(tier));
+    var stress = buildScenario(storeCost, stressDeliverCost, stressGcp, otherTotal, taxPct);
+
+    // 敏感度
+    var per100Cost = cfDeliverCost(100 * watch * deliveryFactor);
+    var perStudentCost = students > 0 ? (baseline.total / students) : 0;
+    var structuralBase = baseline.subtotal; // 稅前小計，作為佔比基準
+    var pct = function(v){ return structuralBase > 0 ? (v / structuralBase * 100) : 0; };
+
+    return {
+      storeCost: storeCost, otherTotal: otherTotal, gcpBase: gcpBase,
+      baseline: baseline, recommendedTotal: recommendedTotal, stress: stress,
+      sensitivity: {
+        per100Cost: per100Cost,
+        perStudentCost: perStudentCost,
+        cfPct: pct(baseline.storeCost + baseline.deliverCost),
+        gcpPct: pct(baseline.gcpCost),
+        otherPct: pct(baseline.otherCost)
+      }
+    };
+  }
+
+  // ───────────────────────── DOM 綁定與呈現 ─────────────────────────
+  var $ = function(id){ return document.getElementById(id); };
+  var els = {
+    courses: $("courses"), hours: $("hours"), students: $("students"), watch: $("watch"),
+    deliveryFactor: $("deliveryFactor"), storageFactor: $("storageFactor"),
+    thirdParty: $("thirdParty"), extraEnv: $("extraEnv"), support: $("support"), misc: $("misc"),
+    taxPct: $("taxPct"), fx: $("fx")
+  };
+
+  function fmt(n){ return Math.round(n).toLocaleString("en-US"); }
+  function usd(n){ return "$" + Math.round(n).toLocaleString("en-US"); }
+  function ntd(n, fx){ return "NT$" + Math.round(n * fx).toLocaleString("en-US"); }
+  function pctStr(n){ return n.toFixed(1) + "%"; }
+
+  function currentTier(){
+    var r = document.querySelector('input[name=tier]:checked');
+    return r ? r.value : "growth";
+  }
+
+  function readInput(){
+    return {
+      courses: safeNum(els.courses.value, 30, 1, 2000),
+      hours: safeNum(els.hours.value, 10, 0.5, 100),
+      students: safeNum(els.students.value, 3000, 0, 1000000),
+      watch: safeNum(els.watch.value, 300, 0, 100000),
+      deliveryFactor: safeNum(els.deliveryFactor.value, 1.15, 1.0, 1.5),
+      storageFactor: safeNum(els.storageFactor.value, 1.0, 1.0, 2.0),
+      tier: currentTier(),
+      otherCosts: {
+        thirdParty: safeNum(els.thirdParty.value, 30, 0, 1000000),
+        extraEnv: safeNum(els.extraEnv.value, 0, 0, 1000000),
+        support: safeNum(els.support.value, 0, 0, 1000000),
+        misc: safeNum(els.misc.value, 0, 0, 1000000)
+      },
+      taxPct: safeNum(els.taxPct.value, 5, 0, 20)
+    };
+  }
+
+  function render(){
+    var input = readInput();
+    var fx = safeNum(els.fx.value, 32.5, 1, 60);
+
+    // 顯示目前輸入值
+    $("vCourses").textContent = fmt(input.courses);
+    $("vHours").textContent = input.hours;
+    $("vStudents").textContent = fmt(input.students);
+    $("vWatch").textContent = fmt(input.watch);
+    $("vDeliveryFactor").textContent = input.deliveryFactor.toFixed(2);
+    $("vStorageFactor").textContent = input.storageFactor.toFixed(1);
+    $("vTaxPct").textContent = input.taxPct + "%";
+
+    var r = computeAll(input);
+    var base = r.baseline, stress = r.stress;
+
+    // 三種情境結果
+    $("baseUSD").textContent = usd(base.total);
+    $("baseNTDm").textContent = "約 " + ntd(base.total, fx) + "／月";
+    $("baseNTDy").textContent = "約 " + ntd(base.total * 12, fx) + "／年";
+
+    $("recUSD").textContent = usd(r.recommendedTotal);
+    $("recNTDm").textContent = "約 " + ntd(r.recommendedTotal, fx) + "／月";
+    $("recNTDy").textContent = "約 " + ntd(r.recommendedTotal * 12, fx) + "／年";
+
+    $("stressUSD").textContent = usd(stress.total);
+    $("stressNTDm").textContent = "約 " + ntd(stress.total, fx) + "／月";
+    $("stressNTDy").textContent = "約 " + ntd(stress.total * 12, fx) + "／年";
+    var stressGcpLabel = (input.tier === "scale")
+      ? "規模化費用 × 1.3"
+      : "提升至「" + ({mvp:"成長期", growth:"規模化", scale:"規模化"}[input.tier]) + "」層級費用";
+    $("stressNote").textContent = "假設：Cloudflare 觀看交付量為基準 1.5 倍；GCP 改為 " + stressGcpLabel + "。";
+
+    // 長條圖（以基準估算為準）
+    var barTotal = base.total > 0 ? base.total : 1;
+    var pctOf = function(v){ return (v / barTotal * 100) + "%"; };
+    $("barStore").style.width = pctOf(base.storeCost);
+    $("barDeliver").style.width = pctOf(base.deliverCost);
+    $("barGcp").style.width = pctOf(base.gcpCost);
+    $("barOther").style.width = pctOf(base.otherCost);
+    $("barTax").style.width = pctOf(base.tax);
+    $("lgStore").textContent = usd(base.storeCost);
+    $("lgDeliver").textContent = usd(base.deliverCost);
+    $("lgGcp").textContent = usd(base.gcpCost);
+    $("lgOther").textContent = usd(base.otherCost);
+    $("lgTax").textContent = usd(base.tax);
+
+    // 基準估算明細表
+    var tier = input.tier;
+    var rows = "";
+    rows += '<tr><td><span class="tag cf">CF</span>影片儲存</td><td>' + fmt(input.courses) + ' 堂 × ' + input.hours + ' hr × 60 × ' + input.storageFactor.toFixed(1) + ' × $0.005</td><td class="r">' + usd(base.storeCost) + '</td></tr>';
+    rows += '<tr><td><span class="tag cf">CF</span>觀看交付</td><td>' + fmt(input.students) + ' 人 × ' + fmt(input.watch) + ' 分 × ' + input.deliveryFactor.toFixed(2) + ' × $0.001</td><td class="r">' + usd(base.deliverCost) + '</td></tr>';
+    rows += '<tr><td><span class="tag gcp">GCP</span>底層平台（' + tier.toUpperCase() + ' 層級）</td><td>情境包價，詳見下方 GCP 明細表</td><td class="r">' + usd(base.gcpCost) + '</td></tr>';
+    rows += '<tr><td><span class="tag other">其他</span>第三方服務</td><td>Sentry／Email／簡訊等</td><td class="r">' + usd(input.otherCosts.thirdParty) + '</td></tr>';
+    rows += '<tr><td><span class="tag other">其他</span>額外環境</td><td>Staging／Test</td><td class="r">' + usd(input.otherCosts.extraEnv) + '</td></tr>';
+    rows += '<tr><td><span class="tag other">其他</span>Support／監控／安全</td><td>進階支援、監控、WAF 等</td><td class="r">' + usd(input.otherCosts.support) + '</td></tr>';
+    rows += '<tr><td><span class="tag other">其他</span>其他費用</td><td>網域／SSL／雜項訂閱</td><td class="r">' + usd(input.otherCosts.misc) + '</td></tr>';
+    rows += '<tr class="subtotal"><td>小計（未稅）</td><td></td><td class="r">' + usd(base.subtotal) + '</td></tr>';
+    rows += '<tr><td><span class="tag tax">稅</span>稅金與付款成本（' + input.taxPct + '%）</td><td>小計 × ' + input.taxPct + '%</td><td class="r">' + usd(base.tax) + '</td></tr>';
+    rows += '<tr class="total"><td>基準估算合計</td><td></td><td class="r">' + usd(base.total) + '</td></tr>';
+    $("breakdown").innerHTML = rows;
+
+    // 敏感度
+    $("sensPer100").textContent = usd(r.sensitivity.per100Cost);
+    $("sensPerStudent").textContent = usd(r.sensitivity.perStudentCost);
+    $("sensCfPct").textContent = pctStr(r.sensitivity.cfPct);
+    $("sensGcpPct").textContent = pctStr(r.sensitivity.gcpPct);
+    $("sensOtherPct").textContent = pctStr(r.sensitivity.otherPct);
+
+    // Cloudflare 規模對照表（固定情境，但 NTD 即時套用目前匯率與係數假設）
+    renderMatrix(fx, input.deliveryFactor, input.storageFactor);
+  }
+
+  function renderMatrix(fx, deliveryFactor, storageFactor){
+    var courseRows = [10, 30, 100], studentCols = [500, 3000, 10000];
+    var fixedHours = 10, fixedWatch = 300;
+    var html = "";
+    courseRows.forEach(function(c){
+      html += "<tr><td>" + c + " 堂</td>";
+      studentCols.forEach(function(s){
+        var store = cfStorageCost(c, fixedHours, storageFactor);
+        var deliverMin = cfDeliverMinutes(s, fixedWatch, deliveryFactor, 1);
+        var cost = store + cfDeliverCost(deliverMin);
+        html += '<td class="r">' + usd(cost) + '<br><span style="color:var(--ink-soft);font-size:11px;">' + ntd(cost, fx) + '</span></td>';
+      });
+      html += "</tr>";
+    });
+    $("matrix").innerHTML = html;
+    $("matrixNote").textContent = "固定：每堂 " + fixedHours + " 小時、每人每月觀看 " + fixedWatch + " 分鐘、播放交付係數 " + deliveryFactor.toFixed(2) + "、額外版本係數 " + storageFactor.toFixed(1);
+  }
+
+  function renderGcpTable(){
+    var labels = ["Cloud Run", "Cloud SQL PostgreSQL", "Memorystore Redis", "Cloud Storage + CDN", "Cloud Load Balancing", "其他服務"];
+    var map = [
+      ["Cloud Run（前端＋後端）", "Cloud Run（前端＋後端）", "Cloud Run（多實例）"],
+      ["Cloud SQL PostgreSQL", "Cloud SQL PostgreSQL（HA 2vCPU）", "Cloud SQL（HA 4vCPU＋讀副本）"],
+      ["Memorystore Redis", "Memorystore Redis（2–4GB HA）", "Memorystore Redis（5GB HA）"],
+      ["Cloud Storage + CDN", "Cloud Storage + CDN", "Cloud Storage + CDN"],
+      ["Cloud Load Balancing", "Cloud Load Balancing", "Cloud Load Balancing"],
+      ["其他（Tasks/PubSub/Secret/監控）", "其他（Tasks/PubSub/Secret/監控）", "其他（Tasks/PubSub/Secret/監控）"]
+    ];
+    var tiers = ["mvp", "growth", "scale"], html = "";
+    labels.forEach(function(lab, i){
+      html += "<tr><td>" + lab + "</td>";
+      tiers.forEach(function(t, j){ html += '<td class="r">' + usd(GCP[t][map[i][j]]) + "</td>"; });
+      html += "</tr>";
+    });
+    html += '<tr class="subtotal"><td>小計 / 月</td>';
+    tiers.forEach(function(t){ html += '<td class="r">' + usd(gcpTierTotal(t)) + "</td>"; });
+    html += "</tr>";
+    $("gcpTable").innerHTML = html;
+  }
+
+  function syncTierUI(){
+    document.querySelectorAll(".tier-opt").forEach(function(o){
+      o.classList.toggle("sel", o.querySelector("input").checked);
+    });
+  }
+
+  function clearPresetActive(){
+    document.querySelectorAll(".preset").forEach(function(x){ x.classList.remove("active"); });
+  }
+
+  // preset 按鈕
+  document.querySelectorAll(".preset").forEach(function(b){
+    b.addEventListener("click", function(){
+      var p = PRESETS[b.dataset.p];
+      els.courses.value = p.courses; els.hours.value = p.hours;
+      els.students.value = p.students; els.watch.value = p.watch;
+      els.deliveryFactor.value = p.deliveryFactor; els.storageFactor.value = p.storageFactor;
+      document.querySelector('input[name=tier][value="' + p.tier + '"]').checked = true;
+      syncTierUI();
+      clearPresetActive();
+      b.classList.add("active");
+      render();
+    });
+  });
+
+  document.querySelectorAll('input[name=tier]').forEach(function(r){
+    r.addEventListener("change", function(){ syncTierUI(); clearPresetActive(); render(); });
+  });
+
+  Object.keys(els).forEach(function(k){
+    if (!els[k]) return;
+    els[k].addEventListener("input", function(){
+      render();
+      if (k !== "fx") clearPresetActive();
+    });
+  });
+
+  // ───────────────────────── 輕量自我檢查（瀏覽器 console 可見） ─────────────────────────
+  function selfTest(){
+    var out = [];
+    function assert(name, cond){ out.push((cond ? "PASS" : "FAIL") + " — " + name); }
+
+    var g = buildScenario(100, 50, 200, 30, 5);
+    assert("buildScenario 小計正確", g.subtotal === 100 + 50 + 200 + 30);
+    assert("buildScenario 稅金正確", Math.abs(g.tax - g.subtotal * 0.05) < 1e-9);
+    assert("buildScenario 總額 = 小計 + 稅金", Math.abs(g.total - (g.subtotal + g.tax)) < 1e-9);
+
+    var r = computeAll({
+      courses: 30, hours: 10, students: 3000, watch: 300,
+      deliveryFactor: 1.15, storageFactor: 1.0, tier: "growth",
+      otherCosts: { thirdParty: 30, extraEnv: 0, support: 0, misc: 0 }, taxPct: 5
+    });
+    assert("建議預算 = 基準 × 1.25", Math.abs(r.recommendedTotal - r.baseline.total * 1.25) < 1e-6);
+    assert("壓力情境總額 > 基準估算總額", r.stress.total > r.baseline.total);
+    assert("敏感度百分比合計 ≈ 100%", Math.abs((r.sensitivity.cfPct + r.sensitivity.gcpPct + r.sensitivity.otherPct) - 100) < 0.5);
+
+    if (window.console && console.debug) console.debug("[cost-calculator self-test]\n" + out.join("\n"));
+  }
+
+  syncTierUI();
+  renderGcpTable();
+  render();
+  selfTest();
+})();
+</script>
+</body>
+</html>
