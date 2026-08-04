@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>資訊暨創新中心 業務報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1117; --bg2:#161923; --card:rgba(255,255,255,0.05); --border:rgba(78,205,196,0.15);
+  --text:#f0ece0; --muted:rgba(240,236,224,0.55);
+  --accent:#4ecdc4; --accent2:#f5a623; --accent3:#ff6b6b;
+}
+.light{
+  --bg:#fbfaf5; --bg2:#f2efe4; --card:rgba(0,0,0,0.03); --border:rgba(26,122,116,0.2);
+  --text:#1a1a12; --muted:rgba(26,26,18,0.55);
+  --accent:#1a7a74; --accent2:#b56a00; --accent3:#c0392b;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;
+  background:var(--bg); color:var(--text);
+  transition:background .3s,color .3s;
+  line-height:1.75;
+}
+.hdr{
+  position:sticky; top:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 24px; background:var(--bg);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(10px);
+}
+.hdr-title{font-size:.8rem; font-weight:500; color:var(--muted); letter-spacing:1px;}
+.btn{
+  width:34px; height:34px; border-radius:7px; cursor:pointer;
+  background:var(--card); border:1px solid var(--border); color:var(--text);
+  display:flex; align-items:center; justify-content:center; transition:all .2s;
+}
+.btn:hover{background:var(--accent); color:var(--bg); border-color:var(--accent);}
+main{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+section{padding:56px 0; border-bottom:1px solid var(--border);}
+section:last-child{border-bottom:none;}
+.eyebrow{
+  font-size:.72rem; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--accent); margin-bottom:14px;
+}
+h1{font-size:clamp(1.8rem,4vw,2.6rem); font-weight:900; line-height:1.3; margin-bottom:16px;}
+h2{font-size:clamp(1.3rem,2.6vw,1.8rem); font-weight:700; line-height:1.3; margin-bottom:20px;}
+h3{font-size:1.05rem; font-weight:700; margin-bottom:8px; color:var(--accent);}
+p{font-size:1rem; margin-bottom:12px;}
+.lead{font-size:1.1rem; color:var(--muted); max-width:680px;}
+.flow{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  font-size:1.05rem; font-weight:700; margin-top:24px;
+}
+.flow .step{
+  background:var(--card); border:1px solid var(--border); border-radius:10px;
+  padding:10px 18px;
+}
+.flow .arrow{color:var(--accent);}
+table{width:100%; border-collapse:collapse; margin-top:8px;}
+th,td{text-align:left; padding:12px 14px; border-bottom:1px solid var(--border); font-size:.95rem;}
+th{color:var(--accent); font-weight:700; font-size:.85rem; letter-spacing:.5px;}
+td.num{color:var(--accent2); font-weight:700; white-space:nowrap;}
+.grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:20px;}
+.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px;}
+.card h3{margin-bottom:10px;}
+.card p{font-size:.92rem; color:var(--muted); margin-bottom:0;}
+ul{padding-left:1.3em; list-style:disc; margin-top:8px;}
+ul li{margin-bottom:8px; font-size:.98rem;}
+.tag{
+  display:inline-block; padding:5px 14px; border-radius:20px; font-size:.75rem; font-weight:700;
+  margin:3px 6px 3px 0; border:1px solid;
+}
+.tag-teal{color:var(--accent); border-color:var(--accent); background:rgba(78,205,196,.1);}
+.tag-orange{color:var(--accent2); border-color:var(--accent2); background:rgba(245,166,35,.1);}
+.tag-red{color:var(--accent3); border-color:var(--accent3); background:rgba(255,107,107,.1);}
+.stat{
+  font-size:2rem; font-weight:900; color:var(--accent2); line-height:1; display:block; margin-bottom:6px;
+}
+blockquote{
+  border-left:4px solid var(--accent); background:var(--card); border-radius:0 10px 10px 0;
+  padding:16px 20px; margin:20px 0; font-size:.98rem; color:var(--muted);
+}
+.roadmap{display:flex; flex-direction:column; gap:14px; margin-top:20px;}
+.roadmap .item{
+  display:flex; gap:16px; align-items:flex-start; background:var(--card);
+  border:1px solid var(--border); border-radius:10px; padding:16px 20px;
+}
+.roadmap .yr{font-weight:900; color:var(--accent); font-size:1.1rem; min-width:64px;}
+footer{text-align:center; padding:32px 24px; color:var(--muted); font-size:.8rem;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <span class="hdr-title">資訊暨創新中心 · 業務報告</span>
+  <button class="btn" onclick="document.body.classList.toggle('light')">◐</button>
+</div>
+
+<main>
+
+  <section>
+    <div class="eyebrow">Slide 1 · 總覽</div>
+    <h1>資訊暨創新中心 業務報告</h1>
+    <p class="lead">開發組 8 人、控管組 11 人（待補 1）、媒體實驗室 4 人，總共 25 人。</p>
+    <div class="flow">
+      <span class="step">媒體實驗室做新</span>
+      <span class="arrow">→</span>
+      <span class="step">開發組拉上做強</span>
+      <span class="arrow">→</span>
+      <span class="step">控管組顧好地基</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Slide 2 · 人力配置</div>
+    <h2>人力配置</h2>
+    <table>
+      <thead>
+        <tr><th>單位</th><th>人力</th><th>負責的事</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>系統開發組</td>
+          <td class="num">8人</td>
+          <td>開發與維護中央社所有網站、App、新聞系統</td>
+        </tr>
+        <tr>
+          <td>系統控管組</td>
+          <td class="num">11人（待補1）</td>
+          <td>24小時顧機房、顧資安、防止駭客攻擊</td>
+        </tr>
+        <tr>
+          <td>媒體實驗室</td>
+          <td class="num">4人</td>
+          <td>緊盯趨勢、研發AI應用</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="eyebrow">Slide 3 · 第一層</div>
+    <h2>地基顧好 —— 系統開發組與系統控管組的日常</h2>
+    <blockquote>「讓中央社每天正常運作」</blockquote>
+    <ul>
+      <li>維護所有對外網站與 App：中文、英文/日文/印尼文網站、App 下載</li>
+      <li>維護新聞發稿核心系統：記者寫稿、編輯審稿、照片與影音處理，背後都靠自製系統撐著，一旦故障就等於「編輯台停擺」</li>
+      <li>機房 24 小時值守：任何機器出問題，第一時間有人處理，確保新聞不斷播</li>
+      <li>防駭客、防資料外洩：定期弱點掃描、電腦健檢、模擬釣魚郵件演練，多次擋下大型駭客攻擊（DDoS攻擊逾十次，其中一次攻擊長達 12 小時仍撐住服務）</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="eyebrow">Slide 4 · 第二層</div>
+    <h2>資安與韌性 —— 天災或戰爭，新聞不能停</h2>
+    <p>中央社是國家通訊社，責任不只是公司營運，「戰時或災難時，全國還能不能看到可信的新聞」：</p>
+    <div class="grid3">
+      <div class="card">
+        <h3>低軌衛星建置</h3>
+        <p>低軌衛星在天災與戰災中能於地面通訊全毀或受干擾時維持穩定連線，其高韌性與低延遲特性，可確保關鍵資訊不中斷傳遞，強化整體通訊效率。</p>
+      </div>
+      <div class="card">
+        <h3>GCP 跨境備援</h3>
+        <p>以「確保營運不中斷」為核心，透過地理分散（新加坡）的備援架構降低天災、戰災或區域性事故造成的資料全毀風險，同時遵循跨境合規要求並採用高強度資安防護，確保備份資料在傳輸與儲存過程皆具安全性，維持本社在災害下仍具持續運作能力。</p>
+      </div>
+      <div class="card">
+        <h3>網路攻擊偵測與流量分析系統</h3>
+        <p>及早發現異常行為，例如 DDoS、惡意連線、資料外洩與木馬後門流量，協助在攻擊初期即偵測並阻斷威脅。透過即時監控提升事件反應速度，減少資安事件造成的損害。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Slide 5 · 第三層</div>
+    <h2>媒體實驗室 —— 中央社在 AI 時代的探路者</h2>
+    <p class="lead">媒體實驗室：中央社在數位、AI 時代的探路部隊。</p>
+    <div class="roadmap">
+      <div class="item">
+        <span class="yr">2025</span>
+        <div>
+          <strong>推出「志明編輯助手」</strong> —— 隨時待命的編輯助理，能立刻多篇稿件翻譯、查譯名、找錯字、查核事實、下標題。外勤記者、編譯、影音同仁都在用。
+        </div>
+      </div>
+      <div class="item">
+        <span class="yr">2026</span>
+        <div>
+          <strong>把 AI 助理擴大到行政、財務、影音等各部門。</strong> 例如自動化報帳、對帳、稿費計算，讓同仁少做繁瑣的行政工作。
+        </div>
+      </div>
+      <div class="item">
+        <span class="yr">下一步</span>
+        <div>
+          <strong>推出 CNA MCP</strong> —— 活化中央社累積超過 30 年的新聞、照片、出版資料，變成一個 AI Agent 迅速暢達找到資料的智慧知識庫。
+        </div>
+      </div>
+    </div>
+    <blockquote>媒體實驗室的角色：「先試、快速驗證、優化，再交給正式體系接手」。</blockquote>
+  </section>
+
+  <section>
+    <div class="eyebrow">Slide 6 · 第四層</div>
+    <h2>地基升級 —— 更多 AI 引入工作環境</h2>
+    <ul>
+      <li>打通資料庫、MCP 加快搜尋後，同仁可以更有效率地查到資料，可讓中央社的新聞更增深度廣度</li>
+      <li>串連搭配 AI Agents 的不同 Skills，逐字轉錄、字幕翻譯、圖片編輯、影片剪輯、圖表繪製，可以協助加速產製效率</li>
+      <li>導入 AI 輔助程式開發：依專案需求，讓開發組工程師以較高級模型輔助開發、測試除錯、程式碼審核。也讓工程師在 AI 時代技能升級</li>
+    </ul>
+    <div style="margin-top:20px">
+      <span class="tag tag-teal">媒體實驗室做新</span>
+      <span class="tag tag-orange">開發組拉上做強</span>
+      <span class="tag tag-red">控管組顧好地基</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>資訊暨創新中心 業務報告</footer>
+
+</body>
+</html>
