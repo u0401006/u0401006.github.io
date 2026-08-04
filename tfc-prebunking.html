@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣公民社會的媒體識讀教育：從事實查核到預警防禦</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#231815;--bg2:#2b1e1a;--text:#fff5d6;--muted:rgba(255,245,214,.55);
+  --accent:#ffce6d;--olive:#5d6043;--sage:#a4b792;--brown:#514528;
+  --card:rgba(255,245,214,.055);--border:rgba(255,206,109,.18);--hdr:rgba(35,24,21,.92);
+}
+.light{
+  --bg:#fffbf0;--bg2:#fff5d6;--text:#231815;--muted:rgba(35,24,21,.5);
+  --accent:#514528;--olive:#5d6043;--sage:#5d6043;--brown:#231815;
+  --card:rgba(35,24,21,.05);--border:rgba(81,69,40,.18);--hdr:rgba(255,251,240,.94);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:22.4px;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;}
+.hdr{position:fixed;top:0;left:0;right:0;height:50px;background:var(--hdr);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:200;border-bottom:1px solid var(--border);}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-icon img{width:220px;height:auto;filter:brightness(0) invert(1);}
+.light .brand-icon img{filter:none;}
+.hdr-right{display:flex;align-items:center;gap:8px;}
+.btn-icon{width:34px;height:34px;border-radius:7px;cursor:pointer;background:var(--card);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.btn-icon:hover{background:var(--accent);color:#231815;border-color:var(--accent);}
+.prog{position:fixed;top:50px;left:0;height:2px;background:var(--accent);transition:width .4s ease;z-index:199;}
+.wrap{position:fixed;top:50px;left:0;right:0;bottom:44px;overflow:hidden;}
+.rail{display:flex;height:100%;transition:transform .42s cubic-bezier(.4,0,.2,1);}
+.slide{min-width:100%;height:100%;display:flex;flex-direction:column;padding:22px clamp(24px,4.5vw,72px) 10px;overflow:hidden;position:relative;}
+.lbl{font-size:clamp(.55rem,.85vw,.68rem);font-weight:500;color:var(--accent);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:4px;flex-shrink:0;}
+.slide h2{font-size:clamp(1.1rem,2.4vw,1.75rem);font-weight:700;line-height:1.2;margin-bottom:12px;color:var(--text);flex-shrink:0;}
+.slide h2 .en{display:block;font-size:clamp(.65rem,1.1vw,.8rem);font-weight:400;color:var(--muted);margin-top:3px;font-style:italic;}
+.slide h3{font-size:clamp(.8rem,1.4vw,1rem);font-weight:700;color:var(--accent);margin-bottom:6px;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:min(1160px,90vw);}
+.centered{justify-content:center;align-items:center;text-align:center;}
+.centered .body{align-items:center;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 15px;}
+.card-l{border-left:3px solid var(--accent);}
+.card-sage{border-left:3px solid var(--sage);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;}
+p,li{font-size:clamp(.72rem,1.2vw,.86rem);line-height:1.7;color:var(--text);}
+.en-sub{font-size:clamp(.6rem,.95vw,.72rem);color:var(--muted);font-style:italic;line-height:1.5;margin-top:2px;}
+ul{padding-left:1.3em;list-style:disc;}
+ul li{margin-bottom:3px;}
+.muted{color:var(--muted);}
+.num-big{font-size:clamp(1.4rem,2.8vw,2.1rem);font-weight:700;color:var(--accent);line-height:1.1;}
+.tag{display:inline-block;background:rgba(255,206,109,.12);color:var(--accent);border:1px solid rgba(255,206,109,.28);padding:3px 11px;border-radius:20px;font-size:.72rem;font-weight:500;margin:2px;}
+.deco{position:absolute;border-radius:50%;pointer-events:none;opacity:.05;}
+.nav{position:fixed;top:50px;bottom:44px;width:72px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.nav:hover{opacity:1;}
+.nav-l{left:0;}.nav-r{right:0;}
+.nav-arr{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
+.ftr{position:fixed;bottom:0;left:0;right:0;height:44px;background:var(--hdr);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:flex-end;padding:0 20px;z-index:200;border-top:1px solid var(--border);}
+.pgn{font-size:12.5px;color:var(--muted);font-weight:500;}
+.t-trigger{position:fixed;bottom:44px;left:0;right:0;height:56px;z-index:97;}
+.t-strip{position:fixed;bottom:44px;left:50%;transform:translateX(-50%);display:flex;gap:7px;padding:9px 14px;background:rgba(20,13,11,.96);backdrop-filter:blur(16px);border-radius:11px 11px 0 0;border:1px solid var(--border);border-bottom:none;opacity:0;pointer-events:none;transition:opacity .22s;z-index:98;}
+.t-strip.vis{opacity:1;pointer-events:auto;}
+.thumb{width:90px;height:54px;border-radius:6px;border:2px solid transparent;background:var(--card);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:8.5px;color:var(--muted);text-align:center;padding:4px;transition:all .18s;flex-shrink:0;}
+.thumb:hover,.thumb.act{border-color:var(--accent);background:rgba(255,206,109,.12);color:var(--accent);}
+.t-num{font-weight:700;font-size:11px;margin-bottom:2px;}
+.ph{border-radius:9px;overflow:hidden;flex-shrink:0;}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;}
+.inforow{display:flex;align-items:baseline;gap:10px;padding:5px 0;border-bottom:1px solid var(--border);}
+.inforow:last-child{border-bottom:none;}
+.infokey{font-size:.72rem;color:var(--muted);flex-shrink:0;width:86px;}
+.infoval{font-size:.82rem;font-weight:500;color:var(--text);}
+.stat-item{display:flex;align-items:flex-start;gap:12px;padding:6px 0;border-bottom:1px solid var(--border);}
+.stat-item:last-child{border-bottom:none;}
+.stat-num{font-size:clamp(1.3rem,2.2vw,1.85rem);font-weight:700;color:var(--accent);line-height:1;flex-shrink:0;min-width:60px;}
+.stat-desc{font-size:clamp(.7rem,1.1vw,.82rem);color:var(--text);line-height:1.5;padding-top:3px;}
+.bullet-item{display:flex;gap:9px;margin-bottom:7px;align-items:flex-start;}
+.bullet-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:7px;}
+.section-div{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,var(--bg2) 0%,var(--bg) 100%);}
+.mod-num{font-size:clamp(3rem,7vw,6rem);font-weight:700;color:var(--accent);opacity:.12;position:absolute;right:clamp(24px,5vw,80px);bottom:20px;line-height:1;}
+@media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr;}.t-strip{display:none;}.slide{padding:16px 14px 8px;}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="brand">
+    <div class="brand-icon"><img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png"></div>
+  </div>
+  <div class="hdr-right">
+    <button class="btn-icon" id="themeBtn" title="切換明暗"></button>
+    <button class="btn-icon" onclick="document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()" title="全螢幕(F)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="prog" id="prog" style="width:8.33%"></div>
+
+<div class="nav nav-l" onclick="go(-1)"><div class="nav-arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></div></div>
+<div class="nav nav-r" onclick="go(1)"><div class="nav-arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+
+<div class="wrap"><div class="rail" id="rail">
+
+<!-- P1 封面 -->
+<div class="slide centered">
+  <div class="deco" style="width:500px;height:500px;background:#ffce6d;top:-220px;right:-160px;"></div>
+  <div class="deco" style="width:300px;height:300px;background:#5d6043;bottom:-100px;left:-60px;opacity:.07;"></div>
+  <div class="body" style="align-items:center;gap:18px;">
+    <img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png" style="width:240px;height:auto;">
+    <div style="text-align:center;">
+      <h2 style="font-size:clamp(1.4rem,3vw,2.4rem);margin-bottom:6px;">台灣公民社會的媒體識讀教育<br>從事實查核到預警防禦</h2>
+      <p style="color:var(--accent);font-size:clamp(.75rem,1.3vw,.95rem);font-style:italic;">Media Literacy Education in Taiwan's Civil Society:<br>From Fact-Checking to Prebunking</p>
+    </div>
+    <div class="card" style="min-width:min(440px,90vw);text-align:left;">
+      <div class="inforow"><span class="infokey">機構</span><span class="infoval">財團法人新北市台灣事實查核教育基金會（TFC）</span></div>
+      <div class="inforow"><span class="infokey">報告日期</span><span class="infoval">2026 年 7 月</span></div>
+      <div class="inforow"><span class="infokey">計畫督導</span><span class="infoval">羅世宏 / 黃兆徽</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- P2 背景危機 -->
+<div class="slide">
+  <div class="lbl">Module 1 · 背景與危機</div>
+  <h2>台灣面臨的資訊環境形勢與困境<span class="en">Taiwan's Information Environment & Challenges</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:18px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="card card-l">
+          <p style="font-weight:700;color:var(--accent);font-size:.88rem;">假訊息威脅加劇</p>
+          <p style="margin-top:4px;">民眾收到假訊息比例逐年上升</p>
+          <div style="display:flex;gap:10px;margin:6px 0;align-items:center;">
+            <span class="tag">2022 年 75%</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <span class="tag" style="background:rgba(255,206,109,.25);">2024 年 95%</span>
+          </div>
+          <p class="en-sub">Citizens encountering misinformation rose from 75% (2022) to 95% (2024).</p>
+        </div>
+        <div class="card card-l">
+          <p style="font-weight:700;color:var(--accent);font-size:.88rem;">國際權威認證重災區</p>
+          <p style="margin-top:4px;">V-Dem 報告：台灣<strong style="color:var(--accent);">連續 11 年</strong>蟬聯全球受境外假訊息影響最嚴重的國家</p>
+          <p class="en-sub">Taiwan ranked #1 globally for 11 consecutive years in foreign disinformation targets (V-Dem).</p>
+        </div>
+        <div class="card card-l">
+          <p style="font-weight:700;color:var(--accent);font-size:.88rem;">信任流失 · 經濟損失</p>
+          <p style="margin-top:4px;">新聞信任度僅 <strong style="color:var(--accent);">30%</strong>（全球第 39 名）；2025 年詐騙財損 <strong style="color:var(--accent);">893 億元</strong></p>
+          <p class="en-sub">News trust at 30% (39th globally); NT$89.3B lost to scams in 2025.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--sage);">
+          <p style="font-weight:700;color:var(--sage);font-size:.88rem;">策略轉移</p>
+          <p style="margin-top:4px;">事後查核速度難追謠言擴散 → 必須轉向「預警防禦（Prebunking）」與教育扎根</p>
+          <p class="en-sub">Why debunking alone is insufficient — the critical shift toward prebunking.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="ph" style="flex:1;min-height:160px;max-height:220px;"><img src="https://img-hosting.u0401006.workers.dev/i/aJZS0hM.jpg"></div>
+        <div class="ph" style="flex:1;min-height:160px;max-height:220px;"><img src="https://img-hosting.u0401006.workers.dev/i/MAUL7Xd.jpg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P3 預警防禦 -->
+<div class="slide">
+  <div class="lbl">Module 2 · 核心解方</div>
+  <h2>預警防禦的核心機制與三大在地實踐<span class="en">Core Mechanics & Three Localized Pillars of Prebunking</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:18px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="card card-l" style="margin-bottom:4px;">
+          <p style="font-weight:700;color:var(--accent);font-size:.88rem;">核心機制</p>
+          <p style="margin-top:4px;">透過解構常見敘事套路與心理操控，主動建立大眾的資訊「免疫力」</p>
+          <p class="en-sub">Build "information immunity" by demystifying manipulation tactics before misinformation spreads.</p>
+        </div>
+        <div class="card">
+          <h3 style="font-size:.85rem;">① 體驗式與遊戲化學習</h3>
+          <p>翻轉單向宣講，透過解謎遊戲與工作坊，讓民眾在情境中學習查證技巧</p>
+          <p class="en-sub">Gamified workshops to teach verification skills through scenario-based learning.</p>
+        </div>
+        <div class="card">
+          <h3 style="font-size:.85rem;">② 教師培訓與課堂教案開發</h3>
+          <p>協助在地教師與社區導覽員，將媒體素養融入既有課程</p>
+          <p class="en-sub">Embedding media literacy into standard curricula for local educators.</p>
+        </div>
+        <div class="card">
+          <h3 style="font-size:.85rem;">③ 跨世代與在地社區扎根</h3>
+          <p>針對銀髮族與青年差異化推廣，深入社區大學與基層教育</p>
+          <p class="en-sub">Tailored outreach for youth and seniors across local community networks.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;height:100%;">
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/mRY9Otr.jpg"></div>
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/pJwgxd9.png"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P4 查核基礎 -->
+<div class="slide">
+  <div class="lbl">Module 3 · 組織能量</div>
+  <h2>堅實的查核與多媒體內容產製<span class="en">Fact-Checking Foundation & Multimedia Output</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:20px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card card-l">
+          <p style="font-weight:700;color:var(--accent);font-size:.88rem;">公益組織定位</p>
+          <p style="margin-top:4px;">台灣唯一事實查核公益組織，提供謠言即時監測、查核報告與 LINE 查證服務</p>
+          <p class="en-sub">Taiwan's sole non-profit fact-checking organization.</p>
+        </div>
+        <p class="muted" style="font-size:.78rem;padding:2px 0;">2025 年關鍵數據 / Key Metrics 2025</p>
+        <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="text-align:center;padding:7px 4px;">
+            <div class="num-big">540</div>
+            <p class="muted" style="font-size:.68rem;margin-top:2px;">篇查核報告</p>
+          </div>
+          <div style="text-align:center;padding:7px 4px;">
+            <div class="num-big">85</div>
+            <p class="muted" style="font-size:.68rem;margin-top:2px;">篇深度解釋文章</p>
+          </div>
+          <div style="text-align:center;padding:7px 4px;">
+            <div class="num-big">200</div>
+            <p class="muted" style="font-size:.68rem;margin-top:2px;">則 IG 資訊圖卡</p>
+          </div>
+          <div style="text-align:center;padding:7px 4px;">
+            <div class="num-big">46</div>
+            <p class="muted" style="font-size:.68rem;margin-top:2px;">個查核短影音</p>
+          </div>
+          <div style="text-align:center;padding:7px 4px;grid-column:1/-1;">
+            <div class="num-big">20</div>
+            <p class="muted" style="font-size:.68rem;margin-top:2px;">篇中文雙週報</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;height:100%;">
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/BIzdyWs.jpg" style="object-position:top;"></div>
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/fe9iBsY.jpg" style="object-position:top;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P5 全台推廣 -->
+<div class="slide">
+  <div class="lbl">Module 3 · 全台培力</div>
+  <h2>全台推廣與社會培力<span class="en">Island-wide Engagement & Social Empowerment</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:18px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="card card-l">
+          <h3 style="font-size:.85rem;">全台暨離島巡迴演講</h3>
+          <p>90 場演講，觸及超過 <strong style="color:var(--accent);">4,400 人</strong></p>
+          <p class="en-sub">90 lectures across Taiwan & outer islands, reaching 4,400+ attendees.</p>
+        </div>
+        <div class="card card-l">
+          <h3 style="font-size:.85rem;">Podcast ／ 廣播 ／ 影音</h3>
+          <p>《新聞真假掰》52 集、《假掰特派員》52 集、《誰是假消息》51 集</p>
+          <p class="en-sub">3 acclaimed podcast series on news literacy and debunking.</p>
+        </div>
+        <div class="card card-l">
+          <h3 style="font-size:.85rem;">台灣事實查核學苑</h3>
+          <p>收納 <strong style="color:var(--accent);">200 套</strong>教學與自學資源</p>
+          <p class="en-sub">Fact-Checking Academy with 200+ teaching resources.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--sage);">
+          <h3 style="font-size:.85rem;color:var(--sage);">緊急事件應變 & 跨機構合作</h3>
+          <p>聯手三家查核組織、七家媒體；與三大醫學會執行「新冠全民認知大調查」；參與數發部網路詐騙通報網</p>
+          <p class="en-sub">Cross-institutional emergency response and national health survey.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;height:100%;">
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/6hzaLIW.jpg"></div>
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/YIFqiDA.jpg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P6 國際串聯 -->
+<div class="slide">
+  <div class="lbl">Module 3 · 國際串聯</div>
+  <h2>跨國串聯與創新嘗試<span class="en">International Coalitions & Media Innovation</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:20px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card card-l">
+          <h3>亞洲青年查核挑戰賽</h3>
+          <p>連續六年舉辦，聯手<strong style="color:var(--accent);">日本、蒙古、泰國、印度</strong>辦理亞洲青年挑戰賽，台灣場近 <strong style="color:var(--accent);">500 人</strong>參加</p>
+          <p class="en-sub">Asia Youth Verification Challenge — 6 consecutive years, partnering with Japan, Mongolia, Thailand & India.</p>
+        </div>
+        <div class="ph" style="height:clamp(140px,20vh,220px);"><img src="https://img-hosting.u0401006.workers.dev/i/ysel0Er.jpg"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card card-l">
+          <h3>主流媒體創新合作</h3>
+          <p>參與公視黃金時段益智節目《哈！真相大白了》，讓查核登陸大眾視野；舉辦「台北事實查核論壇」，接待 <strong style="color:var(--accent);">48 個</strong>外賓訪團</p>
+          <p class="en-sub">Prime-time TV collaboration and Taipei Fact-Checking Forum hosting 48 international delegations.</p>
+        </div>
+        <div class="ph" style="height:clamp(140px,20vh,220px);"><img src="https://img-hosting.u0401006.workers.dev/i/DXjxBD9.jpg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P7 數位影響力 -->
+<div class="slide">
+  <div class="lbl">Module 4 · 數位影響力</div>
+  <h2>數位影響力持續成長與直接服務<span class="en">Growing Digital Footprint & Direct User Support</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:20px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="card card-l">
+          <p class="muted" style="font-size:.72rem;margin-bottom:6px;">社群與官網聲量 / Digital Reach</p>
+          <div class="inforow" style="padding:4px 0;"><span class="infokey" style="width:100px;font-size:.7rem;">官網瀏覽量</span><span class="infoval">708 萬</span></div>
+          <div class="inforow" style="padding:4px 0;"><span class="infokey" style="width:100px;font-size:.7rem;">活躍使用者</span><span class="infoval">428 萬</span></div>
+          <div class="inforow" style="padding:4px 0;"><span class="infokey" style="width:100px;font-size:.7rem;">Facebook</span><span class="infoval">全年瀏覽量 2,201 萬次</span></div>
+          <div class="inforow" style="padding:4px 0;"><span class="infokey" style="width:100px;font-size:.7rem;">Instagram</span><span class="infoval">觸及 143 萬，成長 160%</span></div>
+          <div class="inforow" style="padding:4px 0;"><span class="infokey" style="width:100px;font-size:.7rem;">YouTube</span><span class="infoval">觀看 109 萬；曝光 942 萬（+213%）</span></div>
+          <div class="inforow" style="padding:4px 0;"><span class="infokey" style="width:100px;font-size:.7rem;">Podcast</span><span class="infoval">下載 10.3 萬次（累計逾 40 萬）</span></div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--sage);">
+          <h3 style="color:var(--sage);font-size:.85rem;">LINE 機器人即時服務</h3>
+          <p>累積加入 <strong style="color:var(--accent);">18 萬</strong>好友，每日接收 200–500 則謠言通報，提供自動化與真人比對</p>
+          <p class="en-sub">180,000 LINE bot users; 200–500 rumor submissions daily.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;height:100%;">
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/Bjbk4ZY.jpg"></div>
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/NRbFm31.jpg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P8 全球輸出 -->
+<div class="slide">
+  <div class="lbl">Module 4 · 國際影響力</div>
+  <h2>全球經驗輸出與政策級實質改變<span class="en">Global Sharing & Policy-Level Impact</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:18px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="card card-l">
+          <h3>國際舞台經驗輸出</h3>
+          <ul style="font-size:.8rem;margin-top:4px;">
+            <li>Global Fact 閉幕演講</li>
+            <li>媒體素養融入式教學赴歐洲查核年會</li>
+            <li>遊戲化媒體素養教學 Google 年會分享</li>
+            <li>銀髮族推廣經驗受邀 radio Asia day</li>
+          </ul>
+          <p class="en-sub" style="margin-top:5px;">International keynotes at Global Fact, GNI Summit, European Fact-Checking Conference & more.</p>
+        </div>
+        <div class="card card-l">
+          <h3>平台降觸及與 IFCN 獲獎</h3>
+          <p>作為 Meta 第三方查核夥伴有效降低不實貼文觸及；獲 <strong style="color:var(--accent);">IFCN 最佳修正獎</strong>，入圍最有影響力獎</p>
+          <p class="en-sub">Meta third-party partner; IFCN Best Correction Award winner; nominated for Most Influential.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--sage);">
+          <h3 style="color:var(--sage);">推動政策變革：AI 假醫師</h3>
+          <p>揭露「AI 假醫師」醫療謠言，促使衛福部推動<strong style="color:var(--accent);">醫師身分揭露機制</strong>與 AI 假醫療資訊快速下架</p>
+          <p class="en-sub">Exposed "AI Fake Doctors," driving Taiwan's MoHW to institute disclosure and fast-takedown mechanisms.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr 1fr;gap:8px;height:100%;">
+        <div class="ph" style="min-height:100px;"><img src="https://img-hosting.u0401006.workers.dev/i/ZfYCEhz.jpg"></div>
+        <div class="ph" style="min-height:100px;"><img src="https://img-hosting.u0401006.workers.dev/i/wr6MYvg.jpg"></div>
+        <div class="ph" style="min-height:100px;"><img src="https://img-hosting.u0401006.workers.dev/i/rf4fRmA.jpg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P9 八年基石 -->
+<div class="slide">
+  <div class="lbl">Module 5 · 八年基石</div>
+  <h2>八年耕耘的信任基石與生態系<span class="en">8 Years of Trust Building & Civil Society Ecosystem</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:18px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card card-l">
+          <h3>高民意信賴度</h3>
+          <p><strong style="color:var(--accent);">79.2%</strong> 民眾知道查核機構存在（2023 年 58.6%，大幅提升）</p>
+          <p>近 <strong style="color:var(--accent);">7 成</strong>抱持正面評價；67.49% 曾使用查核服務</p>
+          <p class="en-sub">79.2% public awareness; 70% positive views; significant rise from 58.6% in 2023.</p>
+        </div>
+        <div class="card card-l">
+          <h3>技術與防詐生態系</h3>
+          <p>與資策會技術合作榮獲兩項國際 <strong style="color:var(--accent);">R&D 100 Awards</strong>；整合民間情資共構資訊防禦網；加入「網路詐騙通報查詢網」</p>
+          <p class="en-sub">Co-developed AI tools with III, winning two R&D 100 Awards. Joined national fraud notification network.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--sage);">
+          <h3 style="color:var(--sage);">向國際述說台灣故事</h3>
+          <p>120 篇國內外媒體報導；48 個外賓訪團；16 篇英文電子報；「台北事實查核論壇」邀請亞洲多國查核專家</p>
+          <p class="en-sub">120 media reports citing TFC; 48 delegations hosted; 16 English newsletters.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;height:100%;">
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/1P33LEL.jpg" style="object-position:top;"></div>
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/XpNEdTl.jpg" style="object-position:top;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P10 挑戰 -->
+<div class="slide">
+  <div class="lbl">Module 5 · 嚴峻挑戰</div>
+  <h2>組織面臨的全球性挑戰與話語權缺口<span class="en">Structural Challenges & The Chinese-Language Discourse Gap</span></h2>
+  <div class="body" style="overflow-y:auto;">
+    <div class="card card-l" style="margin-bottom:10px;">
+      <p style="font-weight:700;color:var(--accent);font-size:.9rem;">不受政黨政府政治人物捐款・確保中立與信賴</p>
+      <p class="en-sub">No funding from political parties or government — independence is non-negotiable.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div>
+          <p>Duke Reporters' Lab 2026：全球 437 個活躍查核專案，但 2025 年超過 <strong style="color:var(--accent);">30 個</strong>停止營運，關閉數量達新成立（10 個）三倍</p>
+          <p class="en-sub">Closures (30+) outpace new projects (10) 3-to-1 in 2025. Industry in crisis.</p>
+        </div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div>
+          <p>七成查核組織面臨財務挑戰，8.8% 處緊急狀態，可能停薪、裁員或半年內關門</p>
+          <p class="en-sub">70% of organizations face financial strain; 8.8% in emergency status.</p>
+        </div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div>
+          <p>2023 年南韓 Naver 中止對 SNU 事實查核平台資金支持，凸顯全球查核組織依賴科技平台的困境</p>
+          <p class="en-sub">Platform dependency risk: Naver's withdrawal from SNU fact-check project (2023) as a global warning.</p>
+        </div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot" style="background:var(--sage);"></div>
+        <div>
+          <p style="color:var(--sage);">華文世界資訊操弄議題在國際查核議程裡幾乎空白；台灣必須主動站上國際舞台，持續輸出第一線經驗</p>
+          <p class="en-sub">Chinese-language disinformation is underrepresented globally — Taiwan must proactively lead.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P11 未來三年 -->
+<div class="slide">
+  <div class="lbl">Module 6 · 未來展望</div>
+  <h2>未來三年展望——打造全民資訊韌性<span class="en">Three-Year Vision: Building National Information Resilience</span></h2>
+  <div class="body">
+    <div class="grid2" style="gap:18px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card card-l">
+          <p style="font-weight:700;color:var(--accent);font-size:.88rem;">保護資訊弱勢</p>
+          <p style="margin-top:4px;">防止假訊息與詐騙加劇資訊與經濟弱勢族群的困境</p>
+          <p class="en-sub">Preventing misinformation from further marginalizing vulnerable communities.</p>
+        </div>
+        <div class="card card-sage">
+          <p style="font-weight:700;color:var(--sage);font-size:.88rem;">持續提升專業力與信賴度</p>
+          <p style="margin-top:4px;">運用 AI 提升查核效能，陪伴民眾安度資訊亂流</p>
+          <p class="en-sub">Leveraging AI to enhance fact-checking capacity and public resilience.</p>
+        </div>
+        <div class="card card-l">
+          <p style="font-weight:700;color:var(--accent);font-size:.88rem;">AI 時代的前沿示範</p>
+          <p style="margin-top:4px;">台灣站在資訊力前沿，提供全世界應對資訊操弄的最強示範</p>
+          <p class="en-sub">Taiwan as a global model for counter-disinformation in the AI era.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:10px;height:100%;">
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/LsQ6fKT.jpg"></div>
+        <div class="ph" style="min-height:160px;"><img src="https://img-hosting.u0401006.workers.dev/i/aPNHXGp.jpg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P12 結語 -->
+<div class="slide centered">
+  <div class="deco" style="width:400px;height:400px;background:#ffce6d;bottom:-160px;right:-100px;opacity:.06;"></div>
+  <div class="body" style="align-items:center;gap:20px;max-width:min(900px,88vw);">
+    <div class="lbl" style="text-align:center;">Key Takeaways · 台灣經驗三大關鍵要素</div>
+    <h2 style="text-align:center;font-size:clamp(1.2rem,2.5vw,1.9rem);">台灣經驗的三大關鍵要素<span class="en" style="display:block;text-align:center;">Key Elements of Taiwan's Experience</span></h2>
+    <div class="grid3" style="gap:16px;width:100%;">
+      <div class="card" style="text-align:center;padding:20px 12px;border-top:3px solid var(--accent);">
+        <div style="font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:700;color:var(--accent);line-height:1.1;margin-bottom:8px;">韌性</div>
+        <div style="font-size:.85rem;color:var(--muted);font-style:italic;margin-bottom:8px;">Resilience</div>
+        <p style="font-size:.8rem;">建立動態應對與社會整體的防禦彈性</p>
+        <p class="en-sub" style="margin-top:4px;">Dynamic response and systemic societal defense flexibility.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px 12px;border-top:3px solid var(--sage);">
+        <div style="font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:700;color:var(--sage);line-height:1.1;margin-bottom:8px;">透明度</div>
+        <div style="font-size:.85rem;color:var(--muted);font-style:italic;margin-bottom:8px;">Transparency</div>
+        <p style="font-size:.8rem;">以公開透明的查核過程贏得公民信任</p>
+        <p class="en-sub" style="margin-top:4px;">Open fact-checking processes that earn and sustain public trust.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px 12px;border-top:3px solid var(--accent);">
+        <div style="font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:700;color:var(--accent);line-height:1.1;margin-bottom:8px;">在地化</div>
+        <div style="font-size:.85rem;color:var(--muted);font-style:italic;margin-bottom:8px;">Localization</div>
+        <p style="font-size:.8rem;">深入在地社區與學校，讓媒體素養扎根於日常</p>
+        <p class="en-sub" style="margin-top:4px;">Community-embedded media literacy that becomes part of everyday life.</p>
+      </div>
+    </div>
+    <img src="https://img-hosting.u0401006.workers.dev/i/YqGjgHM.png" style="width:180px;height:auto;opacity:.7;margin-top:8px;">
+  </div>
+</div>
+
+</div></div>
+
+<!-- THUMBNAIL NAV -->
+<div class="t-trigger" id="tTrigger"></div>
+<div class="t-strip" id="tStrip"></div>
+
+<footer class="ftr">
+  <span class="pgn" id="pgn">1 / 12</span>
+</footer>
+
+<script>
+const TOTAL = 12;
+let cur = 0, tx0 = 0;
+const rail = document.getElementById('rail');
+const prog = document.getElementById('prog');
+const pgn  = document.getElementById('pgn');
+const tStrip = document.getElementById('tStrip');
+const tTrigger = document.getElementById('tTrigger');
+const themeBtn = document.getElementById('themeBtn');
+
+const titles = ['封面','資訊危機','預警防禦','查核基礎','全台培力','國際串聯','數位影響','全球輸出','八年基石','嚴峻挑戰','未來三年','結語'];
+
+titles.forEach((t, i) => {
+  const el = document.createElement('div');
+  el.className = 'thumb' + (i === 0 ? ' act' : '');
+  el.innerHTML = `<div class="t-num">${i+1}</div><div style="font-size:8px;line-height:1.3;">${t}</div>`;
+  el.addEventListener('click', () => { goTo(i); hideThumb(); });
+  tStrip.appendChild(el);
+});
+
+function goTo(n) {
+  cur = Math.max(0, Math.min(TOTAL - 1, n));
+  rail.style.transform = `translateX(-${cur * 100}%)`;
+  pgn.textContent = `${cur + 1} / ${TOTAL}`;
+  prog.style.width = `${((cur + 1) / TOTAL) * 100}%`;
+  document.querySelectorAll('.thumb').forEach((el, i) => el.classList.toggle('act', i === cur));
+}
+function go(d) { goTo(cur + d); }
+
+let thumbTimer;
+function showThumb() { tStrip.classList.add('vis'); clearTimeout(thumbTimer); }
+function hideThumb() { thumbTimer = setTimeout(() => tStrip.classList.remove('vis'), 300); }
+
+tTrigger.addEventListener('mouseenter', showThumb);
+tStrip.addEventListener('mouseenter', () => { clearTimeout(thumbTimer); tStrip.classList.add('vis'); });
+tStrip.addEventListener('mouseleave', hideThumb);
+tTrigger.addEventListener('mouseleave', e => { if (!tStrip.contains(e.relatedTarget)) hideThumb(); });
+
+document.addEventListener('keydown', e => {
+  if (e.key==='ArrowRight'||e.key==='ArrowDown') go(1);
+  if (e.key==='ArrowLeft' ||e.key==='ArrowUp')   go(-1);
+  if (e.key==='f'||e.key==='F') document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+});
+document.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - tx0; if(Math.abs(dx)>50) go(dx<0?1:-1); });
+
+const saved = localStorage.getItem('tfc-prebunking-theme') || 'dark';
+if (saved==='light') document.body.classList.add('light');
+function updateIcon() {
+  const isLight = document.body.classList.contains('light');
+  themeBtn.innerHTML = isLight
+    ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`
+    : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+}
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light');
+  localStorage.setItem('tfc-prebunking-theme', document.body.classList.contains('light')?'light':'dark');
+  updateIcon();
+});
+updateIcon();
+goTo(0);
+</script>
+</body>
+</html>
