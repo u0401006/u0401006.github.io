@@ -31,21 +31,21 @@ body{font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;ba
 .prog{position:fixed;top:50px;left:0;height:2px;background:var(--accent);transition:width .4s ease;z-index:199;}
 .wrap{position:fixed;top:50px;left:0;right:0;bottom:44px;overflow:hidden;}
 .rail{display:flex;height:100%;transition:transform .42s cubic-bezier(.4,0,.2,1);}
-.slide{min-width:100%;height:100%;display:flex;flex-direction:column;padding:22px clamp(24px,4.5vw,72px) 10px;overflow:hidden;position:relative;}
+.slide{min-width:100%;height:100%;display:flex;flex-direction:column;padding:16px clamp(24px,4.5vw,72px) 8px;overflow:hidden;position:relative;}
 .lbl{font-size:clamp(.55rem,.85vw,.68rem);font-weight:500;color:var(--accent);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:4px;flex-shrink:0;}
-.slide h2{font-size:clamp(1.1rem,2.4vw,1.75rem);font-weight:700;line-height:1.2;margin-bottom:12px;color:var(--text);flex-shrink:0;}
+.slide h2{font-size:clamp(1.05rem,2.2vw,1.6rem);font-weight:700;line-height:1.2;margin-bottom:8px;color:var(--text);flex-shrink:0;}
 .slide h2 .en{display:block;font-size:clamp(.65rem,1.1vw,.8rem);font-weight:400;color:var(--muted);margin-top:3px;font-style:italic;}
 .slide h3{font-size:clamp(.8rem,1.4vw,1rem);font-weight:700;color:var(--accent);margin-bottom:6px;}
 .body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:min(1160px,90vw);}
 .centered{justify-content:center;align-items:center;text-align:center;}
 .centered .body{align-items:center;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 15px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 12px;}
 .card-l{border-left:3px solid var(--accent);}
 .card-sage{border-left:3px solid var(--sage);}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;}
-p,li{font-size:clamp(.72rem,1.2vw,.86rem);line-height:1.7;color:var(--text);}
-.en-sub{font-size:clamp(.6rem,.95vw,.72rem);color:var(--muted);font-style:italic;line-height:1.5;margin-top:2px;}
+p,li{font-size:clamp(.72rem,1.15vw,.84rem);line-height:1.6;color:var(--text);}
+.en-sub{font-size:clamp(.56rem,.85vw,.67rem);color:var(--muted);font-style:italic;line-height:1.4;margin-top:2px;}
 ul{padding-left:1.3em;list-style:disc;}
 ul li{margin-bottom:3px;}
 .muted{color:var(--muted);}
@@ -74,7 +74,7 @@ ul li{margin-bottom:3px;}
 .stat-item:last-child{border-bottom:none;}
 .stat-num{font-size:clamp(1.3rem,2.2vw,1.85rem);font-weight:700;color:var(--accent);line-height:1;flex-shrink:0;min-width:60px;}
 .stat-desc{font-size:clamp(.7rem,1.1vw,.82rem);color:var(--text);line-height:1.5;padding-top:3px;}
-.bullet-item{display:flex;gap:9px;margin-bottom:7px;align-items:flex-start;}
+.bullet-item{display:flex;gap:9px;margin-bottom:5px;align-items:flex-start;}
 .bullet-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:7px;}
 .section-div{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,var(--bg2) 0%,var(--bg) 100%);}
 .mod-num{font-size:clamp(3rem,7vw,6rem);font-weight:700;color:var(--accent);opacity:.12;position:absolute;right:clamp(24px,5vw,80px);bottom:20px;line-height:1;}
@@ -112,21 +112,17 @@ ul li{margin-bottom:3px;}
       <h2 style="font-size:clamp(1.4rem,3vw,2.4rem);margin-bottom:6px;">台灣公民社會的媒體識讀教育<br>從事實查核到預警防禦</h2>
       <p style="color:var(--accent);font-size:clamp(.75rem,1.3vw,.95rem);font-style:italic;">Media Literacy Education in Taiwan's Civil Society:<br>From Fact-Checking to Prebunking</p>
     </div>
-    <div class="card" style="min-width:min(440px,90vw);text-align:left;">
-      <div class="inforow"><span class="infokey">機構</span><span class="infoval">財團法人新北市台灣事實查核教育基金會（TFC）</span></div>
-      <div class="inforow"><span class="infokey">報告日期</span><span class="infoval">2026 年 7 月</span></div>
-      <div class="inforow"><span class="infokey">計畫督導</span><span class="infoval">羅世宏 / 黃兆徽</span></div>
-    </div>
+    <p style="color:var(--muted);font-size:clamp(.8rem,1.3vw,.95rem);margin-top:4px;">財團法人新北市台灣事實查核教育基金會（TFC）</p>
   </div>
 </div>
 
 <!-- P2 背景危機 -->
 <div class="slide">
-  <div class="lbl">Module 1 · 背景與危機</div>
+  <div class="lbl">背景與危機</div>
   <h2>台灣面臨的資訊環境形勢與困境<span class="en">Taiwan's Information Environment & Challenges</span></h2>
   <div class="body">
-    <div class="grid2" style="gap:18px;align-items:start;">
-      <div style="display:flex;flex-direction:column;gap:9px;">
+    <div class="grid2" style="gap:14px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:7px;">
         <div class="card card-l">
           <p style="font-weight:700;color:var(--accent);font-size:.88rem;">假訊息威脅加劇</p>
           <p style="margin-top:4px;">民眾收到假訊息比例逐年上升</p>
@@ -153,9 +149,9 @@ ul li{margin-bottom:3px;}
           <p class="en-sub">Why debunking alone is insufficient — the critical shift toward prebunking.</p>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div class="ph" style="flex:1;min-height:160px;max-height:220px;"><img src="https://img-hosting.u0401006.workers.dev/i/aJZS0hM.jpg"></div>
-        <div class="ph" style="flex:1;min-height:160px;max-height:220px;"><img src="https://img-hosting.u0401006.workers.dev/i/MAUL7Xd.jpg"></div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:8px;height:100%;">
+        <div class="ph" style="min-height:120px;max-height:200px;"><img src="https://img-hosting.u0401006.workers.dev/i/aJZS0hM.jpg"></div>
+        <div class="ph" style="min-height:120px;max-height:200px;"><img src="https://img-hosting.u0401006.workers.dev/i/MAUL7Xd.jpg"></div>
       </div>
     </div>
   </div>
@@ -163,7 +159,7 @@ ul li{margin-bottom:3px;}
 
 <!-- P3 預警防禦 -->
 <div class="slide">
-  <div class="lbl">Module 2 · 核心解方</div>
+  <div class="lbl">核心解方</div>
   <h2>預警防禦的核心機制與三大在地實踐<span class="en">Core Mechanics & Three Localized Pillars of Prebunking</span></h2>
   <div class="body">
     <div class="grid2" style="gap:18px;align-items:start;">
@@ -199,7 +195,7 @@ ul li{margin-bottom:3px;}
 
 <!-- P4 查核基礎 -->
 <div class="slide">
-  <div class="lbl">Module 3 · 組織能量</div>
+  <div class="lbl">組織能量</div>
   <h2>堅實的查核與多媒體內容產製<span class="en">Fact-Checking Foundation & Multimedia Output</span></h2>
   <div class="body">
     <div class="grid2" style="gap:20px;align-items:start;">
@@ -243,7 +239,7 @@ ul li{margin-bottom:3px;}
 
 <!-- P5 全台推廣 -->
 <div class="slide">
-  <div class="lbl">Module 3 · 全台培力</div>
+  <div class="lbl">全台培力</div>
   <h2>全台推廣與社會培力<span class="en">Island-wide Engagement & Social Empowerment</span></h2>
   <div class="body">
     <div class="grid2" style="gap:18px;align-items:start;">
@@ -279,7 +275,7 @@ ul li{margin-bottom:3px;}
 
 <!-- P6 國際串聯 -->
 <div class="slide">
-  <div class="lbl">Module 3 · 國際串聯</div>
+  <div class="lbl">國際串聯</div>
   <h2>跨國串聯與創新嘗試<span class="en">International Coalitions & Media Innovation</span></h2>
   <div class="body">
     <div class="grid2" style="gap:20px;align-items:start;">
@@ -305,7 +301,7 @@ ul li{margin-bottom:3px;}
 
 <!-- P7 數位影響力 -->
 <div class="slide">
-  <div class="lbl">Module 4 · 數位影響力</div>
+  <div class="lbl">數位影響力</div>
   <h2>數位影響力持續成長與直接服務<span class="en">Growing Digital Footprint & Direct User Support</span></h2>
   <div class="body">
     <div class="grid2" style="gap:20px;align-items:start;">
@@ -335,7 +331,7 @@ ul li{margin-bottom:3px;}
 
 <!-- P8 全球輸出 -->
 <div class="slide">
-  <div class="lbl">Module 4 · 國際影響力</div>
+  <div class="lbl">國際影響力</div>
   <h2>全球經驗輸出與政策級實質改變<span class="en">Global Sharing & Policy-Level Impact</span></h2>
   <div class="body">
     <div class="grid2" style="gap:18px;align-items:start;">
@@ -372,7 +368,7 @@ ul li{margin-bottom:3px;}
 
 <!-- P9 八年基石 -->
 <div class="slide">
-  <div class="lbl">Module 5 · 八年基石</div>
+  <div class="lbl">八年基石</div>
   <h2>八年耕耘的信任基石與生態系<span class="en">8 Years of Trust Building & Civil Society Ecosystem</span></h2>
   <div class="body">
     <div class="grid2" style="gap:18px;align-items:start;">
@@ -404,10 +400,10 @@ ul li{margin-bottom:3px;}
 
 <!-- P10 挑戰 -->
 <div class="slide">
-  <div class="lbl">Module 5 · 嚴峻挑戰</div>
+  <div class="lbl">嚴峻挑戰</div>
   <h2>組織面臨的全球性挑戰與話語權缺口<span class="en">Structural Challenges & The Chinese-Language Discourse Gap</span></h2>
-  <div class="body" style="overflow-y:auto;">
-    <div class="card card-l" style="margin-bottom:10px;">
+  <div class="body">
+    <div class="card card-l" style="margin-bottom:8px;">
       <p style="font-weight:700;color:var(--accent);font-size:.9rem;">不受政黨政府政治人物捐款・確保中立與信賴</p>
       <p class="en-sub">No funding from political parties or government — independence is non-negotiable.</p>
     </div>
@@ -446,7 +442,7 @@ ul li{margin-bottom:3px;}
 
 <!-- P11 未來三年 -->
 <div class="slide">
-  <div class="lbl">Module 6 · 未來展望</div>
+  <div class="lbl">未來展望</div>
   <h2>未來三年展望——打造全民資訊韌性<span class="en">Three-Year Vision: Building National Information Resilience</span></h2>
   <div class="body">
     <div class="grid2" style="gap:18px;align-items:start;">
@@ -479,7 +475,7 @@ ul li{margin-bottom:3px;}
 <div class="slide centered">
   <div class="deco" style="width:400px;height:400px;background:#ffce6d;bottom:-160px;right:-100px;opacity:.06;"></div>
   <div class="body" style="align-items:center;gap:20px;max-width:min(900px,88vw);">
-    <div class="lbl" style="text-align:center;">Key Takeaways · 台灣經驗三大關鍵要素</div>
+    <div class="lbl" style="text-align:center;">Key Takeaways</div>
     <h2 style="text-align:center;font-size:clamp(1.2rem,2.5vw,1.9rem);">台灣經驗的三大關鍵要素<span class="en" style="display:block;text-align:center;">Key Elements of Taiwan's Experience</span></h2>
     <div class="grid3" style="gap:16px;width:100%;">
       <div class="card" style="text-align:center;padding:20px 12px;border-top:3px solid var(--accent);">
