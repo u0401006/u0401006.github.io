@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ES 翻譯審核靜態快照｜Translation Review Snapshot</title>
+<style>
+  :root{--bg:#f8f9fa;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--muted:#6c757d}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+  header{background:#1a1a2e;color:#fff;padding:14px 24px}
+  header h1{font-size:16px;font-weight:600}
+  header p{font-size:12px;color:#adb5bd;margin-top:4px}
+  main{max-width:1300px;margin:0 auto;padding:20px 16px}
+  .note{background:#fff3cd;color:#664d03;border:1px solid #ffe69c;border-radius:8px;padding:12px 16px;font-size:12.5px;margin-bottom:16px;line-height:1.6}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  th{background:#f1f3f5;padding:10px 12px;text-align:left;font-size:12px;font-weight:600;color:var(--muted);border-bottom:2px solid var(--border)}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:hover td{background:#f8f9ff}
+  tr:last-child td{border-bottom:none}
+  .pid{font-family:monospace;font-size:12px;color:var(--muted)}
+  .date{font-size:11px;color:#aaa}
+  .title-cell{max-width:280px}
+  .title-zh{font-weight:500;line-height:1.4}
+  .final-title{font-size:12px;color:#495057;line-height:1.4}
+  .tier{padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:#d1fae5;color:#065f46}
+  .badge{padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;background:#6c757d;color:#fff}
+  .action-link{color:var(--primary);text-decoration:none;font-weight:500}
+  .action-link:hover{text-decoration:underline}
+  footer{max-width:1300px;margin:16px auto;padding:0 16px;font-size:11.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>ES 翻譯審核靜態快照</h1>
+  <p>Translation Review Queue — Static Snapshot（10 筆，來源：中央社翻譯審核平台）</p>
+</header>
+<main>
+  <div class="note">
+    本頁為指定 10 筆 PID 於快照時間點的唯讀靜態版本，資料不會再更新；審核決策、背景段落建議等互動功能已停用。
+    如需最新狀態，請至內部翻譯審核平台查詢。
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>PID</th><th>原文標題</th><th>最終譯文標題</th><th>Tier</th><th>QC</th><th>決策</th><th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="pid">202607060035<br><span class="date">2026-07-07T15:31</span></td>
+      <td class="title-cell"><div class="title-zh">中聯問題油爭議　賴總統：積極下架、公布受影響名單 | 生活 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">Escándalo del aceite contaminado de Chung Lien: presidente Lai promete retiro activo de productos y publicación de lista de afectados</div></td>
+      <td><span class="tier">auto</span></td>
+      <td>OK</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202607060035.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202608050163<br><span class="date">2026-08-05T16:32</span></td>
+      <td class="title-cell"><div class="title-zh">陸籍收容天數有上限　陸委會：對岸遲不接返釀困境 | 兩岸 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">MAC: límite de días de custodia para ciudadanos continentales genera crisis por demora de Beijing en repatriarlos</div></td>
+      <td><span class="tier">review</span></td>
+      <td>1 critical</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202608050163.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202605160031<br><span class="date">2026-05-21T16:02</span></td>
+      <td class="title-cell"><div class="title-zh">星鏈尚未來台　林宜敬：競爭對手Amazon LEO明年提供服務 | 產經 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">Starlink aún no ha llegado a Taiwán; Lin Yi-ching: su competidor Amazon LEO ofrecerá servicio el próximo año</div></td>
+      <td><span class="tier">internal_review</span></td>
+      <td>-</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202605160031.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202608070217<br><span class="date">2026-08-07T16:22</span></td>
+      <td class="title-cell"><div class="title-zh">台籍教師在陸被拘禁　海基會：恐涉及宗教因素 | 兩岸 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">Profesor taiwanés detenido en China; la SEF dice que podría estar relacionado con factores religiosos | A través del Estrecho | CNA (Agencia Central de Noticias de Taiwán)</div></td>
+      <td><span class="tier">review</span></td>
+      <td>1 critical</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202608070217.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202608080102<br><span class="date">2026-08-08T15:57</span></td>
+      <td class="title-cell"><div class="title-zh">總預算200多案保留　藍：盼下週協商能大幅收斂爭議 | 政治 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">Presupuesto general: más de 200 casos en reserva; Kuomintang espera reducir disputas en negociaciones de la próxima semana | Política | CNA</div></td>
+      <td><span class="tier">review</span></td>
+      <td>1 critical</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202608080102.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202608070167<br><span class="date">2026-08-07T16:25</span></td>
+      <td class="title-cell"><div class="title-zh">台韓出口首度超越日本　AI半導體需求成關鍵推手 | 產經 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">Las exportaciones de Taiwán y Corea del Sur superan por primera vez a las de Japón; la demanda de semiconductores de AI, clave | Economía | CNA</div></td>
+      <td><span class="tier">review</span></td>
+      <td>OK</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202608070167.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202608090040<br><span class="date">2026-08-09T16:15</span></td>
+      <td class="title-cell"><div class="title-zh">特教與弱勢青年赴西班牙　挑戰百公里徒步朝聖之路 | 生活 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">Jóvenes de educación especial y vulnerables viajan a España para recorrer 100 km del Camino de Santiago | Sociedad | CNA</div></td>
+      <td><span class="tier">review</span></td>
+      <td>1 critical</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202608090040.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202605020066<br><span class="date">2026-05-04T04:05</span></td>
+      <td class="title-cell"><div class="title-zh">0到6歲國家養延長至18歲？政院：研議5面向完善計畫 | 政治 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">¿Ampliar el plan estatal de crianza de 0 a 6 años hasta los 18? El Yuan Ejecutivo: se estudian cinco aspectos para perfeccionar el plan | Política | CNA</div></td>
+      <td><span class="tier">review</span></td>
+      <td>1 critical</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202605020066.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202605150143<br><span class="date">2026-05-21T15:23</span></td>
+      <td class="title-cell"><div class="title-zh">澳洲男困峭壁山洞7天吹薩克斯風求援　台東搜救隊聞聲救人 | 社會 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">Australiano atrapado 7 días en una cueva de un acantilado pide ayuda tocando el saxofón; equipo de rescate de Taitung lo salva | Sociedad | CNA</div></td>
+      <td><span class="tier">auto</span></td>
+      <td>OK</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202605150143.html">查看詳情</a></td>
+    </tr>
+    <tr>
+      <td class="pid">202606070071<br><span class="date">2026-06-08T15:44</span></td>
+      <td class="title-cell"><div class="title-zh">維也納「台灣日」 音樂會、電影加美食三管齊發 | 文化 | 中央社 CNA</div></td>
+      <td class="title-cell"><div class="final-title">Viena celebra el &#39;Día de Taiwán&#39; con conciertos, cine y gastronomía</div></td>
+      <td><span class="tier">internal_review</span></td>
+      <td>-</td>
+      <td><span class="badge">pending</span></td>
+      <td><a class="action-link" href="pid-202606070071.html">查看詳情</a></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+<footer>靜態快照產生於本次任務執行時；原始平台位址未公開列出。</footer>
+</body>
+</html>

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>台籍教師在陸被拘禁　海基會：恐涉及宗教因素 | 兩岸 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202608070217</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>台籍教師在陸被拘禁　海基會：恐涉及宗教因素 | 兩岸 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-warn">external_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">台籍教師在陸被拘禁　海基會：恐涉及宗教因素 | 兩岸 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202608070217.aspx" target="_blank">https://www.cna.com.tw/news/aall/202608070217.aspx</a></div>
+      <div class="text-block">（中央社記者李雅雯台北7日電）海基會秘書長羅文嘉今天公布1件案例，1名在中國大陸教學10多年的台籍教師於5月下旬被拘禁，推估被拘禁原因恐涉及宗教因素，他再次提醒台灣民眾赴陸工作、旅遊有風險。
+海峽交流基金會（海基會）今天下午召開背景說明會，由羅文嘉主持。
+羅文嘉於會上公布1件台籍教師在陸被拘禁案例。他說，有1名台籍教師在陸教學10多年，今年5月下旬突被公安帶走，海基會在6月1日接獲家屬陳情，隨即於1週內透過兩岸既有聯繫機制通報中國大陸海峽兩岸關係協會（海協會）；不過迄今未獲正式答覆與說明。
+他提到，基於尊重當事人隱私，未能釋出過多詳細訊息。海基會透過其他管道了解這名台籍教師目前概況，其被拘禁原因恐與一貫道信仰有關；當時另有2名教師也被公安帶走，不過後來順利返回。
+羅文嘉提醒，台灣民眾赴陸工作或旅遊有風險；另也要呼籲對岸，必須重視台灣人民在中國大陸境內的人身安全保障。
+羅文嘉喊話，目前兩岸由於政治分歧導致民間難題待解，這些難題本來是可以被解決的，不過對岸將其視作籌碼武器，影響台灣人民權益。期望對岸盡早回歸正軌，當兩岸人民在對方境內受到人身自由限制時，應該循既有機制即時通報對方。
+中國大陸「國務院關於出境入境管理的規定」將於9月15日起實施。
+規定第4條提到，「中國公民違反出口管制、技術進出口管理等規定，可能危害國家產業安全、技術安全的，國務院商務等有關主管部門可以決定不准其出境」。
+羅文嘉指出，對岸「將台灣視作中國一部分」，這條規定恐對在陸工作的台商有所影響，建議在陸或規劃赴陸從事經貿工作者，對於相關風險要有所認識，政府有責任提醒民眾加以注意。（編輯：邱國強）1150807</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Profesor taiwanés detenido en China; la SEF dice que podría estar relacionado con factores religiosos | A través del Estrecho | CNA (Agencia Central de Noticias de Taiwán)</div>
+        <div class="text-block" style="margin-bottom:8px">(CNA (Agencia Central de Noticias de Taiwán), periodista Lee Ya-wen, Taipéi, 7) Luo Wen-jia, secretario general de la Fundación para los Intercambios a través del Estrecho (SEF, por sus siglas en inglés), dio a conocer hoy un caso en el que un docente taiwanés que llevaba más de 10 años enseñando en China continental fue detenido a finales de mayo. Se estima que la causa de la detención podría estar relacionada con factores religiosos. Luo volvió a recordar que existen riesgos para los taiwaneses que viajan a China continental por trabajo o turismo.
+
+La Fundación para los Intercambios a través del Estrecho celebró esta tarde una sesión informativa de contexto, presidida por Luo Wen-jia.
+
+Durante la reunión, Luo Wen-jia dio a conocer un caso de detención de un docente taiwanés en China continental. Señaló que un docente taiwanés, que llevaba más de 10 años enseñando allí, fue llevado repentinamente por la policía a finales de mayo. La SEF recibió la petición de ayuda de sus familiares el 1 de junio y, acto seguido, en el plazo de una semana, notificó el caso a la Asociación para las Relaciones a través del Estrecho de Taiwán de China continental (ARATS, por sus siglas en inglés) a través del mecanismo de contacto ya existente entre ambas partes del Estrecho. Sin embargo, hasta la fecha no ha recibido una respuesta ni una explicación oficiales.
+
+Mencionó que, por respeto a la privacidad de la persona implicada, no podía divulgar demasiados detalles. A través de otros canales, la SEF conoció la situación actual de este docente taiwanés, y la causa de su detención podría estar relacionada con su fe en Yiguandao. En ese momento, otros 2 docentes también fueron llevados por la policía, aunque posteriormente regresaron sin contratiempos.
+
+Luo Wen-jia recordó que existen riesgos para los taiwaneses que viajan a China continental por trabajo o turismo. También hizo un llamamiento a la otra parte del Estrecho para que conceda importancia a la protección de la seguridad personal de los taiwaneses dentro del territorio de China continental.
+
+Luo Wen-jia declaró que, en la actualidad, las divergencias políticas entre ambas partes del Estrecho han dejado sin resolver dificultades que afectan a la sociedad civil. Estas dificultades originalmente podían resolverse, pero la otra parte del Estrecho las considera fichas de negociación y herramientas, lo que afecta a los derechos e intereses del pueblo taiwanés. Expresó su esperanza de que la otra parte vuelva cuanto antes al cauce correcto y que, cuando personas de uno u otro lado vean restringida su libertad personal en el territorio de la otra parte, se notifique de inmediato a la contraparte siguiendo los mecanismos existentes.
+
+El «Reglamento del Consejo de Estado sobre la administración de salida y entrada del país» de China continental entrará en vigor el 15 de septiembre.
+
+El artículo 4 del reglamento menciona: «Si un ciudadano chino infringe disposiciones sobre control de exportaciones, administración de importación y exportación de tecnología, entre otras, y puede poner en peligro la seguridad industrial o la seguridad tecnológica del Estado, los departamentos competentes pertinentes del Consejo de Estado, como el de Comercio, pueden decidir no autorizar su salida del país».
+
+Luo Wen-jia señaló que la otra parte del Estrecho «considera a Taiwán como parte de China», por lo que esta disposición podría afectar a los empresarios taiwaneses que trabajan en China continental. Recomendó que quienes ya trabajan allí o planean desplazarse a China continental para realizar actividades económicas y comerciales sean conscientes de los riesgos relacionados, y añadió que el gobierno tiene la responsabilidad de recordar a la ciudadanía que preste atención a este asunto. (Editor: Chiu Kuo-chiang) 1150807</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">El secretario general de la SEF, Luo Wen-jia, dio a conocer hoy un caso en el que un docente taiwanés que había enseñado durante más de 10 años en China continental fue detenido a finales de mayo; se estima que la causa de la detención podría estar relacionada con factores religiosos. Volvió a recordar a la población de Taiwán que trabajar o viajar a China continental conlleva riesgos.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Maestro taiwanés detenido en China continental: SEF teme que haya factores religiosos implicados | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Profesor taiwanés detenido en China; la SEF dice que podría estar relacionado con factores religiosos | A través del Estrecho | CNA (Agencia Central de Noticias de Taiwán)</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Profesor taiwanés detenido en China; SEF: por posibles motivos religiosos | Dos Orillas | CNA (Agencia Central de Noticias de Taiwán)</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">（CNA, Agencia Central de Noticias de Taiwán — Taipei, 7 de agosto）Luo Wen-jia, secretario general de la Fundación para los Intercambios en el Estrecho (SEF, por sus siglas en inglés), reveló hoy un caso en el que un docente taiwanés con más de diez años de experiencia enseñando en China continental fue detenido a finales de mayo. Se estima que la detención podría estar relacionada con motivos religiosos. Luo reiteró que los ciudadanos taiwaneses enfrentan riesgos al viajar o trabajar en China continental.
+
+La SEF celebró esta tarde una sesión informativa de antecedentes, presidida por Luo Wen-jia.
+
+Durante el encuentro, Luo Wen-jia dio a conocer el caso de un docente taiwanés detenido en China continental. Según explicó, el profesor llevaba más de diez años ejerciendo la docencia en ese país cuando, a finales de mayo de este año, fue llevado repentinamente por la policía. La SEF recibió una petición de la familia el 1 de junio y, en el plazo de una semana, notificó el caso a la Asociación de Relaciones a través del Estrecho de Taiwan (ARATS) mediante los mecanismos de comunicación existentes entre ambas orillas. Sin embargo, hasta la fecha no se ha recibido respuesta ni explicación oficial.
+
+Luo señaló que, por respeto a la privacidad del afectado, no es posible divulgar información detallada en exceso. La SEF ha podido conocer la situación general del docente taiwanés a través de otros canales, y se estima que la causa de su detención podría estar relacionada con su fe en el Yiguandao. En aquel momento, otros dos docentes también fueron llevados por la policía, aunque posteriormente regresaron sin contratiempos.
+
+Luo Wen-jia advirtió que los ciudadanos taiwaneses que viajan o trabajan en China continental asumen riesgos, e hizo un llamamiento a la otra orilla para que garantice debidamente la seguridad personal de los taiwaneses en territorio chino continental.
+
+Luo Wen-jia instó a la contraparte a actuar, señalando que las divergencias políticas actuales entre ambas orillas han dejado pendientes de resolución problemas civiles que, en principio, podrían solucionarse, pero que la otra parte utiliza como moneda de cambio, afectando los derechos e intereses del pueblo taiwanés. Expresó su esperanza de que la contraparte retome cuanto antes el camino correcto y, cuando los ciudadanos de ambas orillas vean restringida su libertad personal en el territorio del otro, se notifique de inmediato a la parte correspondiente a través de los mecanismos establecidos.
+
+El «Reglamento del Consejo de Estado sobre gestión de entradas y salidas» de China continental entrará en vigor el 15 de septiembre.
+
+El artículo 4 del reglamento establece que «cuando un ciudadano chino infrinja las disposiciones sobre control de exportaciones, gestión de importaciones y exportaciones de tecnología u otras normativas similares, y ello pueda poner en peligro la seguridad industrial o tecnológica del Estado, los departamentos competentes del Consejo de Estado, como el de Comercio, podrán decidir prohibirle la salida del país».
+
+Luo Wen-jia señaló que, dado que la otra parte «considera Taiwan como parte de China», esta disposición podría afectar a los empresarios taiwaneses que trabajan en China continental. Recomendó que quienes se encuentren allí o tengan previsto viajar para realizar actividades económicas y comerciales conozcan los riesgos asociados, y subrayó que el Gobierno tiene la responsabilidad de alertar a la ciudadanía al respecto. (Editado por Qiu Guoqiang) 1150807</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(CNA (Agencia Central de Noticias de Taiwán), periodista Lee Ya-wen, Taipéi, 7) Luo Wen-jia, secretario general de la Fundación para los Intercambios a través del Estrecho (SEF, por sus siglas en inglés), dio a conocer hoy un caso en el que un docente taiwanés que llevaba más de 10 años enseñando en China continental fue detenido a finales de mayo. Se estima que la causa de la detención podría estar relacionada con factores religiosos. Luo volvió a recordar que existen riesgos para los taiwaneses que viajan a China continental por trabajo o turismo.
+
+La Fundación para los Intercambios a través del Estrecho celebró esta tarde una sesión informativa de contexto, presidida por Luo Wen-jia.
+
+Durante la reunión, Luo Wen-jia dio a conocer un caso de detención de un docente taiwanés en China continental. Señaló que un docente taiwanés, que llevaba más de 10 años enseñando allí, fue llevado repentinamente por la policía a finales de mayo. La SEF recibió la petición de ayuda de sus familiares el 1 de junio y, acto seguido, en el plazo de una semana, notificó el caso a la Asociación para las Relaciones a través del Estrecho de Taiwán de China continental (ARATS, por sus siglas en inglés) a través del mecanismo de contacto ya existente entre ambas partes del Estrecho. Sin embargo, hasta la fecha no ha recibido una respuesta ni una explicación oficiales.
+
+Mencionó que, por respeto a la privacidad de la persona implicada, no podía divulgar demasiados detalles. A través de otros canales, la SEF conoció la situación actual de este docente taiwanés, y la causa de su detención podría estar relacionada con su fe en Yiguandao. En ese momento, otros 2 docentes también fueron llevados por la policía, aunque posteriormente regresaron sin contratiempos.
+
+Luo Wen-jia recordó que existen riesgos para los taiwaneses que viajan a China continental por trabajo o turismo. También hizo un llamamiento a la otra parte del Estrecho para que conceda importancia a la protección de la seguridad personal de los taiwaneses dentro del territorio de China continental.
+
+Luo Wen-jia declaró que, en la actualidad, las divergencias políticas entre ambas partes del Estrecho han dejado sin resolver dificultades que afectan a la sociedad civil. Estas dificultades originalmente podían resolverse, pero la otra parte del Estrecho las considera fichas de negociación y armas, lo que afecta los derechos e intereses del pueblo taiwanés. Expresó su esperanza de que la otra parte vuelva cuanto antes al cauce correcto y que, cuando personas de uno u otro lado vean restringida su libertad personal en el territorio de la otra parte, se notifique de inmediato a la contraparte siguiendo los mecanismos existentes.
+
+El «Reglamento del Consejo de Estado sobre la administración de salida y entrada del país» de China continental entrará en vigor el 15 de septiembre.
+
+El artículo 4 del reglamento menciona: «Si un ciudadano chino infringe disposiciones sobre control de exportaciones, administración de importación y exportación de tecnología, entre otras, y puede poner en peligro la seguridad industrial o la seguridad tecnológica del Estado, los departamentos competentes pertinentes del Consejo de Estado, como el de Comercio, pueden decidir no autorizar su salida del país».
+
+Luo Wen-jia señaló que la otra parte del Estrecho «considera a Taiwán como parte de China», por lo que esta disposición podría afectar a los empresarios taiwaneses que trabajan en China continental. Recomendó que quienes ya trabajan allí o planean desplazarse a China continental para realizar actividades económicas y comerciales sean conscientes de los riesgos relacionados, y añadió que el gobierno tiene la responsabilidad de recordar a la ciudadanía que preste atención a este asunto. (Editor: Chiu Kuo-chiang) 1150807</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(CNA (Agencia Central de Noticias de Taiwán), Lee Ya-wen, Taipéi, 7) El secretario general de la Fundación para los Intercambios en el Estrecho (SEF), Luo Wen-jia, anunció hoy un caso en el que un profesor taiwanés, que ha enseñado en China continental durante más de 10 años, fue detenido a finales de mayo. Se estima que el motivo de la detención podría estar relacionado con factores religiosos. Luo reiteró su advertencia a los ciudadanos taiwaneses sobre los riesgos de viajar o trabajar en China continental.
+La Fundación para los Intercambios en el Estrecho (SEF) celebró una sesión informativa de antecedentes esta tarde, presidida por Luo Wen-jia.
+Luo Wen-jia anunció en la reunión un caso de un profesor taiwanés detenido en China continental. Dijo que un profesor taiwanés que ha enseñado en China continental durante más de 10 años fue llevado repentinamente por agentes de seguridad pública a finales de mayo de este año. La SEF recibió una petición de la familia el 1 de junio y, en el plazo de una semana, notificó a la Asociación de Relaciones entre Ambos Lados del Estrecho (ARATS) de China continental a través del mecanismo de comunicación existente entre ambos lados del Estrecho; sin embargo, hasta la fecha no ha recibido una respuesta o explicación oficial.
+Mencionó que, por respeto a la privacidad de la persona involucrada, no podía revelar demasiada información detallada. La SEF se enteró de la situación actual de este profesor taiwanés a través de otros canales, y el motivo de su detención podría estar relacionado con su creencia en el I-Kuan Tao; en ese momento, otros dos profesores también fueron llevados por la seguridad pública, pero luego regresaron sin problemas.
+Luo Wen-jia advirtió que los ciudadanos taiwaneses corren riesgos al viajar a China continental por trabajo o turismo; además, hizo un llamado a la otra parte para que preste atención a la garantía de la seguridad personal de los ciudadanos taiwaneses dentro del territorio de China continental.
+Luo Wen-jia expresó que actualmente, debido a las diferencias políticas entre ambos lados del Estrecho, hay problemas civiles pendientes de resolver. Estos problemas podrían haberse resuelto, pero la otra parte los considera como fichas de negociación y armas, afectando los derechos e intereses del pueblo taiwanés. Espera que la otra parte vuelva al camino correcto lo antes posible, y que cuando las personas de ambos lados del Estrecho sufran restricciones a su libertad personal en el territorio de la otra parte, se deba notificar inmediatamente a la otra parte siguiendo los mecanismos existentes.
+Las «Disposiciones del Consejo de Estado sobre la Administración de Salida y Entrada» de China continental entrarán en vigor a partir del 15 de septiembre.
+El artículo 4 de las disposiciones menciona: «Si los ciudadanos chinos violan las regulaciones sobre el control de exportaciones, la administración de importación y exportación de tecnología, entre otras, lo que podría poner en peligro la seguridad industrial y tecnológica nacional, los departamentos competentes pertinentes, como el de comercio del Consejo de Estado, pueden decidir no permitirles salir del país».
+Luo Wen-jia señaló que la otra parte «considera a Taiwán como parte de China», y esta disposición podría tener un impacto en los empresarios taiwaneses que trabajan en China continental. Sugirió que aquellos que trabajan en China continental o planean ir allí para realizar trabajos económicos y comerciales deben ser conscientes de los riesgos relacionados, y el gobierno tiene la responsabilidad de recordar al público que preste atención. (Editor: Chiu Kuo-chiang) 1150807</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Luo Wen-jia, secretario general de la Fundación para Intercambios en el Estrecho, anunció este martes un nuevo caso: un docente taiwanés con más de 10 años de experiencia enseñando en China continental fue detenido a finales de mayo, presuntamente por motivos religiosos. Luo reiteró los riesgos que corren los ciudadanos taiwaneses al trabajar o viajar al país vecino.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El secretario general de la SEF, Luo Wen-jia, dio a conocer hoy un caso en el que un docente taiwanés que había enseñado durante más de 10 años en China continental fue detenido a finales de mayo; se estima que la causa de la detención podría estar relacionada con factores religiosos. Volvió a recordar a la población de Taiwán que trabajar o viajar a China continental conlleva riesgos.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El secretario general de la Fundación para los Intercambios en el Estrecho, Luo Wen-jia, anunció hoy 1 caso de 1 profesor taiwanés con más de 10 años enseñando en China continental que fue detenido a finales de mayo. Se estima que el motivo de la detención podría involucrar factores religiosos, por lo que reiteró a los ciudadanos taiwaneses los riesgos de viajar a China continental por trabajo o turismo.</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.25</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Redacción fluida y natural en español</li><li class="good">Estructura de párrafos clara y bien organizada</li><li class="good">Uso correcto de comillas tipográficas «» en la cita del reglamento</li><li class="good">El SEO es conciso y preciso</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Omite el nombre del periodista (Lee Ya-wen) en el dateline del cuerpo, a diferencia de los otros borradores</li><li class="bad">Traduce &#39;Yiguandao&#39; correctamente pero en el título usa &#39;factores religiosos&#39; de forma más vaga que los otros</li><li class="bad">La sección de quotes incluye la frase &#39;Considera a Taiwán como parte de China&#39; como si fuera parte del reglamento, lo que puede inducir a confusión estructural</li><li class="bad">Usa &#39;Agencia Central de Noticias de Taiwán&#39; en el título pero sin el paréntesis estándar de CNA, lo que rompe levemente la convención del término</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">9.25</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+          <span class="score-val">10.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Incluye el nombre del periodista (Lee Ya-wen) y el editor correctamente</li><li class="good">Terminología institucional precisa y consistente a lo largo del texto</li><li class="good">Uso correcto de comillas tipográficas españolas «» en la cita del reglamento</li><li class="good">Fluencia natural en español sin calcos sintácticos del chino</li><li class="good">La sección de quotes está bien estructurada y fiel al original</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El título supera ligeramente en extensión respecto a los otros, aunque se mantiene dentro del límite</li><li class="bad">La expresión &#39;fichas de negociación y armas&#39; es levemente redundante pero fiel al original</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">C</div>
+          <strong>Model C</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">7.8</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Incluye el nombre del periodista y el editor correctamente</li><li class="good">Fiel al contenido del original en términos de información</li><li class="good">La sección de quotes del reglamento está bien redactada</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Usa &#39;I-Kuan Tao&#39; en lugar de &#39;Yiguandao&#39;, que es la romanización pinyin estándar usada por los otros borradores y más coherente con el estilo CNA</li><li class="bad">El SEO contiene &#39;1 caso de 1 profesor&#39; con dígitos arábigos en lugar de texto, lo que resulta antinatural en español (&#39;un caso de un profesor&#39;)</li><li class="bad">Título usa &#39;Dos Orillas&#39; como categoría en lugar de &#39;A través del Estrecho&#39;, lo que puede ser una categoría editorial diferente pero resulta menos preciso</li><li class="bad">Algunas frases tienen calcos sintácticos del chino que reducen la fluidez (&#39;los departamentos competentes de comercio y otras autoridades pertinentes del Consejo de Estado&#39;)</li><li class="bad">La sección de quotes usa &#39;considerar a Taiwán como parte de China&#39; en minúscula e infinitivo, inconsistente con el estilo de los otros elementos de la lista</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El borrador B obtiene la puntuación total más alta (9.35) por su precisión terminológica, fluidez natural en español, inclusión completa de todos los elementos del dateline (periodista y editor), uso correcto de comillas tipográficas y ausencia de errores factuales o de formato. El borrador A (8.45) es fluido pero omite el nombre del periodista y presenta una estructuración ambigua en la sección de quotes. El borrador C (7.75) pierde puntos por el uso de &#39;I-Kuan Tao&#39; en lugar de la romanización pinyin estándar, el uso antinatural de dígitos en el SEO y algunos calcos sintácticos que reducen la fluidez.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            <div class="qc-detail">遺失數字：[&#39;9&#39;, &#39;6&#39;]</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>external_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>QC 硬性失敗：[&#39;QC-01-numbers&#39;]</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (17)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-GPE">台北 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">中國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">中國大陸 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-LAW">國務院關於出境入境管理的規定 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">海基會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">海峽交流基金會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">海峽兩岸關係協會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">海協會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">一貫道 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">國務院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">李雅雯 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">海基會秘書長羅文嘉 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">羅文嘉 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">邱國強 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TITLE">秘書長 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">07224b3a-5a7a-44df-af8e-d27deae0209b</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202608070217</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-08-07T16:22</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-08-07T16:24</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

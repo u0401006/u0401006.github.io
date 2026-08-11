@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>總預算200多案保留　藍：盼下週協商能大幅收斂爭議 | 政治 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202608080102</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>總預算200多案保留　藍：盼下週協商能大幅收斂爭議 | 政治 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-warn">external_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">總預算200多案保留　藍：盼下週協商能大幅收斂爭議 | 政治 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202608080102.aspx" target="_blank">https://www.cna.com.tw/news/aall/202608080102.aspx</a></div>
+      <div class="text-block">（中央社記者王承中台北8日電）立法院下週將進行115年度總預算案的後續處理，國民黨團首席副書記長許宇甄今天表示，經過2輪協商，目前還有200多案保留，立法院長韓國瑜預計下週召開第3輪協商，希望能大幅收斂爭議，朝儘速完成協商、進入院會表決的方向努力。
+立法院現正進行115年度中央政府總預算案的審查程序，立法院朝野黨團6日完成總預算案第2輪協商，韓國瑜宣布，下週將跟朝野黨團確認，並視情況進行後續處理，看是要簽署協商結論或進行第3輪協商。
+國民黨立法院黨團首席副書記長許宇甄今天發布新聞稿指出，總預算經過2輪黨團協商，目前還有200多案保留，這不代表這些案件最後都會刪減或凍結，而是仍有許多政策內容、預算用途，需要行政部門進一步對外說明。
+許宇甄表示，韓國瑜預計下週召集第3輪協商，當然還有進一步縮減保留案件的空間。
+許宇甄強調，關鍵不只是立法院是否願意讓步，更要看行政部門是否願意利用這段時間，主動與各黨團、提案委員充分溝通。
+她指出，立委提出刪減、凍結或保留，一定有其監督理由；如果行政機關認為預算確有必要，就應該把完整資料、政策效益與執行需求攤開來說清楚，用專業與誠意爭取支持，而不是把國會監督一概貼上杯葛標籤。
+許宇甄指出，針對總預算通過時程，希望第3輪協商能大幅收斂爭議，朝儘速完成協商、進入院會表決的方向努力。（編輯：林克倫）1150808</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Presupuesto general: más de 200 casos en reserva; Kuomintang espera reducir disputas en negociaciones de la próxima semana | Política | CNA</div>
+        <div class="text-block" style="margin-bottom:8px">（CNA, Agencia Central de Noticias de Taiwán — Wang Cheng-chung, Taipéi, 8 de agosto）El Yuan Legislativo retomará la semana próxima el procesamiento del presupuesto general para el año 115 del calendario de la República. Hsu Yu-chen, primera vicesecretaria general del grupo parlamentario del Kuomintang, declaró hoy que, tras dos rondas de negociación, aún quedan más de 200 partidas en reserva, y que el presidente del Yuan Legislativo, Han Kuo-yu, tiene previsto convocar una tercera ronda la semana que viene con el objetivo de reducir significativamente los puntos de controversia y avanzar hacia la conclusión de las negociaciones y la votación en el pleno.
+
+El Yuan Legislativo se encuentra actualmente en proceso de revisión del presupuesto general del gobierno central para el año 115. El día 6, los grupos parlamentarios del oficialismo y la oposición completaron la segunda ronda de negociaciones sobre dicho presupuesto. Han Kuo-yu anunció que la semana próxima consultará con los distintos grupos parlamentarios y, según las circunstancias, decidirá si se procede a firmar las conclusiones de la negociación o a celebrar una tercera ronda.
+
+Hsu Yu-chen, primera vicesecretaria general del grupo parlamentario del Kuomintang en el Yuan Legislativo, señaló hoy en un comunicado de prensa que, tras dos rondas de negociación entre los grupos parlamentarios, aún hay más de 200 partidas en reserva, lo que no significa necesariamente que todas vayan a ser recortadas o congeladas, sino que muchas de ellas contienen contenidos de política pública y usos presupuestarios que requieren una mayor explicación por parte del poder ejecutivo.
+
+Hsu Yu-chen indicó que Han Kuo-yu tiene previsto convocar una tercera ronda de negociaciones la semana próxima, y que existe margen para reducir aún más el número de partidas en reserva.
+
+Hsu Yu-chen subrayó que la clave no reside únicamente en si el Yuan Legislativo está dispuesto a ceder, sino también en si el poder ejecutivo está dispuesto a aprovechar este período para comunicarse de manera activa y exhaustiva con los distintos grupos parlamentarios y con los legisladores que presentaron las propuestas.
+
+Señaló que cuando un legislador propone un recorte, una congelación o una reserva, siempre existe una razón de fiscalización que lo justifica; y que si el poder ejecutivo considera que una partida presupuestaria es verdaderamente necesaria, debe presentar con claridad la información completa, los beneficios de la política y las necesidades de ejecución, y buscar el apoyo mediante profesionalismo y buena fe, en lugar de calificar la supervisión parlamentaria como obstruccionismo.
+
+Hsu Yu-chen indicó que, en cuanto al calendario para la aprobación del presupuesto general, se espera que la tercera ronda de negociaciones permita reducir significativamente los puntos de controversia, con el objetivo de concluir las negociaciones cuanto antes y avanzar hacia la votación en el pleno. (Edición: Lin Ke-lun) 1150808</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">El Yuan Legislativo retomará la semana próxima el proceso del presupuesto general para el año 115. Hsu Yu-chen, primera vicesecretaria general del grupo parlamentario del Kuomintang, declaró hoy, 8 de agosto, que, tras dos rondas de negociaciones, aún quedan más de 200 casos en reserva. El presidente del Yuan Legislativo, Han Kuo-yu, tiene previsto convocar una tercera ronda de negociaciones la semana que viene, con el objetivo de reducir significativamente los puntos de controversia y avanzar hacia la conclusión de las negociaciones para someter el presupuesto a votación en el pleno.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Presupuesto general: más de 200 casos en reserva; Kuomintang espera reducir disputas en negociaciones de la próxima semana</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Más de 200 propuestas reservadas en el presupuesto general; Kuomintang espera que la negociación de la próxima semana reduzca ampliamente las discrepancias | Política | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Reservadas más de 200 propuestas del presupuesto; Kuomintang espera estrechar diferencias en diálogos de la próxima semana | Política | CNA</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">（CNA, Agencia Central de Noticias de Taiwán — Wang Cheng-chung, Taipéi, 8 de agosto）El Yuan Legislativo retomará la semana próxima el procesamiento del presupuesto general para el año 115 del calendario de la República. Hsu Yu-chen, primera vicesecretaria general del grupo parlamentario del Kuomintang, declaró hoy que, tras dos rondas de negociación, aún quedan más de 200 partidas en reserva, y que el presidente del Yuan Legislativo, Han Kuo-yu, tiene previsto convocar una tercera ronda la semana que viene con el objetivo de reducir significativamente los puntos de controversia y avanzar hacia la conclusión de las negociaciones y la votación en el pleno.
+
+El Yuan Legislativo se encuentra actualmente en proceso de revisión del presupuesto general del gobierno central para el año 115. El día 6, los grupos parlamentarios del oficialismo y la oposición completaron la segunda ronda de negociaciones sobre dicho presupuesto. Han Kuo-yu anunció que la semana próxima consultará con los distintos grupos parlamentarios y, según las circunstancias, decidirá si se procede a firmar las conclusiones de la negociación o a celebrar una tercera ronda.
+
+Hsu Yu-chen, primera vicesecretaria general del grupo parlamentario del Kuomintang en el Yuan Legislativo, señaló hoy en un comunicado de prensa que, tras dos rondas de negociación entre los grupos parlamentarios, aún hay más de 200 partidas en reserva, lo que no significa necesariamente que todas vayan a ser recortadas o congeladas, sino que muchas de ellas contienen contenidos de política pública y usos presupuestarios que requieren una mayor explicación por parte del poder ejecutivo.
+
+Hsu Yu-chen indicó que Han Kuo-yu tiene previsto convocar una tercera ronda de negociaciones la semana próxima, y que existe margen para reducir aún más el número de partidas en reserva.
+
+Hsu Yu-chen subrayó que la clave no reside únicamente en si el Yuan Legislativo está dispuesto a ceder, sino también en si el poder ejecutivo está dispuesto a aprovechar este período para comunicarse de manera activa y exhaustiva con los distintos grupos parlamentarios y con los legisladores que presentaron las propuestas.
+
+Señaló que cuando un legislador propone un recorte, una congelación o una reserva, siempre existe una razón de fiscalización que lo justifica; y que si el poder ejecutivo considera que una partida presupuestaria es verdaderamente necesaria, debe presentar con claridad la información completa, los beneficios de la política y las necesidades de ejecución, y buscar el apoyo mediante profesionalismo y buena fe, en lugar de calificar la supervisión parlamentaria como obstruccionismo.
+
+Hsu Yu-chen indicó que, en cuanto al calendario para la aprobación del presupuesto general, se espera que la tercera ronda de negociaciones permita reducir significativamente los puntos de controversia, con el objetivo de concluir las negociaciones cuanto antes y avanzar hacia la votación en el pleno. (Edición: Lin Ke-lun) 1150808</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(Taipéi, 8 de agosto, CNA (Agencia Central de Noticias de Taiwán), reportero Wang Cheng-chung) El Yuan Legislativo llevará a cabo la próxima semana el tratamiento posterior del proyecto de presupuesto general para el año fiscal 115. Hsu Yu-chen, subsecretaria general ejecutiva del grupo parlamentario del Kuomintang, señaló hoy que, tras dos rondas de negociaciones, aún quedan más de 200 propuestas en reserva. El presidente del Yuan Legislativo, Han Kuo-yu, prevé convocar una tercera ronda de negociaciones la próxima semana, con la esperanza de reducir sustancialmente las controversias y avanzar hacia la pronta conclusión de las negociaciones para someter el caso a votación en sesión plenaria.
+El Yuan Legislativo se encuentra actualmente en el proceso de revisión del proyecto de presupuesto general del gobierno central para el año fiscal 115. Los grupos parlamentarios del oficialismo y la oposición concluyeron el día 6 la segunda ronda de negociaciones sobre el proyecto presupuestario. Han Kuo-yu anunció que la próxima semana confirmará la situación con los grupos parlamentarios del oficialismo y la oposición y, según las circunstancias, procederá con el tratamiento posterior, ya sea firmando las conclusiones de la negociación o llevando a cabo una tercera ronda de negociaciones.
+Hsu Yu-chen indicó hoy en un comunicado de prensa que, tras dos rondas de negociaciones entre los grupos parlamentarios sobre el presupuesto general, todavía quedan más de 200 propuestas en reserva. Esto no significa que todos esos casos vayan a ser finalmente recortados o congelados, sino que aún hay muchos contenidos de política pública y usos presupuestarios que requieren una explicación adicional por parte del Ejecutivo ante la opinión pública.
+Hsu Yu-chen afirmó que Han Kuo-yu prevé convocar la tercera ronda de negociaciones la próxima semana y que, por supuesto, todavía hay margen para seguir reduciendo el número de propuestas en reserva.
+Hsu Yu-chen subrayó que la clave no es solo si el Yuan Legislativo está dispuesto a ceder, sino también si el Ejecutivo está dispuesto a aprovechar este período para comunicarse de manera proactiva y suficiente con los distintos grupos parlamentarios y los legisladores proponentes.
+También señaló que, cuando los legisladores proponen recortes, congelamientos o reservas, necesariamente tienen razones de supervisión; si los organismos administrativos consideran que un presupuesto es realmente necesario, deberían exponer con claridad la información completa, los beneficios de la política y las necesidades de ejecución, y ganarse el apoyo con profesionalismo y sinceridad, en lugar de etiquetar de forma generalizada la supervisión parlamentaria como obstruccionismo.
+Hsu Yu-chen indicó que, en cuanto al calendario de aprobación del presupuesto general, espera que la tercera ronda de negociaciones permita reducir sustancialmente las controversias y avanzar hacia la pronta conclusión de las negociaciones para someter el caso a votación en sesión plenaria. (Editor: Lin Ke-lun) 1150808</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(CNA (Agencia Central de Noticias de Taiwán), reportero Wang Cheng-chung, Taipéi, 8) El Yuan Legislativo llevará a cabo la próxima semana el procesamiento posterior del proyecto de presupuesto general para el año fiscal 115. La subsecretaria general principal del grupo parlamentario del Kuomintang, Hsu Yu-chen, indicó hoy que, tras 2 rondas de negociaciones, actualmente quedan más de 200 propuestas en reserva. El presidente del Yuan Legislativo, Han Kuo-yu, tiene previsto convocar una 3.ª ronda de negociaciones la próxima semana, con la esperanza de reducir significativamente las disputas y trabajar hacia la pronta conclusión de las negociaciones para proceder a la votación en la sesión plenaria.
+El Yuan Legislativo se encuentra actualmente en el proceso de revisión del proyecto de presupuesto general del gobierno central para el año fiscal 115. Los grupos parlamentarios del oficialismo y la oposición del Yuan Legislativo concluyeron el día 6 la 2.ª ronda de negociaciones del proyecto de presupuesto general. Han Kuo-yu anunció que la próxima semana confirmará con los grupos parlamentarios y, dependiendo de la situación, procederá con el procesamiento posterior para determinar si se firman las conclusiones de la negociación o se lleva a cabo una 3.ª ronda de negociaciones.
+Hsu Yu-chen, subsecretaria general principal del grupo parlamentario del Kuomintang en el Yuan Legislativo, señaló hoy en un comunicado de prensa que, después de 2 rondas de negociaciones entre los grupos parlamentarios sobre el presupuesto general, aún quedan más de 200 propuestas en reserva. Esto no significa que estas propuestas finalmente vayan a ser recortadas o congeladas, sino que todavía hay muchos contenidos de políticas y usos de presupuesto que requieren una mayor explicación pública por parte del poder ejecutivo.
+Hsu Yu-chen indicó que Han Kuo-yu tiene previsto convocar la 3.ª ronda de negociaciones la próxima semana, y que ciertamente aún hay margen para reducir aún más las propuestas en reserva.
+Hsu Yu-chen enfatizó que la clave no es solo si el Yuan Legislativo está dispuesto a ceder, sino más bien si el poder ejecutivo está dispuesto a aprovechar este tiempo para comunicarse proactivamente y de manera exhaustiva con los diversos grupos parlamentarios y los legisladores proponentes.
+Ella señaló que cuando los legisladores proponen recortes, congelamientos o reservas, sin duda tienen sus razones de supervisión; si las agencias ejecutivas consideran que el presupuesto es verdaderamente necesario, deberían presentar claramente la información completa, los beneficios de la política y las necesidades de ejecución, utilizando el profesionalismo y la sinceridad para ganar apoyo, en lugar de etiquetar sistemáticamente la supervisión del parlamento como un boicot.
+Hsu Yu-chen indicó que, respecto al cronograma de aprobación del presupuesto general, espera que la 3.ª ronda de negociaciones pueda reducir significativamente las disputas y trabajar hacia la pronta conclusión de las negociaciones para proceder a la votación en la sesión plenaria. (Editor: Lin Ke-lun) 1150808</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El Yuan Legislativo retomará la semana próxima el proceso del presupuesto general para el año 115. Hsu Yu-chen, primera vicesecretaria general del grupo parlamentario del Kuomintang, declaró este martes que, tras dos rondas de negociaciones, aún quedan más de 200 casos en reserva. El presidente del Yuan Legislativo, Han Kuo-yu, tiene previsto convocar una tercera ronda de negociaciones la semana que viene, con el objetivo de reducir significativamente los puntos de controversia y avanzar hacia la conclusión de las negociaciones para someter el presupuesto a votación en el pleno.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El Yuan Legislativo abordará la próxima semana el trámite pendiente del proyecto de presupuesto general para el año 115. Hsu Yu-chen, subjefa ejecutiva del grupo parlamentario del Kuomintang, dijo hoy que, tras 2 rondas de negociaciones, aún quedan más de 200 propuestas en reserva. El presidente del Yuan Legislativo, Han Kuo-yu, prevé convocar la próxima semana una tercera ronda de negociaciones, con la esperanza de reducir sustancialmente las controversias y avanzar hacia la pronta conclusión de las consultas para pasar a la votación en sesión plenaria.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El Yuan Legislativo llevará a cabo la próxima semana el trámite posterior del proyecto de presupuesto general para el año fiscal 115. La primera subsecretaria general de la bancada del Kuomintang, Hsu Yu-chen, indicó hoy que, tras 2 rondas de negociaciones, actualmente quedan más de 200 propuestas pendientes. El presidente del Yuan Legislativo, Han Kuo-yu, tiene previsto convocar la 3.ª ronda de negociaciones la próxima semana, con la esperanza de reducir significativamente las disputas y trabajar para completar las negociaciones lo antes posible y pasar a votación en el pleno.</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">9.35</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+          <span class="score-val">10.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+          <span class="score-val">10.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Terminología institucional precisa y consistente en todo el texto</li><li class="good">Traducción fluida y natural para lectores hispanohablantes</li><li class="good">Uso correcto de &#39;Han Kuo-yu&#39; y &#39;Kuomintang&#39; en todas las menciones</li><li class="good">El cargo de Hsu Yu-chen se traduce de forma coherente como &#39;primera vicesecretaria general&#39;</li><li class="good">La distinción entre recorte, congelación y reserva está bien articulada</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El título no incluye la etiqueta de sección &#39;| Política | CNA&#39;, a diferencia de B y C, lo que puede afectar la coherencia editorial</li><li class="bad">El SEO usa &#39;este martes&#39; para referirse al día 8, dato que no aparece explícitamente en el original y podría considerarse una leve adición inferida</li><li class="bad">Las comillas tipográficas españolas «» no se usan en ninguna cita directa, aunque el original tampoco las requería explícitamente en este texto</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.55</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Formato completo con etiqueta &#39;| Política | CNA&#39; en el título</li><li class="good">Estructura de dateline clara y bien organizada</li><li class="good">Buena fidelidad al contenido original en los párrafos centrales</li><li class="good">El SEO usa &#39;subjefa ejecutiva&#39; como variante compacta, aceptable en contexto</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El cargo de Hsu Yu-chen varía entre &#39;subsecretaria general ejecutiva&#39; (cuerpo) y &#39;subjefa ejecutiva&#39; (SEO), lo que rompe la consistencia terminológica interna</li><li class="bad">La expresión &#39;tratamiento posterior&#39; para 後續處理 resulta algo literal y menos natural que &#39;procesamiento&#39; o &#39;trámite&#39;</li><li class="bad">El SEO usa &#39;subjefa ejecutiva&#39; que no corresponde fielmente al cargo original ni al término usado en el cuerpo</li><li class="bad">Menor fluidez en algunas construcciones comparado con A</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">C</div>
+          <strong>Model C</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.3</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Formato con etiqueta &#39;| Política | CNA&#39; en el título</li><li class="good">Uso correcto de &#39;Han Kuo-yu&#39; y &#39;Kuomintang&#39;</li><li class="good">El SEO ofrece una versión compacta y razonablemente fiel</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El uso de ordinales con punto (&#39;3.ª ronda&#39;, &#39;2.ª ronda&#39;) es inconsistente con el estilo periodístico estándar; en contexto de noticias se prefiere &#39;tercera ronda&#39; o &#39;3.a ronda&#39; sin punto separador</li><li class="bad">El cargo de Hsu Yu-chen varía entre &#39;subsecretaria general principal&#39; (cuerpo) y &#39;primera subsecretaria general de la bancada&#39; (SEO), generando inconsistencia</li><li class="bad">&#39;boicot&#39; como traducción de 杯葛 es aceptable pero menos preciso que &#39;obstruccionismo&#39; en contexto parlamentario</li><li class="bad">Algunas frases resultan más literales y menos fluidas para un lector hispanohablante (&#39;trabajar hacia la pronta conclusión&#39;)</li><li class="bad">La dateline &#39;8&#39; sin el mes explícito en el cuerpo puede resultar ambigua</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El modelo A obtiene la puntuación total más alta gracias a su precisión terminológica perfecta, fluidez superior y ausencia de inconsistencias internas en el cargo de Hsu Yu-chen. El único punto débil menor es la omisión de la etiqueta de sección en el título y el uso inferido de &#39;este martes&#39; en el SEO. El modelo B es sólido en formato pero presenta inconsistencia terminológica entre el cuerpo y el SEO para el cargo de la portavoz. El modelo C, aunque correcto en lo factual, muestra menor fluidez, inconsistencias en el cargo y un uso de ordinales tipográficamente discutible en contexto periodístico.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            <div class="qc-detail">遺失數字：[&#39;3&#39;]</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>external_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>QC 硬性失敗：[&#39;QC-01-numbers&#39;]</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (24)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-GPE">台北 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">韓國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台北 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">韓國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">立法院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">國民黨立法院黨團 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">立法院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">國民黨立法院黨團 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PARTY">國民黨 <span style="font-size:10px;opacity:.6">PARTY</span></span>
+        
+        <span class="entity-tag tag-PARTY">國民黨 <span style="font-size:10px;opacity:.6">PARTY</span></span>
+        
+        <span class="entity-tag tag-PERSON">王承中 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">許宇甄 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">韓國瑜 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">林克倫 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">王承中 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">許宇甄 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">韓國瑜 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">林克倫 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TITLE">國民黨團首席副書記長 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">立法院長 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">國民黨團首席副書記長 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">立法院長 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">4c76821d-852c-4eaf-8519-f23eb5232856</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202608080102</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-08-08T15:57</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-08-08T15:58</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

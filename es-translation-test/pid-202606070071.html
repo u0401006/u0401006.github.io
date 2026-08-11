@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>維也納「台灣日」 音樂會、電影加美食三管齊發 | 文化 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202606070071</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>維也納「台灣日」 音樂會、電影加美食三管齊發 | 文化 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-ok">internal_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">維也納「台灣日」 音樂會、電影加美食三管齊發 | 文化 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202606070071.aspx" target="_blank">https://www.cna.com.tw/news/aall/202606070071.aspx</a></div>
+      <div class="text-block">由駐奧地利代表處籌劃的2026歐洲台灣文化年持續在維也納登場，6日由台灣台商會等單位合辦端午划龍舟活動，展現維也納僑界的團結。現場也匯聚了僑胞合力設攤進行台灣美食義賣，從肉粽到豆花都深獲好評，開賣不久隨即被搶購一空。
+駐奧地利代表劉玄詠接受媒體聯訪表示，維也納僑界活動從過往的「中國年」舞會，如今轉譯成本土文化認同的「農曆年舞會」，已經逐漸轉型，「透過這些非官方活動，展現了台灣民間的生命力，現在大家完全可以分辨台灣（Taiwan）與泰國（Thailand）的差異。」
+劉玄詠表示，這次歐洲台灣文化年重頭戲之一，就是台北市立國樂團在金色大廳的演出，「這次整場音樂會都是台灣作曲家創作、富含台灣元素的國樂交響作品。更厲害的是，這次邀請到旅德大提琴家楊文信與北市國共奏台灣作曲家蕭泰然的作品，可以聽見西方古典樂器的精緻結構與東方傳統絲竹的融合。」
+劉玄詠說，西方的交響樂歷史講究精準的音準與和聲，而東方傳統樂器則極具演奏者的個人情感與色彩，「北市國克服了傳統樂器的結構限制，淬煉出高水準和聲，很值得介紹。」
+劉玄詠表示，奧地利人想來聽國樂團，一定想聽聽有哪些台灣元素，傳統的東方樂器跟西方樂器如何融合創新。
+音樂家出身，劉玄詠自己就是最好的音樂大使，面對音樂專業問題侃侃而談，他說傳統樂器沒有像西方樂器已經形制化，有時候聽了「會瘋掉」，而台北市立國樂團已經克服這麼難的音準問題，「這就是專業。」
+除了音樂盛宴，今年駐奧地利代表處也將藝術觸角延伸到人權電影，在城市電影院（Metro Kinokulturhaus）舉辦「台灣人權電影節」，播映「大濛」等多部彰顯台灣民主發展與在地人權關懷的指標性電影；代表處也準備炒米粉與滷蛋滷肉等台灣特色小吃，要用藝術與台灣美食交朋友。
+劉玄詠強調，「台灣日」首次舉辦先試水溫，未來希望可以繼續，「辦活動是破冰很好的工具，展現台灣文化藝術水準，也凸現台灣主體性。」
+劉玄詠說，像剛結束的花蓮縣青少年排笛團來維也納演出，音樂好聽又能讓人了解花蓮在地原民文化底蘊，「我們用文化交朋友，也會持續推動台奧各面向實質關係。」（編輯：黃名璽）1150607
+選擇與事實站在一起，您的每一份贊助，都是守護新聞自由的力量
+下載中央社「一手新聞」APP，即時掌握最新消息
+本網站之文字、圖片及影音，非經授權，不得轉載、公開播送或公開傳輸及利用。</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Viena celebra el &#39;Día de Taiwán&#39; con conciertos, cine y gastronomía</div>
+        <div class="text-block" style="margin-bottom:8px">El Año Cultural de Taiwán en Europa 2026, organizado por la Oficina de Representación de Taiwán en Austria, continúa celebrándose en Viena. El día 6, la Cámara de Comercio Taiwanesa en Austria y otras organizaciones copatrocinaron una actividad de carreras de botes dragón con motivo del Festival del Bote Dragón (Duanwu), mostrando la unidad de la comunidad de compatriotas taiwaneses en Viena. En el evento, los compatriotas también instalaron puestos conjuntos para una venta benéfica de gastronomía taiwanesa, desde zongzi (tamales de arroz glutinoso) hasta douhua (pudín de tofu), todos muy bien recibidos y agotados poco después de abrir la venta.
+
+El representante de Taiwán en Austria, Liu Hsuan-yung, declaró en una entrevista colectiva con los medios que las actividades de la comunidad taiwanesa en Viena han ido transformándose gradualmente: del antiguo baile del «Año Chino» a un «Baile del Año Lunar» con identidad cultural propia. «A través de estas actividades no oficiales se muestra la vitalidad de la sociedad civil taiwanesa. Hoy en día, la gente puede distinguir perfectamente entre Taiwán (Taiwan) y Tailandia (Thailand)», afirmó.
+
+Liu señaló que uno de los platos fuertes del Año Cultural de Taiwán en Europa es la actuación de la Orquesta Nacional de Música China de Taipéi en el Musikverein (Sala Dorada). «Todo el concierto estará compuesto por obras sinfónicas de música nacional creadas por compositores taiwaneses y repletas de elementos taiwaneses. Aún más destacable es que se ha invitado al chelista taiwanés radicado en Alemania Yang Wenxin para interpretar junto a la orquesta una obra del compositor taiwanés Hsiao Tyzen, en la que se puede apreciar la fusión entre la refinada estructura de los instrumentos clásicos occidentales y la tradición de la música de cuerda y viento oriental».
+
+Liu explicó que la historia de la música sinfónica occidental se caracteriza por la precisión en la afinación y la armonía, mientras que los instrumentos tradicionales orientales poseen una gran carga de emoción y color personal del intérprete. «La Orquesta Nacional de Música China de Taipéi ha superado las limitaciones estructurales de los instrumentos tradicionales y ha logrado una armonía de alto nivel, algo que merece mucho la pena dar a conocer», subrayó.
+
+Liu indicó que los austriacos que acudan a escuchar la orquesta de música nacional querrán descubrir qué elementos taiwaneses están presentes y cómo se fusionan e innovan los instrumentos orientales tradicionales con los occidentales.
+
+Formado como músico, Liu Hsuan-yung es en sí mismo el mejor embajador musical, y habla con soltura sobre cuestiones musicales especializadas. Señaló que los instrumentos tradicionales no han alcanzado la estandarización formal de los occidentales, lo que a veces hace que uno se vuelva loco, pero que la Orquesta Nacional de Música China de Taipéi ya ha superado ese difícil problema de afinación: «Eso es profesionalismo».
+
+Además del festín musical, este año la Oficina de Representación en Austria también ha extendido su alcance artístico al cine de derechos humanos, organizando el «Festival de Cine de Derechos Humanos de Taiwán» en el Metro Kinokulturhaus, donde se proyectarán varios filmes emblemáticos que reflejan el desarrollo democrático de Taiwán y la preocupación local por los derechos humanos, entre ellos «Da Meng». La oficina también ha preparado fideos de arroz salteados, huevos estofados y cerdo estofado, entre otros aperitivos típicos taiwaneses, para hacer amigos a través del arte y la gastronomía taiwanesa.
+
+Liu Hsuan-yung subrayó que el «Día de Taiwán» se celebra por primera vez a modo de prueba, con la esperanza de que pueda continuar en el futuro: «Organizar actividades es una excelente herramienta para romper el hielo, mostrar el nivel cultural y artístico de Taiwán y destacar la identidad taiwanesa».
+
+Liu mencionó también la reciente actuación en Viena del Grupo Juvenil de Flauta de Caña de Hualien, cuya música no solo fue muy apreciada, sino que permitió al público conocer el rico sustrato cultural indígena local de Hualien. «Hacemos amigos a través de la cultura y seguiremos impulsando las relaciones sustantivas entre Taiwán y Austria en todos los ámbitos», concluyó. (Editado por Huang Mingxi) 1150607</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">La Oficina de Representación de Taiwán en Austria celebró el evento &#39;Día de Taiwán&#39;: el día 7, por la mañana, la Orquesta Nacional de Música China de Taipéi ofreció un concierto en la Sala Dorada, mientras que por la tarde se realizó el Festival de Cine de Derechos Humanos de Taiwán; frente al cine, se ofrecieron auténticos platos de la gastronomía taiwanesa. Más de mil invitados de Oriente y Occidente vivieron en primera persona el torbellino cultural de Taiwán.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Viena celebra el &#39;Día de Taiwán&#39; con conciertos, cine y gastronomía</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">&#34;Día de Taiwán&#34; en Viena: concierto, cine y gastronomía, una oferta por partida triple | Cultura | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El Año Cultural de Taiwán en Europa 2026, organizado por la Oficina de Representación de Taiwán en Austria, continúa celebrándose en Viena. El día 6, la Cámara de Comercio Taiwanesa en Austria y otras organizaciones copatrocinaron una actividad de carreras de botes dragón con motivo del Festival del Bote Dragón (Duanwu), mostrando la unidad de la comunidad de compatriotas taiwaneses en Viena. En el evento, los compatriotas también instalaron puestos conjuntos para una venta benéfica de gastronomía taiwanesa, desde zongzi (tamales de arroz glutinoso) hasta douhua (pudín de tofu), todos muy bien recibidos y agotados poco después de abrir la venta.
+
+El representante de Taiwán en Austria, Liu Xuanyong, declaró en una entrevista colectiva con los medios que las actividades de la comunidad taiwanesa en Viena han ido transformándose gradualmente: del antiguo baile del «Año Chino» a un «Baile del Año Lunar» con identidad cultural propia. «A través de estas actividades no oficiales se muestra la vitalidad de la sociedad civil taiwanesa. Hoy en día, la gente puede distinguir perfectamente entre Taiwán (Taiwan) y Tailandia (Thailand)», afirmó.
+
+Liu señaló que uno de los platos fuertes del Año Cultural de Taiwán en Europa es la actuación de la Orquesta Nacional de Música China de Taipéi en el Musikverein (Sala Dorada). «Todo el concierto estará compuesto por obras sinfónicas de música nacional creadas por compositores taiwaneses y repletas de elementos taiwaneses. Aún más destacable es que se ha invitado al chelista taiwanés radicado en Alemania Yang Wenxin para interpretar junto a la orquesta una obra del compositor taiwanés Hsiao Tai-jan, en la que se puede apreciar la fusión entre la refinada estructura de los instrumentos clásicos occidentales y la tradición de la música de cuerda y viento oriental».
+
+Liu explicó que la historia de la música sinfónica occidental se caracteriza por la precisión en la afinación y la armonía, mientras que los instrumentos tradicionales orientales poseen una gran carga de emoción y color personal del intérprete. «La Orquesta Nacional de Música China de Taipéi ha superado las limitaciones estructurales de los instrumentos tradicionales y ha logrado una armonía de alto nivel, algo que merece mucho la pena dar a conocer», subrayó.
+
+Liu indicó que los austriacos que acudan a escuchar la orquesta de música nacional querrán descubrir qué elementos taiwaneses están presentes y cómo se fusionan e innovan los instrumentos orientales tradicionales con los occidentales.
+
+Formado como músico, Liu Xuanyong es en sí mismo el mejor embajador musical, y habla con soltura sobre cuestiones musicales especializadas. Señaló que los instrumentos tradicionales no han alcanzado la estandarización formal de los occidentales, lo que a veces puede resultar desconcertante, pero que la Orquesta Nacional de Música China de Taipéi ya ha superado ese difícil problema de afinación: «Eso es profesionalismo».
+
+Además del festín musical, este año la Oficina de Representación en Austria también ha extendido su alcance artístico al cine de derechos humanos, organizando el «Festival de Cine de Derechos Humanos de Taiwán» en el Metro Kinokulturhaus, donde se proyectarán varios filmes emblemáticos que reflejan el desarrollo democrático de Taiwán y la preocupación local por los derechos humanos, entre ellos «Da Meng». La oficina también ha preparado fideos de arroz salteados, huevos estofados y cerdo estofado, entre otros aperitivos típicos taiwaneses, para hacer amigos a través del arte y la gastronomía taiwanesa.
+
+Liu Xuanyong subrayó que el «Día de Taiwán» se celebra por primera vez a modo de prueba, con la esperanza de que pueda continuar en el futuro: «Organizar actividades es una excelente herramienta para romper el hielo, mostrar el nivel cultural y artístico de Taiwán y destacar la identidad taiwanesa».
+
+Liu mencionó también la reciente actuación en Viena del Grupo Juvenil de Flauta de Caña de Hualien, cuya música no solo fue muy apreciada, sino que permitió al público conocer el rico sustrato cultural indígena local de Hualien. «Hacemos amigos a través de la cultura y seguiremos impulsando las relaciones sustantivas entre Taiwán y Austria en todos los ámbitos», concluyó. (Editado por Huang Mingxi) 1150607</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El Año Cultural de Taiwán en Europa 2026, planificado por la Oficina de Representación en Austria, continúa desarrollándose en Viena. El día 6, entidades como la Asociación de Empresarios Taiwaneses organizaron conjuntamente una actividad de carreras de botes dragón con motivo del Festival del Bote del Dragón, mostrando la unidad de la comunidad taiwanesa en Viena. En el lugar también se reunieron compatriotas taiwaneses para instalar puestos y realizar una venta benéfica de comida taiwanesa; desde zongzi hasta douhua, todo recibió una gran acogida y se agotó poco después de salir a la venta.
+
+El representante de Taiwán en Austria, Liu Hsuan-yung, declaró en una entrevista conjunta con medios que las actividades de la comunidad taiwanesa en Viena han ido transformándose gradualmente: de los bailes de &#34;Año Nuevo Chino&#34; del pasado a los actuales bailes de &#34;Año Nuevo Lunar&#34;, reinterpretados desde una identidad cultural local. &#34;A través de estas actividades no oficiales, se ha mostrado la vitalidad de la sociedad civil taiwanesa. Ahora todo el mundo puede distinguir perfectamente entre Taiwán (Taiwan) y Tailandia (Thailand)&#34;, afirmó.
+
+Liu Hsuan-yung señaló que uno de los platos fuertes de este Año Cultural de Taiwán en Europa es la actuación de la Orquesta China de la Ciudad de Taipéi en la Sala Dorada. &#34;En esta ocasión, todo el concierto está compuesto por obras sinfónicas de música china creadas por compositores taiwaneses y llenas de elementos taiwaneses. Aún más destacable es que se ha invitado al violonchelista Yang Wen-hsin, radicado en Alemania, para interpretar junto con la orquesta una obra del compositor taiwanés Hsiao Tyzen, en la que puede escucharse la fusión entre la refinada estructura de los instrumentos clásicos occidentales y los instrumentos tradicionales orientales de cuerda y viento de bambú.&#34;
+
+Liu Hsuan-yung explicó que la historia de la música sinfónica occidental pone énfasis en la precisión de la afinación y la armonía, mientras que los instrumentos tradicionales orientales poseen una gran carga de emoción y color personal del intérprete. &#34;La Orquesta China de la Ciudad de Taipéi ha superado las limitaciones estructurales de los instrumentos tradicionales y ha depurado una armonía de alto nivel; realmente vale la pena presentarla&#34;, dijo.
+
+Liu Hsuan-yung añadió que, si los austriacos quieren escuchar a una orquesta de música china, sin duda querrán saber qué elementos taiwaneses contiene y cómo se integran e innovan los instrumentos tradicionales orientales con los occidentales.
+
+De formación musical, Liu Hsuan-yung es él mismo el mejor embajador de la música. Al hablar con soltura sobre cuestiones profesionales, dijo que los instrumentos tradicionales no están estandarizados en su forma como los occidentales, y que a veces, al escucharlos, &#34;uno se vuelve loco&#34;. Sin embargo, la Orquesta China de la Ciudad de Taipéi ya ha superado un problema de afinación tan difícil: &#34;Eso es profesionalismo&#34;.
+
+Además del festín musical, este año la Oficina de Representación en Austria también ha extendido su alcance artístico al cine de derechos humanos, con la celebración del &#34;Festival de Cine de Derechos Humanos de Taiwán&#34; en el Metro Kinokulturhaus, donde se proyectarán varias películas emblemáticas, entre ellas &#34;Da Meng&#34;, que ponen de relieve el desarrollo democrático de Taiwán y la atención local a los derechos humanos. La oficina también ha preparado fideos de arroz salteados, huevos estofados y cerdo braseado, entre otros aperitivos característicos de Taiwán, con la intención de hacer amigos a través del arte y la gastronomía taiwanesa.
+
+Liu Hsuan-yung subrayó que &#34;el Día de Taiwán&#34; se celebra por primera vez como una prueba inicial, con la esperanza de poder continuarlo en el futuro. &#34;Organizar actividades es una herramienta excelente para romper el hielo; permite mostrar el nivel de la cultura y las artes de Taiwán, y también resaltar la subjetividad de Taiwán&#34;, afirmó.
+
+Liu Hsuan-yung dijo que, por ejemplo, el recientemente concluido viaje a Viena de la Banda Juvenil de Flauta de Pan del Condado de Hualien para ofrecer actuaciones no solo permitió disfrutar de buena música, sino también conocer el trasfondo cultural indígena local de Hualien. &#34;Hacemos amigos a través de la cultura y seguiremos promoviendo relaciones sustanciales entre Taiwán y Austria en diversos ámbitos&#34;, señaló. (Editor: Huang Ming-hsi) 1150607
+
+Elegir estar del lado de los hechos: cada una de sus contribuciones es una fuerza para proteger la libertad de prensa.
+Descargue la app &#34;Noticias de Primera Mano&#34; de CNA para conocer al instante las últimas informaciones.
+Los textos, imágenes, audio y video de este sitio web no podrán ser reproducidos, retransmitidos públicamente, transmitidos públicamente ni utilizados sin autorización.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La Oficina de Representación de Taiwán en Austria celebró el evento &#39;Día de Taiwán&#39;: el día 7, por la mañana, la Orquesta Nacional de Música Tradicional China de Taipéi ofreció un concierto en la Sala Dorada, mientras que por la tarde se realizó el Festival de Cine de Derechos Humanos de Taiwán; frente al cine, se ofrecieron auténticos platos de la gastronomía taiwanesa. Más de mil invitados de Oriente y Occidente vivieron en primera persona el torbellino cultural de Taiwán.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La Oficina de Representación en Austria organizó la actividad «Día de Taiwán». El día 7, desde la mañana, la Orquesta China Municipal de Taipéi ofreció una actuación en la Sala Dorada, mientras que por la tarde el Festival de Cine de Derechos Humanos de Taiwán se hizo eco de la jornada; fuera del cine, además, hubo auténtica gastronomía taiwanesa, y más de un millar de invitados de Oriente y Occidente vivieron en persona el torbellino cultural de Taiwán.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.35</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Traducción fluida y natural para lectores hispanohablantes</li><li class="good">Estructura de párrafos bien organizada y coherente</li><li class="good">Las citas en la sección quotes están bien redactadas y son consistentes con el cuerpo</li><li class="good">El SEO está bien redactado y es informativo</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El nombre del representante se romaniza como &#39;Liu Xuanyong&#39; en lugar de la romanización pinyin estándar o Wade-Giles consistente con otras fuentes (&#39;Liu Hsuan-yung&#39;)</li><li class="bad">La orquesta se denomina &#39;Orquesta Nacional de Música China de Taipéi&#39; en el body pero &#39;Orquesta Nacional de Música Tradicional China de Taipéi&#39; en el SEO, lo que genera inconsistencia interna</li><li class="bad">La expresión &#39;uno se vuelve loco&#39; del original se omite y se suaviza como &#39;puede resultar desconcertante&#39;, perdiendo el tono coloquial del original</li><li class="bad">El nombre del compositor &#39;Hsiao Tai-jan&#39; difiere de la romanización más reconocida &#39;Hsiao Tyzen&#39;</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">7.7</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Mantiene el tono coloquial del original, incluyendo la expresión &#39;uno se vuelve loco&#39;</li><li class="good">Romanización del nombre del representante (&#39;Liu Hsuan-yung&#39;) más consistente con fuentes oficiales</li><li class="good">Uso correcto de &#39;Hsiao Tyzen&#39; como romanización del compositor</li><li class="good">El cuerpo del texto es preciso y bien estructurado</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El formato incluye texto editorial ajeno al artículo (&#39;Elegir estar del lado de los hechos...&#39;, &#39;Descargue la app...&#39;, aviso de derechos de autor), lo que contamina el formato y reduce la integridad</li><li class="bad">La denominación de la orquesta varía entre &#39;Orquesta China de la Ciudad de Taipéi&#39; (body) y &#39;Orquesta China Municipal de Taipéi&#39; (SEO), generando inconsistencia terminológica interna</li><li class="bad">El título incluye &#39;| Cultura | CNA&#39;, que es metadato de navegación web, no parte del título periodístico propiamente dicho</li><li class="bad">La sección quotes usa &#39;subjetividad de Taiwan&#39; para traducir un concepto de identidad taiwanesa, que puede resultar confuso para lectores hispanohablantes sin contexto</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El modelo A obtiene mayor puntuación total gracias a una mejor integridad de formato (ausencia de texto editorial ajeno), mayor consistencia interna en la sección de quotes respecto al body, y una presentación más limpia del artículo. Aunque el modelo B preserva mejor algunos matices coloquiales del original y usa romanizaciones más reconocidas para nombres propios, su inclusión de texto no editorial (avisos legales, llamadas a descarga de app) y las inconsistencias terminológicas internas en el nombre de la orquesta penalizan su puntuación en format_integrity y term_consistency. Ambos modelos presentan una calidad general similar en fluency y accuracy, sin errores críticos de fondo.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            <div class="qc-detail">原文引語 5 段，譯文引號開 11 次</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>internal_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>QC 軟性失敗：[&#39;QC-05-quotes&#39;]</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (40)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-EVENT">歐洲台灣文化年 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-EVENT">台灣人權電影節 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-EVENT">歐洲台灣文化年 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-EVENT">台灣人權電影節 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">中國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台北 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">維也納 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">金色大廳 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">奧地利 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">中國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台北 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">維也納 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">金色大廳 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">奧地利 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">駐奧地利代表處 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">台灣台商會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">台北市立國樂團 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">北市國 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">城市電影院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">Metro Kinokulturhaus <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">駐奧地利代表處 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">台灣台商會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">台北市立國樂團 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">北市國 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">城市電影院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">Metro Kinokulturhaus <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">駐奧地利代表劉玄詠 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">楊文信 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">蕭泰然 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">劉玄詠 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">駐奧地利代表劉玄詠 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">楊文信 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">蕭泰然 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">劉玄詠 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TITLE">駐奧地利代表 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">駐奧地利代表 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">ba1e9281-9dea-4cd4-9755-185ec54039a2</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202606070071</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-06-08T15:44</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-06-08T15:45</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

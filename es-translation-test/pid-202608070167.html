@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>台韓出口首度超越日本　AI半導體需求成關鍵推手 | 產經 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202608070167</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>台韓出口首度超越日本　AI半導體需求成關鍵推手 | 產經 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-warn">external_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">台韓出口首度超越日本　AI半導體需求成關鍵推手 | 產經 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202608070167.aspx" target="_blank">https://www.cna.com.tw/news/aall/202608070167.aspx</a></div>
+      <div class="text-block">（中央社記者戴雅真東京7日專電）受惠人工智慧（AI）帶動先進半導體需求大增，台灣、韓國今年上半年出口額雙雙首度超越日本。相較之下，日本的優勢主要侷限於半導體相關材料及製造設備，因此從這波需求中獲得的效益出現明顯差距。
+日本經濟新聞報導，根據日韓台貿易統計，並綜合日本貿易振興機構（JETRO）及聯合國資料庫UN Comtrade資料，以美元換算後顯示，2026年1至6月韓國出口額達4963億美元，台灣4166億美元，日本則為3844億美元，韓台出口額首度雙雙超越日本。
+與去年同期相比，日本出口額增加近1成，但韓國、台灣均大增近5成，成長幅度明顯高於日本。
+背後最主要的原因，是AI用半導體需求呈現爆發性擴張。台灣有台積電（TSMC），韓國則有三星電子及SK海力士，負責生產先進半導體。
+2026年上半年，韓國積體電路出口額達1490億美元，台灣則達1332億美元。積體電路占整體出口的比重，韓國與台灣均約為3成。韓國僅2026年上半年的出口額，就已超越2025年全年。相較下，日本積體電路出口額為212億美元，占整體出口僅約5%。
+日本則在半導體製造設備及材料領域具有競爭優勢。東京威力科創（Tokyo Electron）、愛德萬測試（Advantest）、雷泰光電（Lasertec）等企業在全球擁有高市占率，並透過各國及地區擴充半導體生產體系，間接承接AI需求帶來的商機。
+2026年上半年，日本半導體製造設備出口額達150億美元，高於韓國的52億美元，以及台灣的35億美元。然而，與韓國、台灣掌握高附加價值且市場快速擴大的先進半導體終端產品相比，日本僅靠製造設備的優勢，仍無法彌補與台灣、韓國的差距。
+三菱UFJ研究與顧問公司的丸山健太指出，「即使各國及地區的半導體出口持續增加，相關零組件、材料及製造設備的出口額，也很難以同樣速度快速擴張。」若以匯率來看，日圓目前處於歷史性低檔，確實使日本出口額換算成美元後受到壓縮。不過，韓元及新台幣兌美元匯率同樣面臨貶值壓力，因此韓台超越日本並不能單純以匯率因素解釋。
+更值得注意的是，日本出口競爭力走弱並非AI熱潮下才出現的短期現象。JETRO資料顯示，日本2025年出口額已降至全球第6。1970至90年代，日本長期僅次於美國及德國，排名全球第3；2000年代隨中國崛起降至第4，近年，日本又陸續被作為國際貿易樞紐的荷蘭與香港超越。
+日本戰後曾先後依靠紡織、鋼鐵、汽車及電子產品等產業崛起，透過持續供應全球需求快速增加的產品，建立貿易立國模式。然而在AI時代，全球需求重心快速轉向先進半導體，台灣及韓國憑藉晶圓代工、記憶體等產業優勢掌握新一波成長機會，日本則仍以材料及設備等上游產業為主要強項。
+未來日本能否在既有半導體設備及材料優勢之外，培養符合數位及AI時代的新成長產業，將成為能否扭轉出口競爭力下滑的重要關鍵。（編輯：陳承功）1150807</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Las exportaciones de Taiwán y Corea del Sur superan por primera vez a las de Japón; la demanda de semiconductores de AI, clave | Economía | CNA</div>
+        <div class="text-block" style="margin-bottom:8px">(Tokio, 7 de agosto, CNA (Agencia Central de Noticias de Taiwán), corresponsal Tai Ya-chen) Impulsadas por el fuerte aumento de la demanda de semiconductores avanzados derivada de la inteligencia artificial (AI), Taiwán y Corea del Sur superaron por primera vez a Japón en valor de exportaciones durante la primera mitad de este año. En contraste, las ventajas de Japón se concentran principalmente en materiales relacionados con semiconductores y equipos de fabricación, por lo que los beneficios que ha obtenido de esta ola de demanda muestran una brecha evidente.
+
+El diario Nikkei informó que, según estadísticas comerciales de Japón, Corea del Sur y Taiwán, junto con datos de la Organización de Comercio Exterior de Japón (JETRO) y de la base de datos de Naciones Unidas UN Comtrade, convertidos a dólares estadounidenses, las exportaciones de Corea del Sur entre enero y junio de 2026 alcanzaron los 496.300 millones de dólares, las de Taiwán 416.600 millones y las de Japón 384.400 millones, con lo que Corea del Sur y Taiwán superaron por primera vez a Japón en valor de exportaciones.
+
+En comparación con el mismo periodo del año pasado, las exportaciones de Japón aumentaron cerca de un 10%, pero las de Corea del Sur y Taiwán se dispararon cerca de un 50%, con un ritmo de crecimiento claramente superior al de Japón.
+
+La principal razón detrás de ello es la expansión explosiva de la demanda de semiconductores para AI. Taiwán cuenta con TSMC, mientras que Corea del Sur tiene a Samsung Electronics y SK Hynix, encargadas de producir semiconductores avanzados.
+
+En la primera mitad de 2026, las exportaciones surcoreanas de circuitos integrados alcanzaron los 149.000 millones de dólares, mientras que las de Taiwán llegaron a 133.200 millones. Los circuitos integrados representan alrededor del 30% de las exportaciones totales tanto de Corea del Sur como de Taiwán. Solo en la primera mitad de 2026, las exportaciones surcoreanas de circuitos integrados ya superaron el total de todo 2025. En comparación, las exportaciones japonesas de circuitos integrados fueron de 21.200 millones de dólares, equivalentes a apenas alrededor del 5% de sus exportaciones totales.
+
+Japón, por su parte, tiene ventajas competitivas en los campos de los equipos de fabricación de semiconductores y los materiales. Empresas como Tokyo Electron, Advantest y Lasertec cuentan con altas cuotas de mercado a nivel mundial y, mediante la expansión de sistemas de producción de semiconductores en distintos países y regiones, captan indirectamente las oportunidades de negocio generadas por la demanda de AI.
+
+En la primera mitad de 2026, las exportaciones japonesas de equipos de fabricación de semiconductores alcanzaron los 15.000 millones de dólares, por encima de los 5.200 millones de Corea del Sur y los 3.500 millones de Taiwán. Sin embargo, frente a Corea del Sur y Taiwán, que controlan productos terminales de semiconductores avanzados de alto valor añadido y con un mercado en rápida expansión, Japón, apoyándose solo en su ventaja en equipos de fabricación, sigue sin poder compensar la brecha con Taiwán y Corea del Sur.
+
+Kenta Maruyama, de Mitsubishi UFJ Research and Consulting, señaló: «Aunque las exportaciones de semiconductores de distintos países y regiones sigan aumentando, es difícil que las exportaciones de componentes, materiales y equipos de fabricación relacionados se expandan rápidamente al mismo ritmo». Si se observa desde la perspectiva del tipo de cambio, el yen se encuentra actualmente en un nivel históricamente bajo, lo que efectivamente ha comprimido el valor de las exportaciones japonesas al convertirlas a dólares estadounidenses. No obstante, el won surcoreano y el nuevo dólar taiwanés también afrontan presiones de depreciación frente al dólar estadounidense, por lo que el hecho de que Corea del Sur y Taiwán hayan superado a Japón no puede explicarse únicamente por factores cambiarios.
+
+Más importante aún, el debilitamiento de la competitividad exportadora de Japón no es un fenómeno de corto plazo surgido solo con el auge de AI. Datos de JETRO muestran que las exportaciones de Japón ya habían caído al sexto lugar mundial en 2025. Entre las décadas de 1970 y 1990, Japón ocupó durante largo tiempo el tercer puesto mundial, solo por detrás de Estados Unidos y Alemania; en la década de 2000 descendió al cuarto lugar con el ascenso de China y, en años recientes, también fue superado sucesivamente por Países Bajos y Hong Kong, que actúan como centros del comercio internacional.
+
+Tras la guerra, Japón se elevó sucesivamente apoyándose en industrias como la textil, el acero, los automóviles y los productos electrónicos, y estableció un modelo de nación basada en el comercio mediante el suministro continuo de productos cuya demanda mundial aumentaba con rapidez. Sin embargo, en la era de AI, el centro de la demanda mundial se ha desplazado rápidamente hacia los semiconductores avanzados. Taiwán y Corea del Sur han aprovechado una nueva ola de oportunidades de crecimiento gracias a sus ventajas en sectores como la fundición de obleas y la memoria, mientras que Japón sigue teniendo como principales fortalezas las industrias de aguas arriba, como materiales y equipos.
+
+De cara al futuro, si Japón podrá, además de sus ventajas existentes en equipos y materiales para semiconductores, desarrollar nuevas industrias de crecimiento acordes con la era digital y de AI, se convertirá en una clave importante para determinar si puede revertir el deterioro de su competitividad exportadora. (Editor: Chen Cheng-kung) 1150807</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">Impulsadas por el fuerte aumento de la demanda de semiconductores avanzados derivada de la AI, las exportaciones de Taiwán y Corea del Sur en el primer semestre de este año superaron por primera vez a las de Japón. En contraste, las ventajas de Japón se limitan principalmente a materiales relacionados con semiconductores y equipos de fabricación, por lo que los beneficios obtenidos de esta ola de demanda muestran una clara brecha.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Exportaciones de Taiwán y Corea del Sur superan a Japón por primera vez, impulsadas por la demanda de semiconductores AI | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Las exportaciones de Taiwán y Corea del Sur superan por primera vez a las de Japón; la demanda de semiconductores de AI, clave | Economía | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Exportaciones de Taiwán y Corea del Sur superan a Japón por primera vez; demanda de semiconductores AI es motor clave | Economía | CNA</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">（CNA, Agencia Central de Noticias de Taiwán — Tokio, 7 de agosto）Impulsadas por el fuerte aumento de la demanda de semiconductores avanzados generado por la inteligencia artificial (AI), las exportaciones de Taiwán y Corea del Sur superaron por primera vez las de Japón en el primer semestre de este año. En contraste, las ventajas de Japón se concentran principalmente en materiales relacionados con semiconductores y equipos de fabricación, lo que ha generado una brecha notable en los beneficios obtenidos de esta ola de demanda.
+
+Según informó el diario Nikkei, con base en estadísticas comerciales de Japón, Corea del Sur y Taiwán, así como datos del Japan External Trade Organization (JETRO) y de la base de datos de Naciones Unidas UN Comtrade, convertidos a dólares estadounidenses, las exportaciones de Corea del Sur alcanzaron 496.300 millones de dólares entre enero y junio de 2026, las de Taiwán llegaron a 416.600 millones y las de Japón a 384.400 millones, siendo la primera vez que tanto Corea del Sur como Taiwán superan simultáneamente a Japón.
+
+En comparación con el mismo período del año anterior, las exportaciones japonesas crecieron cerca de un 10%, mientras que las de Corea del Sur y Taiwán aumentaron aproximadamente un 50%, un ritmo de crecimiento notablemente superior al de Japón.
+
+La razón principal detrás de este fenómeno es la expansión explosiva de la demanda de semiconductores para AI. Taiwán cuenta con TSMC, mientras que Corea del Sur tiene a Samsung Electronics y SK Hynix, encargadas de producir semiconductores avanzados.
+
+En el primer semestre de 2026, las exportaciones de circuitos integrados de Corea del Sur alcanzaron 149.000 millones de dólares, mientras que las de Taiwán llegaron a 133.200 millones. Los circuitos integrados representaron aproximadamente el 30% del total de exportaciones tanto de Corea del Sur como de Taiwán. Solo en el primer semestre de 2026, Corea del Sur ya superó el total exportado durante todo el año 2025. En contraste, las exportaciones japonesas de circuitos integrados ascendieron a 21.200 millones de dólares, equivalentes a apenas el 5% del total de sus exportaciones.
+
+Japón mantiene ventajas competitivas en el ámbito de los equipos de fabricación de semiconductores y los materiales. Empresas como Tokyo Electron, Advantest y Lasertec ostentan elevadas cuotas de mercado a nivel mundial y se benefician indirectamente de la demanda generada por la AI a través de la expansión de los sistemas de producción de semiconductores en distintos países y regiones.
+
+En el primer semestre de 2026, las exportaciones japonesas de equipos de fabricación de semiconductores alcanzaron 15.000 millones de dólares, cifra superior a los 5.200 millones de Corea del Sur y los 3.500 millones de Taiwán. Sin embargo, comparado con Corea del Sur y Taiwán, que dominan los productos finales de semiconductores avanzados de alto valor añadido en un mercado en rápida expansión, la ventaja japonesa en equipos de fabricación resulta insuficiente para cerrar la brecha.
+
+Kenta Maruyama, de Mitsubishi UFJ Research and Consulting, señaló que «incluso si las exportaciones de semiconductores continúan aumentando en distintos países y regiones, es muy difícil que las exportaciones de componentes relacionados, materiales y equipos de fabricación se expandan al mismo ritmo». En cuanto al tipo de cambio, el yen se encuentra actualmente en mínimos históricos, lo que efectivamente comprime el valor de las exportaciones japonesas expresado en dólares. No obstante, el won surcoreano y el nuevo dólar taiwanés también han enfrentado presiones de depreciación frente al dólar, por lo que la superación de Japón por parte de Corea del Sur y Taiwán no puede explicarse únicamente por factores cambiarios.
+
+Más significativo aún es que el debilitamiento de la competitividad exportadora japonesa no es un fenómeno de corto plazo surgido al calor del auge de la AI. Según datos de JETRO, las exportaciones de Japón en 2025 ya cayeron al sexto lugar mundial. Entre las décadas de 1970 y 1990, Japón ocupó de forma sostenida el tercer puesto global, solo por detrás de Estados Unidos y Alemania; en la década de 2000 descendió al cuarto lugar con el ascenso de China, y en años recientes fue superado también por los Países Bajos y Hong Kong, ambos centros del comercio internacional.
+
+Tras la Segunda Guerra Mundial, Japón se desarrolló sucesivamente apoyándose en industrias como textiles, acero, automóviles y productos electrónicos, construyendo un modelo de nación comercial mediante el suministro sostenido de productos con demanda global en rápido crecimiento. Sin embargo, en la era de la AI, el centro de gravedad de la demanda mundial se ha desplazado velozmente hacia los semiconductores avanzados. Taiwán y Corea del Sur han aprovechado esta nueva ola de crecimiento gracias a sus ventajas en sectores como la fabricación de obleas por encargo y la memoria, mientras que Japón sigue teniendo como principal fortaleza las industrias de materiales y equipos situadas en la parte superior de la cadena de valor.
+
+La clave para revertir el declive de la competitividad exportadora japonesa residirá en si el país logra, más allá de sus ventajas existentes en equipos y materiales para semiconductores, cultivar nuevas industrias de crecimiento acordes con la era digital y de la AI. (Editado por Chen Chenggong) 1150807</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(Tokio, 7 de agosto, CNA (Agencia Central de Noticias de Taiwán), corresponsal Tai Ya-chen) Impulsadas por el fuerte aumento de la demanda de semiconductores avanzados derivada de la inteligencia artificial (AI), Taiwán y Corea del Sur superaron por primera vez a Japón en valor de exportaciones durante la primera mitad de este año. En contraste, las ventajas de Japón se concentran principalmente en materiales relacionados con semiconductores y equipos de fabricación, por lo que los beneficios que ha obtenido de esta ola de demanda muestran una brecha evidente.
+
+El diario Nikkei informó que, según estadísticas comerciales de Japón, Corea del Sur y Taiwán, junto con datos de la Organización de Comercio Exterior de Japón (JETRO) y de la base de datos de Naciones Unidas UN Comtrade, convertidos a dólares estadounidenses, las exportaciones de Corea del Sur entre enero y junio de 2026 alcanzaron los 496.300 millones de dólares, las de Taiwán 416.600 millones y las de Japón 384.400 millones, con lo que Corea del Sur y Taiwán superaron por primera vez a Japón en valor de exportaciones.
+
+En comparación con el mismo periodo del año pasado, las exportaciones de Japón aumentaron cerca de un 10%, pero las de Corea del Sur y Taiwán se dispararon cerca de un 50%, con un ritmo de crecimiento claramente superior al de Japón.
+
+La principal razón detrás de ello es la expansión explosiva de la demanda de semiconductores para AI. Taiwán cuenta con TSMC, mientras que Corea del Sur tiene a Samsung Electronics y SK Hynix, encargadas de producir semiconductores avanzados.
+
+En la primera mitad de 2026, las exportaciones surcoreanas de circuitos integrados alcanzaron los 149.000 millones de dólares, mientras que las de Taiwán llegaron a 133.200 millones. Los circuitos integrados representan alrededor del 30% de las exportaciones totales tanto de Corea del Sur como de Taiwán. Solo en la primera mitad de 2026, las exportaciones de Corea del Sur ya superaron el total de todo 2025. En comparación, las exportaciones japonesas de circuitos integrados fueron de 21.200 millones de dólares, equivalentes a apenas alrededor del 5% de sus exportaciones totales.
+
+Japón, por su parte, tiene ventajas competitivas en los campos de los equipos de fabricación de semiconductores y los materiales. Empresas como Tokyo Electron, Advantest y Lasertec cuentan con altas cuotas de mercado a nivel mundial y, mediante la expansión de sistemas de producción de semiconductores en distintos países y regiones, captan indirectamente las oportunidades de negocio generadas por la demanda de AI.
+
+En la primera mitad de 2026, las exportaciones japonesas de equipos de fabricación de semiconductores alcanzaron los 15.000 millones de dólares, por encima de los 5.200 millones de Corea del Sur y los 3.500 millones de Taiwán. Sin embargo, frente a Corea del Sur y Taiwán, que controlan productos terminales de semiconductores avanzados de alto valor añadido y con un mercado en rápida expansión, Japón, apoyándose solo en su ventaja en equipos de fabricación, sigue sin poder compensar la brecha con Taiwán y Corea del Sur.
+
+Kenta Maruyama, de Mitsubishi UFJ Research and Consulting, señaló: «Aunque las exportaciones de semiconductores de distintos países y regiones sigan aumentando, es difícil que las exportaciones de componentes, materiales y equipos de fabricación relacionados se expandan rápidamente al mismo ritmo». Si se observa desde la perspectiva del tipo de cambio, el yen se encuentra actualmente en un nivel históricamente bajo, lo que efectivamente ha comprimido el valor de las exportaciones japonesas al convertirlas a dólares estadounidenses. No obstante, el won surcoreano y el nuevo dólar taiwanés también afrontan presiones de depreciación frente al dólar estadounidense, por lo que el hecho de que Corea del Sur y Taiwán hayan superado a Japón no puede explicarse únicamente por factores cambiarios.
+
+Más importante aún, el debilitamiento de la competitividad exportadora de Japón no es un fenómeno de corto plazo surgido solo con el auge de AI. Datos de JETRO muestran que las exportaciones de Japón ya habían caído al sexto lugar mundial en 2025. Entre las décadas de 1970 y 1990, Japón ocupó durante largo tiempo el tercer puesto mundial, solo por detrás de Estados Unidos y Alemania; en la década de 2000 descendió al cuarto lugar con el ascenso de China y, en años recientes, también fue superado sucesivamente por Países Bajos y Hong Kong, que actúan como centros del comercio internacional.
+
+Tras la guerra, Japón se elevó sucesivamente apoyándose en industrias como la textil, el acero, los automóviles y los productos electrónicos, y estableció un modelo de nación basada en el comercio mediante el suministro continuo de productos cuya demanda mundial aumentaba con rapidez. Sin embargo, en la era de AI, el centro de la demanda mundial se ha desplazado rápidamente hacia los semiconductores avanzados. Taiwán y Corea del Sur han aprovechado una nueva ola de oportunidades de crecimiento gracias a sus ventajas en sectores como la fundición de obleas y la memoria, mientras que Japón sigue teniendo como principales fortalezas las industrias de aguas arriba, como materiales y equipos.
+
+De cara al futuro, si Japón podrá, además de sus ventajas existentes en equipos y materiales para semiconductores, desarrollar nuevas industrias de crecimiento acordes con la era digital y de AI, se convertirá en una clave importante para determinar si puede revertir el deterioro de su competitividad exportadora. (Editor: Chen Cheng-kung) 1150807</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Impulsadas por el auge de la demanda de semiconductores avanzados generado por la inteligencia artificial (AI), Taiwán y Corea del Sur superaron a Japón en exportaciones por primera vez en la primera mitad de este año. En contraste, las ventajas de Japón se limitan principalmente a materiales relacionados con semiconductores y equipos de fabricación, lo que ha generado una brecha notable en los beneficios obtenidos de esta ola de demanda.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Impulsadas por el fuerte aumento de la demanda de semiconductores avanzados derivada de la AI, las exportaciones de Taiwán y Corea del Sur en el primer semestre de este año superaron por primera vez a las de Japón. En contraste, las ventajas de Japón se limitan principalmente a materiales relacionados con semiconductores y equipos de fabricación, por lo que los beneficios obtenidos de esta ola de demanda muestran una clara brecha.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Impulsadas por el gran aumento en la demanda de semiconductores avanzados generado por la inteligencia artificial (AI), las exportaciones de Taiwán y Corea del Sur superaron a las de Japón por primera vez durante el primer semestre de este año. En contraste, la ventaja de Japón se limita principalmente a los materiales y equipos de fabricación de semiconductores, lo que evidencia una clara brecha en los beneficios obtenidos de esta ola de demanda.</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.65</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+          <span class="score-val">10.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Uso correcto de TSMC y CNA con nombre completo</li><li class="good">Cita directa con comillas «» correctamente aplicada</li><li class="good">Datos numéricos precisos y completos</li><li class="good">Buena fluidez general en español</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Omite el nombre del corresponsal (Tai Ya-chen), presente en el original</li><li class="bad">La frase &#39;Solo en el primer semestre de 2026, Corea del Sur ya superó el total exportado durante todo el año 2025&#39; omite la especificación de que se refiere a circuitos integrados, lo que puede generar confusión</li><li class="bad">Algunas construcciones son ligeramente más literales que en B (&#39;ostentan elevadas cuotas&#39; suena algo formal/forzado)</li><li class="bad">La nota &#39;no_hallucination&#39; baja levemente porque la omisión del corresponsal y la ambigüedad sobre qué superó el total de 2025 constituyen pequeñas imprecisiones</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">9.45</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+          <span class="score-val">10.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+          <span class="score-val">10.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Incluye el nombre del corresponsal (Tai Ya-chen), dato presente en el original que otros omiten</li><li class="good">Uso correcto y completo de TSMC, CNA con nombre completo en primera mención</li><li class="good">Cita directa con comillas tipográficas «» correctamente aplicada</li><li class="good">Estructura de párrafos fiel al original, incluyendo la perspectiva de futuro en el párrafo final</li><li class="good">Traducción de JETRO con nombre completo en español (&#39;Organización de Comercio Exterior de Japón&#39;) correctamente integrada</li><li class="good">Fluencia natural para lectores hispanohablantes sin calcos sintácticos del chino</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">La frase &#39;Solo en la primera mitad de 2026, las exportaciones de Corea del Sur ya superaron el total de todo 2025&#39; podría precisar &#39;de circuitos integrados&#39; para mayor claridad, aunque el contexto lo implica</li><li class="bad">El título carece del campo 【body】 completo visible en la evaluación, pero el contenido es sólido</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">C</div>
+          <strong>Model C</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">6.5</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:50%"></div></div>
+          <span class="score-val">5.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div>
+          <span class="score-val">4.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Título bien redactado y dentro del límite de caracteres</li><li class="good">SEO conciso y claro</li><li class="good">Uso correcto de TSMC implícito en el título</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Falta completamente el campo 【body】, lo que representa una omisión crítica de formato</li><li class="bad">Sin cuerpo de texto, la mayor parte de la información del artículo original está ausente</li><li class="bad">La cita en 【quotes】 usa &#39;los países y regiones&#39; en lugar de &#39;distintos países y regiones&#39;, alterando levemente el matiz</li><li class="bad">La ausencia del cuerpo hace imposible evaluar accuracy y no_hallucination de forma completa, penalizando severamente esas dimensiones</li><li class="bad">format_integrity muy bajo por la ausencia del bloque principal del artículo</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El modelo B obtiene la puntuación total más alta (9.35) gracias a su fidelidad completa al original —incluyendo el nombre del corresponsal—, uso impecable de terminología, fluidez natural en español y formato íntegro con comillas tipográficas correctas. El modelo A queda en segundo lugar (8.60) con buena calidad general pero con la omisión del corresponsal y una leve ambigüedad en el párrafo de circuitos integrados. El modelo C queda último (6.05) debido a la ausencia total del campo 【body】, lo que constituye un error crítico de formato que invalida la mayor parte de la evaluación de contenido.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>external_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>互評發現關鍵事實錯誤</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (20)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-COMPANY">三星電子 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">SK海力士 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">東京威力科創 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-GPE">日本 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">韓國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">美國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">中國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">東京 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">台積電 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">日本經濟新聞 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">日本貿易振興機構 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">JETRO <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">聯合國 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">UN Comtrade <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">戴雅真 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TECH">AI <span style="font-size:10px;opacity:.6">TECH</span></span>
+        
+        <span class="entity-tag tag-TECH">半導體 <span style="font-size:10px;opacity:.6">TECH</span></span>
+        
+        <span class="entity-tag tag-TECH">TSMC <span style="font-size:10px;opacity:.6">TECH</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">4325a282-6a1b-428a-9a8d-f187354d9c09</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202608070167</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-08-07T16:25</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-08-07T16:27</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

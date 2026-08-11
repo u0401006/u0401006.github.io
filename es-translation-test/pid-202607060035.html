@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中聯問題油爭議　賴總統：積極下架、公布受影響名單 | 生活 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202607060035</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>中聯問題油爭議　賴總統：積極下架、公布受影響名單 | 生活 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-ok">auto_publish</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">中聯問題油爭議　賴總統：積極下架、公布受影響名單 | 生活 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202607060035.aspx" target="_blank">https://www.cna.com.tw/news/aall/202607060035.aspx</a></div>
+      <div class="text-block">中聯油品致癌物超標衍生食安爭議，總統賴清德（前）6日出席中研院院士會議前受訪表示，面對中聯油的食安事件，政府秉持食品安全第一原則，在政策執行沒有妥協空間。中央社記者王飛華攝　115年7月6日中聯大豆沙拉油致癌物苯駢芘苯駢芘
+賴總統今天出席中研院第36次院士會議開幕式前接受媒體聯訪，答覆問題油相關議題，他強調，面對中聯油的食安事件，政府秉持食品安全第一原則，在政策執行沒有妥協空間。
+賴總統表示，該停產就要停產，中聯油產生的物質對健康影響很大，已全面停產，並靜候調查，進一步探究發生原因、積極改進，避免類似事情再度發生。
+其次，賴總統指出，該下架就要下架，包括第一層油品公司福壽、福懋及泰山必須全品項下架，目前也已完全下架。
+賴總統表示，該預防性下架就要預防性下架，這包含第二層油品公司，若是用問題油製成調和油，或是用問題油20%以上再製成二級產品，也要全部預防性下架。
+賴總統指出，目前其他257家業者，雖然產品經過專家會議認為影響程度不大，但也已經全部公布，並要求257家業者主動公布產品，讓民眾有知的權利。
+「該究責就要究責，絕不寬貸。」賴總統強調，任何食安事件都需要中央跟地方合作，這次食藥署擬定對策，地方政府則配合稽查及下架的工作，政府後續仍會秉持食安第一、公開透明、中央跟地方共同合作，維護民眾食品安全的目標。（編輯：張雅淨）1150706
+選擇與事實站在一起，您的每一份贊助，都是守護新聞自由的力量
+下載中央社「一手新聞」APP，即時掌握最新消息
+本網站之文字、圖片及影音，非經授權，不得轉載、公開播送或公開傳輸及利用。</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Escándalo del aceite contaminado de Chung Lien: presidente Lai promete retiro activo de productos y publicación de lista de afectados</div>
+        <div class="text-block" style="margin-bottom:8px">El presidente de Taiwán, Lai Ching-te, declaró este domingo, antes de asistir a la sesión inaugural de la 36.ª Conferencia de Académicos de la Academia Sínica, que ante el escándalo de seguridad alimentaria provocado por la empresa Chung Lien Oil —cuyos productos presentan niveles de carcinógenos por encima de los límites permitidos—, el gobierno mantiene como principio rector la seguridad alimentaria y no admite ningún tipo de concesión en la aplicación de las políticas correspondientes.
+
+En declaraciones a los medios de comunicación, Lai subrayó que la empresa debía detener su producción, y así lo ha hecho: Chung Lien Oil ha suspendido completamente sus operaciones a la espera de los resultados de la investigación, con el fin de esclarecer las causas del incidente, introducir mejoras y evitar que situaciones similares vuelvan a repetirse.
+
+El presidente señaló asimismo que los productos que debían ser retirados del mercado ya han sido retirados. Las empresas distribuidoras de primer nivel —Fushou, Fomosa y Taisun— han procedido a la retirada total de todos sus productos, proceso que ya ha concluido.
+
+En cuanto a las medidas preventivas, Lai indicó que también se ha ordenado la retirada cautelar de productos de las empresas distribuidoras de segundo nivel, en particular de aquellas que hayan utilizado el aceite contaminado para elaborar aceites mezclados o productos derivados con una proporción superior al 20% del aceite en cuestión.
+
+Respecto a las otras 257 empresas del sector, el presidente explicó que, aunque un comité de expertos ha determinado que el impacto sobre sus productos es limitado, sus nombres han sido divulgados públicamente y se les ha exigido que informen de manera proactiva sobre sus productos, garantizando así el derecho de la ciudadanía a estar informada.
+
+&#34;Quien deba rendir cuentas, las rendirá, sin ninguna indulgencia&#34;, afirmó Lai, quien recalcó que cualquier incidente de seguridad alimentaria requiere la colaboración entre el gobierno central y los gobiernos locales. En este caso, la Administración de Alimentos y Medicamentos ha diseñado las medidas de respuesta, mientras que las autoridades locales se han encargado de las inspecciones y las retiradas de productos. El gobierno, añadió, seguirá actuando bajo los principios de prioridad a la seguridad alimentaria, transparencia y cooperación entre los distintos niveles de gobierno para proteger la salud de la población. (Editado por Zhang Yajing) 1150706</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">En medio de la controversia de seguridad alimentaria por niveles excesivos de carcinógenos en aceites de Chung Lien Oil, el presidente Lai Ching-te afirmó hoy que los productos de primera línea que deban ser retirados del mercado serán retirados y que Chung Lien Oil ha suspendido completamente su producción. Asimismo, exigió que las 257 empresas afectadas por los aceites contaminados divulguen públicamente sus listas, garantizando el derecho a la información de la ciudadanía, bajo el principio de que la seguridad alimentaria es la prioridad del gobierno.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Escándalo del aceite contaminado de Chung Lien: presidente Lai promete retiro activo de productos y publicación de lista de afectados</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Controversia por el aceite problemático de Chung Lien: el presidente Lai dice que se retirará activamente de los estantes y se publicará la lista de afectados | Vida | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El presidente de Taiwán, Lai Ching-te, declaró este domingo, antes de asistir a la sesión inaugural de la 36.ª Conferencia de Académicos de la Academia Sínica, que ante el escándalo de seguridad alimentaria provocado por la empresa Zhonglian Oil —cuyos productos presentan niveles de carcinógenos por encima de los límites permitidos—, el gobierno mantiene como principio rector la seguridad alimentaria y no admite ningún tipo de concesión en la aplicación de las políticas correspondientes.
+
+En declaraciones a los medios de comunicación, Lai subrayó que la empresa debía detener su producción, y así lo ha hecho: Zhonglian Oil ha suspendido completamente sus operaciones a la espera de los resultados de la investigación, con el fin de esclarecer las causas del incidente, introducir mejoras y evitar que situaciones similares vuelvan a repetirse.
+
+El presidente señaló asimismo que los productos que debían ser retirados del mercado ya han sido retirados. Las empresas distribuidoras de primer nivel —Fushou, Fomosa y Taisun— han procedido a la retirada total de todos sus productos, proceso que ya ha concluido.
+
+En cuanto a las medidas preventivas, Lai indicó que también se ha ordenado la retirada cautelar de productos de las empresas distribuidoras de segundo nivel, en particular de aquellas que hayan utilizado el aceite contaminado para elaborar aceites mezclados o productos derivados con una proporción superior al 20% del aceite en cuestión.
+
+Respecto a las otras 257 empresas del sector, el presidente explicó que, aunque un comité de expertos ha determinado que el impacto sobre sus productos es limitado, sus nombres han sido divulgados públicamente y se les ha exigido que informen de manera proactiva sobre sus productos, garantizando así el derecho de la ciudadanía a estar informada.
+
+&#34;Quien deba rendir cuentas, las rendirá, sin ninguna indulgencia&#34;, afirmó Lai, quien recalcó que cualquier incidente de seguridad alimentaria requiere la colaboración entre el gobierno central y los gobiernos locales. En este caso, la Administración de Alimentos y Medicamentos ha diseñado las medidas de respuesta, mientras que las autoridades locales se han encargado de las inspecciones y las retiradas de productos. El gobierno, añadió, seguirá actuando bajo los principios de prioridad a la seguridad alimentaria, transparencia y cooperación entre los distintos niveles de gobierno para proteger la salud de la población. (Editado por Zhang Yajing) 1150706</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El presidente Lai Ching-te declaró hoy, antes de asistir a la ceremonia de apertura de la 36ª reunión de académicos de Academia Sinica, que ante el incidente de seguridad alimentaria relacionado con Chung Lien Oil, el gobierno se rige por el principio de que la seguridad alimentaria es lo primero y que no hay margen para concesiones en la ejecución de las políticas.
+
+Al responder a preguntas de la prensa sobre el caso del aceite problemático, Lai subrayó que, frente al incidente de seguridad alimentaria de Chung Lien Oil, el gobierno mantiene como principio prioritario la seguridad alimentaria y que no existe espacio para compromisos en la aplicación de las políticas.
+
+Lai señaló que, si corresponde suspender la producción, esta debe suspenderse. Indicó que las sustancias generadas por Chung Lien Oil tienen un gran impacto en la salud, por lo que ya se ha detenido por completo la producción, a la espera de la investigación para esclarecer más a fondo las causas de lo ocurrido, introducir mejoras activamente y evitar que hechos similares vuelvan a repetirse.
+
+En segundo lugar, Lai indicó que, si corresponde retirar productos de los estantes, estos deben retirarse. Esto incluye a las empresas de aceites de primer nivel Fu Shou, Fu Mao y Tai Shan, que deben retirar de los estantes todos sus productos, medida que ya se ha completado en su totalidad.
+
+Lai afirmó que, si corresponde una retirada preventiva de los estantes, esta debe llevarse a cabo. Esto incluye a las empresas de aceites de segundo nivel: si elaboraron aceite mezclado con aceite problemático, o si utilizaron más de un 20% de aceite problemático para fabricar productos secundarios, todos esos productos también deben ser retirados preventivamente de los estantes.
+
+Lai indicó que, en cuanto a otras 257 empresas, aunque una reunión de expertos consideró que el grado de afectación de sus productos no era grande, todas ellas ya han sido dadas a conocer, y se les ha exigido que publiquen de manera proactiva sus productos para garantizar el derecho de la ciudadanía a estar informada.
+
+&#34;Si corresponde exigir responsabilidades, se exigirán, sin la menor indulgencia&#34;, enfatizó Lai. Añadió que cualquier incidente de seguridad alimentaria requiere la cooperación entre el gobierno central y los gobiernos locales. En esta ocasión, la Administración de Alimentos y Medicamentos formuló las medidas de respuesta, mientras que los gobiernos locales colaboraron en las labores de inspección y retirada de productos. El gobierno seguirá actuando con el principio de que la seguridad alimentaria es lo primero, con apertura y transparencia, y con la cooperación conjunta entre el gobierno central y los locales, para salvaguardar la seguridad alimentaria de la población. (Editora: Chang Ya-ching) 2026/07/06
+
+Elegir estar del lado de los hechos: cada una de sus contribuciones es una fuerza para proteger la libertad de prensa.
+Descargue la aplicación &#34;Noticias de Primera Mano&#34; de la Agencia Central de Noticias para conocer de inmediato las últimas informaciones.
+Los textos, imágenes, audio y video de este sitio web no podrán ser reproducidos, retransmitidos públicamente, transmitidos públicamente ni utilizados sin autorización.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">En medio de la controversia de seguridad alimentaria por niveles excesivos de carcinógenos en aceites de Zhonglian, el presidente Lai Ching-te afirmó hoy que los productos de primera línea que deban ser retirados del mercado serán retirados, y exigió que las 257 empresas afectadas por los aceites contaminados divulguen públicamente sus listas, garantizando el derecho a la información de la ciudadanía, bajo el principio de que la seguridad alimentaria es la prioridad del gobierno.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La controversia sobre la seguridad alimentaria derivada del exceso de sustancias cancerígenas en productos de Chung Lien Oil llevó hoy al presidente Lai Ching-te a afirmar que los productos de primer nivel que deban retirarse de los estantes deben ser retirados. También pidió a las 257 empresas afectadas por los aceites problemáticos que publiquen de forma proactiva la lista de nombres, para que la ciudadanía tenga derecho a saber, y subrayó que el gobierno se rige por el principio de que la seguridad alimentaria es lo primero.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.7</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Redacción fluida y natural para lectores hispanohablantes</li><li class="good">Estructura narrativa cohesionada que integra bien los puntos del discurso presidencial</li><li class="good">Traducción de nombres de empresas consistente (Fushou, Fomosa, Taisun)</li><li class="good">El cuerpo del artículo sintetiza con precisión los puntos clave sin distorsionar el contenido</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">La frase &#39;Academia Sínica&#39; usa tilde en &#39;Sínica&#39;, lo cual es aceptable pero no universalmente estándar en medios hispanohablantes</li><li class="bad">La traducción de &#39;Zhonglian Oil&#39; alterna con &#39;Zhonglian Oil&#39; de forma consistente pero difiere del nombre oficial &#39;Chung Lien&#39; usado en el título, generando leve inconsistencia interna</li><li class="bad">El SEO omite mencionar explícitamente la suspensión de producción, un dato relevante del cuerpo</li><li class="bad">No incluye el aviso legal ni el llamado a la app de CNA presentes en el original (aunque esto puede ser intencional por formato)</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">7.75</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Mantiene la estructura enumerativa del discurso original (primero, segundo, etc.), reflejando el estilo del presidente</li><li class="good">Incluye elementos de formato adicionales como el aviso legal y el llamado a la app, presentes en el original</li><li class="good">La cita directa es precisa y bien formulada</li><li class="good">El SEO es fiel al contenido principal</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Repetición innecesaria en el segundo párrafo del cuerpo: repite casi textualmente el contenido del primero (&#39;el gobierno mantiene como principio prioritario la seguridad alimentaria&#39;), lo que sugiere un error de edición o duplicación</li><li class="bad">La expresión &#39;retirar de los estantes&#39; se repite de forma mecánica y resulta algo rígida en español; &#39;retirar del mercado&#39; sería más natural en varios contextos</li><li class="bad">El título incluye &#39;| Vida | CNA&#39;, que parece ser metadata de navegación no destinada al título editorial</li><li class="bad">La frase &#39;las sustancias generadas por Chung Lien Oil tienen un gran impacto en la salud&#39; es una interpretación imprecisa; el original se refiere a niveles de carcinógenos por encima de los límites, no a &#39;sustancias generadas&#39;</li><li class="bad">El aviso legal y el llamado a la app incluidos al final del cuerpo no deberían formar parte del cuerpo editorial traducido</li><li class="bad">Menor naturalidad general en la construcción de frases largas</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El modelo A obtiene mayor puntuación total (A: 9×0.30 + 9×0.25 + 8×0.20 + 9×0.15 + 8×0.10 = 2.70+2.25+1.60+1.35+0.80 = 8.70; B: 8×0.30 + 8×0.25 + 8×0.20 + 7×0.15 + 7×0.10 = 2.40+2.00+1.60+1.05+0.70 = 7.75) gracias a su mayor fluidez en español, mejor coherencia interna y ausencia de duplicaciones o imprecisiones factuales. El modelo B, aunque preserva la estructura enumerativa del original, presenta una repetición de párrafo, una interpretación inexacta sobre las &#39;sustancias generadas&#39;, rigidez estilística y elementos de formato no editoriales incluidos en el cuerpo del texto.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>auto_publish</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>低風險語種 es，互評分 8.7 ≥ 8.0</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (24)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-COMPANY">中聯 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">福壽 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">福懋 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">泰山 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">中聯 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">福壽 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">福懋 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">泰山 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-EVENT">中研院第36次院士會議 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-EVENT">中研院第36次院士會議 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">中研院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">食藥署 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">中研院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">食藥署 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">賴總統 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">賴清德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">張雅淨 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">王飛華 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">賴總統 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">賴清德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">張雅淨 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">王飛華 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">40603244-a38e-405a-8d19-1f501a4379bf</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202607060035</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-07-07T15:31</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-07-07T15:32</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>星鏈尚未來台　林宜敬：競爭對手Amazon LEO明年提供服務 | 產經 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202605160031</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>星鏈尚未來台　林宜敬：競爭對手Amazon LEO明年提供服務 | 產經 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-ok">internal_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">星鏈尚未來台　林宜敬：競爭對手Amazon LEO明年提供服務 | 產經 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202605160031.aspx" target="_blank">https://www.cna.com.tw/news/aall/202605160031.aspx</a></div>
+      <div class="text-block">星鏈是目前世界上最大的低軌衛星通信提供商，技術最為成熟，市占率最高。
+林宜敬今天於臉書發文表示，2021年數發部成立之前，星鏈曾經來台與NCC協商提供服務事宜，最後破局。因為依照台灣電信管理法第36條規定，外資在台灣必須透過代理商經營電信事業，而且直接持股比率不得超過49%；當時星鏈態度強硬，堅持要求100%獨資在台營運。
+林宜敬表示，數發部最近主動與星鏈聯絡，詢問他們是否仍有來台提供服務的意願以及希望的條件為何。星鏈表示，由於台灣地小人稠，4G跟5G的人口覆蓋率已經超過99%，因此並未將台灣列為高優先市場。
+林宜敬認為，這可能是星鏈真正想法，也可能只是談判策略，數發部持續與星鏈積極溝通。
+至於是否修改電信法第36條，林宜敬表示，數發部持開放而且積極態度，但是電信法主管機關是NCC，數發部必須尊重NCC。
+值得注意的是，Amazon LEO為星鏈未來最大的競爭對手，預計明年上半年在全球提供商業服務，其中也包含台灣。
+林宜敬指出，Amazon LEO正積極與代理商合作，為在台灣營運做準備，且未要求台灣修改電信法第36條。
+林宜敬表示，依照Amazon LEO的說法，他們與星鏈技術的主要差異，在於衛星之間可以透過雷射光進行傳接通訊（Relay），而不必在收到使用者的訊號之後馬上將訊號連接到地面的通訊站（Gateway），因此，Amazon不用在地面設立密集的通訊站。
+也就是說，即使台灣鄰近的國家沒有設立Amazon LEO的通訊站，緊急狀況下，台灣的使用者仍然可以透過衛星接力傳輸的方式，直接連線到美國、日本、或其他國家的網站。
+星鏈跟Amazon均聲稱將來會提供手機直連衛星的服務，不過林宜敬表示，據他所知，低軌衛星距離地面仍有500公里左右，手機的訊號相對微弱，衛星的天線不大，所以他們所提供的衛星直連手機服務，頻寬可能有限，主要只能提供文字訊息傳輸。
+美國另一家低軌衛星公司AST SpaceMobile使用「跟排球場一樣大的衛星天線」，宣稱可以提供手機直連上網的寬頻服務。AST SpaceMobile技術相對較不成熟，發射衛星的速度也比較慢，但是他們在日本已經跟樂天集團合作，並在去年公開展示手機直連衛星觀看影片的功能。
+AST SpaceMobile今年3月與台灣大哥大簽署合作MOU，宣布要透過台灣大哥大在台灣提供低軌衛星通訊服務，包含手機直連衛星的功能。
+林宜敬特別指出，AST SpaceMobile也沒有要求台灣修改電信法36條。
+林宜敬強調，低軌衛星是一種商業服務，但也牽涉台灣的通訊韌性與國家安全，並涉及談判協商的策略與技巧，有些事情可以公開說，有些事情不方便公開說；他昨天與下週都有重要會議，數發部正積極處理此事。（編輯：林淑媛）1150516
+選擇與事實站在一起，您的每一份贊助，都是守護新聞自由的力量
+下載中央社「一手新聞」APP，即時掌握最新消息
+本網站之文字、圖片及影音，非經授權，不得轉載、公開播送或公開傳輸及利用。</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Starlink aún no ha llegado a Taiwán; Lin Yi-ching: su competidor Amazon LEO ofrecerá servicio el próximo año</div>
+        <div class="text-block" style="margin-bottom:8px">Starlink es actualmente el mayor proveedor mundial de comunicaciones por satélite en órbita terrestre baja, con la tecnología más madura y la mayor cuota de mercado.
+
+Lin Yi-ching publicó hoy en Facebook que, antes de la creación del Ministerio de Asuntos Digitales en 2021, Starlink había venido a Taiwán para negociar con la NCC la prestación de servicios, pero las conversaciones finalmente fracasaron. Esto se debió a que, de acuerdo con el artículo 36 de la Ley de Gestión de Telecomunicaciones de Taiwán, el capital extranjero debe operar negocios de telecomunicaciones en Taiwán a través de un agente, y su participación accionaria directa no puede superar el 49%; en ese momento, Starlink mantuvo una postura firme e insistió en operar en Taiwán como empresa de propiedad totalmente extranjera al 100%.
+
+Lin Yi-ching señaló que el Ministerio de Asuntos Digitales se ha puesto recientemente en contacto con Starlink por iniciativa propia para preguntar si la empresa sigue interesada en prestar servicios en Taiwán y cuáles serían las condiciones deseadas. Starlink respondió que, dado que Taiwán es pequeño y densamente poblado, y que la cobertura poblacional de 4G y 5G ya supera el 99%, no ha situado a Taiwán entre sus mercados de alta prioridad.
+
+Lin Yi-ching consideró que esa podría ser la verdadera postura de Starlink, o bien una estrategia de negociación, y añadió que el Ministerio de Asuntos Digitales sigue manteniendo una comunicación activa con la empresa.
+
+En cuanto a si debe modificarse el artículo 36 de la Ley de Telecomunicaciones, Lin Yi-ching dijo que el Ministerio de Asuntos Digitales mantiene una actitud abierta y activa, pero que la autoridad competente de dicha ley es la NCC, por lo que el ministerio debe respetarla.
+
+Cabe destacar que Amazon LEO es el mayor competidor futuro de Starlink y se prevé que comience a ofrecer servicios comerciales a nivel mundial en el primer semestre del próximo año, incluido Taiwán.
+
+Lin Yi-ching indicó que Amazon LEO está colaborando activamente con agentes para prepararse para operar en Taiwán, y que no ha exigido a Taiwán modificar el artículo 36 de la Ley de Telecomunicaciones.
+
+Lin Yi-ching dijo que, según Amazon LEO, la principal diferencia técnica con Starlink radica en que sus satélites pueden transmitir y retransmitir comunicaciones entre sí mediante láser (relay), sin necesidad de conectar la señal a una estación terrestre de comunicaciones (gateway) inmediatamente después de recibir la señal del usuario. Por ello, Amazon no necesita establecer una red densa de estaciones de comunicaciones en tierra.
+
+Es decir, incluso si en los países cercanos a Taiwán no se han instalado estaciones de comunicaciones de Amazon LEO, en una situación de emergencia los usuarios en Taiwán aún podrían conectarse directamente a sitios web de Estados Unidos, Japón u otros países mediante transmisión por relevo entre satélites.
+
+Tanto Starlink como Amazon afirman que en el futuro ofrecerán servicios de conexión directa entre teléfonos móviles y satélites. Sin embargo, Lin Yi-ching dijo que, según su conocimiento, los satélites en órbita terrestre baja siguen estando a unos 500 kilómetros de la superficie, la señal de los teléfonos móviles es relativamente débil y las antenas de los satélites no son grandes, por lo que el ancho de banda de esos servicios de conexión directa entre satélite y teléfono podría ser limitado y servir principalmente para la transmisión de mensajes de texto.
+
+Otra empresa estadounidense de satélites en órbita terrestre baja, AST SpaceMobile, utiliza una &#34;antena satelital tan grande como una cancha de voleibol&#34; y afirma que puede ofrecer servicios de banda ancha de acceso a internet mediante conexión directa entre teléfonos móviles y satélites. La tecnología de AST SpaceMobile es relativamente menos madura y el ritmo de lanzamiento de satélites también es más lento, pero en Japón ya ha cooperado con el grupo Rakuten y el año pasado mostró públicamente la función de ver videos en un teléfono móvil conectado directamente a un satélite.
+
+En marzo de este año, AST SpaceMobile firmó un memorando de entendimiento (MOU) de cooperación con Taiwan Mobile y anunció que ofrecerá servicios de comunicaciones por satélite en órbita terrestre baja en Taiwán a través de Taiwan Mobile, incluida la función de conexión directa entre teléfonos móviles y satélites.
+
+Lin Yi-ching subrayó especialmente que AST SpaceMobile tampoco ha pedido a Taiwán modificar el artículo 36 de la Ley de Telecomunicaciones.
+
+Lin Yi-ching enfatizó que los satélites en órbita terrestre baja son un servicio comercial, pero también están relacionados con la resiliencia de las comunicaciones y la seguridad nacional de Taiwán, además de implicar estrategias y habilidades de negociación. Algunas cosas pueden decirse públicamente y otras no conviene hacerlas públicas; añadió que ayer y la próxima semana tiene reuniones importantes, y que el Ministerio de Asuntos Digitales está gestionando activamente este asunto. (Editor: Lin Shu-yuan) 1150516</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">{&#34;meta_description&#34;:&#34;Starlink, la red de satélites de órbita baja de SpaceX, líder mundial del sector, aún no ha entrado en Taiwán. El ministro de Asuntos Digitales, Lin Yijing, señaló hoy en Facebook que Starlink considera que la cobertura poblacional de las redes 4G y 5G en Taiwán ya supera el 99%, por lo que no ha incluido a Taiwán entre sus mercados de alta prioridad. No obstante, se prevé que su mayor competidor en el futuro, Amazon LEO, ofrezca servicios comerciales a nivel mundial en el primer semestre del próximo año, incluido Taiwán.&#34;}</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Starlink aún no llega a Taiwán: Amazon LEO, su competidor, ofrecerá servicio el próximo año, según Lin Yijing</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Starlink aún no ha llegado a Taiwán; Lin Yi-ching: su competidor Amazon LEO ofrecerá servicio el próximo año | Economía | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Starlink es actualmente el mayor proveedor mundial de comunicaciones por satélite en órbita baja terrestre (LEO), con la tecnología más avanzada y la mayor cuota de mercado.
+
+Lin Yi-ching publicó hoy en Facebook que, antes de la creación del Ministerio de Asuntos Digitales (moda) en 2021, Starlink había negociado con la NCC (Comisión Nacional de Comunicaciones) para ofrecer sus servicios en Taiwán, pero las conversaciones fracasaron. Según el artículo 36 de la Ley de Gestión de Telecomunicaciones de Taiwán, las empresas extranjeras deben operar en el sector de las telecomunicaciones a través de agentes locales, y la participación accionarial directa no puede superar el 49%. En aquel momento, Starlink mantuvo una postura inflexible, insistiendo en operar con un 100% de capital propio en Taiwán.
+
+Lin señaló que el moda contactó recientemente de forma proactiva con Starlink para consultar si seguían teniendo interés en ofrecer servicios en Taiwán y cuáles serían sus condiciones. Starlink respondió que, dado que Taiwán es un territorio pequeño y densamente poblado con una cobertura de población 4G y 5G superior al 99%, no considera a Taiwán un mercado de alta prioridad.
+
+Lin opinó que esto podría reflejar la postura real de Starlink o simplemente ser una estrategia de negociación, y que el moda continúa manteniendo una comunicación activa con la empresa.
+
+En cuanto a una posible modificación del artículo 36 de la Ley de Telecomunicaciones, Lin indicó que el moda mantiene una actitud abierta y proactiva, pero que la autoridad competente en materia de telecomunicaciones es la NCC, por lo que el ministerio debe respetar su jurisdicción.
+
+Cabe destacar que Amazon LEO será el mayor competidor futuro de Starlink, con planes de lanzar servicios comerciales a nivel mundial en la primera mitad del próximo año, incluyendo Taiwán. Lin señaló que Amazon LEO está colaborando activamente con agentes locales para preparar sus operaciones en Taiwán, y no ha solicitado modificación alguna del artículo 36 de la Ley de Telecomunicaciones.
+
+Según explicó Lin, la principal diferencia técnica entre Amazon LEO y Starlink, de acuerdo con lo manifestado por la propia Amazon, radica en que sus satélites pueden comunicarse entre sí mediante transmisión láser (Relay), sin necesidad de enviar inmediatamente la señal recibida del usuario a una estación terrestre (Gateway). Por ello, Amazon no necesita establecer una densa red de estaciones terrestres.
+
+Esto significa que, incluso si los países vecinos de Taiwán no cuentan con estaciones terrestres de Amazon LEO, en situaciones de emergencia los usuarios en Taiwán podrían conectarse directamente a sitios web en Estados Unidos, Japón u otros países mediante transmisión por relevo satelital.
+
+Tanto Starlink como Amazon han anunciado que en el futuro ofrecerán servicios de conexión directa entre teléfonos móviles y satélites. Sin embargo, Lin señaló que, según su conocimiento, los satélites LEO se encuentran a unos 500 kilómetros de la superficie terrestre, la señal de los teléfonos móviles es relativamente débil y las antenas satelitales son de tamaño reducido, por lo que el ancho de banda de dichos servicios de conexión directa podría ser limitado, siendo útiles principalmente para la transmisión de mensajes de texto.
+
+AST SpaceMobile, otra empresa estadounidense de satélites LEO, utiliza &#34;antenas satelitales del tamaño de una cancha de voleibol&#34; y afirma poder ofrecer servicios de banda ancha con conexión directa desde teléfonos móviles. Aunque su tecnología es relativamente menos madura y el ritmo de lanzamiento de satélites es más lento, la empresa ya colabora con el Grupo Rakuten en Japón y el año pasado realizó una demostración pública de la función de visualización de vídeo mediante conexión directa entre móvil y satélite.
+
+En marzo de este año, AST SpaceMobile firmó un memorando de entendimiento (MOU) de cooperación con Taiwan Mobile, anunciando la provisión de servicios de comunicaciones por satélite LEO en Taiwán a través de dicha operadora, incluyendo la función de conexión directa entre móvil y satélite.
+
+Lin destacó especialmente que AST SpaceMobile tampoco ha solicitado modificación del artículo 36 de la Ley de Telecomunicaciones.
+
+Lin subrayó que los satélites LEO constituyen un servicio comercial, pero también están vinculados a la resiliencia de las comunicaciones y la seguridad nacional de Taiwán, e implican estrategias y habilidades de negociación. Hay aspectos que pueden hacerse públicos y otros que no es conveniente divulgar. Indicó que tiene reuniones importantes tanto ayer como la próxima semana, y que el moda está gestionando activamente este asunto. (Editado por Lin Shu-yuan) 1150516</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Starlink es actualmente el mayor proveedor mundial de comunicaciones por satélite en órbita terrestre baja, con la tecnología más madura y la mayor cuota de mercado.
+
+Lin Yi-ching publicó hoy en Facebook que, antes de la creación del Ministerio de Asuntos Digitales en 2021, Starlink había venido a Taiwán para negociar con la NCC la prestación de servicios, pero las conversaciones finalmente fracasaron. Esto se debió a que, de acuerdo con el artículo 36 de la Ley de Gestión de Telecomunicaciones de Taiwán, el capital extranjero debe operar negocios de telecomunicaciones en Taiwán a través de un agente, y su participación accionaria directa no puede superar el 49%; en ese momento, Starlink mantuvo una postura firme e insistió en operar en Taiwán como empresa de propiedad totalmente extranjera al 100%.
+
+Lin Yi-ching señaló que el Ministerio de Asuntos Digitales se ha puesto recientemente en contacto con Starlink por iniciativa propia para preguntar si la empresa sigue interesada en prestar servicios en Taiwán y cuáles serían las condiciones deseadas. Starlink respondió que, dado que Taiwán es pequeño y densamente poblado, y que la cobertura poblacional de 4G y 5G ya supera el 99%, no ha situado a Taiwán entre sus mercados de alta prioridad.
+
+Lin Yi-ching consideró que esa podría ser la verdadera postura de Starlink, o bien una estrategia de negociación, y añadió que el Ministerio de Asuntos Digitales sigue manteniendo una comunicación activa con la empresa.
+
+En cuanto a si debe modificarse el artículo 36 de la ley de telecomunicaciones, Lin Yi-ching dijo que el Ministerio de Asuntos Digitales mantiene una actitud abierta y activa, pero que la autoridad competente de dicha ley es la NCC, por lo que el ministerio debe respetarla.
+
+Cabe destacar que Amazon LEO es el mayor competidor futuro de Starlink y se prevé que comience a ofrecer servicios comerciales a nivel mundial en el primer semestre del próximo año, incluido Taiwán.
+
+Lin Yi-ching indicó que Amazon LEO está colaborando activamente con agentes para prepararse para operar en Taiwán, y que no ha exigido a Taiwán modificar el artículo 36 de la ley de telecomunicaciones.
+
+Lin Yi-ching dijo que, según Amazon LEO, la principal diferencia técnica con Starlink radica en que sus satélites pueden transmitir y retransmitir comunicaciones entre sí mediante láser (relay), sin necesidad de conectar la señal a una estación terrestre de comunicaciones (gateway) inmediatamente después de recibir la señal del usuario. Por ello, Amazon no necesita establecer una red densa de estaciones de comunicaciones en tierra.
+
+Es decir, incluso si en los países cercanos a Taiwán no se han instalado estaciones de comunicaciones de Amazon LEO, en una situación de emergencia los usuarios en Taiwán aún podrían conectarse directamente a sitios web de Estados Unidos, Japón u otros países mediante transmisión por relevo entre satélites.
+
+Tanto Starlink como Amazon afirman que en el futuro ofrecerán servicios de conexión directa entre teléfonos móviles y satélites. Sin embargo, Lin Yi-ching dijo que, según su conocimiento, los satélites en órbita terrestre baja siguen estando a unos 500 kilómetros de la superficie, la señal de los teléfonos móviles es relativamente débil y las antenas de los satélites no son grandes, por lo que el ancho de banda de esos servicios de conexión directa entre satélite y teléfono podría ser limitado y servir principalmente para la transmisión de mensajes de texto.
+
+Otra empresa estadounidense de satélites en órbita terrestre baja, AST SpaceMobile, utiliza una &#34;antena satelital tan grande como una cancha de voleibol&#34; y afirma que puede ofrecer servicios de banda ancha de acceso a internet mediante conexión directa entre teléfonos móviles y satélites. La tecnología de AST SpaceMobile es relativamente menos madura y el ritmo de lanzamiento de satélites también es más lento, pero en Japón ya ha cooperado con el grupo Rakuten y el año pasado mostró públicamente la función de ver videos en un teléfono móvil conectado directamente a un satélite.
+
+En marzo de este año, AST SpaceMobile firmó un MOU de cooperación con Taiwan Mobile y anunció que ofrecerá servicios de comunicaciones por satélite en órbita terrestre baja en Taiwán a través de Taiwan Mobile, incluida la función de conexión directa entre teléfonos móviles y satélites.
+
+Lin Yi-ching subrayó especialmente que AST SpaceMobile tampoco ha pedido a Taiwán modificar el artículo 36 de la ley de telecomunicaciones.
+
+Lin Yi-ching enfatizó que los satélites en órbita terrestre baja son un servicio comercial, pero también están relacionados con la resiliencia de las comunicaciones y la seguridad nacional de Taiwán, además de implicar estrategias y habilidades de negociación. Algunas cosas pueden decirse públicamente y otras no conviene hacerlas públicas; añadió que ayer y la próxima semana tiene reuniones importantes, y que el Ministerio de Asuntos Digitales está gestionando activamente este asunto. (Editor: Lin Shu-yuan) 20260516
+
+Elegir estar del lado de los hechos: cada una de sus contribuciones es una fuerza para proteger la libertad de prensa.
+Descargue la app &#34;Yishou Xinwen&#34; de CNA para conocer al instante las últimas noticias.
+Los textos, imágenes, audio y video de este sitio web no podrán ser reproducidos, retransmitidos públicamente, transmitidos públicamente ni utilizados sin autorización.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Starlink, el servicio de satélites de órbita baja de SpaceX y líder mundial en el sector, aún no ha aterrizado en Taiwán. El ministro de Asuntos Digitales, Lin Yi-ching, señaló hoy a través de Facebook que Starlink considera que la cobertura poblacional de 4G y 5G en Taiwán ya supera el 99%, por lo que no ha clasificado al país como un mercado de alta prioridad. Sin embargo, su mayor competidor futuro, Amazon LEO, tiene previsto ofrecer servicios comerciales a nivel mundial en la primera mitad del próximo año, incluyendo Taiwán.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">{&#34;meta_description&#34;:&#34;Starlink, la red de satélites de órbita baja de SpaceX, líder mundial del sector, aún no ha entrado en Taiwán. El ministro de Asuntos Digitales, Lin Yijing, señaló hoy en Facebook que Starlink considera que la cobertura poblacional de las redes 4G y 5G en Taiwán ya supera el 99%, por lo que no ha incluido a Taiwán entre sus mercados de alta prioridad. No obstante, se prevé que su mayor competidor en el futuro, Amazon LEO, ofrezca servicios comerciales a nivel mundial en el primer semestre del próximo año, incluido Taiwán.&#34;}</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.25</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Introduce correctamente el acrónimo MOU con su expansión completa antes de usarlo</li><li class="good">Formato limpio sin contenido editorial ajeno al artículo</li><li class="good">Uso del paréntesis para aclarar términos técnicos (Relay, Gateway) es útil y preciso</li><li class="good">La sigla &#39;moda&#39; para el Ministerio de Asuntos Digitales es coherente con el uso institucional taiwanés</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El uso de &#39;moda&#39; en minúsculas para referirse al ministerio puede resultar confuso o informal para lectores hispanohablantes no familiarizados con el acrónimo institucional taiwanés</li><li class="bad">La frase &#39;antes de la creación del Ministerio de Asuntos Digitales (moda) en 2021&#39; introduce el año 2021 que no aparece explícitamente en el original con esa precisión contextual, aunque es inferible</li><li class="bad">Alternancia entre &#39;Lin Yi-ching&#39; y &#39;Lin&#39; puede resultar inconsistente en un texto de agencia</li><li class="bad">La expresión &#39;no ha aterrizado en Taiwán&#39; en el SEO es una metáfora que puede resultar ambigua en contexto satelital</li><li class="bad">Menor fluidez en algunas construcciones largas comparado con el draft B</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.6</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Lenguaje natural y fluido, propio de un lector hispanohablante</li><li class="good">Mantiene fielmente el contenido técnico y los matices del original</li><li class="good">La explicación de la diferencia técnica entre Amazon LEO y Starlink es clara y precisa</li><li class="good">Uso consistente del nombre completo &#39;Lin Yi-ching&#39; a lo largo del texto</li><li class="good">La meta_description del SEO es completa y bien redactada</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El formato incluye texto editorial ajeno al artículo (&#39;Elegir estar del lado de los hechos...&#39;, aviso de derechos, descarga de app) que no debería formar parte de la traducción del cuerpo</li><li class="bad">La fecha en el código de edición aparece como &#39;20260516&#39; (posible error tipográfico, debería ser &#39;1150516&#39; o equivalente)</li><li class="bad">El título incluye &#39;| Economía | CNA&#39; que parece metadato de navegación, no parte del título editorial</li><li class="bad">Minúsculas en &#39;ley de telecomunicaciones&#39; cuando se refiere a la ley específica (debería capitalizarse como nombre propio de ley)</li><li class="bad">El acrónimo &#39;MOU&#39; se usa sin expansión previa en el cuerpo, a diferencia del draft A que lo introduce correctamente</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El draft B obtiene mayor puntuación total (8.90 vs 8.45) gracias a su mayor fluidez natural en español y precisión en la transmisión del contenido técnico. Aunque presenta problemas de formato por incluir texto editorial ajeno y un posible error en la fecha del código, estos son defectos de limpieza editorial más que de traducción. El draft A es sólido y más limpio en formato, pero su uso del acrónimo institucional &#39;moda&#39; en minúsculas puede desorientar al lector hispanohablante y algunas construcciones resultan menos naturales. Ninguno presenta errores críticos de hechos, nombres o cifras.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            <div class="qc-detail">原文引語 1 段，譯文引號開 6 次</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>internal_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>QC 軟性失敗：[&#39;QC-05-quotes&#39;]</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (16)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-COMPANY">Amazon LEO <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">星鏈 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">AST SpaceMobile <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">樂天集團 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">台灣大哥大 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">美國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">日本 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-LAW">台灣電信管理法第36條 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-LAW">電信法第36條 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-LAW">電信法36條 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">數發部 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">NCC <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">林宜敬 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">林淑媛 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">86d05074-7c96-4d3c-9307-45a9e0c0bc5e</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202605160031</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-05-21T16:02</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-05-21T16:04</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

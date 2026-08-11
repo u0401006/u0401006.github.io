@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>特教與弱勢青年赴西班牙　挑戰百公里徒步朝聖之路 | 生活 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202608090040</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>特教與弱勢青年赴西班牙　挑戰百公里徒步朝聖之路 | 生活 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-warn">external_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">特教與弱勢青年赴西班牙　挑戰百公里徒步朝聖之路 | 生活 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202608090040.aspx" target="_blank">https://www.cna.com.tw/news/aall/202608090040.aspx</a></div>
+      <div class="text-block">（中央社記者許秩維台北9日電）在青年百億海外圓夢基金計畫支持下，台灣適應身體活動學會帶領12名身心障礙、偏鄉弱勢青年等，前往西班牙展開100公里的徒步朝聖之路，並將西班牙的無障礙經驗帶回台灣。
+教育部青年發展署今天發布新聞稿指出，為落實總統賴清德提出的「國家希望工程」，青年署自民國114年起推動「青年百億海外圓夢基金計畫」拓展青年國際鏈結交流，今年支持超過3000名青年赴海外圓夢，更首度推動「圓夢助力方案」，幫助資源缺乏的青年邁向世界，弱勢青年的參與比率由去年7.2%提升至今年13.3%。
+在「青年百億海外圓夢基金計畫」支持下，由台灣適應身體活動學會承辦的「無礙征途聖雅各」計畫，帶領12名包含身心障礙、特殊教育學生及偏鄉弱勢青年前往西班牙，團隊自7月16日啟程，克服長途飛行與時差，順利挺進朝聖之路最後100公里的精華路段，並於8月1日返國。
+團隊成員先前往馬德里盲人博物館，閉上雙眼並用指尖觸摸聖家堂等建築模型，體驗視障者探索世界的不易，參與青年也體會到失去視覺後，黑暗帶來的真實恐懼。
+另外，團隊從薩里亞啟程徒步展開朝聖之路，每天清晨5時在黑夜中出發，咬牙忍受長坡、碎石與腳底水泡，有視障青年因視差險些跌倒時，受到用手搖車前進的身障旅人鼓舞，偏鄉與弱勢青年更化身觀察員，克服語言恐懼與各國旅人互動。
+在朝聖之路途中，團隊成員也觀察到莫爾加德庇護所設有無門檻浴室，以及通用設計對身障者的重要性，並將西班牙的無障礙經驗帶回台灣，希望能為未來打造更友善、更具包容性的公共環境貢獻心力。（編輯：張雅淨）1150809</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Jóvenes de educación especial y vulnerables viajan a España para recorrer 100 km del Camino de Santiago | Sociedad | CNA</div>
+        <div class="text-block" style="margin-bottom:8px">(CNA, Agencia Central de Noticias de Taiwán, reportera Hsu Chih-wei, Taipéi, 9 de agosto) Con el apoyo del Programa del Fondo de 10.000 millones para que los Jóvenes Hagan Realidad sus Sueños en el Extranjero, la Sociedad Taiwanesa de Actividad Física Adaptada llevó a 12 jóvenes con discapacidad, de zonas rurales remotas y en situación vulnerable, entre otros, a España para emprender una peregrinación a pie de 100 kilómetros y llevar de regreso a Taiwán la experiencia española en accesibilidad.
+
+La Administración para el Desarrollo de la Juventud del Ministerio de Educación señaló hoy en un comunicado de prensa que, para materializar el «Proyecto de Esperanza Nacional» propuesto por el presidente Lai Ching-te, la entidad impulsa desde 2025 el «Programa del Fondo de 10.000 millones para que los Jóvenes Hagan Realidad sus Sueños en el Extranjero» con el fin de ampliar los vínculos e intercambios internacionales de los jóvenes. Este año ha apoyado a más de 3000 jóvenes para cumplir sus sueños en el extranjero y, por primera vez, ha puesto en marcha el «Plan de Apoyo para Cumplir Sueños», con el que ayuda a jóvenes con escasos recursos a dar el salto al mundo. La tasa de participación de jóvenes desfavorecidos aumentó del 7,2% del año pasado al 13,3% de este año.
+
+Con el apoyo del «Programa del Fondo de 10.000 millones para que los Jóvenes Hagan Realidad sus Sueños en el Extranjero», el proyecto «Ruta sin Barreras hacia Santiago», organizado por la Sociedad Taiwanesa de Actividad Física Adaptada, llevó a 12 jóvenes, entre ellos personas con discapacidad, estudiantes de educación especial y jóvenes vulnerables de zonas rurales remotas, a España. El grupo partió el 16 de julio, superó con éxito el largo vuelo y el desfase horario, avanzó por el tramo más emblemático de los últimos 100 kilómetros del Camino de Santiago y regresó a Taiwán el 1 de agosto.
+
+Los integrantes del grupo visitaron primero el Museo Tiflológico de Madrid, donde cerraron los ojos y tocaron con la yema de los dedos maquetas de edificios como la Sagrada Familia, para experimentar la dificultad que enfrentan las personas con discapacidad visual al explorar el mundo. Los jóvenes participantes también sintieron el miedo real que provoca la oscuridad tras perder la vista.
+
+Además, el grupo inició a pie el Camino de Santiago desde Sarria. Cada día partían a las 5 de la madrugada en plena oscuridad, soportando con esfuerzo largas pendientes, grava y ampollas en las plantas de los pies. Cuando un joven con discapacidad visual estuvo a punto de caerse debido a la diferencia de visión, se sintió inspirado por un viajero con discapacidad que avanzaba en una handbike (bicicleta de mano). Los jóvenes de zonas rurales remotas y en situación vulnerable incluso se transformaron en observadores, superaron su temor al idioma e interactuaron con viajeros de distintos países.
+
+Durante el Camino de Santiago, los integrantes del grupo también observaron que el albergue de Morgade contaba con baños sin umbral, así como la importancia del diseño universal para las personas con discapacidad. Además, llevarán de regreso a Taiwán la experiencia española en accesibilidad, con la esperanza de contribuir en el futuro a la creación de un entorno público más amigable e inclusivo. (Editora: Chang Ya-ching) 1150809</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">Con el apoyo del programa Fondo de 10.000 millones para que los jóvenes hagan realidad sus sueños en el extranjero, la Sociedad Taiwanesa de Actividad Física Adaptada llevó a España a 12 jóvenes con discapacidad y jóvenes vulnerables de zonas rurales remotas, entre otros, para emprender una peregrinación a pie de 100 kilómetros y traer a Taiwán la experiencia española en accesibilidad.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Jóvenes con necesidades especiales y en situación vulnerable viajan a España para completar el Camino de Santiago de 100 kilómetros | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Jóvenes de educación especial y desfavorecidos viajan a España para desafiar el Camino de Santiago de 100 km | Sociedad | CNA (Agencia Central de Noticias de Taiwán) CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Jóvenes vulnerables y de educación especial desafían 100 km del Camino de Santiago | Sociedad | CNA (Agencia Central de Noticias de Taiwán)</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">（CNA, Agencia Central de Noticias de Taiwán, Taipei, 9 ago）Con el respaldo del programa Fondo de Cien Millones para los Sueños Juveniles en el Extranjero, la Asociación Taiwanesa de Actividad Física Adaptada lideró a 12 jóvenes con discapacidad, procedentes de zonas rurales y en situación de vulnerabilidad, en un recorrido a pie de 100 kilómetros por el Camino de Santiago en España, con el objetivo de trasladar a Taiwán las experiencias españolas en materia de accesibilidad universal.
+
+La Agencia de Desarrollo Juvenil del Ministerio de Educación informó hoy mediante un comunicado que, con el fin de materializar el «Proyecto de Esperanza Nacional» propuesto por el presidente Lai Ching-te, la agencia impulsa desde 2025 el programa Fondo de Cien Millones para los Sueños Juveniles en el Extranjero, destinado a ampliar los vínculos e intercambios internacionales de la juventud taiwanesa. Este año, el programa ha apoyado a más de 3.000 jóvenes para cumplir sus sueños en el exterior, y por primera vez se ha puesto en marcha el «Plan de Impulso a los Sueños», orientado a ayudar a jóvenes con escasos recursos a abrirse camino en el mundo. Gracias a esta iniciativa, la tasa de participación de jóvenes en situación de vulnerabilidad ha aumentado del 7,2% del año pasado al 13,3% de este año.
+
+Amparado en dicho programa, el proyecto «Sin Barreras al Camino de Santiago», organizado por la Asociación Taiwanesa de Actividad Física Adaptada, condujo a 12 jóvenes —entre ellos personas con discapacidad, estudiantes de educación especial y jóvenes vulnerables de zonas rurales— hasta España. El equipo partió el 16 de julio, superó el largo vuelo y el desfase horario, completó con éxito el tramo final de 100 kilómetros del Camino de Santiago y regresó a Taiwán el 1 de agosto.
+
+Antes de iniciar la ruta, los integrantes del equipo visitaron el Museo Tiflológico de Madrid, donde cerraron los ojos y exploraron con las yemas de los dedos maquetas de edificios como la Sagrada Família, experimentando así las dificultades que enfrentan las personas con discapacidad visual para descubrir el mundo. Los jóvenes participantes también pudieron sentir el miedo real que provoca la oscuridad al perder la visión.
+
+Por otra parte, el equipo partió desde Sarria a pie para recorrer el Camino de Santiago, saliendo cada madrugada a las 5:00 en plena oscuridad, soportando con determinación las largas cuestas, el terreno pedregoso y las ampollas en los pies. Cuando un joven con discapacidad visual estuvo a punto de caer debido a problemas de percepción de profundidad, encontró aliento en un viajero con discapacidad que avanzaba en silla de ruedas de mano. Los jóvenes de zonas rurales y en situación de vulnerabilidad, por su parte, asumieron el rol de observadores y superaron el miedo al idioma para interactuar con viajeros de distintos países.
+
+Durante el recorrido, los miembros del equipo también observaron que el albergue de Morgade contaba con baños sin umbral, y tomaron conciencia de la importancia del diseño universal para las personas con discapacidad. Con la experiencia adquirida en España en materia de accesibilidad, esperan contribuir en el futuro a la creación de entornos públicos más amigables e inclusivos en Taiwán. (Editora: Zhang Yajing) 1150809</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(CNA, Agencia Central de Noticias de Taiwán, reportera Hsu Chih-wei, Taipéi, 9 de agosto) Con el apoyo del Programa del Fondo de 10.000 millones para que los Jóvenes Hagan Realidad sus Sueños en el Extranjero, la Sociedad Taiwanesa de Actividad Física Adaptada llevó a 12 jóvenes con discapacidad, de zonas rurales remotas y en situación vulnerable, entre otros, a España para emprender una peregrinación a pie de 100 kilómetros, y llevar de regreso a Taiwán la experiencia española en accesibilidad.
+
+La Administración para el Desarrollo de la Juventud del Ministerio de Educación señaló hoy en un comunicado de prensa que, para materializar el «Proyecto de Esperanza Nacional» propuesto por el presidente Lai Ching-te, la entidad impulsa desde 2025 el «Programa del Fondo de 10.000 millones para que los Jóvenes Hagan Realidad sus Sueños en el Extranjero» con el fin de ampliar los vínculos e intercambios internacionales de los jóvenes. Este año ha apoyado a más de 3000 jóvenes para cumplir sus sueños en el extranjero y, por primera vez, ha puesto en marcha el «Plan de Apoyo para Cumplir Sueños», con el que ayuda a jóvenes con escasos recursos a dar el salto al mundo. La tasa de participación de jóvenes desfavorecidos aumentó del 7,2% del año pasado al 13,3% de este año.
+
+Con el apoyo del «Programa del Fondo de 10.000 millones para que los Jóvenes Hagan Realidad sus Sueños en el Extranjero», el proyecto «Ruta sin Barreras hacia Santiago», organizado por la Sociedad Taiwanesa de Actividad Física Adaptada, llevó a 12 jóvenes, entre ellos personas con discapacidad, estudiantes de educación especial y jóvenes vulnerables de zonas rurales remotas, a España. El grupo partió el 16 de julio, superó con éxito el largo vuelo y el desfase horario, avanzó por el tramo más emblemático de los últimos 100 kilómetros del Camino de Santiago y regresó a Taiwán el 1 de agosto.
+
+Los integrantes del grupo visitaron primero el Museo Tiflológico de Madrid, donde cerraron los ojos y tocaron con la yema de los dedos maquetas de edificios como la Sagrada Familia, para experimentar la dificultad que enfrentan las personas con discapacidad visual al explorar el mundo. Los jóvenes participantes también sintieron el miedo real que provoca la oscuridad tras perder la vista.
+
+Además, el grupo inició a pie el Camino de Santiago desde Sarria. Cada día partían a las 5 de la madrugada en plena oscuridad, soportando con esfuerzo largas pendientes, grava y ampollas en las plantas de los pies. Cuando un joven con discapacidad visual estuvo a punto de caerse debido a la diferencia de visión, se sintió inspirado por un viajero con discapacidad que avanzaba en una handbike. Los jóvenes de zonas rurales remotas y en situación vulnerable incluso se transformaron en observadores, superaron su temor al idioma e interactuaron con viajeros de distintos países.
+
+Durante el Camino de Santiago, los integrantes del grupo también observaron que el albergue de Morgade contaba con baños sin umbral, así como la importancia del diseño universal para las personas con discapacidad. Además, llevarán de regreso a Taiwán la experiencia española en accesibilidad, con la esperanza de contribuir en el futuro a la creación de un entorno público más amigable e inclusivo. (Editora: Chang Ya-ching) 1150809</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(CNA (Agencia Central de Noticias de Taiwán), reportero Hsu Chih-wei, Taipéi, 9) Con el apoyo del Proyecto del Fondo de Diez Mil Millones para Cumplir Sueños en el Extranjero para Jóvenes, la Sociedad de Actividad Física Adaptada de Taiwán lideró a 12 jóvenes, incluyendo personas con discapacidades y jóvenes desfavorecidos de zonas rurales, a España para emprender una caminata de 100 kilómetros en el Camino de Santiago, y traer de vuelta a Taiwán la experiencia de accesibilidad de España.
+La Administración de Desarrollo Juvenil del Ministerio de Educación señaló hoy en un comunicado de prensa que, para implementar el «Proyecto Nacional de Esperanza» propuesto por el presidente Lai Ching-te, la Administración ha estado promoviendo el «Proyecto del Fondo de Diez Mil Millones para Cumplir Sueños en el Extranjero para Jóvenes» desde 2025 para expandir los intercambios y conexiones internacionales de los jóvenes. Este año, ha apoyado a más de 3000 jóvenes para cumplir sus sueños en el extranjero, y ha promovido por primera vez el «Programa de Asistencia para Cumplir Sueños», ayudando a los jóvenes con escasos recursos a salir al mundo. La tasa de participación de jóvenes desfavorecidos aumentó del 7,2 % el año pasado al 13,3 % este año.
+Con el apoyo del «Proyecto del Fondo de Diez Mil Millones para Cumplir Sueños en el Extranjero para Jóvenes», el proyecto «Camino de Santiago sin Barreras», organizado por la Sociedad de Actividad Física Adaptada de Taiwán, llevó a España a 12 jóvenes, incluyendo personas con discapacidades, estudiantes de educación especial y jóvenes desfavorecidos de zonas rurales. El equipo partió el 16 de julio, superó el largo vuelo y el desfase horario, y avanzó con éxito hacia el tramo esencial de los últimos 100 kilómetros del Camino de Santiago, regresando al país el 1 de agosto.
+Los miembros del equipo visitaron primero el Museo Tiflológico de Madrid, donde cerraron los ojos y tocaron con las yemas de los dedos maquetas de edificios como la Sagrada Familia, para experimentar las dificultades que enfrentan las personas con discapacidad visual al explorar el mundo. Los jóvenes participantes también experimentaron el miedo real que trae la oscuridad tras perder la visión.
+Además, el equipo comenzó su caminata del Camino de Santiago desde Sarria, partiendo cada día a las 5 de la mañana en la oscuridad, apretando los dientes para soportar las largas cuestas, la grava y las ampollas en las plantas de los pies. Cuando un joven con discapacidad visual casi se cae debido a problemas de percepción visual, fue alentado por un viajero con discapacidad que avanzaba en una bicicleta de mano. Los jóvenes desfavorecidos y de zonas rurales se convirtieron en observadores, superando el miedo al idioma para interactuar con viajeros de diversos países.
+Durante el Camino de Santiago, los miembros del equipo también observaron que el albergue de Morgade cuenta con baños sin barreras, y notaron la importancia del diseño universal para las personas con discapacidades. Traerán de vuelta a Taiwán la experiencia de accesibilidad de España, con la esperanza de contribuir a la creación de un entorno público más amigable e inclusivo en el futuro. (Edición: Chang Ya-ching) 1150809</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Con el apoyo del Fondo de Cien Millones para los Sueños Juveniles en el Exterior, la Asociación Taiwanesa de Actividad Física Adaptada llevó a 12 jóvenes con discapacidad y de comunidades rurales vulnerables a España para completar 100 kilómetros del Camino de Santiago, y traer de vuelta a Taiwán las experiencias de accesibilidad universal aprendidas.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Con el apoyo del programa Fondo de 10.000 millones para que los jóvenes hagan realidad sus sueños en el extranjero, la Sociedad Taiwanesa de Actividad Física Adaptada llevó a España a 12 jóvenes con discapacidad y jóvenes vulnerables de zonas rurales remotas, entre otros, para emprender una peregrinación a pie de 100 kilómetros, y traer a Taiwán la experiencia española en accesibilidad.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Con el apoyo del programa del Fondo de los Diez Mil Millones para los Sueños de los Jóvenes en el Extranjero, la Sociedad de Actividad Física Adaptada de Taiwán llevó a 12 jóvenes con discapacidad y desfavorecidos de zonas rurales a España para emprender una ruta de peregrinación a pie de 100 kilómetros y traer de vuelta a Taiwán la experiencia de accesibilidad de España.</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.2</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Redacción muy fluida y natural, quizás la más literaria de las tres</li><li class="good">Uso correcto de comillas tipográficas españolas «»</li><li class="good">Buena estructura narrativa y coherencia interna</li><li class="good">Traducción acertada de detalles descriptivos (ampollas, madrugada, percepción de profundidad)</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Traduce el fondo como &#39;Cien Millones&#39; en lugar de &#39;10.000 millones&#39;, lo cual es un error de magnitud significativo respecto al original chino (百億)</li><li class="bad">El quotes indica &#39;10.000 Millones&#39; pero el cuerpo dice &#39;Cien Millones&#39;, lo que genera inconsistencia interna grave</li><li class="bad">No incluye el nombre de la reportera en el dateline</li><li class="bad">Traduce &#39;handbike&#39; como &#39;silla de ruedas de mano&#39;, que es una interpretación libre y potencialmente imprecisa</li><li class="bad">Omite la mención de &#39;tramo más emblemático&#39; del Camino que sí aparece en otras versiones</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Terminología consistente y bien elegida (&#39;Sociedad Taiwanesa de Actividad Física Adaptada&#39;, &#39;Programa del Fondo de 10.000 millones&#39;)</li><li class="good">Uso correcto de comillas tipográficas españolas «»</li><li class="good">Redacción fluida y natural para lectores hispanohablantes</li><li class="good">Traducción precisa de &#39;handbike&#39; como término reconocible en contexto deportivo adaptado</li><li class="good">Estructura de párrafos clara y fiel al original</li><li class="good">Incluye nombre de la reportera correctamente</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El título es algo largo y podría optimizarse para SEO</li><li class="bad">&#39;handbike&#39; podría requerir una nota aclaratoria para lectores no especializados</li><li class="bad">El quotes aparece duplicado innecesariamente</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">C</div>
+          <strong>Model C</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.1</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Uso correcto de comillas tipográficas españolas «»</li><li class="good">Fiel al contenido original con buena cobertura de detalles</li><li class="good">Incluye nombre de la reportera correctamente</li><li class="good">Terminología del programa gubernamental razonablemente consistente</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Construcciones como &#39;incluyendo&#39; son calcos del inglés; en español es más natural &#39;entre ellos&#39; o &#39;como&#39;</li><li class="bad">Frases como &#39;apretando los dientes para soportar&#39; son algo literales y resultan menos naturales en prosa periodística</li><li class="bad">&#39;bicicleta de mano&#39; es una traducción aceptable pero menos precisa que &#39;handbike&#39; o &#39;bicicleta de mano adaptada&#39;</li><li class="bad">El dateline &#39;9&#39; sin el mes completo queda incompleto (&#39;9 de agosto&#39;)</li><li class="bad">Algunas frases resultan más rígidas y menos fluidas que las de B</li><li class="bad">El nombre del programa varía entre &#39;Diez Mil Millones&#39; y &#39;10.000 Millones&#39; en distintas secciones, generando inconsistencia</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El modelo B obtiene la puntuación total más alta gracias a su equilibrio entre precisión terminológica, fluidez narrativa y fidelidad al original. Utiliza correctamente &#39;10.000 millones&#39; de forma consistente en todo el texto, emplea comillas tipográficas españolas, mantiene una redacción periodística natural y no introduce errores factuales. El modelo A presenta una redacción muy fluida pero incurre en un error crítico de magnitud al traducir el fondo como &#39;Cien Millones&#39; en el cuerpo del texto (contradiciendo incluso su propio campo de quotes), lo que lo descalifica como recomendado. El modelo C es sólido y fiel pero muestra menor fluidez por calcos sintácticos y una inconsistencia en la denominación del programa entre secciones.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            <div class="qc-detail">遺失數字：[&#39;114&#39;]</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            <div class="qc-detail">命中率 50%（1/2）</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            <div class="qc-detail">原文引語 2 段，譯文引號開 5 次</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>external_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>QC 硬性失敗：[&#39;QC-01-numbers&#39;]</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (20)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-EVENT">國家希望工程 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-EVENT">青年百億海外圓夢基金計畫 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-EVENT">圓夢助力方案 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-EVENT">無礙征途聖雅各 <span style="font-size:10px;opacity:.6">EVENT</span></span>
+        
+        <span class="entity-tag tag-GPE">台北 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">西班牙 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">聖家堂 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">薩里亞 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">台灣適應身體活動學會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">教育部青年發展署 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">青年署 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">馬德里盲人博物館 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">莫爾加德庇護所 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">許秩維 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">總統賴清德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">賴清德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">張雅淨 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TITLE">總統 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">909d0ca5-e926-4244-9c0a-2f32ff71cd54</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202608090040</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-08-09T16:15</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-08-09T16:16</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

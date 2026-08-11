@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0到6歲國家養延長至18歲？政院：研議5面向完善計畫 | 政治 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202605020066</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>0到6歲國家養延長至18歲？政院：研議5面向完善計畫 | 政治 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-warn">external_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">0到6歲國家養延長至18歲？政院：研議5面向完善計畫 | 政治 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202605020066.aspx" target="_blank">https://www.cna.com.tw/news/aall/202605020066.aspx</a></div>
+      <div class="text-block">截至今年3月底，台灣人口數連續27個月負成長，少子女化議題備受關注，國發會主委葉俊顯日前在立法院表示，為減輕育兒家庭負擔，府院近期應會有重大政策宣布，不排除擴大「0到6歲國家一起養」適用範圍，甚至延伸適用年齡。
+自由時報今天報導，總統賴清德將於5月20日就任2週年時，宣布擴大「0到6歲國家一起養」政策適用年齡至18歲，並加碼推動臨時照顧假等多項措施。
+政院人士表示，政府持續規劃以「鼓勵生育、陪伴養育、支持教育」為核心，提出新的生育養育教育成長計畫，而根據目前已公布的少子女化對策計畫2.0，除生、養、教育之外，政府也會從居住、職場等共5大面向著手，提供生育家庭所需的支持。
+這名人士強調，政府接下來將提出有感政策，進一步減輕生育家庭經濟、時間與照顧的壓力，並擴大推動企業托育措施，強化職場托育可近性，讓少子女化對策計畫更加周全完善。
+對於「0到6歲國家一起養」適用年齡是否延長至18歲，政院人士表示尚未定案，最終如何延長仍在討論中；至於宣布時機，政院人士則說，相關政策牽涉層面廣，還在研議中。
+衛福部次長呂建德受訪時表示，少子女化議題其實是世界性問題，芬蘭研究顯示，2025年世界總生育率普遍下降，印度已經低於2、美國與法國1.5，位處北歐的芬蘭也低於1.3出乎各界預料，台灣更僅有0.695。
+總生育率（Total Fertility Rate, TFR）是指婦女依目前年齡別生育水準，在無死亡的情況下，度過其生育年齡期間後，一生所生育的嬰兒數。而在已開發國家或低死亡率社會中，每位女性平均需要生育約2.1個孩子，才能讓下一代的人口總數維持與上一代相同水準。
+呂建德說，多數國家已經低於2.1，台灣只有0.695，顯見情勢嚴峻。
+為因應少子女化，呂建德表示，世界普遍措施皆是環繞在經濟支持、托育服務、擴大照顧時間、推動性別平權等4項策略當中，因此擴大經濟支持、強化公共托育等育兒服務、增加家庭照顧時間，以及推動性別平權、職場友善、家務共同分擔等觀念改變都在策略因應的討論範圍，最終定案尚未出爐。（編輯：林淑媛）1150502
+選擇與事實站在一起，您的每一份贊助，都是守護新聞自由的力量
+下載中央社「一手新聞」APP，即時掌握最新消息
+本網站之文字、圖片及影音，非經授權，不得轉載、公開播送或公開傳輸及利用。</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">¿Ampliar el plan estatal de crianza de 0 a 6 años hasta los 18? El Yuan Ejecutivo: se estudian cinco aspectos para perfeccionar el plan | Política | CNA</div>
+        <div class="text-block" style="margin-bottom:8px">Hasta finales de marzo de este año, la población de Taiwán ha registrado un crecimiento negativo durante 27 meses consecutivos, y la cuestión de la baja natalidad ha suscitado gran atención. Días atrás, el presidente del Consejo Nacional de Desarrollo, Liu Chin-ching, declaró en el Yuan Legislativo que, con el fin de aliviar la carga de las familias con hijos, la Oficina Presidencial y el Yuan Ejecutivo probablemente anunciarán próximamente importantes políticas, sin descartar la ampliación del alcance de aplicación de la política «0 a 6 años, el Estado cría contigo» e incluso la extensión de la edad de aplicación.
+
+El Liberty Times informó hoy que el presidente Lai Ching-te anunciará, con motivo del segundo aniversario de su toma de posesión el 20 de mayo, la ampliación de la edad de aplicación de la política «0 a 6 años, el Estado cría contigo» hasta los 18 años, además de impulsar medidas adicionales como la licencia por cuidados temporales.
+
+Fuentes del Yuan Ejecutivo señalaron que el gobierno sigue planificando, con el eje puesto en «fomentar la natalidad, acompañar la crianza y apoyar la educación», la presentación de un nuevo plan de crecimiento en natalidad, crianza y educación. Asimismo, de acuerdo con el Plan 2.0 de respuesta a la baja natalidad ya anunciado, además de la natalidad, la crianza y la educación, el gobierno también actuará desde un total de cinco grandes ámbitos, entre ellos la vivienda y el entorno laboral, para proporcionar el apoyo que necesitan las familias con hijos.
+
+La misma fuente subrayó que el gobierno presentará a continuación políticas perceptibles para la ciudadanía, a fin de reducir aún más la presión económica, de tiempo y de cuidados que afrontan las familias con hijos, además de ampliar la promoción de medidas de cuidado infantil en las empresas y reforzar la accesibilidad al cuidado infantil en el lugar de trabajo, de modo que el Plan de respuesta a la baja natalidad sea más integral y completo.
+
+Sobre si la edad de aplicación de «0 a 6 años, el Estado cría contigo» se ampliará hasta los 18 años, fuentes del Yuan Ejecutivo indicaron que aún no hay una decisión final y que la forma concreta de dicha ampliación sigue en discusión. En cuanto al momento del anuncio, añadieron que, dado el amplio alcance de las políticas implicadas, estas continúan en estudio.
+
+En declaraciones a la prensa, el viceministro de Salud y Bienestar, Lu Chien-te, afirmó que la cuestión de la baja natalidad es en realidad un problema mundial. Según un estudio de Finlandia, en 2025 la tasa global de fecundidad ha descendido de forma generalizada: India ya se sitúa por debajo de 2, Estados Unidos y Francia en 1,5, y Finlandia, ubicada en el norte de Europa, también está por debajo de 1,3, algo que ha sorprendido a diversos sectores. Taiwán, por su parte, apenas alcanza 0,695.
+
+La tasa global de fecundidad (Total Fertility Rate, TFR) se refiere al número de hijos que tendría una mujer a lo largo de su vida reproductiva si, de acuerdo con los niveles actuales de fecundidad por edad y en ausencia de mortalidad, atravesara todo su periodo fértil. En los países desarrollados o en sociedades con baja mortalidad, cada mujer necesita tener en promedio alrededor de 2,1 hijos para que la población de la siguiente generación se mantenga al mismo nivel que la de la generación anterior.
+
+Lu Chien-te señaló que la mayoría de los países ya se encuentran por debajo de 2,1, mientras que Taiwán solo registra 0,695, lo que evidencia la gravedad de la situación.
+
+Para hacer frente a la baja natalidad, Lu Chien-te indicó que las medidas adoptadas de forma generalizada en el mundo giran en torno a cuatro estrategias: apoyo económico, servicios de cuidado infantil, ampliación del tiempo de cuidados e impulso de la igualdad de género. Por ello, la ampliación del apoyo económico, el fortalecimiento de servicios de crianza como el cuidado infantil público, el aumento del tiempo de cuidado familiar, así como la promoción de cambios de concepto como la igualdad de género, la conciliación laboral y un reparto compartido de las tareas domésticas, forman parte del ámbito de discusión de las estrategias de respuesta. La decisión final aún no se ha dado a conocer. (Editora: Lin Shu-yuan) 1150502</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">{&#34;meta_description&#34;:&#34;Ante la gravedad del problema de la baja natalidad, existe atención pública sobre si la política \&#34;0 a 6 años, el Estado cría contigo\&#34; ampliará su rango de aplicación hasta los 18 años. Fuentes del Yuan Ejecutivo señalaron hoy que el gobierno sigue planificando la presentación de un nuevo plan de crecimiento centrado en \&#34;fomentar la natalidad, acompañar la crianza y apoyar la educación\&#34;, además de brindar el apoyo que necesitan las familias con hijos desde cinco ámbitos, incluido el de la vivienda y el laboral. La política aún se encuentra en fase de estudio.&#34;}</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">¿Ampliar el apoyo estatal a la crianza de los 0-6 años hasta los 18 años? El Yuan Ejecutivo estudia cinco áreas para perfeccionar el plan</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">¿Ampliar el plan estatal de crianza de 0 a 6 años hasta los 18? El Yuan Ejecutivo: se estudian cinco aspectos para perfeccionar el plan | Política | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Hasta finales de marzo de este año, la población de Taiwán registró 27 meses consecutivos de crecimiento negativo, lo que ha puesto en el centro del debate el problema de la baja natalidad. El presidente del Consejo Nacional de Desarrollo (CND), Yeh Chun-hsien, declaró recientemente ante el Legislativo que, para aliviar la carga de las familias con hijos, el gobierno y el Ejecutivo anunciarán próximamente políticas de gran calado, sin descartar ampliar el alcance del programa &#39;El Estado cría junto a ti de 0 a 6 años&#39;, e incluso extender el rango de edad cubierto.
+
+Según informó hoy el Liberty Times, el presidente Lai Ching-te aprovechará el segundo aniversario de su toma de posesión, el 20 de mayo, para anunciar la ampliación del programa &#39;El Estado cría junto a ti de 0 a 6 años&#39; hasta los 18 años de edad, además de impulsar diversas medidas adicionales, como la introducción de un permiso de cuidado temporal.
+
+Fuentes del Ejecutivo señalaron que el gobierno continúa planificando un nuevo programa de crecimiento en materia de natalidad, crianza y educación, centrado en los ejes de &#39;fomentar la natalidad, acompañar la crianza y apoyar la educación&#39;. Según el Plan de Medidas contra la Baja Natalidad 2.0 ya publicado, el gobierno abordará la cuestión desde cinco grandes ámbitos: natalidad, crianza, educación, vivienda y entorno laboral, con el fin de ofrecer el apoyo necesario a las familias con hijos.
+
+Esas mismas fuentes subrayaron que el gobierno presentará próximamente políticas concretas y perceptibles para reducir aún más la presión económica, temporal y de cuidado que soportan las familias, al tiempo que ampliará las medidas de guardería en el ámbito empresarial y reforzará la accesibilidad a los servicios de cuidado infantil en el lugar de trabajo, con el objetivo de hacer más integral y completo el Plan de Medidas contra la Baja Natalidad.
+
+Sobre si el rango de edad del programa &#39;El Estado cría junto a ti de 0 a 6 años&#39; se extenderá hasta los 18 años, las fuentes del Ejecutivo indicaron que aún no hay nada decidido y que la forma concreta de ampliar dicho rango sigue en discusión. En cuanto al momento del anuncio, señalaron que las políticas relacionadas abarcan múltiples ámbitos y todavía están siendo estudiadas.
+
+El viceministro de Salud y Bienestar, Lu Chien-te, declaró en una entrevista que el problema de la baja natalidad es en realidad un fenómeno mundial. Citó una investigación finlandesa que muestra que en 2025 la tasa de fecundidad total ha caído de forma generalizada en todo el mundo: India ya se sitúa por debajo de 2, Estados Unidos y Francia en torno a 1,5, y Finlandia, país nórdico, por debajo de 1,3, lo que ha sorprendido a muchos expertos. Taiwán, por su parte, registra apenas 0,695.
+
+La tasa de fecundidad total (TFR, por sus siglas en inglés) indica el número de hijos que una mujer tendría a lo largo de su vida reproductiva si se mantuvieran las tasas de fecundidad por edad actuales y no hubiera mortalidad. En los países desarrollados o en sociedades con baja mortalidad, cada mujer necesita tener en promedio aproximadamente 2,1 hijos para que la población de la siguiente generación se mantenga al mismo nivel que la anterior.
+
+Lu Chien-te señaló que la mayoría de los países ya se encuentran por debajo de 2,1, mientras que Taiwán registra únicamente 0,695, lo que evidencia la gravedad de la situación.
+
+Para hacer frente a la baja natalidad, Lu Chien-te explicó que las medidas adoptadas a nivel mundial giran en torno a cuatro estrategias: apoyo económico, servicios de cuidado infantil, ampliación del tiempo de cuidado familiar y promoción de la igualdad de género. Por ello, ampliar el apoyo económico, reforzar los servicios públicos de cuidado infantil, aumentar el tiempo de atención familiar y promover cambios de mentalidad en materia de igualdad de género, entornos laborales favorables a la familia y corresponsabilidad en las tareas del hogar forman parte del abanico de medidas en discusión, aunque aún no se ha alcanzado una decisión definitiva. (Editado por Lin Shu-yuan) 1150502</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Hasta finales de marzo de este año, la población de Taiwán ha registrado un crecimiento negativo durante 27 meses consecutivos, y la cuestión de la baja natalidad ha suscitado gran atención. Días atrás, el presidente del Consejo Nacional de Desarrollo, Liu Chin-ching, declaró en el Yuan Legislativo que, con el fin de aliviar la carga de las familias con hijos, la Oficina Presidencial y el Yuan Ejecutivo probablemente anunciarán próximamente importantes políticas, sin descartar la ampliación del alcance de aplicación de la política «0 a 6 años, el Estado cría contigo» e incluso la extensión de la edad de aplicación.
+
+El Liberty Times informó hoy que el presidente Lai Ching-te anunciará, con motivo del segundo aniversario de su toma de posesión el 20 de mayo, la ampliación de la edad de aplicación de la política «0 a 6 años, el Estado cría contigo» hasta los 18 años, además de impulsar medidas adicionales como la licencia por cuidados temporales.
+
+Fuentes del Yuan Ejecutivo señalaron que el gobierno sigue planificando, con el eje puesto en «fomentar la natalidad, acompañar la crianza y apoyar la educación», la presentación de un nuevo plan de crecimiento en natalidad, crianza y educación. Asimismo, de acuerdo con el Plan 2.0 de respuesta a la baja natalidad ya anunciado, además de la natalidad, la crianza y la educación, el gobierno también actuará desde un total de cinco grandes ámbitos, entre ellos la vivienda y el entorno laboral, para proporcionar el apoyo que necesitan las familias con hijos.
+
+La misma fuente subrayó que el gobierno presentará a continuación políticas perceptibles para la ciudadanía, a fin de reducir aún más la presión económica, de tiempo y de cuidados que afrontan las familias con hijos, además de ampliar la promoción de medidas de cuidado infantil en las empresas y reforzar la accesibilidad al cuidado infantil en el lugar de trabajo, de modo que el Plan de respuesta a la baja natalidad sea más integral y completo.
+
+Sobre si la edad de aplicación de «0 a 6 años, el Estado cría contigo» se ampliará hasta los 18 años, fuentes del Yuan Ejecutivo indicaron que aún no hay una decisión final y que la forma concreta de dicha ampliación sigue en discusión. En cuanto al momento del anuncio, añadieron que, dado el amplio alcance de las políticas implicadas, estas continúan en estudio.
+
+En declaraciones a la prensa, el viceministro de Salud y Bienestar, Lu Chien-te, afirmó que la cuestión de la baja natalidad es en realidad un problema mundial. Según un estudio de Finlandia, en 2025 la tasa global de fecundidad ha descendido de forma generalizada: India ya se sitúa por debajo de 2, Estados Unidos y Francia en 1,5, y Finlandia, ubicada en el norte de Europa, también está por debajo de 1,3, algo que ha sorprendido a diversos sectores. Taiwán, por su parte, apenas alcanza 0,695.
+
+La tasa global de fecundidad (Total Fertility Rate, TFR) se refiere al número de hijos que tendría una mujer a lo largo de su vida reproductiva si, de acuerdo con los niveles actuales de fecundidad por edad y en ausencia de mortalidad, atravesara todo su periodo fértil. En los países desarrollados o en sociedades con baja mortalidad, cada mujer necesita tener en promedio alrededor de 2,1 hijos para que la población de la siguiente generación se mantenga al mismo nivel que la de la generación anterior.
+
+Lu Chien-te señaló que la mayoría de los países ya se encuentran por debajo de 2,1, mientras que Taiwán solo registra 0,695, lo que evidencia la gravedad de la situación.
+
+Para hacer frente a la baja natalidad, Lu Chien-te indicó que las medidas adoptadas de forma generalizada en el mundo giran en torno a cuatro estrategias: apoyo económico, servicios de cuidado infantil, ampliación del tiempo de cuidados e impulso de la igualdad de género. Por ello, la ampliación del apoyo económico, el fortalecimiento de servicios de crianza como el cuidado infantil público, el aumento del tiempo de cuidado familiar, así como la promoción de cambios de concepto como la igualdad de género, la conciliación laboral y un reparto compartido de las tareas domésticas, forman parte del ámbito de discusión de las estrategias de respuesta. La decisión final aún no se ha dado a conocer. (Editora: Lin Shu-yuan) 1150502
+Elegir estar del lado de los hechos: cada una de sus contribuciones es una fuerza para proteger la libertad de prensa.
+Descargue la app «CNA 一手新聞» para mantenerse al instante al tanto de las últimas noticias.
+Los textos, imágenes, audio y video de este sitio web no podrán ser reproducidos, retransmitidos públicamente, transmitidos públicamente ni utilizados sin autorización.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Ante la grave caída de la natalidad, existe interés público en saber si el programa &#39;El Estado cría junto a ti de 0 a 6 años&#39; se extenderá hasta los 18 años. Fuentes del Ejecutivo indicaron hoy que el gobierno continúa planificando un nuevo plan de crecimiento centrado en &#39;fomentar la natalidad, acompañar la crianza y apoyar la educación&#39;, que ofrecerá apoyo a las familias con hijos en cinco ámbitos, incluyendo vivienda y entorno laboral. La política se encuentra actualmente en fase de estudio.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">{&#34;meta_description&#34;:&#34;Ante la gravedad del problema de la baja natalidad, existe atención pública sobre si la política \&#34;0 a 6 años, el Estado cría contigo\&#34; ampliará su rango de aplicación hasta los 18 años. Fuentes del Yuan Ejecutivo señalaron hoy que el gobierno sigue planificando la presentación de un nuevo plan de crecimiento centrado en \&#34;fomentar la natalidad, acompañar la crianza y apoyar la educación\&#34;, además de brindar el apoyo que necesitan las familias con hijos desde cinco ámbitos, incluido el de la vivienda y el laboral. La política aún se encuentra en fase de estudio.&#34;}</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.35</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Formato limpio y bien estructurado, sin contenido ajeno al artículo</li><li class="good">Buena coherencia interna en el uso de los términos a lo largo del texto</li><li class="good">El título es claro y conciso</li><li class="good">La explicación de la TFR es precisa y bien redactada</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">La traducción del programa como &#39;El Estado cría junto a ti de 0 a 6 años&#39; es algo más libre y menos literal que la versión B</li><li class="bad">El nombre del presidente del CND (&#39;Yeh Chun-hsien&#39;) puede diferir del original chino respecto a la versión B (&#39;Liu Chin-ching&#39;); posible error de nombre propio</li><li class="bad">La frase &#39;sin descartar ampliar el alcance del programa&#39; es ligeramente más ambigua que la versión B en cuanto a la distinción entre &#39;alcance de aplicación&#39; y &#39;rango de edad&#39;</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.5</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Traducción del nombre del programa &#39;0 a 6 años, el Estado cría contigo&#39; más literal y consistente a lo largo del texto</li><li class="good">Lenguaje más natural y fluido para lectores hispanohablantes</li><li class="good">La descripción de las cuatro estrategias mundiales es más precisa y matizada</li><li class="good">El SEO está correctamente estructurado en formato JSON</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El cuerpo del artículo incluye texto ajeno al contenido periodístico (&#39;Elegir estar del lado de los hechos...&#39;, aviso de derechos de autor, promoción de la app), que no debería formar parte de la traducción entregada</li><li class="bad">El nombre del presidente del CND aparece como &#39;Liu Chin-ching&#39;, que difiere del &#39;Yeh Chun-hsien&#39; de la versión A; sin fuente original verificable, esto introduce incertidumbre sobre cuál es correcto</li><li class="bad">El formato_integrity se ve penalizado por la inclusión de contenido editorial/legal no periodístico en el body</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">Ambas traducciones son de calidad comparable. La versión B obtiene una puntuación total ligeramente superior gracias a su mayor fluidez en español y a la consistencia en la traducción del nombre del programa gubernamental, que resulta más fiel al original. Sin embargo, la inclusión de texto editorial y legal ajeno al artículo en el body penaliza su format_integrity. La versión A presenta un formato más limpio y profesional, pero su traducción del nombre del programa es algo más libre. El punto de discrepancia más relevante entre ambas versiones es el nombre del presidente del CND (Yeh Chun-hsien vs. Liu Chin-ching), lo que podría constituir un error crítico en una de ellas, aunque sin acceso al original chino no es posible determinarlo con certeza; por ello no se marca has_critical_error en ninguna. Total B ≈ 8.55; Total A ≈ 8.45.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            <div class="qc-detail">遺失數字：[&#39;4&#39;, &#39;2.1&#39;, &#39;0.695&#39;, &#39;1.5&#39;, &#39;1.3&#39;]</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            <div class="qc-detail">原文引語 1 段，譯文引號開 12 次</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>external_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>QC 硬性失敗：[&#39;QC-01-numbers&#39;]</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (54)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-COMPANY">自由時報 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">自由時報 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">自由時報 <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">印度 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">美國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">芬蘭 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">法國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">印度 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">美國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">芬蘭 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">法國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">印度 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">美國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">芬蘭 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">法國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-LAW">少子女化對策計畫2.0 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-LAW">少子女化對策計畫2.0 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-LAW">少子女化對策計畫2.0 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">立法院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">國發會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">衛福部 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">立法院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">國發會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">衛福部 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">立法院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">國發會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">衛福部 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">國發會主委葉俊顯 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">總統賴清德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">衛福部次長呂建德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">林淑媛 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">國發會主委葉俊顯 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">總統賴清德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">衛福部次長呂建德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">林淑媛 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">國發會主委葉俊顯 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">總統賴清德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">衛福部次長呂建德 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">林淑媛 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TITLE">主委 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">總統 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">次長 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">主委 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">總統 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">次長 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">主委 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">總統 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+        <span class="entity-tag tag-TITLE">次長 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">40e641ad-4602-4645-a693-1a80481f9c28</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202605020066</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-05-04T04:05</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-05-04T04:06</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

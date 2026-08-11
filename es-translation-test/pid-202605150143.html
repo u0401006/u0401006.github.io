@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>澳洲男困峭壁山洞7天吹薩克斯風求援　台東搜救隊聞聲救人 | 社會 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202605150143</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>澳洲男困峭壁山洞7天吹薩克斯風求援　台東搜救隊聞聲救人 | 社會 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-ok">auto_publish</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">澳洲男困峭壁山洞7天吹薩克斯風求援　台東搜救隊聞聲救人 | 社會 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202605150143.aspx" target="_blank">https://www.cna.com.tw/news/aall/202605150143.aspx</a></div>
+      <div class="text-block">「感謝大家，感謝台灣」，脫困的馬修在搜救人員與家屬陪同下，回到台11線海岸公路上，不斷向搜救人員道謝。他表示，自己在山區待了7天，期間沒有食物、沒有鞋子，也沒有攜帶任何電子設備，只能靠本能尋找水源維持體力。
+馬修告訴媒體，他原來在峭壁上方，但因口渴下切溪谷找水，沒想到回頭時才發現原本攀爬路線太高又太陡峭，根本無法再爬回去，只得受困斷崖附近等待機會求援。
+他說，想放棄時，就吹隨身攜帶薩克斯風，也希望有人聽到；他還讀聖經，因為神告訴他會有人來救。
+台東縣消防局搜救人員表示，消防局於11日傍晚接獲報案，指稱一名外籍人士於東河鄉山區失蹤，消防局獲報隨即與義消、林保署成立前進指揮所；12日上午並透過無人機（穿越機）於山溝水源頭上方成功定位受困者位置。
+因山區地形破碎且受近期降雨影響，搜救路徑多處發生坍塌，導致地面推進極其困難，於是考慮申請空勤直升機，但氣候持續不佳，只能暫時以無人機空投食物，受困者生命跡象穩定，13日消防局與義消兵分兩路採路面挺進救援；14日傍晚接觸到受困者，但因地形破碎且林木荊棘密布又下雨，於是紮營，今天終於將馬修護送下山。
+台東縣消防局表示，由於這幾天山區持續降雨，讓馬修至少還有水源可以飲用，加上受困山洞形成天然遮蔽空間，能阻擋風雨，馬修才沒因長時間淋雨導致失溫。
+消防局表示，這次任務大量運用無人機科技強化搜救效能，在通訊不便且無明顯路徑險竣環境中，無人機成功執行精準定位、路線偵巡與民生物資空投，確保救災路線規劃，以及受困者在等待救援期間糧食飲水無虞。
+同時，這次任務充分展現跨機關協作與民間救難力量整合，自5月11日至15日止，累計動員各型救災車輛33車次、搜救總人力達144人次。
+馬修的好友、牧師高永旭表示，馬修雖已50歲，但平時體能體力都很好，也相當熱心公益，過去曾到延平鄉桃源村協助風災災後工作，也曾前往花蓮投入救災與協助工作，一待就是好幾天，是大家眼中「鏟子英雄」。
+他說，馬修平常就喜歡上山散心，個性獨立，這次是真的受困了。他被搜救人員發現當天，還吹起隨身攜帶的薩克斯風，利用聲音讓搜救人員辨識方位，「其實就像吹哨子一樣效果，讓大家更快找到他」。
+馬修9日帶著薩克斯風、聖經，穿著簡便服裝獨自前往海岸山脈登山，遲未返家，親友察覺異狀後，於10日報警協尋；警消循線找到他的機車停放位置後，於11日晚間成立前進指揮所展開救援，經過5天搶救，今天上午平安下山。（編輯：陳仁華）1150515
+選擇與事實站在一起，您的每一份贊助，都是守護新聞自由的力量
+下載中央社「一手新聞」APP，即時掌握最新消息
+本網站之文字、圖片及影音，非經授權，不得轉載、公開播送或公開傳輸及利用。</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Australiano atrapado 7 días en una cueva de un acantilado pide ayuda tocando el saxofón; equipo de rescate de Taitung lo salva | Sociedad | CNA</div>
+        <div class="text-block" style="margin-bottom:8px">“Gracias a todos, gracias a Taiwán”, dijo Matthew tras ser rescatado. Acompañado por personal de búsqueda y rescate y por sus familiares, regresó a la Carretera Costera Provincial 11, donde no dejaba de agradecer a los rescatistas. Señaló que permaneció siete días en la zona montañosa, sin comida, sin zapatos y sin llevar ningún dispositivo electrónico, por lo que solo pudo valerse de su instinto para encontrar agua y mantener sus fuerzas.
+
+Matthew dijo a los medios que originalmente se encontraba en la parte superior de un acantilado, pero que, debido a la sed, descendió hacia un valle fluvial en busca de agua. No esperaba que, al intentar regresar, descubriera que la ruta por la que había trepado era demasiado alta y empinada, por lo que le resultó imposible volver a subir y quedó atrapado cerca de un precipicio, esperando una oportunidad para pedir ayuda.
+
+Contó que, cuando pensaba en rendirse, tocaba el saxofón que llevaba consigo, con la esperanza de que alguien lo oyera. También leía la Biblia, porque Dios le dijo que alguien vendría a rescatarlo.
+
+El personal de búsqueda y rescate del Departamento de Bomberos del condado de Taitung indicó que la tarde del día 11 recibió una denuncia sobre la desaparición de un extranjero en una zona montañosa del municipio de Donghe. Tras recibir el aviso, el departamento estableció de inmediato un puesto de mando avanzado junto con bomberos voluntarios y la Administración Forestal y de Conservación. En la mañana del día 12, además, logró localizar con éxito la posición de la persona atrapada mediante un dron FPV, por encima de la cabecera de una fuente de agua en un barranco.
+
+Debido a que el terreno montañoso estaba muy fragmentado y a las lluvias recientes, se produjeron derrumbes en múltiples puntos de la ruta de rescate, lo que hizo extremadamente difícil el avance por tierra. Por ello se consideró solicitar un helicóptero de la unidad aérea, pero las condiciones meteorológicas siguieron siendo desfavorables, de modo que solo fue posible lanzar temporalmente alimentos mediante drones. La persona atrapada presentaba signos vitales estables. El día 13, el Departamento de Bomberos y los bomberos voluntarios avanzaron por dos rutas terrestres para efectuar el rescate; al atardecer del día 14 lograron entrar en contacto con él, pero debido al terreno accidentado, la densa vegetación y espinas, y la lluvia, decidieron acampar. Finalmente, hoy lograron escoltar a Matthew montaña abajo.
+
+El Departamento de Bomberos del condado de Taitung señaló que las lluvias continuas en la zona montañosa durante estos días permitieron que Matthew al menos tuviera acceso a agua para beber. Además, la cueva donde quedó atrapado formaba un espacio de resguardo natural capaz de bloquear el viento y la lluvia, lo que evitó que sufriera hipotermia por estar expuesto durante largo tiempo a la lluvia.
+
+El Departamento de Bomberos indicó que en esta misión se hizo amplio uso de tecnología de drones para reforzar la eficacia de las labores de búsqueda y rescate. En un entorno escarpado, con comunicaciones difíciles y sin rutas evidentes, los drones ejecutaron con éxito tareas de localización precisa, reconocimiento de rutas y lanzamiento aéreo de suministros básicos, garantizando tanto la planificación de las rutas de rescate como el abastecimiento de alimentos y agua para la persona atrapada mientras esperaba ser auxiliada.
+
+Al mismo tiempo, esta misión puso plenamente de manifiesto la colaboración interinstitucional y la integración de las fuerzas civiles de rescate. Del 11 al 15 de mayo se movilizaron en total 33 salidas de distintos tipos de vehículos de emergencia y 144 efectivos acumulados de búsqueda y rescate.
+
+Gao Yongxu, amigo de Matthew y pastor, señaló que, aunque Matthew ya tiene 50 años, normalmente goza de muy buena condición física y además es muy entusiasta en labores de interés público. En el pasado acudió a la aldea de Taoyuan, en el municipio de Yanping, para colaborar en trabajos posteriores a un desastre causado por vientos, y también fue a Hualien para participar en tareas de rescate y apoyo, donde permaneció varios días, por lo que todos lo consideran un “héroe de la pala”.
+
+Añadió que a Matthew normalmente le gusta subir a la montaña para despejarse y que tiene una personalidad independiente; esta vez realmente quedó atrapado. El día en que fue encontrado por los rescatistas, incluso tocó el saxofón que llevaba consigo para que el sonido ayudara al personal de búsqueda y rescate a identificar su ubicación. “En realidad, el efecto es como el de un silbato: permitió que todos lo encontraran más rápido”.
+
+El día 9, Matthew fue solo a hacer senderismo en la Cordillera Costera llevando un saxofón y una Biblia, vestido con ropa ligera. Como tardó en regresar a casa, sus familiares y amigos notaron que algo iba mal y el día 10 denunciaron su desaparición a la policía para solicitar su búsqueda. Después de que la policía y los bomberos localizaran el lugar donde había estacionado su motocicleta, establecieron un puesto de mando avanzado la noche del día 11 para iniciar el rescate. Tras cinco días de operaciones, esta mañana descendió sano y salvo de la montaña. (Editor: Chen Renhua) 1150515</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">Un australiano, Matthew, que quedó atrapado durante siete días en una cueva de un acantilado de la Cordillera Costera, descendió hoy sano y salvo con la ayuda del equipo de búsqueda y rescate del Departamento de Bomberos del condado de Taitung. Dijo que quedó atrapado al bajar por la ladera en busca de agua y que, cuando pensaba en rendirse, tocaba el saxofón que llevaba consigo y leía la Biblia.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Atrapado 7 días en una cueva de un acantilado, australiano toca saxofón para pedir ayuda y equipo de rescate de Taitung lo localiza por el sonido</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Hombre australiano atrapado 7 días en una cueva de un acantilado pide ayuda tocando el saxofón; equipo de búsqueda y rescate de Taitung lo salva | Sociedad | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">&#34;Gracias a todos, gracias a Taiwán&#34;, expresó Matthew al ser rescatado, mientras regresaba a la carretera costera Provincial 11 acompañado por los equipos de rescate y sus familiares, agradeciendo repetidamente a los socorristas. Señaló que había permanecido siete días en la zona montañosa sin alimentos, sin calzado y sin ningún dispositivo electrónico, sobreviviendo únicamente gracias a su instinto para encontrar fuentes de agua.
+
+Matthew declaró a los medios de comunicación que originalmente se encontraba en la parte superior de un acantilado, pero que bajó hacia el barranco en busca de agua debido a la sed. Al intentar regresar, descubrió que la ruta por la que había ascendido era demasiado alta y escarpada para volver a escalarla, por lo que quedó atrapado cerca del precipicio esperando una oportunidad para pedir ayuda.
+
+Indicó que cuando pensaba en rendirse, tocaba el saxofón que llevaba consigo, con la esperanza de que alguien lo escuchara. También leía la Biblia, pues confiaba en que Dios le había prometido que alguien vendría a rescatarlo.
+
+Personal del Cuerpo de Bomberos del Condado de Taitung informó que el día 11 por la tarde recibieron un reporte indicando que un extranjero había desaparecido en la zona montañosa del municipio de Donghe. Tras recibir el aviso, el cuerpo de bomberos estableció de inmediato un puesto de mando avanzado junto con bomberos voluntarios y la Administración Forestal y de Conservación. La mañana del día 12, mediante el uso de drones de carreras (FPV), lograron localizar con éxito la posición de la persona atrapada en la parte superior del nacimiento de agua de un barranco.
+
+Debido a la accidentada topografía de la zona montañosa y a las recientes lluvias, varios tramos de la ruta de rescate sufrieron derrumbes, lo que dificultó enormemente el avance terrestre. Se consideró solicitar un helicóptero del Servicio Aéreo Nacional, pero las condiciones climáticas persistentemente adversas solo permitieron el lanzamiento aéreo de alimentos mediante drones. Con los signos vitales de la persona atrapada estables, el día 13 los bomberos y los voluntarios avanzaron en dos grupos por tierra; el día 14 por la tarde lograron contactar con la víctima, pero debido al terreno quebrado, la densa vegetación con espinos y la lluvia, decidieron acampar en el lugar. Finalmente, este día lograron escoltar a Matthew hasta bajar de la montaña.
+
+El Cuerpo de Bomberos del Condado de Taitung señaló que las lluvias continuas en la zona montañosa durante estos días permitieron que Matthew tuviera al menos acceso a agua potable. Además, la cueva en la que quedó atrapado funcionó como refugio natural que lo protegió del viento y la lluvia, evitando así que sufriera hipotermia por la prolongada exposición a las precipitaciones.
+
+El cuerpo de bomberos destacó que en esta misión se utilizó ampliamente la tecnología de drones para potenciar la eficacia del rescate. En un entorno de difícil comunicación y sin rutas claras, los drones ejecutaron con éxito tareas de localización precisa, reconocimiento de rutas y lanzamiento aéreo de suministros básicos, garantizando la planificación de las vías de rescate y el abastecimiento de alimentos y agua para la persona atrapada durante la espera.
+
+Asimismo, esta misión demostró plenamente la capacidad de coordinación interinstitucional y la integración de fuerzas civiles de rescate. Desde el 11 hasta el 15 de mayo, se movilizaron en total 33 vehículos de rescate de diversos tipos y 144 efectivos de búsqueda y rescate.
+
+El pastor Gao Yongxu, amigo cercano de Matthew, señaló que, aunque Matthew tiene 50 años, goza de excelente condición física y es muy entusiasta en labores de voluntariado. En el pasado participó en trabajos de recuperación tras desastres naturales en el pueblo de Taoyuan, municipio de Yanping, y también acudió a Hualien para colaborar en tareas de rescate y asistencia, permaneciendo varios días en cada ocasión, siendo conocido por todos como el &#34;héroe de la pala&#34;.
+
+Indicó que a Matthew le gusta habitualmente subir a la montaña para despejar la mente y que tiene un carácter independiente, pero que esta vez realmente quedó atrapado. El día en que fue localizado por los rescatistas, tocó el saxofón que llevaba consigo para ayudar a los equipos a orientarse por el sonido: &#34;Funcionó como un silbato, permitiendo que todos lo encontraran más rápidamente&#34;.
+
+El día 9, Matthew subió solo a la Cordillera Costera llevando consigo un saxofón y una Biblia, vestido con ropa ligera. Al no regresar a casa, sus familiares y amigos notaron algo inusual y presentaron una denuncia policial el día 10. Tras localizar la motocicleta que había dejado estacionada, las autoridades establecieron un puesto de mando avanzado la noche del día 11 e iniciaron las labores de rescate. Después de cinco días de operaciones, esta mañana Matthew descendió sano y salvo de la montaña. (Editado por Chen Renhua) 1150515</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">“Gracias a todos, gracias a Taiwán”, dijo Matthew tras ser rescatado. Acompañado por personal de búsqueda y rescate y por sus familiares, regresó a la Carretera Costera Provincial 11, donde no dejaba de agradecer a los rescatistas. Señaló que permaneció siete días en la zona montañosa, sin comida, sin zapatos y sin llevar ningún dispositivo electrónico, por lo que solo pudo valerse de su instinto para encontrar agua y mantener sus fuerzas.
+
+Matthew dijo a los medios que originalmente se encontraba en la parte superior de un acantilado, pero que, debido a la sed, descendió hacia un valle fluvial en busca de agua. No esperaba que, al intentar regresar, descubriera que la ruta por la que había trepado era demasiado alta y empinada, por lo que le resultó imposible volver a subir y quedó atrapado cerca de un precipicio, esperando una oportunidad para pedir ayuda.
+
+Contó que, cuando pensaba en rendirse, tocaba el saxofón que llevaba consigo, con la esperanza de que alguien lo oyera. También leía la Biblia, porque Dios le dijo que alguien vendría a rescatarlo.
+
+El personal de búsqueda y rescate del Departamento de Bomberos del condado de Taitung indicó que la tarde del día 11 recibió una denuncia sobre la desaparición de un extranjero en una zona montañosa del municipio de Donghe. Tras recibir el aviso, el departamento estableció de inmediato un puesto de mando avanzado junto con bomberos voluntarios y la Agencia de Conservación Forestal y de la Naturaleza. En la mañana del día 12, además, logró localizar con éxito la posición de la persona atrapada mediante un dron FPV, por encima de la cabecera de una fuente de agua en un barranco.
+
+Debido a que el terreno montañoso estaba muy fragmentado y a las lluvias recientes, se produjeron derrumbes en múltiples puntos de la ruta de rescate, lo que hizo extremadamente difícil el avance por tierra. Por ello se consideró solicitar un helicóptero de la unidad aérea, pero las condiciones meteorológicas siguieron siendo desfavorables, de modo que solo fue posible lanzar temporalmente alimentos mediante drones. La persona atrapada presentaba signos vitales estables. El día 13, el Departamento de Bomberos y los bomberos voluntarios avanzaron por dos rutas terrestres para efectuar el rescate; al atardecer del día 14 lograron entrar en contacto con él, pero debido al terreno accidentado, la densa vegetación y espinas, y la lluvia, decidieron acampar. Finalmente, hoy lograron escoltar a Matthew montaña abajo.
+
+El Departamento de Bomberos del condado de Taitung señaló que las lluvias continuas en la zona montañosa durante estos días permitieron que Matthew al menos tuviera acceso a agua para beber. Además, la cueva donde quedó atrapado formaba un espacio de resguardo natural capaz de bloquear el viento y la lluvia, lo que evitó que sufriera hipotermia por estar expuesto durante largo tiempo a la lluvia.
+
+El Departamento de Bomberos indicó que en esta misión se hizo amplio uso de tecnología de drones para reforzar la eficacia de las labores de búsqueda y rescate. En un entorno escarpado, con comunicaciones difíciles y sin rutas evidentes, los drones ejecutaron con éxito tareas de localización precisa, reconocimiento de rutas y lanzamiento aéreo de suministros básicos, garantizando tanto la planificación de las rutas de rescate como el abastecimiento de alimentos y agua para la persona atrapada mientras esperaba ser auxiliada.
+
+Al mismo tiempo, esta misión puso plenamente de manifiesto la colaboración interinstitucional y la integración de las fuerzas civiles de rescate. Del 11 al 15 de mayo se movilizaron en total 33 salidas de distintos tipos de vehículos de emergencia y 144 efectivos acumulados de búsqueda y rescate.
+
+Gao Yongxu, amigo de Matthew y pastor, señaló que, aunque Matthew ya tiene 50 años, normalmente goza de muy buena condición física y además es muy entusiasta en labores de interés público. En el pasado acudió a la aldea de Taoyuan, en el municipio de Yanping, para colaborar en trabajos posteriores a un desastre causado por vientos, y también fue a Hualien para participar en tareas de rescate y apoyo, donde permaneció varios días, por lo que todos lo consideran un “héroe de la pala”.
+
+Añadió que a Matthew normalmente le gusta subir a la montaña para despejarse y que tiene una personalidad independiente; esta vez realmente quedó atrapado. El día en que fue encontrado por los rescatistas, incluso tocó el saxofón que llevaba consigo para que el sonido ayudara al personal de búsqueda y rescate a identificar su ubicación. “En realidad, el efecto es como el de un silbato: permitió que todos lo encontraran más rápido”.
+
+El día 9, Matthew fue solo a hacer senderismo en la Cordillera Costera llevando un saxofón y una Biblia, vestido con ropa ligera. Como tardó en regresar a casa, sus familiares y amigos notaron que algo iba mal y el día 10 denunciaron su desaparición a la policía para solicitar su búsqueda. Después de que la policía y los bomberos localizaran el lugar donde había estacionado su motocicleta, establecieron un puesto de mando avanzado la noche del día 11 para iniciar el rescate. Tras cinco días de operaciones, esta mañana descendió sano y salvo de la montaña. (Editor: Chen Renhua) 1150515</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Matthew, un australiano que estuvo atrapado durante 7 días en una cueva de los escarpados acantilados de la Cordillera Costera, logró descender a salvo hoy con la ayuda del equipo de rescate del Cuerpo de Bomberos del Condado de Taitung. Explicó que quedó atrapado al descender por la pared de la montaña en busca de agua, y que cuando pensaba en rendirse tocaba el saxofón que llevaba consigo y leía la Biblia.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Un australiano, Matthew, que quedó atrapado durante siete días en una cueva de un acantilado de la Cordillera Costera, descendió hoy sano y salvo con la ayuda del equipo de búsqueda y rescate de la Oficina de Bomberos del condado de Taitung. Dijo que quedó atrapado al bajar por la ladera en busca de agua y que, cuando pensaba en rendirse, tocaba el saxofón que llevaba consigo y leía la Biblia.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              <span class="badge badge-pending" style="font-size:10px">failed</span>
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.25</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Traducción sólida y completa en términos generales</li><li class="good">Estructura de párrafos bien respetada</li><li class="good">El uso de &#39;drones de carreras (FPV)&#39; añade una aclaración útil para el lector hispanohablante</li><li class="good">El SEO es conciso y bien redactado</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">La frase &#39;sobreviviendo únicamente gracias a su instinto para encontrar fuentes de agua&#39; omite el matiz de &#39;mantener sus fuerzas&#39; presente en el original</li><li class="bad">&#39;33 vehículos de rescate de diversos tipos&#39; traduce 車次 como vehículos en lugar de salidas/movilizaciones, lo cual es menos preciso</li><li class="bad">La expresión &#39;confiaba en que Dios le había prometido&#39; añade una leve interpretación no presente literalmente en el original (&#39;Dios le dijo&#39;)</li><li class="bad">Fluencia ligeramente más formal y menos periodística que B en algunos pasajes</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">9.05</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+          <span class="score-val">10.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Lenguaje natural y fluido, propio de un hablante nativo de español</li><li class="good">Preserva todos los detalles factuales del original sin omisiones ni adiciones</li><li class="good">La cita directa en 【quotes】 está bien formulada y es coherente con el cuerpo del texto</li><li class="good">El título incluye contexto adicional (&#39;| Sociedad | CNA&#39;) que aporta formato periodístico</li><li class="good">La traducción de &#39;33 salidas de distintos tipos de vehículos de emergencia&#39; refleja mejor el sentido de 車次 que la versión A</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El título es algo largo y podría resultar menos apto para SEO</li><li class="bad">La traducción de &#39;林業及自然保育署&#39; como &#39;Agencia de Conservación Forestal y de la Naturaleza&#39; difiere de A (&#39;Administración Forestal y de Conservación&#39;), sin término oficial establecido en la tabla</li><li class="bad">En el SEO se usa &#39;Oficina de Bomberos&#39; mientras que en el cuerpo se usa &#39;Departamento de Bomberos&#39;, leve inconsistencia interna</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El modelo B obtiene mayor puntuación total (9.275 frente a 8.575 de A) gracias a su mayor fluidez periodística en español, fidelidad factual más precisa (especialmente en la traducción de 車次 como &#39;salidas&#39; y en la cita directa), y ausencia total de adiciones interpretativas. El modelo A es competente pero introduce pequeñas imprecisiones semánticas y una leve paráfrasis en la cita religiosa que reducen su puntuación en accuracy y no_hallucination.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>auto_publish</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>低風險語種 es，互評分 9.1 ≥ 8.0</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (15)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">澳洲 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台11線海岸公路 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">東河鄉 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">延平鄉桃源村 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">花蓮 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">海岸山脈 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">台東縣消防局 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">義消 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">林保署 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">馬修 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">高永旭 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">陳仁華 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TITLE">牧師 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">9b416c1c-0934-4f20-8a79-d7fe81d8eac6</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202605150143</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-05-21T15:23</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-05-21T15:24</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

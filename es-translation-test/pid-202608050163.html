@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>陸籍收容天數有上限　陸委會：對岸遲不接返釀困境 | 兩岸 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="background:#fff3cd;color:#664d03;padding:8px 24px;font-size:12.5px;border-bottom:1px solid #ffe69c">靜態快照（非即時資料）· 來源：中央社翻譯審核平台 ES 佇列 · PID 202608050163</div>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>陸籍收容天數有上限　陸委會：對岸遲不接返釀困境 | 兩岸 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-warn">external_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">陸籍收容天數有上限　陸委會：對岸遲不接返釀困境 | 兩岸 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202608050163.aspx" target="_blank">https://www.cna.com.tw/news/aall/202608050163.aspx</a></div>
+      <div class="text-block">立法院內政委員會今天審查「台灣地區與大陸地區人民關係條例」（兩岸條例）部分條文修正草案、「香港澳門關係條例」部分條文修正草案。
+根據兩岸條例現行規定，大陸地區人民受到強制出境處分，內政部移民署對於當事人同一事件收容期間合併計算最長為150天，由於中國大陸遲不接返，當事人又未能繼續收容，成為長期滯台情形，立委規劃修法打開收容天數上限天花板。
+陸委會主委邱垂正表示，大陸地區人民在台收容上限天數為150天，根據現行規定，倘若超過上限天數未能再繼續收容，會與慈善單位、宗教團體配合，改採「收容替代處分」，例如定期報到等；在管理上來說，這些人相當於在一般社會生活。
+邱垂正批評，中國大陸不接返這些偷渡來台或在台犯下刑事案件的大陸地區人民，構成台灣社會處理困境、造成社會治安隱憂；今年6月有過一起接返案例，再前一次接返案例則要回溯至逾2年前，很少看到一個政府不願意接返自己的人民，「它的國人要回去，竟不讓人回去」。
+邱垂正認為，修法延長收容天數將有助於解決問題。
+內政部移民署透過書面報告表示，大陸地區人民受到強制出境處分，如果因為大陸地區相關機關遲不接返，導致收容期間屆滿未能繼續執行，目前僅能採取收容替代處分，當事人後續行蹤難以掌握，對於修法方向「敬表贊同」；涉及司法審查部分，尊重權責機關規劃。
+據內政部移民署數據統計，目前移民署收容的陸籍人士約10餘人。（編輯：朱建陵）1150805
+選擇與事實站在一起，您的每一份贊助，都是守護新聞自由的力量
+下載中央社「一手新聞」APP，即時掌握最新消息
+本網站之文字、圖片及影音，非經授權，不得轉載、公開播送或公開傳輸及利用。</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">MAC: límite de días de custodia para ciudadanos continentales genera crisis por demora de Beijing en repatriarlos</div>
+        <div class="text-block" style="margin-bottom:8px">La Comisión de Asuntos Internos del Yuan Legislativo examinó hoy los proyectos de modificación parcial de la «Ley que Regula las Relaciones entre los Pueblos de la Región de Taiwán y la Región Continental» (Ley de Relaciones entre las Dos Orillas) y de la «Ley de Relaciones con Hong Kong y Macao».
+De acuerdo con las disposiciones vigentes de la Ley de Relaciones entre las Dos Orillas, cuando los habitantes de la región continental son objeto de una orden de expulsión forzosa, el Servicio Nacional de Inmigración del Ministerio del Interior puede mantenerlos bajo custodia por un período máximo acumulado de 150 días por el mismo caso. Dado que las autoridades del continente se demoran en readmitir a estas personas y que no es posible prolongar su detención, muchas permanecen en Taiwán de forma indefinida. Ante esta situación, legisladores planean modificar la ley para eliminar el techo máximo de días de custodia.
+El presidente del Consejo de Asuntos del Continente (MAC), Chiu Chui-cheng, señaló que el límite máximo de custodia para habitantes de la región continental en Taiwán es de 150 días. Según la normativa vigente, cuando se supera dicho límite y no es posible continuar con la detención, se recurre a organizaciones benéficas y grupos religiosos para aplicar «medidas alternativas a la custodia», como la presentación periódica ante las autoridades; en términos de gestión, estas personas viven en la sociedad en condiciones similares a las del resto de la población.
+Chiu Chui-cheng criticó que las autoridades del continente se nieguen a readmitir a estos ciudadanos continentales que ingresaron ilegalmente a Taiwán o cometieron delitos penales en el territorio, lo que genera dificultades para la sociedad taiwanesa y representa una amenaza para la seguridad pública. En junio de este año se registró un caso de readmisión, y el anterior se remonta a más de dos años atrás. «Rara vez se ve a un gobierno que no quiera readmitir a sus propios ciudadanos; sus nacionales quieren regresar y no se les permite hacerlo», afirmó.
+Chiu Chui-cheng consideró que la modificación legal para ampliar el período de custodia contribuirá a resolver el problema.
+El Servicio Nacional de Inmigración del Ministerio del Interior indicó en un informe escrito que, cuando los habitantes de la región continental sujetos a una orden de expulsión forzosa no pueden ser devueltos debido a la demora de las autoridades continentales en readmitirlos, y el período de custodia vence sin posibilidad de continuación, actualmente solo es posible aplicar medidas alternativas, lo que dificulta el seguimiento posterior de estas personas. El Servicio expresó su «pleno acuerdo» con la dirección de la reforma legislativa y señaló que, en lo relativo al control judicial, respetará los planes de las autoridades competentes.
+Según datos del Servicio Nacional de Inmigración del Ministerio del Interior, actualmente hay alrededor de una decena de ciudadanos continentales bajo custodia de dicho organismo. (Editado por Zhu Jianling) 1150805</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">Las personas procedentes de China continental retenidas en Taiwán bajo custodia del Servicio de Inmigración tienen un límite máximo de 150 días acumulados por caso. El Consejo de Asuntos del Continente (MAC) señaló hoy que la negativa de China continental a repatriar a estos ciudadanos varados en Taiwán genera serias dificultades para la sociedad taiwanesa y representa una amenaza para el orden público.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">MAC: límite de días de detención para ciudadanos continentales genera crisis por demora de Beijing en repatriarlos</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Límite de días de internamiento para ciudadanos chinos; MAC: la demora de la otra parte en recibirlos de vuelta crea un dilema | A través del Estrecho | CNA</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Límite de días de retención para chinos; Consejo de Asuntos del Continente (MAC): demora china en repatriarlos causa dilema | Estrecho | CNA</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La Comisión de Asuntos Internos del Yuan Legislativo examinó hoy los proyectos de modificación parcial de la «Ley que Regula las Relaciones entre los Pueblos de la Región de Taiwán y la Región Continental» (Ley de Relaciones entre las Dos Orillas) y de la «Ley de Relaciones con Hong Kong y Macao».
+De acuerdo con las disposiciones vigentes de la Ley de Relaciones entre las Dos Orillas, cuando los habitantes de la región continental son objeto de una orden de expulsión forzosa, el Servicio Nacional de Inmigración del Ministerio del Interior puede mantenerlos bajo custodia por un período máximo acumulado de 150 días por el mismo caso. Dado que las autoridades del continente se demoran en readmitir a estas personas y que no es posible prolongar su detención, muchas permanecen en Taiwán de forma indefinida. Ante esta situación, legisladores planean modificar la ley para eliminar el techo máximo de días de custodia.
+El presidente del Consejo de Asuntos del Continente (MAC), Chiu Chui-cheng, señaló que el límite máximo de custodia para habitantes de la región continental en Taiwán es de 150 días. Según la normativa vigente, cuando se supera dicho límite y no es posible continuar con la detención, se recurre a organizaciones benéficas y grupos religiosos para aplicar «medidas alternativas a la custodia», como la presentación periódica ante las autoridades; en términos de gestión, estas personas viven en la sociedad en condiciones similares a las del resto de la población.
+Chiu Chui-cheng criticó que las autoridades del continente se nieguen a readmitir a estos ciudadanos continentales que ingresaron ilegalmente a Taiwán o cometieron delitos penales en el territorio, lo que genera dificultades para la sociedad taiwanesa y representa una amenaza para la seguridad pública. En junio de este año se registró un caso de readmisión, y el anterior se remonta a más de dos años atrás. «Rara vez se ve a un gobierno que no quiera readmitir a sus propios ciudadanos; sus nacionales quieren regresar y no se les permite hacerlo», afirmó.
+Chiu Chui-cheng consideró que la modificación legal para ampliar el período de custodia contribuirá a resolver el problema.
+El Servicio Nacional de Inmigración del Ministerio del Interior indicó en un informe escrito que, cuando los habitantes de la región continental sujetos a una orden de expulsión forzosa no pueden ser devueltos debido a la demora de las autoridades continentales en readmitirlos, y el período de custodia vence sin posibilidad de continuación, actualmente solo es posible aplicar medidas alternativas, lo que dificulta el seguimiento posterior de estas personas. El Servicio expresó su «pleno acuerdo» con la dirección de la reforma legislativa y señaló que, en lo relativo al control judicial, respetará los planes de las autoridades competentes.
+Según datos del Servicio Nacional de Inmigración del Ministerio del Interior, actualmente hay alrededor de una decena de ciudadanos continentales bajo custodia de dicho organismo. (Editado por Zhu Jianling) 1150805</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La Comisión de Asuntos Internos del Yuan Legislativo examinó hoy proyectos de enmienda parcial a algunos artículos de la «Ley que regula las relaciones entre los pueblos del área de Taiwán y del área continental» (Ley de Relaciones a través del Estrecho) y de la «Ley que regula las relaciones con Hong Kong y Macao».
+
+Según las disposiciones vigentes de la Ley de Relaciones a través del Estrecho, cuando una persona del área continental es objeto de una orden de salida forzosa, el período máximo acumulado de detención por un mismo caso por parte de la Agencia Nacional de Inmigración del Ministerio del Interior es de 150 días. Debido a que China continental demora en recibir de vuelta a estas personas y a que, una vez vencido ese plazo, no es posible seguir manteniéndolas detenidas, se generan situaciones de permanencia prolongada en Taiwán. Por ello, legisladores planean modificar la ley para eliminar el tope máximo de días de detención.
+
+El presidente del Consejo de Asuntos del Continente (MAC), Chiu Chui-cheng, señaló que el límite máximo de detención en Taiwán para personas del área continental es de 150 días. De acuerdo con la normativa actual, si al superarse ese límite no puede continuarse con la detención, se coordina con entidades benéficas y grupos religiosos para aplicar «medidas sustitutivas de la detención», como presentarse periódicamente ante las autoridades; en términos de gestión, estas personas equivalen a vivir en la sociedad en general.
+
+Chiu Chui-cheng criticó que China continental no reciba de vuelta a estas personas del área continental que entraron clandestinamente en Taiwán o que cometieron delitos penales en la isla, lo que crea dificultades para la sociedad taiwanesa y genera riesgos para la seguridad pública. Indicó que este junio hubo un caso de recepción, mientras que el anterior se remonta a hace más de 2 años. «Es muy raro ver a un gobierno que no quiera recibir de vuelta a sus propios ciudadanos; sus nacionales quieren regresar y, aun así, no se les permite volver», dijo.
+
+Chiu Chui-cheng consideró que modificar la ley para ampliar el período de detención contribuirá a resolver el problema.
+
+La Agencia Nacional de Inmigración del Ministerio del Interior indicó en un informe escrito que, cuando una persona del área continental es objeto de una orden de salida forzosa, si las autoridades competentes del área continental demoran en recibirla de vuelta y ello provoca que venza el período de detención sin que pueda seguir ejecutándose, actualmente solo pueden adoptarse medidas sustitutivas de la detención, y posteriormente resulta difícil conocer el paradero de la persona. Por ello, expresó su «pleno respaldo» a la dirección de la reforma legal. En cuanto a la parte relativa a la revisión judicial, señaló que respeta la planificación de las autoridades competentes.
+
+Según estadísticas de la Agencia Nacional de Inmigración del Ministerio del Interior, en la actualidad hay algo más de 10 personas de nacionalidad china detenidas por la agencia. (Editor: Chu Chien-ling) 1150805
+
+Elegir estar del lado de los hechos: cada una de sus contribuciones es una fuerza para proteger la libertad de prensa.
+Descargue la APP «Noticias de primera mano» de CNA (Agencia Central de Noticias de Taiwán) para conocer al instante las últimas noticias.
+Los textos, imágenes, audio y video de este sitio web no podrán ser reproducidos, retransmitidos públicamente, transmitidos públicamente ni utilizados sin autorización.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">El Comité de Asuntos Internos del Yuan Legislativo revisó hoy los borradores de enmienda a ciertos artículos del «Estatuto de las Relaciones entre los Pueblos del Área de Taiwán y el Área Continental» (Estatuto a través del Estrecho) y del «Estatuto de las Relaciones con Hong Kong y Macao».
+Según las regulaciones actuales del Estatuto a través del Estrecho, cuando las personas del área continental están sujetas a una orden de salida obligatoria, el período máximo de detención calculado de forma acumulativa por la Agencia Nacional de Inmigración del Ministerio del Interior para la misma persona por el mismo incidente es de 150 días. Debido a que China continental retrasa su repatriación y las personas no pueden seguir detenidas, se produce una situación de estancia prolongada en Taiwán. Los legisladores planean enmendar la ley para abrir el techo del límite de días de detención.
+El ministro del Consejo de Asuntos del Continente (MAC), Chiu Chui-cheng, indicó que el límite máximo de detención en Taiwán para las personas del área continental es de 150 días. Según las regulaciones actuales, si se supera el límite máximo de días y no se puede continuar con la detención, se coordinará con organizaciones benéficas y grupos religiosos para adoptar «medidas alternativas a la detención», como presentarse periódicamente. En términos de gestión, estas personas viven de manera equivalente a la sociedad en general.
+Chiu Chui-cheng criticó que China continental no repatríe a estas personas del área continental que ingresaron ilegalmente a Taiwán o cometieron casos penales en Taiwán, lo que constituye un dilema de manejo para la sociedad taiwanesa y causa preocupaciones sobre la seguridad pública. En junio de este año hubo un caso de repatriación, y el caso anterior se remonta a más de 2 años atrás. Rara vez se ve a un gobierno que no esté dispuesto a repatriar a su propio pueblo: «Sus ciudadanos quieren regresar, y sorprendentemente no les permiten regresar».
+Chiu Chui-cheng consideró que enmendar la ley para prolongar los días de detención ayudará a resolver el problema.
+La Agencia Nacional de Inmigración del Ministerio del Interior expresó a través de un informe escrito que, cuando las personas del área continental están sujetas a una orden de salida obligatoria, si las autoridades pertinentes del área continental retrasan su repatriación, lo que lleva a la expiración del período de detención sin poder continuar su ejecución, actualmente solo se pueden adoptar medidas alternativas a la detención, y el paradero posterior de las personas es difícil de rastrear. Por lo tanto, «expresan su respetuoso acuerdo» con la dirección de la enmienda de la ley; en cuanto a la parte que involucra la revisión judicial, respetan la planificación de las autoridades competentes.
+Según las estadísticas de la Agencia Nacional de Inmigración del Ministerio del Interior, actualmente hay más de 10 ciudadanos chinos detenidos por la agencia. (Editor: Chu Chien-ling) 1150805
+Elija estar del lado de los hechos, cada uno de sus patrocinios es una fuerza para proteger la libertad de prensa.
+Descargue la aplicación «Yishou News» de la CNA (Agencia Central de Noticias de Taiwán) para conocer las últimas noticias al instante.
+Los textos, imágenes y audios/videos de este sitio web no pueden ser reproducidos, transmitidos públicamente o utilizados sin autorización.</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Las personas procedentes de China continental retenidas en Taiwán bajo custodia del Servicio de Inmigración tienen un límite máximo de 150 días acumulados por caso. El Consejo de Asuntos del Continente (MAC) señaló hoy que la negativa de China continental a repatriar a estos ciudadanos chinos varados en Taiwán genera serias dificultades para la sociedad taiwanesa y representa una amenaza para el orden público.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Las personas de China continental detenidas por la Agencia Nacional de Inmigración en Taiwán podrán permanecer bajo custodia hasta un máximo acumulado de 150 días por un mismo caso, antes y después del hecho. El Consejo de Asuntos del Continente (MAC) indicó hoy que la demora de China continental en recibir de vuelta a estos ciudadanos chinos varados en Taiwán ha generado dificultades para la sociedad taiwanesa en su gestión y riesgos latentes para la seguridad pública.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La detención de ciudadanos de China continental por parte de la Agencia Nacional de Inmigración en Taiwán tiene un límite máximo combinado de 150 días por un mismo incidente. El Consejo de Asuntos del Continente (MAC) indicó hoy que la demora de China continental en repatriar a estos ciudadanos varados en Taiwán constituye un dilema de gestión para la sociedad taiwanesa y genera preocupaciones de seguridad pública.</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">9.2</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+          <span class="score-val">10.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Terminología institucional completamente correcta y consistente en todo el texto</li><li class="good">Uso correcto de comillas tipográficas españolas «» en todas las citas</li><li class="good">Redacción fluida y natural para lectores hispanohablantes</li><li class="good">Estructura de párrafos clara y bien organizada</li><li class="good">El título no incluye el nombre de la agencia (CNA) innecesariamente, lo que lo hace más limpio</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El SEO menciona &#39;antes y después del hecho&#39; — esto no aparece en el original; sin embargo en A este problema no existe, es propio de B</li><li class="bad">La frase &#39;en términos de gestión, estas personas viven en la sociedad en condiciones similares a las del resto de la población&#39; es una leve expansión interpretativa del original, aunque no constituye error grave</li><li class="bad">El título supera ligeramente en densidad informativa pero se mantiene dentro del límite de 140 caracteres</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">7.85</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Terminología institucional correcta en general</li><li class="good">Uso correcto de comillas tipográficas «»</li><li class="good">Redacción clara y comprensible</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El SEO incluye la frase &#39;antes y después del hecho&#39; que no existe en el original y constituye una adición factual no justificada</li><li class="bad">El cuerpo del texto incluye boilerplate editorial de CNA (&#39;Elegir estar del lado de los hechos...&#39;, aviso de copyright, descarga de APP) que no debería formar parte de la traducción del cuerpo noticioso</li><li class="bad">El título incluye &#39;| A través del Estrecho | CNA&#39; que es metadata de navegación, no parte del titular</li><li class="bad">La frase &#39;personas de nacionalidad china&#39; en el último párrafo es imprecisa; el original dice &#39;中國籍&#39; pero en contexto taiwanés la distinción es delicada y podría generar confusión</li><li class="bad">format_integrity penalizado por inclusión de contenido editorial no perteneciente al cuerpo</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">C</div>
+          <strong>Model C</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">7.15</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div>
+          <span class="score-val">6.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Transmite la información principal de forma comprensible</li><li class="good">Uso correcto de comillas tipográficas «» en las citas directas</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Usa &#39;Estatuto&#39; en lugar de &#39;Ley&#39; para traducir &#39;條例/法&#39;, lo que no corresponde al término convencional en español para estas normas taiwanesas</li><li class="bad">Usa &#39;ministro&#39; para Chiu Chui-cheng en lugar de &#39;presidente&#39; del MAC, lo que es un error de cargo</li><li class="bad">Incluye boilerplate editorial de CNA (&#39;Elija estar del lado de los hechos...&#39;, aviso de copyright, &#39;Yishou News&#39;) que no pertenece al cuerpo noticioso</li><li class="bad">El título incluye &#39;| Estrecho | CNA&#39; como metadata de navegación</li><li class="bad">La traducción de la APP como &#39;Yishou News&#39; en lugar de transliterarla o adaptarla correctamente es un error de localización</li><li class="bad">La expresión &#39;abrir el techo del límite&#39; es un calco literal poco natural en español</li><li class="bad">La frase &#39;expresan su respetuoso acuerdo&#39; es un calco del chino que suena forzado en español</li><li class="bad">format_integrity penalizado por inclusión de contenido editorial y metadata de navegación</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El modelo A obtiene la puntuación más alta por su precisión terminológica completa (uso correcto de &#39;Ley&#39;, &#39;presidente del MAC&#39;, &#39;Yuan Legislativo&#39;), redacción fluida sin calcos del chino, ausencia de contenido editorial ajeno al cuerpo noticioso y mínimas adiciones interpretativas. El modelo B pierde puntos por la adición factual en el SEO (&#39;antes y después del hecho&#39;) y por incluir boilerplate editorial, lo que activa has_critical_error. El modelo C presenta el error de cargo más grave (traduce el título de Chiu Chui-cheng como &#39;ministro&#39; en lugar de &#39;presidente&#39;), usa &#39;Estatuto&#39; en lugar de &#39;Ley&#39;, incluye calcos literales del chino y también incorpora boilerplate editorial, resultando en la puntuación más baja.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            <div class="qc-detail">遺失數字：[&#39;6&#39;, &#39;2&#39;, &#39;10&#39;]</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            <div class="qc-detail">原文引語 2 段，譯文引號開 5 次</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>external_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>QC 硬性失敗：[&#39;QC-01-numbers&#39;]</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (15)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">中國 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">中國大陸 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-LAW">台灣地區與大陸地區人民關係條例 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-LAW">兩岸條例 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-LAW">香港澳門關係條例 <span style="font-size:10px;opacity:.6">LAW</span></span>
+        
+        <span class="entity-tag tag-ORG">陸委會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">立法院 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">立法院內政委員會 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">內政部移民署 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">陸委會主委邱垂正 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">邱垂正 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">朱建陵 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TITLE">主委 <span style="font-size:10px;opacity:.6">TITLE</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">908a926b-c505-44ce-ad13-f03f4c24ed24</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202608050163</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-08-05T16:32</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-08-05T16:33</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>
