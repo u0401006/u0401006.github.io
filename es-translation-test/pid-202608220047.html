@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>家庭收入大解密　新竹縣市獎金進補、台北市財產所得冠全台 | 產經 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>家庭收入大解密　新竹縣市獎金進補、台北市財產所得冠全台 | 產經 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-warn">external_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">家庭收入大解密　新竹縣市獎金進補、台北市財產所得冠全台 | 產經 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202608220047.aspx" target="_blank">https://www.cna.com.tw/news/aall/202608220047.aspx</a></div>
+      <div class="text-block">（中央社記者潘姿羽台北22日電）主計總處最新家庭收支調查出爐，114年全體家庭平均每戶所得總額為新台幣152.9萬元，續創新高。所得結構顯示，薪資確實是家庭的主要收入來源，但不同縣市存在區域差異，如台北市家庭股利、租金收入進帳不少，新竹縣市則因高科技產業多，年終、加班費大進補。
+根據主計總處最新公布的家庭收支調查，114年全體家庭平均每戶所得總額152.9萬元，年增3.3%；每戶可支配所得平均數121萬元，成長3.9%，兩者同創歷史新高。
+從區域來看，家庭平均所得收入僅新竹縣市突破200萬元大關，新竹市以204.2萬元高居第1、新竹縣200.7萬元排名第2，第3至第5名依序為台北市185.7萬元、桃園市155.7萬元、新北市150.6萬元。
+細看六都與新竹縣市家庭的所得結構，共通點是家庭主要所得收入來源是受僱人員報酬，占整體家庭所得收入均超過5成。若將受僱人員報酬進一步拆分為本業薪資、兼業薪資與其他收入（包含加班費、年終等獎金），便會發現，新竹縣市的其他收入高出其他縣市一大截。
+統計顯示，全體家庭其他收入平均為17.1萬元，六都當中以台北市、桃園市較高，分別為21.6萬元及20.3萬元，而新竹縣達49.2萬元、新竹市也有46.8萬元。
+主計總處官員指出，新竹縣市有新竹科學園區加持，高科技產業通常薪資高、年終獎金領蠻多，數據呈現結果符合一般大眾的認知。
+而家庭的所得收入來源，除了受僱人員報酬，涵蓋利息收入、投資收入（不含買賣股票價差）、其他財產所得收入（包含租金淨收入）的「財產所得收入」也是重要來源。
+觀察六都加上新竹縣市的財產所得收入表現，114年全體家庭平均財產所得收入為7.6萬元，台北市家庭財產所得收入以18萬元居冠，占整體所得收入逼近1成，同樣比重最高，「錢滾錢」成為台北家庭所得結構的一大特色。新竹市則是唯二財產所得收入突破10萬元的區域，為13.1萬元。
+受惠於AI熱潮，114年台股亮麗封關，加權指數收在28963.6點，全年上漲5928.5點，創下歷年最大漲點紀錄，不僅是史上最高封關指數，上市櫃總市值也突破100兆元大關。
+對於台股大漲，是否挹注家庭所得收入增加，主計總處官員說明，財產所得收入包含投資收入，但定義為股票證券、基金等所孳生股息及投資的紅利收入，不含買賣股票、基金價差，簡單來說，股票價差是資本利得，反映的是財富變動，而不是所得。
+至於台北市財產所得最高，是否與房價高、房租也高的因素有關，主計總處官員表示，無法釐析台北市財產所得主要來源為哪一項，但房租收入較高，確實可能是因素之一。（編輯：潘羿菁）1150822</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Ingresos familiares en Taiwán: Hsinchu lidera en bonificaciones y Taipéi encabeza rentas patrimoniales</div>
+        <div class="text-block" style="margin-bottom:8px">（Agencia Central de Noticias de Taiwán, CNA, corresponsal Pan Tzu-yu, Taipéi, 22 de agosto）La última encuesta sobre ingresos y gastos familiares publicada por la Dirección General de Presupuesto, Contabilidad y Estadística (DGBCE) revela que el ingreso total promedio por hogar en 2025 ascendió a 1,529,000 nuevos dólares taiwaneses (NTD), marcando un nuevo récord histórico. La estructura de ingresos muestra que los salarios constituyen la principal fuente de ingresos familiares, aunque existen diferencias regionales entre condados y ciudades: los hogares de Taipéi registran ingresos considerables por dividendos y alquileres, mientras que en los condados y ciudades de Hsinchu, gracias a la alta concentración de industrias de alta tecnología, los bonos de fin de año y las horas extra representan una importante aportación económica.
+
+Según la encuesta sobre ingresos y gastos familiares publicada por la DGBCE, el ingreso total promedio por hogar en 2025 fue de 1,529,000 NTD, un aumento interanual del 3,3%; el ingreso disponible promedio por hogar alcanzó 1,210,000 NTD, con un crecimiento del 3,9%, ambas cifras en máximos históricos.
+
+Desde una perspectiva regional, solo los condados y ciudades de Hsinchu superaron la barrera de los 2,000,000 NTD en ingresos familiares promedio: Hsinchu encabezó la lista con 2,042,000 NTD, seguida del condado de Hsinchu con 2,007,000 NTD. Del tercer al quinto lugar figuraron Taipéi con 1,857,000 NTD, la ciudad de Taoyuan con 1,557,000 NTD y la ciudad de Nuevo Taipéi con 1,506,000 NTD.
+
+Al analizar en detalle la estructura de ingresos de los hogares en las seis grandes ciudades y en los condados y ciudades de Hsinchu, el punto en común es que la remuneración de los empleados asalariados constituye la principal fuente de ingresos, representando más del 50% del total en todos los casos. Si se desglosa dicha remuneración en salario principal, salario secundario y otros ingresos (incluidos horas extra, bonos de fin de año y otros incentivos), se observa que los condados y ciudades de Hsinchu registran otros ingresos significativamente superiores a los del resto de regiones.
+
+Las estadísticas muestran que el promedio de otros ingresos para el conjunto de hogares fue de 171,000 NTD. Entre las seis grandes ciudades, Taipéi y Taoyuan registraron los valores más altos, con 216,000 NTD y 203,000 NTD respectivamente, mientras que el condado de Hsinchu alcanzó 492,000 NTD y la ciudad de Hsinchu, 468,000 NTD.
+
+Funcionarios de la DGBCE señalaron que los condados y ciudades de Hsinchu cuentan con el respaldo del Parque Científico de Hsinchu, y que las industrias de alta tecnología suelen ofrecer salarios elevados y generosos bonos de fin de año, por lo que los datos reflejan la percepción general de la población.
+
+Además de la remuneración de los empleados asalariados, los «ingresos patrimoniales», que incluyen intereses, ingresos por inversiones (excluidas las ganancias por compraventa de acciones) y otros ingresos por propiedades (incluidos los ingresos netos por alquiler), constituyen también una fuente importante de ingresos familiares.
+
+Al observar el comportamiento de los ingresos patrimoniales en las seis grandes ciudades y en los condados y ciudades de Hsinchu, el promedio de ingresos patrimoniales para el conjunto de hogares en 2025 fue de 76,000 NTD. Los hogares de Taipéi encabezaron la clasificación con 180,000 NTD, cifra que representa casi el 10% del total de ingresos, la proporción más alta de todas las regiones, lo que convierte el efecto multiplicador del capital en una característica destacada de la estructura de ingresos de los hogares taipeienses. La ciudad de Hsinchu fue la única otra región en superar los 100,000 NTD en ingresos patrimoniales, con 131,000 NTD.
+
+Impulsada por el auge de la AI, la bolsa de valores de Taiwán cerró el año 2025 con brillantez: el índice ponderado cerró en 28.963,6 puntos, con una subida anual de 5.928,5 puntos, lo que supone el mayor incremento anual registrado en la historia, el índice de cierre más alto de todos los tiempos y una capitalización bursátil total que superó los 100 billones de NTD.
+
+Sobre si el fuerte repunte de la bolsa taiwanesa contribuyó al aumento de los ingresos familiares, funcionarios de la DGBCE explicaron que los ingresos patrimoniales incluyen los ingresos por inversiones, definidos como dividendos generados por acciones, valores y fondos, pero no las ganancias por diferencial de precios en la compraventa de acciones o fondos. En términos simples, las ganancias de capital por diferencial bursátil reflejan variaciones en la riqueza, no en los ingresos.
+
+En cuanto a si los elevados ingresos patrimoniales de Taipéi están relacionados con los altos precios inmobiliarios y los elevados alquileres, funcionarios de la DGBCE indicaron que no es posible determinar con precisión cuál es la principal fuente de ingresos patrimoniales en Taipéi, aunque reconocieron que los mayores ingresos por alquiler podrían ser uno de los factores. (Editado por Pan Yi-ching) 1150822</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">La última encuesta sobre ingresos y gastos familiares de la Dirección General de Presupuesto, Contabilidad y Estadística revela que el ingreso total promedio por hogar en 2025 alcanzó 1,529,000 nuevos dólares taiwaneses, marcando un nuevo récord histórico. La estructura de ingresos muestra que los salarios son la principal fuente de ingresos familiares, aunque existen diferencias regionales entre condados y ciudades: los hogares de Taipéi registran ingresos considerables por dividendos y alquileres, mientras que en Hsinchu, gracias a la concentración de industrias de alta tecnología, los bonos de fin de año y las horas extra aportan una parte significativa de los ingresos.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Ingresos familiares en Taiwán: Hsinchu lidera en bonificaciones y Taipéi encabeza rentas patrimoniales</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Ingresos familiares al detalle: Hsinchu lidera en primas y Taipéi en rentas patrimoniales</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Ingresos familiares: Hsinchu lidera en bonos y Taipéi en rentas de propiedad</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">（Agencia Central de Noticias de Taiwán, CNA, corresponsal Pan Tzu-yu, Taipéi, 22 de agosto）La última encuesta sobre ingresos y gastos familiares publicada por la Dirección General de Presupuesto, Contabilidad y Estadística (DGBCE) revela que el ingreso total promedio por hogar en 2025 ascendió a 1,529,000 nuevos dólares taiwaneses (NTD), marcando un nuevo récord histórico. La estructura de ingresos muestra que los salarios constituyen la principal fuente de ingresos familiares, aunque existen diferencias regionales entre condados y ciudades: los hogares de Taipéi registran ingresos considerables por dividendos y alquileres, mientras que en los condados y ciudades de Hsinchu, gracias a la alta concentración de industrias de alta tecnología, los bonos de fin de año y las horas extra representan una importante aportación económica.
+
+Según la encuesta sobre ingresos y gastos familiares publicada por la DGBCE, el ingreso total promedio por hogar en 2025 fue de 1,529,000 NTD, un aumento interanual del 3,3%; el ingreso disponible promedio por hogar alcanzó 1,210,000 NTD, con un crecimiento del 3,9%, ambas cifras en máximos históricos.
+
+Desde una perspectiva regional, solo los condados y ciudades de Hsinchu superaron la barrera de los 2,000,000 NTD en ingresos familiares promedio: Hsinchu encabezó la lista con 2,042,000 NTD, seguida del condado de Hsinchu con 2,007,000 NTD. Del tercer al quinto lugar figuraron Taipéi con 1,857,000 NTD, la ciudad de Taoyuan con 1,557,000 NTD y la ciudad de Nuevo Taipéi con 1,506,000 NTD.
+
+Al analizar en detalle la estructura de ingresos de los hogares en las seis grandes ciudades y en los condados y ciudades de Hsinchu, el punto en común es que la remuneración de los empleados asalariados constituye la principal fuente de ingresos, representando más del 50% del total en todos los casos. Si se desglosa dicha remuneración en salario principal, salario secundario y otros ingresos (incluidos horas extra, bonos de fin de año y otros incentivos), se observa que los condados y ciudades de Hsinchu registran otros ingresos significativamente superiores a los del resto de regiones.
+
+Las estadísticas muestran que el promedio de otros ingresos para el conjunto de hogares fue de 171,000 NTD. Entre las seis grandes ciudades, Taipéi y Taoyuan registraron los valores más altos, con 216,000 NTD y 203,000 NTD respectivamente, mientras que el condado de Hsinchu alcanzó 492,000 NTD y la ciudad de Hsinchu, 468,000 NTD.
+
+Funcionarios de la DGBCE señalaron que los condados y ciudades de Hsinchu cuentan con el respaldo del Parque Científico de Hsinchu, y que las industrias de alta tecnología suelen ofrecer salarios elevados y generosos bonos de fin de año, por lo que los datos reflejan la percepción general de la población.
+
+Además de la remuneración de los empleados asalariados, los «ingresos patrimoniales», que incluyen intereses, ingresos por inversiones (excluidas las ganancias por compraventa de acciones) y otros ingresos por propiedades (incluidos los ingresos netos por alquiler), constituyen también una fuente importante de ingresos familiares.
+
+Al observar el comportamiento de los ingresos patrimoniales en las seis grandes ciudades y en los condados y ciudades de Hsinchu, el promedio de ingresos patrimoniales para el conjunto de hogares en 2025 fue de 76,000 NTD. Los hogares de Taipéi encabezaron la clasificación con 180,000 NTD, cifra que representa casi el 10% del total de ingresos, la proporción más alta de todas las regiones, lo que convierte el efecto multiplicador del capital en una característica destacada de la estructura de ingresos de los hogares taipeienses. La ciudad de Hsinchu fue la única otra región en superar los 100,000 NTD en ingresos patrimoniales, con 131,000 NTD.
+
+Impulsada por el auge de la AI, la bolsa de valores de Taiwán cerró el año 2025 con brillantez: el índice ponderado cerró en 28.963,6 puntos, con una subida anual de 5.928,5 puntos, lo que supone el mayor incremento anual registrado en la historia, el índice de cierre más alto de todos los tiempos y una capitalización bursátil total que superó los 100 billones de NTD.
+
+Sobre si el fuerte repunte de la bolsa taiwanesa contribuyó al aumento de los ingresos familiares, funcionarios de la DGBCE explicaron que los ingresos patrimoniales incluyen los ingresos por inversiones, definidos como dividendos generados por acciones, valores y fondos, pero no las ganancias por diferencial de precios en la compraventa de acciones o fondos. En términos simples, las ganancias de capital por diferencial bursátil reflejan variaciones en la riqueza, no en los ingresos.
+
+En cuanto a si los elevados ingresos patrimoniales de Taipéi están relacionados con los altos precios inmobiliarios y los elevados alquileres, funcionarios de la DGBCE indicaron que no es posible determinar con precisión cuál es la principal fuente de ingresos patrimoniales en Taipéi, aunque reconocieron que los mayores ingresos por alquiler podrían ser uno de los factores. (Editado por Pan Yi-ching) 1150822</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(Taipéi, 22 de agosto, CNA (Agencia Central de Noticias de Taiwán), reportera Pan Tzu-yu) La más reciente encuesta sobre ingresos y gastos de los hogares publicada por la Dirección General de Presupuesto, Contabilidad y Estadísticas mostró que, en 2025, el ingreso total promedio por hogar alcanzó los NT$1,529 millones, con lo que siguió marcando un máximo histórico. La estructura de ingresos muestra que los salarios son, efectivamente, la principal fuente de ingresos de los hogares, aunque existen diferencias regionales entre ciudades y condados: por ejemplo, los hogares de Taipéi reciben ingresos considerables por dividendos y alquileres, mientras que en el condado y la ciudad de Hsinchu, debido a la concentración de industrias de alta tecnología, los bonos de fin de año y el pago de horas extra aportan un fuerte incremento.
+Según la más reciente encuesta sobre ingresos y gastos de los hogares publicada por la Dirección General de Presupuesto, Contabilidad y Estadísticas, en 2025 el ingreso total promedio de todos los hogares fue de NT$1,529 millones, un aumento interanual del 3,3 %; el ingreso disponible promedio por hogar fue de NT$1,21 millones, con un crecimiento del 3,9 %. Ambos marcaron máximos históricos.
+Por regiones, solo el condado y la ciudad de Hsinchu superaron la barrera de los NT$2 millones en ingreso promedio por hogar. La ciudad de Hsinchu ocupó el primer lugar con NT$2,042 millones, seguida por el condado de Hsinchu con NT$2,007 millones. Del tercer al quinto lugar se ubicaron, en ese orden, Taipéi con NT$1,857 millones, Taoyuan con NT$1,557 millones y la ciudad de Nuevo Taipéi con NT$1,506 millones.
+Un examen más detallado de la estructura de ingresos de los hogares en las seis municipalidades especiales, así como en el condado y la ciudad de Hsinchu, muestra un rasgo común: la principal fuente de ingresos de los hogares es la remuneración de los empleados, que representa más de la mitad del ingreso total de los hogares en todos los casos. Si esta remuneración se desglosa en salario principal, salario por trabajo secundario y otros ingresos —incluidos pagos por horas extra y bonificaciones como el bono de fin de año—, se observa que los otros ingresos en el condado y la ciudad de Hsinchu superan ampliamente a los de otras ciudades y condados.
+Las estadísticas muestran que el promedio de otros ingresos de todos los hogares fue de NT$171.000. Entre las seis municipalidades especiales, Taipéi y Taoyuan registraron niveles relativamente altos, con NT$216.000 y NT$203.000, respectivamente, mientras que el condado de Hsinchu alcanzó NT$492.000 y la ciudad de Hsinchu NT$468.000.
+Un funcionario de la Dirección General de Presupuesto, Contabilidad y Estadísticas señaló que el condado y la ciudad de Hsinchu se benefician del Parque Científico de Hsinchu, donde las industrias de alta tecnología suelen ofrecer salarios elevados y generosos bonos de fin de año, por lo que los resultados de los datos coinciden con la percepción general del público.
+Además de la remuneración de los empleados, otra fuente importante de ingresos de los hogares es el «ingreso por propiedad», que incluye ingresos por intereses, ingresos por inversiones (sin incluir las ganancias por diferencia de precio en la compraventa de acciones) y otros ingresos patrimoniales (incluido el ingreso neto por alquileres).
+Al observar el desempeño de los ingresos por propiedad en las seis municipalidades especiales más el condado y la ciudad de Hsinchu, el promedio de todos los hogares en 2025 fue de NT$76.000. Los hogares de Taipéi encabezaron la lista con NT$180.000 en ingresos por propiedad, cifra que representó casi el 10 % de su ingreso total y también la mayor proporción entre todas las regiones. Hacer que «el dinero genere más dinero» se ha convertido en una característica destacada de la estructura de ingresos de los hogares de Taipéi. La ciudad de Hsinchu fue la única otra región donde los ingresos por propiedad superaron los NT$100.000, con NT$131.000.
+Impulsado por el auge de AI, el mercado bursátil de Taiwán cerró 2025 con un sólido desempeño: el índice ponderado cerró en 28.963,6 puntos, con un alza anual de 5.928,5 puntos, un récord histórico de mayor aumento anual en puntos. No solo fue el cierre de fin de año más alto de la historia, sino que la capitalización total de mercado de las empresas cotizadas y extrabursátiles también superó la marca de NT$100 billones.
+Sobre si el fuerte repunte del mercado bursátil de Taiwán contribuyó a aumentar los ingresos de los hogares, un funcionario de la Dirección General de Presupuesto, Contabilidad y Estadísticas explicó que los ingresos por propiedad incluyen ingresos por inversiones, definidos como dividendos de acciones y valores, fondos y otras rentas derivadas de inversiones, pero no incluyen las ganancias por diferencia de precio en la compraventa de acciones o fondos. En términos simples, las ganancias por diferencia de precio de las acciones son ganancias de capital, que reflejan cambios en la riqueza y no ingresos.
+En cuanto a si el hecho de que Taipéi registre los mayores ingresos por propiedad está relacionado con los altos precios de la vivienda y, por ende, con alquileres también elevados, el funcionario indicó que no es posible desglosar cuál es la principal fuente de los ingresos por propiedad en Taipéi, aunque reconoció que unos mayores ingresos por alquiler sí podrían ser uno de los factores. (Editor: Pan Yi-ching) 20260822</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La última encuesta sobre ingresos y gastos familiares de la Dirección General de Presupuesto, Contabilidad y Estadísticas revela que el ingreso total promedio por hogar en 2025 alcanzó 1,529,000 nuevos dólares taiwaneses, marcando un nuevo récord histórico. La estructura de ingresos muestra que los salarios son la principal fuente de ingresos familiares, aunque existen diferencias regionales entre condados y ciudades: los hogares de Taipéi registran ingresos considerables por dividendos y alquileres, mientras que en Hsinchu, gracias a la concentración de industrias de alta tecnología, los bonos de fin de año y las horas extra aportan una parte significativa de los ingresos.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La más reciente encuesta sobre ingresos y gastos familiares de la Dirección General de Presupuesto, Contabilidad y Estadísticas mostró que, en el año 114, el ingreso total promedio por hogar de todas las familias fue de 1,529 millones de nuevos dólares taiwaneses, con lo que volvió a marcar un máximo histórico. La estructura de ingresos muestra que los salarios son, en efecto, la principal fuente de ingresos de los hogares, aunque existen diferencias regionales entre ciudades y condados: por ejemplo, los hogares de Taipéi reciben ingresos considerables por dividendos y alquileres, mientras que en el condado de Hsinchu y Hsinchu, donde se concentra una gran cantidad de industrias de alta tecnología, las bonificaciones de fin de año y las horas extra suponen un importante complemento.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">La última encuesta de ingresos y gastos familiares de la Dirección General de Presupuesto, Contabilidad y Estadísticas revela que el ingreso total promedio por hogar en 2025 alcanzó un nuevo récord de 1.529.000 nuevos dólares taiwaneses. La estructura muestra que los salarios son la principal fuente de ingresos, aunque con diferencias regionales. Por ejemplo, los hogares de Taipéi perciben considerables ingresos por dividendos y alquileres, mientras que el condado y la ciudad de Hsinchu se benefician enormemente de bonos de fin de año y horas extras debido a sus industrias de alta tecnología.</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Terminología precisa y consistente con la tabla de referencia</li><li class="good">Uso correcto de comillas tipográficas españolas «»</li><li class="good">Estructura de párrafos clara y fluida</li><li class="good">Cifras expresadas de forma coherente y legible (1,529,000 NTD)</li><li class="good">Primera mención de CNA con nombre completo correctamente desarrollada</li><li class="good">Traducción natural que respeta el estilo periodístico en español</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">El título supera ligeramente en longitud respecto a otros pero se mantiene dentro del límite de 140 caracteres</li><li class="bad">El SEO repite casi literalmente el primer párrafo del cuerpo, lo cual es aceptable pero podría ser más diferenciado</li><li class="bad">Pequeña inconsistencia en el nombre del organismo: en el título del SEO aparece &#39;Estadísticas&#39; (con s final) mientras que en el cuerpo se usa &#39;Estadística&#39; (sin s); ambas formas son válidas pero conviene uniformar</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">6.05</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:50%"></div></div>
+          <span class="score-val">5.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:50%"></div></div>
+          <span class="score-val">5.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Redacción fluida y natural en español</li><li class="good">Uso correcto de comillas tipográficas «»</li><li class="good">Estructura de párrafos bien organizada</li><li class="good">Terminología generalmente consistente con la tabla de referencia</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Error crítico de cifras: &#39;1,529 millones de NTD&#39; es incorrecto; el original indica 1,529,000 NTD (aproximadamente 1,529 miles, no millones), lo que representa una distorsión factual grave de la magnitud económica reportada</li><li class="bad">El mismo error de magnitud se repite sistemáticamente en todo el cuerpo (&#39;NT$1,21 millones&#39;, &#39;NT$2,042 millones&#39;, etc.), afectando gravemente la precisión</li><li class="bad">El SEO menciona &#39;el año 114&#39; (año del calendario de la República de China) sin explicación, lo que resulta confuso para lectores hispanohablantes y no aparece en el original en ese contexto</li><li class="bad">La fecha en el cierre del artículo aparece como &#39;20260822&#39;, formato incorrecto (debería ser 1150822 o una fecha legible)</li><li class="bad">La expresión &#39;NT$100 billones&#39; puede ser ambigua en español (billón en español = 10^12, diferente al inglés trillion)</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">C</div>
+          <strong>Model C</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">7.65</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:50%"></div></div>
+          <span class="score-val">5.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Título conciso y dentro del límite de caracteres</li><li class="good">SEO bien redactado y natural</li><li class="good">Sin errores factuales evidentes en las secciones presentes</li><li class="good">Uso correcto de la notación numérica (1.529.000)</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Error crítico de formato: el cuerpo del artículo está completamente ausente, lo que hace el borrador inutilizable como traducción completa</li><li class="bad">La ausencia del cuerpo impide evaluar la consistencia terminológica y la precisión en el conjunto del texto</li><li class="bad">No se puede verificar el uso de comillas «» ni la estructura de párrafos en el cuerpo</li><li class="bad">El SEO usa punto como separador de miles (1.529.000) mientras que el estilo de los otros borradores usa coma, generando posible inconsistencia de estilo</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El borrador A obtiene la puntuación más alta por su precisión factual, consistencia terminológica, fluidez y formato completo. El borrador C, aunque bien redactado en las secciones presentes, carece del cuerpo del artículo, lo que lo hace incompleto e inutilizable como traducción final, aunque sus secciones existentes son de buena calidad. El borrador B presenta un error crítico y sistemático en la expresión de las cifras monetarias (confunde miles con millones de NTD), lo que distorsiona gravemente la información económica del artículo original y lo descalifica como borrador recomendable.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            <div class="qc-detail">遺失數字：[&#39;114&#39;, &#39;17.1&#39;, &#39;200.7&#39;, &#39;204.2&#39;, &#39;7.6&#39;, &#39;21.6&#39;, &#39;20.3&#39;, &#39;49.2&#39;, &#39;152.9&#39;, &#39;150.6&#39;, &#39;28963.6&#39;, &#39;46.8&#39;, &#39;155.7&#39;, &#39;13.1&#39;, &#39;5928.5&#39;, &#39;185.7&#39;]</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>external_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>QC 硬性失敗：[&#39;QC-01-numbers&#39;]</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (13)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-GPE">台北 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">新北 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">新竹縣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">新竹市 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">台北市 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">桃園市 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">新北市 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">主計總處 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">新竹科學園區 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">中央社記者潘姿羽 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">潘羿菁 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-TECH">AI <span style="font-size:10px;opacity:.6">TECH</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">de1faf80-ef0b-4af2-a833-19d63e09854c</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202608220047</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-08-22T16:14</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-08-22T16:16</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+// 背景段落「查證並生成建議」「翻譯並預覽」送出後不整頁刷新：fetch 拿回同一份
+// detail.html，只替換 body 內容——換頁會讓使用者失去捲動位置、右欄已展開的
+// 草稿分頁等狀態。commit/review 表單本來就是最後一步，維持原本整頁刷新。
+(function () {
+  const AJAX_FORM_SELECTORS = [
+    'form[action$="/backgrounder/suggest"]',
+    'form[action$="/backgrounder/preview"]',
+  ];
+
+  function bindAjaxForms() {
+    AJAX_FORM_SELECTORS.forEach((sel) => {
+      const form = document.querySelector(sel);
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type=submit]');
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '處理中...';
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+          if (!res.ok) throw new Error(res.status);
+          const html = await res.text();
+          document.body.innerHTML = new DOMParser().parseFromString(html, 'text/html').body.innerHTML;
+          bindAjaxForms(); // 舊 form 節點被換掉了，重新綁一次
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = original;
+          alert('操作失敗，請重試');
+        }
+      });
+    });
+  }
+  bindAjaxForms();
+})();
+</script>
+</body>
+</html>

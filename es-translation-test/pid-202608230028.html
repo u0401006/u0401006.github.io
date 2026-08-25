@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>從島嶼發散　台灣人在巴黎以「毛邊感」打造書香咖啡館 | 生活 | 中央社 CNA — Review</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--border:#dee2e6;--primary:#0d6efd;--success:#198754;--danger:#dc3545;--warning:#e6a817;--muted:#6c757d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#212529;font-size:14px}
+header{background:#1a1a2e;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px}
+header a{color:#adb5bd;text-decoration:none;font-size:13px}
+header a:hover{color:#fff}
+header h2{font-size:15px;font-weight:600;flex:1}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;max-width:1400px;margin:16px auto;padding:0 16px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.badge{padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pending{background:#6c757d;color:#fff}
+.badge-approved{background:var(--success);color:#fff}
+.badge-rejected{background:var(--danger);color:#fff}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-crit{background:#fee2e2;color:#991b1b}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.meta-item label{font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
+.meta-item span{font-weight:500}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:6px 14px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.text-block{background:#f8f9fa;border-radius:6px;padding:12px;font-size:13px;line-height:1.7;white-space:pre-wrap;max-height:320px;overflow-y:auto;border:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-grid .label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.score-bar-wrap{flex:1;background:#e9ecef;border-radius:4px;height:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;background:var(--primary)}
+.score-val{width:30px;text-align:right;font-weight:600;font-size:12px}
+.score-label{width:110px;font-size:12px;color:var(--muted)}
+.winner-tag{display:inline-block;background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+
+.qc-list{display:flex;flex-direction:column;gap:6px}
+.qc-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.qc-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.qc-pass{background:#d1fae5;color:#065f46}
+.qc-fail{background:#fee2e2;color:#991b1b}
+.qc-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+.entity-tags{display:flex;flex-wrap:wrap;gap:4px}
+.entity-tag{padding:2px 8px;border-radius:4px;font-size:12px;border:1px solid}
+.tag-ORG{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.tag-PERSON{background:#fdf2f8;border-color:#f9a8d4;color:#9d174d}
+.tag-GPE{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag-TECH{background:#fefce8;border-color:#fde68a;color:#92400e}
+.tag-TITLE{background:#faf5ff;border-color:#e9d5ff;color:#6b21a8}
+
+.review-form textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;resize:vertical;min-height:80px;font-family:inherit}
+.review-form input[type=text]{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.review-form label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+.btn{padding:7px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-approve{background:var(--success);color:#fff}
+.btn-reject{background:var(--danger);color:#fff}
+.btn-pending{background:#6c757d;color:#fff}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+
+.rationale{font-size:12px;color:#495057;line-height:1.6;background:#f8f9fa;border-radius:6px;padding:10px;border-left:3px solid var(--primary)}
+ul.list{padding-left:16px;margin:6px 0}
+ul.list li{margin-bottom:3px;font-size:13px;line-height:1.5}
+.good{color:var(--success)}
+.bad{color:var(--danger)}
+
+.model-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.model-alias{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html">← 列表（靜態快照）</a>
+  <h2>從島嶼發散　台灣人在巴黎以「毛邊感」打造書香咖啡館 | 生活 | 中央社 CNA</h2>
+  
+    <span class="badge badge-pending">pending</span>
+  
+  
+    <span class="badge badge-warn">external_review</span>
+  
+</header>
+
+<div class="layout">
+  <!-- ── 左欄 ── -->
+  <div>
+
+    <!-- 原文 -->
+    <div class="card">
+      <div class="card-title">原文（中文）</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">從島嶼發散　台灣人在巴黎以「毛邊感」打造書香咖啡館 | 生活 | 中央社 CNA</div>
+      <div style="font-size:12px;margin-bottom:8px"><a href="https://www.cna.com.tw/news/aall/202608230028.aspx" target="_blank">https://www.cna.com.tw/news/aall/202608230028.aspx</a></div>
+      <div class="text-block">（中央社記者曾依璇巴黎23日專電）在巴黎這座內陸城市，有一家台灣人經營、以「島嶼」為意象的書店。在這裡，「台灣」不在最醒目的位置，而是融在店名諧音哏、書冊之間或一道配菜的風味裡。
+巴黎第6區向來有濃厚文藝氣息，大小出版社和書店相當密集，又有騷人墨客經常相聚的咖啡館。其中座落在康德街（Rue de Condé）的「（氵島）語」（L’îlebrairie &amp; Co.）位置正好，出了門往右立刻是聖日耳曼大道的繁華，往左深入則是一條靜巷，到底就是閒逸的盧森堡公園。
+這家好似鬧區裡一座小島的書店咖啡館由來自台灣的王建慧與熊怡婷共同經營，一邊賣書，一邊提供咖啡、茶、飯糰、麻醬麵等餐點，從2025年2月28日開幕至今，在社群媒體Instagram收穫不少法國人透過限時動態分享這個空間給他們帶來的驚喜。
+入內，最搶眼的是占據一整面牆的書架，王建慧以關鍵字為書目分類，貼著各種標籤，諸如「散亂的記憶」、「被穿越的城市」、「破碎的親密關係」、「我吃故我在」⋯每一區就是一個迷你主題書展。
+這個書架從略為坑疤的紅磚地面往上一直延伸，隨牆面與天花板交界而彎折，像是要長成一個藤花棚。
+店內還有分散在不同角落的高低書架，有的要蹲下細看，有的要動手翻動才知道有哪些寶物，連咖啡機前面的狹窄空間都塞著幾本小書。
+這些書部分與台灣相關，有外籍記者書寫台灣，也有台灣文學法譯本。但更多的是法國本地和來自其他國家的作品，客群也以法國人占絕大多數。
+曾有一名在書店工作的客人，在王建慧推薦下買了已故作家邱妙津的書，回去看了之後太喜歡，隨即推薦自家書店老闆採購邱妙津的作品。王建慧認為，這也是讓台灣「走出去」的一種方式。
+開書店的想法，在王建慧心裡藏了10年有餘。
+她因為喜愛法國文評家羅蘭．巴特（Roland Barthes）而極力學好法語，2014年到巴黎攻讀比較文學，以作家吳明益著作「睡眠的航線」為主題寫了碩士論文，最終於2024年取得博士學位。
+讀書這些年，王建慧也在心裡描摹擁有一間書店的想像。她接受中央社記者訪問時說，就像日本作家村上春樹某日看棒球，在球員擊出安打時突然冒出自己可以寫小說的想法，有一天她在洗澡，îlebrairie這個結合法語「島嶼」（île）和「書店」（librairie）的字也突然降臨在腦海。
+她話鋒一轉說，「法文店名有玩文字遊戲，又因為台灣人如果不玩文字遊戲就會死」，所以讀作「島嶼」的中文店名，除了以代表文學的「語」取代「嶼」，再聯想到形塑一座島必須有水，於是在「島」旁加上三點水，是一個只存在於老字典、電腦鍵盤打不出來的古字。
+出生於馬達加斯加的紀錄片導演派希（Marie-Clémence A. Paes）是常客之一。馬達加斯加與台灣同樣是緊鄰一片大陸的島嶼，這讓她對「島嶼」題材感觸尤深。
+她受訪時表示，îlebrairie的概念很美，「因為我們心有所感，不只地理和實質上的島嶼，還有心靈上的島嶼」；人們常說，島上的人一日不離開，就只想著離開，而一旦離開，又只想回到那座島，「這是所有島民都有的矛盾情結」。
+「（氵島）語」的書架並未刻意凸顯與台灣有關的書籍，菜單也沒有強調台灣味，因為在這裡，「台灣」不是一個符號、標籤或前綴詞，而是一種核心意識。
+台灣菜色不是非得刈包、雞排、滷肉飯，這裡的飯糰套餐，主角是覆上一片海苔的三角飯糰，附一碗味噌湯，日本風味十足，但配菜又包括台灣南部才有的薑汁蕃茄。
+王建慧認為，經過中共極力打壓後，全世界反而都知道台灣是什麼樣貌，按照她的想法，「我們就是台灣，我們做的每一個動作都是（代表）台灣」。
+她舉例，她送餐時的一句「抱歉讓您久等」，是台灣人在日常生活中無意識養成的習慣，而法國人不會這麼說。
+她說，這家書店長成的模樣，與她所受的比較文學訓練有關，「我覺得到了現在這個世代，台灣已經不需要『以台灣論台灣』，不用凡事以台灣為名，去告訴別人我們是一個國家，與其這樣，不如把台灣放在⋯即使是書，也是放在與世界對話的位置上」。
+被要求形容這一方空間的氛圍時，王建慧想都不想就說「一個詞就好：毛邊感」。
+毛邊感是紙張被撕開時邊緣細碎的纖維，界線在此變得模糊、發散，是她一開始就想塑造的氛圍，也是島嶼的意象之一。
+她說，毛邊感有一點破爛、粗糙的感覺，「回應了我對島嶼邊界的想像」，島嶼令人聯想到離開、移動、開放、孤獨，但也是一個不受框限、還有延伸可能的空間。
+這種模糊界線的意象隱匿在店裡許多地方，像是邊緣保留開口未封閉的木質書架、有點台灣但又不是很典型的菜單選項、燈具及牆漆的霧面質感，抑或是以關鍵字而不是以文類和年代去編排書架。
+咖啡茶館結合書店的空間在巴黎並非沒有，但也不算多。王建慧坦言：「所有人都講，如果現在只開書店，兩秒就會倒⋯所以現在確實是這個吧台在餵養我們的夢想。」
+然而經營一年多來，她也發現愈來愈多人是先被書吸引，然後決定買一本坐下來看，書籍「這個不讓我們賺錢的東西，反而才是我們的靈魂」。（編輯：唐佩君）1150823</div>
+    </div>
+
+    <!-- 最終譯文 -->
+    <div class="card">
+      <div class="card-title">最終譯文（Final Translation）</div>
+      
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">París: taiwaneses crean una librería-cafetería con estética de «bordes irregulares»</div>
+        <div class="text-block" style="margin-bottom:8px">(París, 23 de agosto, corresponsal especial de CNA (Agencia Central de Noticias de Taiwán), Tseng Yi-hsuan) En París, una ciudad sin litoral, hay una librería regentada por taiwaneses y concebida en torno a la imagen de una «isla». Aquí, «Taiwán» no ocupa el lugar más visible, sino que se funde en el juego de palabras homófono del nombre del local, entre los libros o en el sabor de una guarnición.
+
+El distrito 6 de París se ha caracterizado siempre por un intenso ambiente artístico y literario, con una gran concentración de editoriales y librerías de todos los tamaños, además de cafés frecuentados por escritores y artistas. En la Rue de Condé se encuentra «(氵島)語» (L’îlebrairie &amp; Co.), en una ubicación inmejorable: al salir, a la derecha está de inmediato el bullicio del bulevar Saint-Germain; si se avanza hacia la izquierda por una callejuela tranquila, al final aparece el apacible Jardín de Luxemburgo.
+
+Esta librería-cafetería, semejante a una pequeña isla en medio de una zona animada, está gestionada conjuntamente por Wang Chien-hui y Hsiung Yi-ting, ambas procedentes de Taiwán. Además de vender libros, ofrece café, té, onigiri, fideos con salsa de sésamo y otras comidas. Desde su apertura, el 28 de febrero de 2025, ha recibido en Instagram numerosas publicaciones temporales de franceses que comparten la sorpresa que les ha producido este espacio.
+
+Al entrar, lo más llamativo es una estantería que ocupa toda una pared. Wang Chien-hui clasifica los libros por palabras clave y coloca diversas etiquetas, como «memorias dispersas», «ciudades atravesadas», «relaciones íntimas rotas» o «soy lo que como»… Cada sección constituye una miniexposición temática de libros.
+
+Esa estantería se eleva desde un suelo de ladrillo rojo ligeramente irregular y picado, y se prolonga hacia arriba curvándose en la unión entre la pared y el techo, como si quisiera convertirse en una pérgola de glicinas.
+
+En el local también hay estanterías altas y bajas repartidas por distintos rincones; algunas obligan a agacharse para mirar con detenimiento, otras requieren rebuscar con las manos para descubrir qué tesoros esconden, e incluso el estrecho espacio frente a la cafetera está atestado de pequeños libros.
+
+Una parte de esos libros está relacionada con Taiwán: hay obras sobre Taiwán escritas por periodistas extranjeros y también traducciones al francés de literatura taiwanesa. Pero son más numerosos los títulos franceses y de otros países, y la inmensa mayoría de la clientela es francesa.
+
+Una vez, una clienta que trabajaba en una librería compró, por recomendación de Wang Chien-hui, un libro de la fallecida escritora Chiu Miao-chin. Le gustó tanto tras leerlo que enseguida recomendó al dueño de su librería que adquiriera obras de Chiu. Wang considera que esa también es una forma de hacer que Taiwán «salga al exterior».
+
+La idea de abrir una librería llevaba más de 10 años guardada en el corazón de Wang Chien-hui.
+
+Por su admiración por el crítico literario francés Roland Barthes, se esforzó al máximo por aprender bien francés. En 2014 llegó a París para estudiar literatura comparada y escribió su tesis de maestría sobre la obra del escritor Wu Ming-yi «睡眠的航線». Finalmente obtuvo el doctorado en 2024.
+
+Durante esos años de estudio, Wang también fue perfilando en su mente la imagen de tener una librería propia. En una entrevista con CNA, contó que, así como al escritor japonés Haruki Murakami se le ocurrió de repente que podía escribir novelas un día viendo un partido de béisbol, en el momento en que un jugador conectó un hit, a ella un día, mientras se duchaba, se le apareció de pronto en la mente la palabra îlebrairie, que combina el francés «île» (isla) y «librairie» (librería).
+
+Cambiando de tono, dijo: «El nombre en francés juega con las palabras y, además, los taiwaneses, si no jugamos con las palabras, nos morimos». Por eso, el nombre chino de la tienda, que se pronuncia como «isla», sustituye el carácter de «isla» por «語», en alusión a la literatura, y además parte de la idea de que para formar una isla hace falta agua, de modo que se añade el radical de tres puntos de agua junto a «島», creando un carácter antiguo que solo existe en viejos diccionarios y que no puede teclearse en un teclado de computadora.
+
+La documentalista Marie-Clémence A. Paes, nacida en Madagascar, es una de las clientas habituales. Madagascar, al igual que Taiwán, es una isla situada junto a un continente, lo que hace que el tema de la «isla» le resulte especialmente conmovedor.
+
+En la entrevista, afirmó que el concepto de îlebrairie es muy bello, «porque nos toca por dentro: no solo existen las islas geográficas y materiales, sino también las islas del espíritu». La gente suele decir que quienes viven en una isla, mientras no se marchan, solo piensan en irse; pero una vez que se van, solo quieren volver a esa isla. «Esa es la contradicción sentimental que comparten todos los isleños».
+
+Las estanterías de «(氵島)語» no destacan deliberadamente los libros relacionados con Taiwán, y el menú tampoco subraya el sabor taiwanés, porque aquí «Taiwán» no es un símbolo, una etiqueta ni un prefijo, sino una conciencia central.
+
+La comida taiwanesa no tiene por qué ser necesariamente gua bao, filete de pollo frito o arroz con cerdo estofado. En el menú de onigiri de este local, el protagonista es un onigiri triangular cubierto con una lámina de alga nori y acompañado de un cuenco de sopa de miso, con un marcado aire japonés, pero entre las guarniciones figura también el tomate con salsa de jengibre, propio del sur de Taiwán.
+
+Wang Chien-hui considera que, tras la intensa represión ejercida por el Partido Comunista Chino, el mundo entero, por el contrario, ha llegado a saber mejor cómo es Taiwán. Según su manera de pensar, «nosotros somos Taiwán; cada uno de nuestros actos es una representación de Taiwán».
+
+Puso como ejemplo que, al servir un plato, diga «perdón por hacerle esperar», una costumbre que los taiwaneses han adquirido inconscientemente en la vida cotidiana y que los franceses no tienen.
+
+Dijo que la forma que ha tomado esta librería está relacionada con la formación en literatura comparada que recibió: «Creo que, llegados a esta época, Taiwán ya no necesita “hablar de Taiwán desde Taiwán”; no hace falta poner el nombre de Taiwán en todo para decirle a los demás que somos un país. En vez de eso, es mejor situar a Taiwán… incluso en el caso de los libros, en una posición de diálogo con el mundo».
+
+Cuando se le pidió que describiera el ambiente de este espacio, Wang respondió sin pensarlo: «Una sola palabra basta: borde rasgado».
+
+Ese «borde rasgado» alude a las finas fibras que quedan en el borde del papel al rasgarse; allí los límites se vuelven borrosos y se dispersan. Era la atmósfera que ella quiso crear desde el principio y también una de las imágenes de la isla.
+
+Dijo que ese efecto de borde rasgado transmite una sensación algo rota y áspera, «que responde a mi imaginación sobre los límites de la isla». La isla evoca partida, movimiento, apertura y soledad, pero también es un espacio no constreñido y con posibilidades de prolongación.
+
+Esa imagen de límites difusos se esconde en muchos rincones del local: en las estanterías de madera cuyos bordes conservan aberturas sin cerrar, en opciones del menú que tienen algo de Taiwán pero no son del todo típicas, en la textura mate de las lámparas y la pintura de las paredes, o en la organización de las estanterías por palabras clave en lugar de por géneros y épocas.
+
+En París no es inexistente el modelo de espacio que combina cafetería y librería, aunque tampoco es muy común. Wang Chien-hui admitió con franqueza: «Todo el mundo dice que, si hoy solo abres una librería, quiebra en dos segundos… Así que, en efecto, es esta barra la que está alimentando nuestro sueño».
+
+Sin embargo, tras más de un año de funcionamiento, también ha descubierto que cada vez más personas se sienten atraídas primero por los libros y luego deciden comprar uno para sentarse a leer. Los libros, «esa cosa que no nos hace ganar dinero, son precisamente nuestra alma». (Editora: Tang Pei-chun) 1150823</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">SEO</div>
+        <div class="text-block" style="max-height:80px;font-size:12px">En París, una ciudad sin litoral, hay una librería regentada por taiwaneses y concebida en torno a la imagen de una «isla». Aquí, «Taiwán» no ocupa el lugar más visible, sino que se funde en el juego de palabras homófono del nombre del local, entre los libros o en el sabor de una guarnición.</div>
+      
+    </div>
+
+    <!-- 背景段落建議：校閱人員指定要補的方向，Agent 查證後生成建議 -->
+    <div class="card">
+      <div class="card-title">背景段落建議</div>
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，「查證並生成建議」功能已停用（需連線內部審核系統）。
+      </div>
+      
+
+      
+    </div>
+
+    <!-- 模型草稿對比 -->
+    <div class="card">
+      <div class="card-title">模型草稿對比</div>
+      <div class="tabs" id="draft-tabs">
+        <div class="tab active" onclick="switchTab('draft-tabs','tab-title')">Title</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-body')">Body</div>
+        <div class="tab" onclick="switchTab('draft-tabs','tab-seo')">SEO</div>
+      </div>
+      
+      <div class="tab-panel active" id="tab-title">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Desde la isla al mundo: taiwaneses crean en París una cafetería literaria con estética de «bordes crudos»</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">Taiwaneses en París crean una librería-cafetería con estética de «bordes irregulares»</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">De la isla a París: taiwaneses crean café literario con «toque rústico» | Sociedad | CNA</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-body">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">En París, ciudad mediterránea sin litoral, existe una librería gestionada por taiwaneses cuya imagen evocadora es la de una isla. Aquí, «Taiwán» no ocupa el lugar más visible, sino que se funde en el juego de palabras del nombre del local, entre los libros o en el sabor de un acompañamiento.
+
+El distrito 6 de París siempre ha tenido una intensa atmósfera cultural y artística, con una notable concentración de editoriales y librerías, además de cafés donde se reúnen habitualmente escritores e intelectuales. Entre ellos, la librería-cafetería «（氵島）語» (L&#39;îlebrairie &amp; Co.), ubicada en la Rue de Condé, ocupa un lugar privilegiado: al salir y girar a la derecha se accede al bullicio del Boulevard Saint-Germain, mientras que girando a la izquierda se adentra uno en una tranquila callejuela que desemboca en el sosegado Jardín de Luxemburgo.
+
+Este local, que parece una pequeña isla en pleno centro urbano, es gestionado conjuntamente por Wang Jian-hui y Xiong Yi-ting, ambas originarias de Taiwán. Además de vender libros, ofrecen café, té, onigiri, fideos con salsa de sésamo y otros platos. Desde su inauguración el 28 de febrero de 2025, ha cosechado numerosas publicaciones de franceses en Instagram que comparten en sus historias la grata sorpresa que les ha deparado este espacio.
+
+Al entrar, lo primero que llama la atención es una estantería que ocupa toda una pared. Wang Jian-hui clasifica los libros por palabras clave y los etiqueta con rótulos como «recuerdos dispersos», «ciudades atravesadas», «relaciones íntimas rotas» o «soy lo que como»... Cada sección es una pequeña exposición temática.
+
+La estantería arranca desde el suelo de ladrillo rojo, ligeramente irregular, y asciende hasta doblarse en el encuentro entre la pared y el techo, como si quisiera convertirse en una pérgola de flores.
+
+El local cuenta también con estanterías de distintas alturas repartidas por diferentes rincones: algunas obligan a agacharse para examinarlas, otras requieren hojear para descubrir sus tesoros, e incluso el estrecho espacio frente a la máquina de café alberga unos cuantos libros pequeños.
+
+Parte de estos libros están relacionados con Taiwán —hay obras de periodistas extranjeros sobre la isla y traducciones al francés de literatura taiwanesa—, pero la mayoría son obras francesas o de otros países, y la clientela es abrumadoramente francesa.
+
+En cierta ocasión, un cliente que trabajaba en una librería compró, por recomendación de Wang Jian-hui, un libro de la difunta escritora Qiu Miaojin. Le gustó tanto que, al terminarlo, recomendó de inmediato a su jefe que adquiriera obras de la autora. Wang Jian-hui considera que esta es también una forma de que Taiwán «salga al mundo».
+
+La idea de abrir una librería llevaba más de diez años gestándose en la mente de Wang Jian-hui.
+
+Movida por su admiración hacia el crítico literario francés Roland Barthes, se esforzó por dominar el francés. En 2014 llegó a París para estudiar literatura comparada, escribió su tesis de máster sobre «La ruta del sueño» del escritor Wu Ming-yi y obtuvo finalmente el doctorado en 2024.
+
+Durante todos esos años de estudio, Wang Jian-hui fue también imaginando cómo sería tener una librería propia. En una entrevista concedida a la Agencia Central de Noticias de Taiwán (CNA), explicó que, igual que el escritor japonés Haruki Murakami tuvo de repente la idea de escribir novelas mientras veía un partido de béisbol en el momento en que un bateador conectaba un hit, a ella se le ocurrió un día en la ducha la palabra «îlebrairie», que combina el término francés para «isla» (île) con el de «librería» (librairie).
+
+Añadió con una sonrisa que el nombre en francés es un juego de palabras, «porque los taiwaneses morirían si no jugaran con las palabras». Así, el nombre en chino, que se lee como «isla», sustituye el carácter «嶼» (islote) por «語» (lengua/literatura), que representa las letras; y, dado que para formar una isla se necesita agua, añadió tres trazos de agua al carácter «島» (isla), creando un carácter arcaico que solo existe en diccionarios antiguos y que no puede escribirse con un teclado de ordenador.
+
+Marie-Clémence A. Paes, directora de documentales nacida en Madagascar, es una de las clientas habituales. Madagascar y Taiwán comparten la condición de islas adyacentes a un gran continente, lo que hace que el tema de «la isla» le resulte especialmente significativo.
+
+En declaraciones a CNA, afirmó que el concepto de îlebrairie es muy hermoso, «porque lo sentimos en el corazón: no solo la isla geográfica y física, sino también la isla del alma». La gente suele decir que quienes viven en una isla, mientras no la abandonan, solo piensan en marcharse, y una vez que se van, solo piensan en volver, «esa es la contradicción que comparten todos los isleños».
+
+Las estanterías de «（氵島）語» no destacan deliberadamente los libros relacionados con Taiwán, y el menú tampoco hace hincapié en la cocina taiwanesa, porque aquí «Taiwán» no es un símbolo, una etiqueta ni un prefijo, sino una conciencia central.
+
+La gastronomía taiwanesa no tiene por qué limitarse al gua bao, la chuleta de pollo frita o el arroz estofado: el menú de onigiri del local tiene como protagonista un triángulo de arroz cubierto con una hoja de alga nori, acompañado de una sopa de miso de marcado sabor japonés, pero la guarnición incluye tomate con jengibre, una especialidad exclusiva del sur de Taiwán.
+
+Wang Jian-hui considera que, tras los intensos esfuerzos del Partido Comunista Chino por suprimir a Taiwán, el mundo entero conoce ahora mejor que nunca cómo es la isla. Según su forma de ver las cosas, «nosotras somos Taiwán, y cada cosa que hacemos representa a Taiwán».
+
+Pone como ejemplo que cuando sirve un plato y dice «disculpe la espera», es un hábito que los taiwaneses han adquirido de forma inconsciente en su vida cotidiana y que los franceses no tienen.
+
+Explica que la forma en que ha tomado forma esta librería está relacionada con su formación en literatura comparada: «Creo que en esta generación, Taiwán ya no necesita hablar de sí mismo en términos exclusivamente taiwaneses, ni nombrar todo en nombre de Taiwán para decirle al mundo que somos un país. En lugar de eso, prefiero situar a Taiwán —incluso a través de los libros— en una posición de diálogo con el mundo».
+
+Cuando se le pide que describa el ambiente del local, Wang Jian-hui responde sin vacilar: «Una sola palabra: el borde rasgado».
+
+El «borde rasgado» evoca las fibras irregulares que quedan al desgarrar un papel, donde los límites se vuelven difusos y se dispersan. Es la atmósfera que quiso crear desde el principio, y también una de las imágenes de la isla.
+
+Explica que el borde rasgado tiene algo de desgastado y rugoso, «que responde a mi imaginación sobre los límites de una isla». La isla evoca la partida, el movimiento, la apertura, la soledad, pero también es un espacio sin fronteras rígidas, con posibilidades de expansión.
+
+Esta imagen de límites difusos se esconde en muchos rincones del local: las estanterías de madera con los bordes abiertos y sin cerrar, las opciones del menú que tienen algo de taiwanés pero no son del todo típicas, la textura mate de las lámparas y la pintura de las paredes, o la forma de organizar las estanterías por palabras clave en lugar de por género literario o época.
+
+Los espacios que combinan cafetería y librería no son inexistentes en París, aunque tampoco abundan. Wang Jian-hui reconoce con franqueza: «Todo el mundo dice que si ahora solo abrieras una librería, cerrarías en dos segundos... así que sí, es la barra la que alimenta nuestro sueño».
+
+Sin embargo, tras más de un año de funcionamiento, también ha observado que cada vez más personas se acercan atraídas primero por los libros y luego deciden comprar uno y sentarse a leerlo. Los libros, «esa cosa que no nos da dinero, resultan ser en realidad nuestra alma». (Editado por Tang Pei-jun)</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">(París, 23 de agosto, corresponsal especial de CNA (Agencia Central de Noticias de Taiwán), Tseng Yi-hsuan) En París, una ciudad del interior, hay una librería regentada por taiwaneses y concebida en torno a la imagen de una «isla». Aquí, «Taiwán» no ocupa el lugar más visible, sino que se funde en el juego de palabras homófono del nombre del local, entre los libros o en el sabor de una guarnición.
+
+El distrito 6 de París se ha caracterizado siempre por un intenso ambiente artístico y literario, con una gran concentración de editoriales y librerías de todos los tamaños, además de cafés frecuentados por escritores y artistas. En la Rue de Condé se encuentra «(氵島)語» (L’îlebrairie &amp; Co.), en una ubicación inmejorable: al salir, a la derecha está de inmediato el bullicio del bulevar Saint-Germain; si se avanza hacia la izquierda por una callejuela tranquila, al final aparece el apacible Jardín de Luxemburgo.
+
+Esta librería-cafetería, semejante a una pequeña isla en medio de una zona animada, está gestionada conjuntamente por Wang Chien-hui y Hsiung Yi-ting, ambas procedentes de Taiwán. Además de vender libros, ofrece café, té, onigiri, fideos con salsa de sésamo y otras comidas. Desde su apertura, el 28 de febrero de 2025, ha recibido en Instagram numerosas publicaciones temporales de franceses que comparten la sorpresa que les ha producido este espacio.
+
+Al entrar, lo más llamativo es una estantería que ocupa toda una pared. Wang Chien-hui clasifica los libros por palabras clave y coloca diversas etiquetas, como «memorias dispersas», «ciudades atravesadas», «relaciones íntimas rotas» o «como, luego existo»… Cada sección constituye una miniexposición temática de libros.
+
+Esa estantería se eleva desde un suelo de ladrillo rojo ligeramente irregular y picado, y se prolonga hacia arriba curvándose en la unión entre la pared y el techo, como si quisiera convertirse en una pérgola de glicinas.
+
+En el local también hay estanterías altas y bajas repartidas por distintos rincones; algunas obligan a agacharse para mirar con detenimiento, otras requieren rebuscar con las manos para descubrir qué tesoros esconden, e incluso el estrecho espacio frente a la cafetera está atestado de pequeños libros.
+
+Una parte de esos libros está relacionada con Taiwán: hay obras sobre Taiwán escritas por periodistas extranjeros y también traducciones al francés de literatura taiwanesa. Pero son más numerosos los títulos franceses y de otros países, y la inmensa mayoría de la clientela es francesa.
+
+Una vez, una clienta que trabajaba en una librería compró, por recomendación de Wang Chien-hui, un libro de la fallecida escritora Chiu Miao-chin. Le gustó tanto tras leerlo que enseguida recomendó al dueño de su librería que adquiriera obras de Chiu. Wang considera que esa también es una forma de hacer que Taiwán «salga al exterior».
+
+La idea de abrir una librería llevaba más de 10 años guardada en el corazón de Wang Chien-hui.
+
+Por su admiración por el crítico literario francés Roland Barthes, se esforzó al máximo por aprender bien francés. En 2014 llegó a París para estudiar literatura comparada y escribió su tesis de maestría sobre la obra del escritor Wu Ming-yi «睡眠的航線». Finalmente obtuvo el doctorado en 2024.
+
+Durante esos años de estudio, Wang también fue perfilando en su mente la imagen de tener una librería propia. En una entrevista con CNA, contó que, así como al escritor japonés Haruki Murakami se le ocurrió de repente que podía escribir novelas un día viendo un partido de béisbol, en el momento en que un jugador conectó un hit, a ella un día, mientras se duchaba, se le apareció de pronto en la mente la palabra îlebrairie, que combina el francés «île» (isla) y «librairie» (librería).
+
+Cambiando de tono, dijo: «El nombre en francés juega con las palabras y, además, los taiwaneses, si no jugamos con las palabras, nos morimos». Por eso, el nombre chino de la tienda, que se pronuncia como «isla», sustituye el carácter de «isla» por «語», en alusión a la literatura, y además parte de la idea de que para formar una isla hace falta agua, de modo que se añade el radical de tres puntos de agua junto a «島», creando un carácter antiguo que solo existe en viejos diccionarios y que no puede teclearse en un teclado de computadora.
+
+La documentalista Marie-Clémence A. Paes, nacida en Madagascar, es una de las clientas habituales. Madagascar, al igual que Taiwán, es una isla situada junto a un continente, lo que hace que el tema de la «isla» le resulte especialmente conmovedor.
+
+En la entrevista, afirmó que el concepto de îlebrairie es muy bello, «porque nos toca por dentro: no solo existen las islas geográficas y materiales, sino también las islas del espíritu». La gente suele decir que quienes viven en una isla, mientras no se marchan, solo piensan en irse; pero una vez que se van, solo quieren volver a esa isla. «Esa es la contradicción sentimental que comparten todos los isleños».
+
+Las estanterías de «(氵島)語» no destacan deliberadamente los libros relacionados con Taiwán, y el menú tampoco subraya el sabor taiwanés, porque aquí «Taiwán» no es un símbolo, una etiqueta ni un prefijo, sino una conciencia central.
+
+La comida taiwanesa no tiene por qué ser necesariamente gua bao, filete de pollo frito o arroz con cerdo estofado. En el menú de onigiri de este local, el protagonista es un onigiri triangular cubierto con una lámina de alga nori y acompañado de un cuenco de sopa de miso, con un marcado aire japonés, pero entre las guarniciones figura también el tomate con salsa de jengibre, propio del sur de Taiwán.
+
+Wang Chien-hui considera que, tras la intensa represión ejercida por el Partido Comunista Chino, el mundo entero, por el contrario, ha llegado a saber mejor cómo es Taiwán. Según su manera de pensar, «nosotros somos Taiwán; cada uno de nuestros actos es una representación de Taiwán».
+
+Puso como ejemplo que, al servir un plato, diga «perdón por hacerle esperar», una costumbre que los taiwaneses han adquirido inconscientemente en la vida cotidiana y que los franceses no tienen.
+
+Dijo que la forma que ha tomado esta librería está relacionada con la formación en literatura comparada que recibió: «Creo que, llegados a esta época, Taiwán ya no necesita “hablar de Taiwán desde Taiwán”; no hace falta poner el nombre de Taiwán en todo para decirle a los demás que somos un país. En vez de eso, es mejor situar a Taiwán… incluso en el caso de los libros, en una posición de diálogo con el mundo».
+
+Cuando se le pidió que describiera el ambiente de este espacio, Wang respondió sin pensarlo: «Una sola palabra basta: borde desflecado».
+
+Ese «borde desflecado» alude a las finas fibras que quedan en el borde del papel al rasgarse; allí los límites se vuelven borrosos y se dispersan. Era la atmósfera que ella quiso crear desde el principio y también una de las imágenes de la isla.
+
+Dijo que ese efecto de borde desflecado transmite una sensación algo rota y áspera, «que responde a mi imaginación sobre los límites de la isla». La isla evoca partida, movimiento, apertura y soledad, pero también es un espacio no constreñido y con posibilidades de prolongación.
+
+Esa imagen de límites difusos se esconde en muchos rincones del local: en las estanterías de madera cuyos bordes conservan aberturas sin cerrar, en opciones del menú que tienen algo de Taiwán pero no son del todo típicas, en la textura mate de las lámparas y la pintura de las paredes, o en la organización de las estanterías por palabras clave en lugar de por géneros y épocas.
+
+En París no es inexistente el modelo de espacio que combina cafetería y librería, aunque tampoco es muy común. Wang Chien-hui admitió con franqueza: «Todo el mundo dice que, si hoy solo abres una librería, quiebra en dos segundos… Así que, en efecto, es esta barra la que está alimentando nuestro sueño».
+
+Sin embargo, tras más de un año de funcionamiento, también ha descubierto que cada vez más personas se sienten atraídas primero por los libros y luego deciden comprar uno para sentarse a leer. Los libros, «esa cosa que no nos hace ganar dinero, son precisamente nuestra alma». (Editora: Tang Pei-chun) 1150823</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block" style="color:var(--muted)">—</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="tab-panel " id="tab-seo">
+        <div class="compare-grid" style="grid-template-columns: repeat(3, 1fr)">
+          
+          <div>
+            <div class="label">
+              Model A
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">En París, ciudad mediterránea sin litoral, existe una librería gestionada por taiwaneses cuya imagen evoca la de una «isla». Aquí, Taiwán no ocupa el lugar más visible, sino que se funde en el juego de palabras del nombre del local, entre los libros o en el sabor de un acompañamiento culinario.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model B
+              <span class="winner-tag">WINNER</span>
+              
+            </div>
+            
+            
+            
+              <div class="text-block">En París, ciudad del interior, hay una librería regentada por taiwaneses y concebida en torno a la imagen de una «isla». Aquí, «Taiwán» no ocupa el lugar más visible, sino que se funde en el juego de palabras homófono del nombre del local, entre los libros o en el sabor de una guarnición.</div>
+            
+          </div>
+          
+          <div>
+            <div class="label">
+              Model C
+              
+              
+            </div>
+            
+            
+            
+              <div class="text-block">En París, una ciudad de interior, hay una librería regentada por taiwaneses con la imagen de una «isla». Aquí, «Taiwán» no ocupa el lugar más destacado, sino que se funde en el juego de palabras del nombre de la tienda, entre los libros o en el sabor de una guarnición.</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Peer Review 分析 -->
+    
+    <div class="card">
+      <div class="card-title">Peer Review 評分</div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">A</div>
+          <strong>Model A</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.35</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Prosa literaria de alta calidad, muy fluida y adecuada al tono del reportaje cultural</li><li class="good">Uso correcto de comillas tipográficas españolas «» en todo el texto</li><li class="good">Descripción del espacio físico muy lograda y evocadora</li><li class="good">Terminología CNA correctamente introducida en primera mención</li><li class="good">«borde rasgado» como traducción del concepto clave es expresivo y coherente</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">«ciudad mediterránea sin litoral» es un error factual: París no es mediterránea; debería ser simplemente «ciudad sin litoral» o «ciudad del interior»</li><li class="bad">Omite el dateline y crédito del corresponsal presentes en el original</li><li class="bad">En la sección de quotes, algunas citas mezclan voces (Wang y Paes) sin separación clara</li><li class="bad">«soy lo que como» es una adaptación libre del rótulo que puede no corresponder al original chino</li><li class="bad">Añade «mediterránea» que no existe en el original, constituyendo una adición factual incorrecta</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">B</div>
+          <strong>Model B</strong>
+          <span class="winner-tag">WINNER</span>
+          <span style="margin-left:auto;font-size:14px;font-weight:700">8.9</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+          <span class="score-val">8.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+          <span class="score-val">9.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Incluye dateline completo con fecha y crédito de corresponsal, aportando contexto periodístico</li><li class="good">Terminología consistente y natural: «bordes irregulares», «miniexposición», «bulevar»</li><li class="good">Citas directas bien delimitadas y fieles al tono original</li><li class="good">Romanización de nombres propios coherente (Wang Chien-hui, Hsiung Yi-ting)</li><li class="good">Sección de quotes independiente bien estructurada con frases completas</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">«ciudad del interior» es técnicamente correcto pero podría precisarse como «ciudad sin litoral» para mayor claridad geográfica</li><li class="bad">«borde desflecado» es una opción válida pero menos evocadora que otras posibles traducciones del concepto clave</li><li class="bad">El título no menciona París explícitamente al inicio, lo que reduce impacto SEO</li><li class="bad">«como, luego existo» es una adaptación creativa del rótulo que puede alejarse del original</li></ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom:16px">
+        <div class="model-header">
+          <div class="model-alias">C</div>
+          <strong>Model C</strong>
+          
+          <span style="margin-left:auto;font-size:14px;font-weight:700">5.7</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Accuracy</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:50%"></div></div>
+          <span class="score-val">5.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Term</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:70%"></div></div>
+          <span class="score-val">7.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Fluency</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div>
+          <span class="score-val">6.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">Format</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div>
+          <span class="score-val">4.0</span>
+        </div>
+        
+        <div class="score-row">
+          <span class="score-label">No Halluc</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div>
+          <span class="score-val">6.0</span>
+        </div>
+        
+        
+        <div style="margin-top:8px"><span class="good" style="font-size:12px;font-weight:600">Strengths</span>
+          <ul class="list"><li class="good">Título conciso y con buena orientación SEO</li><li class="good">SEO snippet bien redactado y fiel al original</li><li class="good">Sección de quotes presente</li></ul>
+        </div>
+        
+        <div style="margin-top:6px"><span class="bad" style="font-size:12px;font-weight:600">Issues</span>
+          <ul class="list"><li class="bad">Falta completamente la sección body, lo que constituye una omisión crítica de contenido</li><li class="bad">«toque rústico» en el título es una traducción imprecisa del concepto de «borde rasgado/desflecado»</li><li class="bad">Las citas en la sección quotes están incompletas y algunas tienen estructura gramatical deficiente en español</li><li class="bad">«complejo contradictorio» es una traducción torpe de la ambivalencia isleña</li><li class="bad">Sin body, es imposible evaluar accuracy, fluency y format_integrity de forma completa</li><li class="bad">Paréntesis explicativos dentro de citas directas («(representa a) Taiwán») rompen la convención periodística</li><li class="bad">Ausencia de dateline, créditos y estructura periodística completa</li></ul>
+        </div>
+      </div>
+      
+      
+      <div>
+        <div class="card-title" style="margin-top:4px">Rationale</div>
+        <div class="rationale">El modelo B obtiene la puntuación total más alta (8.95) por combinar precisión factual, consistencia terminológica, fluidez natural y formato periodístico completo, incluyendo dateline y créditos. Su única debilidad menor es la elección de «ciudad del interior» frente a opciones más precisas. El modelo A logra una prosa literaria superior pero introduce un error factual significativo al calificar París de «mediterránea», lo que activa el flag de critical_error y penaliza no_hallucination; su total estimado es 8.45. El modelo C queda en último lugar (total estimado 5.65) por la ausencia completa del body, que hace la entrega inutilizable como producto final, y por traducciones imprecisas en el título y las citas.</div>
+      </div>
+      
+    </div>
+    
+
+  </div>
+
+  <!-- ── 右欄 ── -->
+  <div>
+
+    <!-- 審核表單 -->
+    <div class="card">
+      <div class="card-title">審核決策</div>
+      <div style="font-size:12px;color:var(--muted);background:#f8f9fa;border:1px dashed var(--border);border-radius:6px;padding:10px">
+        本頁為唯讀靜態快照，審核決策功能（Approve／Reject／Pending）已停用，僅保留當下截取到的狀態。
+      </div>
+      
+    </div>
+
+    <!-- QC 檢查 -->
+    <div class="card">
+      <div class="card-title">QC Checks</div>
+      <div class="qc-list">
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-01-numbers
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-02-dates
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-03-mandatory-terms
+              <span class="badge badge-crit" style="font-size:10px">critical</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-04-term-hit-rate
+              
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-fail">
+            ✗
+          </div>
+          <div>
+            <div>
+              QC-05-quotes
+              
+            </div>
+            <div class="qc-detail">原文引語 8 段，譯文引號開 33 次</div>
+          </div>
+        </div>
+        
+        <div class="qc-item">
+          <div class="qc-icon qc-pass">
+            ✓
+          </div>
+          <div>
+            <div>
+              QC-06-forbidden
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Routing -->
+    <div class="card">
+      <div class="card-title">Routing</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>Tier</label><span>external_review</span></div>
+        <div class="meta-item"><label>Pipeline Error</label><span>none</span></div>
+      </div>
+      
+      <div style="margin-top:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Reasons</div>
+        <ul class="list"><li>互評發現關鍵事實錯誤</li></ul>
+      </div>
+    </div>
+
+    <!-- 命名實體 -->
+    
+    <div class="card">
+      <div class="card-title">命名實體 (20)</div>
+      <div class="entity-tags">
+        
+        <span class="entity-tag tag-COMPANY">L&#39;îlebrairie &amp; Co. <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-COMPANY">Instagram <span style="font-size:10px;opacity:.6">COMPANY</span></span>
+        
+        <span class="entity-tag tag-GPE">台灣 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">日本 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">巴黎 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">巴黎第6區 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">康德街 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">聖日耳曼大道 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">盧森堡公園 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-GPE">馬達加斯加 <span style="font-size:10px;opacity:.6">GPE</span></span>
+        
+        <span class="entity-tag tag-ORG">中央社 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-ORG">（氵島）語 <span style="font-size:10px;opacity:.6">ORG</span></span>
+        
+        <span class="entity-tag tag-PERSON">中央社記者曾依璇 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">王建慧 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">熊怡婷 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">邱妙津 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">羅蘭．巴特 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">Roland Barthes <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">吳明益 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+        <span class="entity-tag tag-PERSON">村上春樹 <span style="font-size:10px;opacity:.6">PERSON</span></span>
+        
+      </div>
+    </div>
+
+    <!-- Run 元資料 -->
+    <div class="card">
+      <div class="card-title">Run 元資料</div>
+      <div class="meta-grid">
+        <div class="meta-item"><label>run_id</label><span style="font-family:monospace;font-size:11px;word-break:break-all">2f11ea29-2981-4efe-be49-37481a960dce</span></div>
+        <div class="meta-item"><label>PID</label><span style="font-family:monospace">202608230028</span></div>
+        <div class="meta-item"><label>Started</label><span>2026-08-23T16:12</span></div>
+        <div class="meta-item"><label>Finished</label><span>2026-08-23T16:13</span></div>
+        <div class="meta-item"><label>Lang</label><span>es</span></div>
+        <div class="meta-item"><label>Stages</label><span>s1, s2, s3, s4, s5, s6, s7</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabsId, activeId) {
+  const tabs = document.getElementById(tabsId);
+  tabs.querySelectorAll('.tab').forEach((t, i) => {
+    const panels = document.querySelectorAll('.tab-panel');
+    t.classList.remove('active');
+  });
+  // find clicked tab
+  const allTabs = tabs.querySelectorAll('.tab');
+  const allPanels = document.querySelectorAll('#' + tabsId + ' ~ .tab-panel, .tab-panel');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  // activate clicked tab button
+  allTabs.forEach(t => {
+    if (t.getAttribute('onclick').includes(activeId)) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+}
+
+// 背景段落「查證並生成建議」「翻譯並預覽」送出後不整頁刷新：fetch 拿回同一份
+// detail.html，只替換 body 內容——換頁會讓使用者失去捲動位置、右欄已展開的
+// 草稿分頁等狀態。commit/review 表單本來就是最後一步，維持原本整頁刷新。
+(function () {
+  const AJAX_FORM_SELECTORS = [
+    'form[action$="/backgrounder/suggest"]',
+    'form[action$="/backgrounder/preview"]',
+  ];
+
+  function bindAjaxForms() {
+    AJAX_FORM_SELECTORS.forEach((sel) => {
+      const form = document.querySelector(sel);
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type=submit]');
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '處理中...';
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+          if (!res.ok) throw new Error(res.status);
+          const html = await res.text();
+          document.body.innerHTML = new DOMParser().parseFromString(html, 'text/html').body.innerHTML;
+          bindAjaxForms(); // 舊 form 節點被換掉了，重新綁一次
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = original;
+          alert('操作失敗，請重試');
+        }
+      });
+    });
+  }
+  bindAjaxForms();
+})();
+</script>
+</body>
+</html>
