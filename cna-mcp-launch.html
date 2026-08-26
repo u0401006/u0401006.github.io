@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>讓 AI 好讀的可信新聞｜中央社 MCP</title>
+<style>
+  :root {
+    --bg: #0e1420;
+    --surface: #161f2e;
+    --surface2: #1d2838;
+    --accent: #c9a24b;
+    --accent2: #5c86c4;
+    --accent3: #d68910;
+    --accent4: #4fa87f;
+    --text: #eef1f6;
+    --muted: #8b96a8;
+    --border: #2a3547;
+    --nav-h: 64px;
+    --src-h: 28px;
+    --serif: Georgia, "Songti TC", "Noto Serif TC", "Source Han Serif TC", "PingFang TC", "Microsoft JhengHei", serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", 'Segoe UI', 'Helvetica Neue', sans-serif;
+    overflow: hidden;
+  }
+
+  #progress {
+    position: fixed; top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width .35s ease;
+    z-index: 200;
+  }
+
+  #badge {
+    position: fixed; top: 10px; right: 14px;
+    font-size: 14px; color: var(--muted);
+    z-index: 200; letter-spacing: .04em;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  #deck {
+    position: fixed;
+    inset: 0 0 calc(var(--nav-h) + var(--src-h)) 0;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    opacity: 0; transform: translateX(48px);
+    transition: opacity .35s ease, transform .35s ease;
+    pointer-events: none; overflow: hidden;
+  }
+  .slide.active { opacity: 1; transform: translateX(0); pointer-events: all; }
+  .slide.exit   { opacity: 0; transform: translateX(-48px); }
+
+  .slide-body {
+    flex: 1; overflow-y: auto; padding: 28px 48px 16px;
+    max-width: 1120px; width: 100%; margin: 0 auto;
+  }
+  .slide-body::-webkit-scrollbar { width: 4px; }
+  .slide-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* COVER */
+  .cover {
+    background: radial-gradient(ellipse at 30% 20%, #1a2740 0%, #0e1420 62%);
+    justify-content: center; align-items: center; text-align: center; gap: 0;
+  }
+  .cover .slide-body {
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center; gap: 22px;
+    max-width: 780px;
+  }
+  .cover-eyebrow {
+    font-size: 13px; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  .cover-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 7vw, 80px); font-weight: 700; line-height: 1.18;
+    letter-spacing: -.01em;
+  }
+  .cover-title em { color: var(--accent); font-style: normal; }
+  .cover-sub {
+    font-size: clamp(16px, 1.9vw, 19px); color: var(--muted); max-width: 620px; line-height: 1.75;
+  }
+  .cover-meta {
+    font-size: 14px; color: var(--muted); border-top: 1px solid var(--border);
+    padding-top: 18px; width: 100%; max-width: 620px; text-align: center;
+  }
+  .cover-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; justify-content: center; }
+  .tag {
+    font-size: 13px; padding: 3px 10px; border-radius: 20px;
+    background: var(--surface2); color: var(--muted); border: 1px solid var(--border);
+  }
+
+  /* SECTION HEADER */
+  .slide-header {
+    padding: 24px 48px 0; max-width: 1120px; width: 100%; margin: 0 auto;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-num {
+    font-size: 13px; font-weight: 700; letter-spacing: .18em;
+    color: var(--accent); text-transform: uppercase;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 4vw, 36px); font-weight: 700; line-height: 1.24;
+  }
+  .section-title span { color: var(--accent2); }
+
+  .lede { font-size: 17px; line-height: 1.75; color: var(--muted); margin-top: 16px; max-width: 78ch; }
+  .lede strong { color: var(--text); }
+
+  /* QUOTE ROWS (headlines ticker) */
+  .quote-rows { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .quote-row {
+    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent2);
+    border-radius: 0 8px 8px 0; padding: 12px 16px;
+    display: flex; align-items: baseline; gap: 14px; justify-content: space-between;
+  }
+  .quote-row .qt { font-size: 15.5px; line-height: 1.5; }
+  .quote-row .qd { font-size: 12.5px; color: var(--muted); white-space: nowrap; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+
+  /* STAT CARDS */
+  .stat-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 20px;
+  }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 18px;
+  }
+  .stat-card.accent { border-color: var(--accent); }
+  .stat-card.accent2 { border-color: var(--accent2); }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.6vw, 46px); font-weight: 700; line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .stat-num.gold { color: var(--accent); }
+  .stat-num.blue { color: var(--accent2); }
+  .stat-sub { font-size: 13px; color: var(--muted); margin-top: 6px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .04em; }
+  .stat-label { font-size: 15.5px; color: var(--text); margin-top: 10px; line-height: 1.5; }
+  .stat-desc { font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.55; border-top: 1px solid var(--border); padding-top: 8px; }
+
+  /* COMPARE TABLE */
+  .compare-table { margin-top: 18px; width: 100%; border-collapse: collapse; font-size: 15px; }
+  .compare-table th {
+    text-align: left; padding: 10px 12px; color: var(--muted);
+    border-bottom: 1px solid var(--border); font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); line-height: 1.5; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: var(--surface); }
+
+  .chip {
+    display: inline-flex; align-items: center; font-size: 12.5px; padding: 4px 11px; border-radius: 20px;
+    background: var(--surface2); color: var(--muted); border: 1px solid var(--border);
+  }
+  .chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+  /* ECOSYSTEM / VALUE CARDS */
+  .eco-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    margin-top: 22px;
+  }
+  .eco-card {
+    background: var(--surface); border-left: 3px solid var(--accent2);
+    border-radius: 0 10px 10px 0; padding: 18px 20px;
+  }
+  .eco-card.g { border-color: var(--accent); }
+  .eco-card.r { border-color: var(--accent3); }
+  .eco-type { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 6px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  .eco-name { font-family: var(--serif); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .eco-desc { font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+  /* INSIGHT BOX */
+  .insight {
+    background: rgba(201,162,75,.08); border: 1px solid rgba(201,162,75,.28);
+    border-radius: 10px; padding: 16px 18px; margin-top: 18px;
+    font-size: 16px; line-height: 1.65;
+  }
+  .insight strong { color: var(--accent); }
+  .insight-blue {
+    background: rgba(92,134,196,.08); border: 1px solid rgba(92,134,196,.28);
+    border-radius: 10px; padding: 16px 18px; margin-top: 14px;
+    font-size: 16px; line-height: 1.65;
+  }
+  .insight-blue strong { color: var(--accent2); }
+
+  /* QUOTE */
+  .big-q {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3.4vw, 32px); font-weight: 700;
+    line-height: 1.45; color: var(--text); margin-top: 22px;
+    padding: 22px 24px; border-left: 3px solid var(--accent);
+    background: var(--surface); border-radius: 0 10px 10px 0;
+  }
+  .big-q em { color: var(--accent); font-style: normal; }
+
+  .divider { height: 1px; background: var(--border); margin: 18px 0; }
+  .label-row { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; margin-bottom: 8px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+
+  /* SOURCE */
+  .source { font-size: 13px; color: var(--muted); margin-top: 18px; }
+  .source a { color: var(--muted); }
+
+  /* NAV */
+  #nav {
+    position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-h);
+    background: var(--surface); border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; gap: 24px;
+  }
+  .nav-btn {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); font-size: 22px; width: 40px; height: 40px;
+    border-radius: 8px; cursor: pointer; transition: background .15s;
+  }
+  .nav-btn:hover:not(:disabled) { background: var(--border); }
+  .nav-btn:disabled { opacity: .3; cursor: default; }
+  #counter { font-size: 15px; color: var(--muted); min-width: 60px; text-align: center; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+
+  #kbdHint {
+    position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%);
+    font-size: 13px; color: var(--muted); background: var(--surface2);
+    padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border);
+    transition: opacity .5s; pointer-events: none;
+  }
+  #kbdHint.hidden { opacity: 0; }
+
+  #source-bar {
+    position: fixed;
+    bottom: var(--nav-h);
+    left: 0; right: 0;
+    height: var(--src-h);
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--muted);
+    z-index: 150;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    letter-spacing: .04em;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  @media (min-width: 768px) {
+    #deck { left: 4%; right: 4%; }
+    #badge { right: calc(4% + 14px); }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<span id="badge">1 / 6</span>
+
+<div id="deck">
+
+<!-- SLIDE 1: COVER -->
+<div class="slide cover active">
+  <div class="slide-body">
+    <div class="cover-eyebrow">中央社 MCP · 產品發布</div>
+    <div class="cover-title">讓 AI 好讀的<br><em>可信新聞</em></div>
+    <div class="cover-sub">
+      中央社有全台大量的繁體中文新聞資產，最傳統的模式是 To B 對媒體供稿。數位與行動的時代，中央社透過網站讓一般讀者（To C）也能閱讀到即時新聞。因應 AI 的零點擊時代，我們推出 To A（Agent）的「中央社 MCP」，在 AI 助理日漸普及的趨勢，提供讀者可信賴、可溯源的資訊管道。
+    </div>
+    <div class="cover-meta">
+      <div class="cover-tags">
+        <span class="tag">To B · 媒體供稿</span>
+        <span class="tag">To C · 網站閱讀</span>
+        <span class="tag">To A · 中央社 MCP</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: 零點擊的時代 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">零點擊的<span>時代</span></h2>
+  </div>
+  <div class="slide-body">
+    <p class="lede">路透新聞研究所2026年趨勢報告，Google等搜尋引擎正從「搜尋引擎」轉型為「答案引擎」，資訊直接在對話框中生成，使用者不再需要點擊連結進入新聞網站。媒體高層普遍預測，未來3年搜尋引擎導流可能下滑逾<strong>40%</strong>，廣告與訂閱轉換的關鍵入口因此萎縮。</p>
+    <div class="quote-rows">
+      <div class="quote-row"><span class="qt">「AI無償使用新聞內容　美媒網站流量雪崩聯手提告」</span><span class="qd">2025-07-10</span></div>
+      <div class="quote-row"><span class="qt">「生成式AI搶占搜尋流量　新聞網站面臨考驗」</span><span class="qd">2025-08-04</span></div>
+      <div class="quote-row"><span class="qt">「滾石雜誌出版商告Google　控AI摘要吸走流量」</span><span class="qd">2025-09-14</span></div>
+      <div class="quote-row"><span class="qt">「下令Google應允許網站退出AI搜尋　英國稱創全球首例」</span><span class="qd">2026-06-03</span></div>
+      <div class="quote-row"><span class="qt">「Google AI摘要奪流量成噩夢　法國媒體聯盟提申訴」</span><span class="qd">2026-08-11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: 中央社 MCP 的資料 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">中央社 MCP 的<span>資料</span></h2>
+  </div>
+  <div class="slide-body">
+    <p class="lede">以三大旗艦資料庫構成核心，讓 AI 能即時檢索、並強制標註出處。這不是一次倒出供 LLM 訓練的靜態語料，而是每日持續更新的最新資訊、歷來第一手台灣紀錄。</p>
+    <div class="stat-grid">
+      <div class="stat-card accent">
+        <div class="stat-num gold">478萬+</div>
+        <div class="stat-sub">1990 – 2026 · 歷史新聞</div>
+        <div class="stat-label">歷史新聞資料庫</div>
+        <div class="stat-desc">中央社 1990 年至今累積的新聞稿件，涵蓋外交、財經、政治、社會、兩岸、國際與生活全領域。Agent 回答時可追溯至原始稿件。</div>
+      </div>
+      <div class="stat-card accent2">
+        <div class="stat-num blue">4.3萬+</div>
+        <div class="stat-sub">2000 – 2026 · 世界年鑑</div>
+        <div class="stat-label">世界年鑑資料庫</div>
+        <div class="stat-desc">中央社每年編纂的台灣與國際大事彙整，依「篇 → 章 → 文」三層結構編排：重大新聞、專題報導、年度回顧。</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">350萬+</div>
+        <div class="stat-sub">1924 – 2026 · 影像空間</div>
+        <div class="stat-label">影像空間資料庫</div>
+        <div class="stat-desc">中央社創立至今累積的新聞攝影檔案。每張附攝影記者署名、地點、人物、新聞專題標籤。從建國早期史料到當代影像皆可追溯。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: 完整資料源清單 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">完整<span>資料源</span>清單</h2>
+  </div>
+  <div class="slide-body">
+    <table class="compare-table">
+      <tr><th>資料來源</th><th>內容</th><th>規模 / 年份</th></tr>
+      <tr><td>中央社歷史新聞</td><td>國內外新聞主線，附全文</td><td>478 萬則 · 1990–2026</td></tr>
+      <tr><td>中央社影像空間</td><td>新聞照片，標註攝影者／人物／地點／主題</td><td>350 萬張 · 1924–2026</td></tr>
+      <tr><td>中央社世界年鑑</td><td>大事記，篇→章→文三層結構</td><td>4.3 萬篇 · 2000–2026</td></tr>
+      <tr><td>多語新聞（對外報導）</td><td>中央社自產、關於台灣的英／日／印尼文報導</td><td>英 20.4 萬 · 日 4.7 萬 · 印尼 8 千</td></tr>
+      <tr><td>事實查核聯盟資料</td><td>不實訊息查核報告 — 抗假訊息關鍵</td><td>整合檢索</td></tr>
+      <tr><td>政府公開資料</td><td>中央部會＋地方新聞稿、澄清、公告</td><td>整合檢索</td></tr>
+      <tr><td>詞庫與譯名對照</td><td>查詢校正詞典、標準譯名對照</td><td>逾 500 萬詞</td></tr>
+    </table>
+    <div class="label-row" style="margin-top:22px">已上線 10 項查詢能力</div>
+    <div class="chip-row">
+      <span class="chip">新聞快搜／全文搜</span>
+      <span class="chip">分類最新</span>
+      <span class="chip">今日焦點</span>
+      <span class="chip">單篇取文</span>
+      <span class="chip">整合搜</span>
+      <span class="chip">影像搜尋</span>
+      <span class="chip">詞庫校正</span>
+      <span class="chip">譯名查詢</span>
+      <span class="chip">時間軸視覺化</span>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: 我們的服務想像 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">我們的<span>服務想像</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="big-q">「<em>可信新聞，用問的！</em>」</div>
+    <div class="insight">
+      <strong>一鍵把「台灣最可信的新聞來源」接進自己的 Claude／ChatGPT／Cursor／自建代理。</strong>MCP 是可信的「資料來源」層，讓任何 AI 應用的答案都基於查證過、可溯源的中央社內容。
+    </div>
+    <div class="insight-blue">
+      <strong>不只回文字：</strong>MCP 亦可直接回傳互動式視覺化元件呈現。一起來創造與體驗新時代的新聞閱讀體驗。
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: 中央社 MCP 要發揮的價值 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">中央社 MCP 要發揮的<span>價值</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="eco-grid">
+      <div class="eco-card g">
+        <div class="eco-type">抗假訊息</div>
+        <div class="eco-name">可信的基座</div>
+        <div class="eco-desc">強制引用＋事實檢證 SKILL、速引事實查核報告＋抗幻覺，這是我們對抗 AI 幻覺與境外不實訊息的解方。</div>
+      </div>
+      <div class="eco-card">
+        <div class="eco-type">主權 AI</div>
+        <div class="eco-name">新聞內容層</div>
+        <div class="eco-desc">讓模型在回答時翻一本「懂台灣」的參考書，不只依賴 LLM 訓練時倒入的簡中語料。</div>
+      </div>
+      <div class="eco-card r">
+        <div class="eco-type">垂直服務</div>
+        <div class="eco-name">可輸出的能力</div>
+        <div class="eco-desc">基於發展英／日／印尼多語網站的資料與經驗，長期累積的「譯名對照表」打造外語回答的基礎。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- #deck -->
+
+<div id="source-bar">中央社 MCP · 讓 AI 好讀的可信新聞</div>
+
+<!-- Nav -->
+<div id="nav">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>←</button>
+  <span id="counter">1 / 6</span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">→</button>
+</div>
+
+<div id="kbdHint">← → 切換 · 空白鍵下一張</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const TOTAL = slides.length;
+  let cur = 0;
+
+  const prog    = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const badge   = document.getElementById('badge');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const hint    = document.getElementById('kbdHint');
+
+  function render() {
+    slides.forEach(s => s.classList.remove('active','exit'));
+    slides[cur].classList.add('active');
+    const body = slides[cur].querySelector('.slide-body');
+    if (body) body.scrollTop = 0;
+    prog.style.width = ((cur + 1) / TOTAL * 100) + '%';
+    counter.textContent = `${cur + 1} / ${TOTAL}`;
+    badge.textContent = `${cur + 1} / ${TOTAL}`;
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === TOTAL - 1;
+  }
+
+  function go(dir) {
+    const nxt = cur + dir;
+    if (nxt < 0 || nxt >= TOTAL) return;
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('exit');
+    const old = cur;
+    cur = nxt;
+    setTimeout(() => slides[old].classList.remove('exit'), 380);
+    render();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(-1); }
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 44) go(dx < 0 ? 1 : -1);
+  });
+
+  setTimeout(() => hint.classList.add('hidden'), 3500);
+  render();
+</script>
+</body>
+</html>
