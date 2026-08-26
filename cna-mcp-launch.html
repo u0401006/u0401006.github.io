@@ -214,6 +214,48 @@
   .divider { height: 1px; background: var(--border); margin: 18px 0; }
   .label-row { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; margin-bottom: 8px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 
+  /* PLACEHOLDER */
+  .placeholder-box {
+    margin-top: 26px; border: 1px dashed var(--border); border-radius: 12px;
+    padding: 60px 24px; text-align: center; color: var(--muted);
+    font-size: 15px; letter-spacing: .04em;
+  }
+
+  /* CAPABILITY TAB CAROUSEL */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 6px 0 28px; }
+  .tab-pill {
+    padding: 8px 18px; border-radius: 20px; border: 1px solid var(--border);
+    font-size: 14px; color: var(--muted); background: var(--surface2);
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .tab-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+  .tab-pill.active {
+    background: var(--accent4); color: #0b1a13; border-color: var(--accent4);
+    font-weight: 700;
+  }
+  .tab-pill.active .dot { background: #0b1a13; }
+
+  /* BROWSER MOCK */
+  .browser-mock {
+    max-width: 860px; margin: 0 auto; border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--border); background: #fff;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  }
+  .browser-bar {
+    height: 36px; background: #e7e9ee; display: flex; align-items: center;
+    gap: 7px; padding: 0 14px; position: relative;
+  }
+  .browser-bar .bdot { width: 11px; height: 11px; border-radius: 50%; }
+  .browser-bar .bdot.r { background: #ff5f57; }
+  .browser-bar .bdot.y { background: #febc2e; }
+  .browser-bar .bdot.g { background: #28c840; }
+  .browser-title {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-size: 12px; color: #6b7280; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  .browser-body img { width: 100%; display: block; }
+  .browser-body { max-height: 62vh; overflow-y: auto; }
+
   /* SOURCE */
   .source { font-size: 13px; color: var(--muted); margin-top: 18px; }
   .source a { color: var(--muted); }
@@ -410,6 +452,178 @@
         <div class="eco-name">可輸出的能力</div>
         <div class="eco-desc">基於發展英／日／印尼多語網站的資料與經驗，長期累積的「譯名對照表」打造外語回答的基礎。</div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: 不只是翻書，還有搭配回答評測 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">不只是翻書，還有<span>搭配回答評測</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="placeholder-box">先佔位</div>
+  </div>
+</div>
+
+<!-- SLIDE 8: 加掛能力 — 歷史新聞 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="tabs">
+      <span class="tab-pill active"><span class="dot"></span>歷史新聞</span>
+      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+      <span class="tab-pill"><span class="dot"></span>時間軸</span>
+      <span class="tab-pill"><span class="dot"></span>懶人包</span>
+      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+      <span class="tab-pill"><span class="dot"></span>事實查核</span>
+    </div>
+    <div class="browser-mock">
+      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/history-news.webp" alt="歷史新聞示範" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: 加掛能力 — 最新新聞 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="tabs">
+      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+      <span class="tab-pill active"><span class="dot"></span>最新新聞</span>
+      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+      <span class="tab-pill"><span class="dot"></span>時間軸</span>
+      <span class="tab-pill"><span class="dot"></span>懶人包</span>
+      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+      <span class="tab-pill"><span class="dot"></span>事實查核</span>
+    </div>
+    <div class="browser-mock">
+      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/latest-news.webp" alt="最新新聞示範" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: 加掛能力 — 新聞整理 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="tabs">
+      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+      <span class="tab-pill active"><span class="dot"></span>新聞整理</span>
+      <span class="tab-pill"><span class="dot"></span>時間軸</span>
+      <span class="tab-pill"><span class="dot"></span>懶人包</span>
+      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+      <span class="tab-pill"><span class="dot"></span>事實查核</span>
+    </div>
+    <div class="browser-mock">
+      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/newspaper.webp" alt="新聞整理示範" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: 加掛能力 — 時間軸 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="tabs">
+      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+      <span class="tab-pill active"><span class="dot"></span>時間軸</span>
+      <span class="tab-pill"><span class="dot"></span>懶人包</span>
+      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+      <span class="tab-pill"><span class="dot"></span>事實查核</span>
+    </div>
+    <div class="browser-mock">
+      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/timeline.webp" alt="時間軸示範" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 12: 加掛能力 — 懶人包 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="tabs">
+      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+      <span class="tab-pill"><span class="dot"></span>時間軸</span>
+      <span class="tab-pill active"><span class="dot"></span>懶人包</span>
+      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+      <span class="tab-pill"><span class="dot"></span>事實查核</span>
+    </div>
+    <div class="browser-mock">
+      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/brief.webp" alt="懶人包示範" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 13: 加掛能力 — 知識圖譜 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="tabs">
+      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+      <span class="tab-pill"><span class="dot"></span>時間軸</span>
+      <span class="tab-pill"><span class="dot"></span>懶人包</span>
+      <span class="tab-pill active"><span class="dot"></span>知識圖譜</span>
+      <span class="tab-pill"><span class="dot"></span>事實查核</span>
+    </div>
+    <div class="browser-mock">
+      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/knowledge-graph.webp" alt="知識圖譜示範" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 14: 加掛能力 — 事實查核 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="tabs">
+      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+      <span class="tab-pill"><span class="dot"></span>時間軸</span>
+      <span class="tab-pill"><span class="dot"></span>懶人包</span>
+      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+      <span class="tab-pill active"><span class="dot"></span>事實查核</span>
+    </div>
+    <div class="browser-mock">
+      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+      <div class="browser-body"><div class="placeholder-box" style="margin-top:0;border:none;padding:100px 24px;">圖片待補</div></div>
     </div>
   </div>
 </div>
