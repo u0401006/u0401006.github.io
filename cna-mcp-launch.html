@@ -162,6 +162,7 @@
   .compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); line-height: 1.5; }
   .compare-table tr:last-child td { border-bottom: none; }
   .compare-table tr:nth-child(even) td { background: var(--surface); }
+  .compare-table .ta-c { text-align: center; }
 
   .chip {
     display: inline-flex; align-items: center; font-size: 12.5px; padding: 4px 11px; border-radius: 20px;
@@ -447,14 +448,30 @@
   </div>
 </div>
 
-<!-- SLIDE 7: 不只是翻書，還有搭配回答評測 -->
+<!-- SLIDE 7: 不只是讓 AI 翻書，也建置回答品質評測標準 -->
 <div class="slide">
   <div class="slide-header">
     <span class="section-num">06</span>
-    <h2 class="section-title">不只是翻書，還有<span>搭配回答評測</span></h2>
+    <h2 class="section-title">不只是讓 AI 翻書<span>也建置回答品質評測標準</span></h2>
   </div>
   <div class="slide-body">
-    <div class="placeholder-box">先佔位</div>
+    <p class="lede">建置<strong>共 500 題的繁體中文新聞問答集</strong>，圍繞<strong>新聞領域知識</strong>設計評估框架。</p>
+    <table class="compare-table">
+      <tr><th class="ta-c">題型</th><th>題目</th><th>標準答案</th></tr>
+      <tr><td class="ta-c">人</td><td>2008年民進黨總統大選中，謝長廷宣布由誰擔任副手？</td><td>蘇貞昌</td></tr>
+      <tr><td class="ta-c">事</td><td>2015年8月8日凌晨由花蓮縣秀林鄉登陸臺灣、造成全臺重大災情的超級颱風名稱是什麼？</td><td>蘇迪勒</td></tr>
+      <tr><td class="ta-c">時</td><td>美俄兩國簽署取代原「戰略武器裁減條約」的新裁減核武條約是哪一天？</td><td>2010年4月8日</td></tr>
+      <tr><td class="ta-c">地</td><td>2025年世界拳擊錦標賽在哪個城市舉行？</td><td>英國利物浦</td></tr>
+      <tr><td class="ta-c">物</td><td>107年臺灣平均每戶家庭的可支配所得平均數是多少？</td><td>新臺幣103.6萬元</td></tr>
+    </table>
+
+    <div class="label-row" style="margin-top:22px">結果</div>
+    <table class="compare-table">
+      <tr><th>模型設定</th><th class="ta-c">檢索命中率</th><th class="ta-c">整體正確率</th><th class="ta-c">命中時正確率</th></tr>
+      <tr><td>gpt-5.4-mini（無推理）</td><td class="ta-c">63.2%</td><td class="ta-c">70.8%</td><td class="ta-c"><strong style="color:var(--accent)">95.9%</strong></td></tr>
+      <tr><td>gpt-5.4-mini（低度推理）</td><td class="ta-c">73.4%</td><td class="ta-c">82.8%</td><td class="ta-c"><strong style="color:var(--accent)">95.9%</strong></td></tr>
+      <tr><td>gpt-5.5（無推理）</td><td class="ta-c"><strong style="color:var(--accent)">82.2%</strong></td><td class="ta-c"><strong style="color:var(--accent)">89.4%</strong></td><td class="ta-c"><strong style="color:var(--accent)">97.8%</strong></td></tr>
+    </table>
   </div>
 </div>
 
