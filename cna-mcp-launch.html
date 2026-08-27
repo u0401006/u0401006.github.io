@@ -261,11 +261,19 @@
   .source a { color: var(--muted); }
 
   /* NAV */
+  #nav-hover-zone {
+    position: fixed; bottom: 0; left: 0; right: 0; height: 96px; z-index: 199;
+  }
   #nav {
     position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-h);
     background: var(--surface); border-top: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center; gap: 24px;
+    opacity: 0; transition: opacity .28s ease;
+    z-index: 205;
   }
+  #nav-hover-zone:hover ~ #nav,
+  #nav:hover,
+  #nav:focus-within { opacity: 1; }
   .nav-btn {
     background: var(--surface2); border: 1px solid var(--border);
     color: var(--text); font-size: 22px; width: 40px; height: 40px;
@@ -633,6 +641,7 @@
 <div id="source-bar">中央社 MCP · 讓 AI 好讀的可信新聞</div>
 
 <!-- Nav -->
+<div id="nav-hover-zone"></div>
 <div id="nav">
   <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>←</button>
   <span id="counter">1 / 6</span>
