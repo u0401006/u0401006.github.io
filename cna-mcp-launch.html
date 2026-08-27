@@ -237,7 +237,7 @@
 
   /* BROWSER MOCK */
   .browser-mock {
-    max-width: 860px; margin: 0 auto; border-radius: 12px; overflow: hidden;
+    max-width: 731px; margin: 0 auto; border-radius: 12px; overflow: hidden;
     border: 1px solid var(--border); background: #fff;
     box-shadow: 0 1px 2px rgba(20,26,34,.06), 0 8px 28px rgba(20,26,34,.08);
   }
@@ -261,19 +261,18 @@
   .source a { color: var(--muted); }
 
   /* NAV */
-  #nav-hover-zone {
-    position: fixed; bottom: 0; left: 0; right: 0; height: 96px; z-index: 199;
-  }
   #nav {
     position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-h);
     background: var(--surface); border-top: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center; gap: 24px;
-    opacity: 0; transition: opacity .28s ease;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .28s ease, visibility 0s linear .28s;
     z-index: 205;
   }
-  #nav-hover-zone:hover ~ #nav,
-  #nav:hover,
-  #nav:focus-within { opacity: 1; }
+  #nav.show {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transition: opacity .28s ease, visibility 0s linear 0s;
+  }
   .nav-btn {
     background: var(--surface2); border: 1px solid var(--border);
     color: var(--text); font-size: 22px; width: 40px; height: 40px;
@@ -641,7 +640,6 @@
 <div id="source-bar">中央社 MCP · 讓 AI 好讀的可信新聞</div>
 
 <!-- Nav -->
-<div id="nav-hover-zone"></div>
 <div id="nav">
   <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>←</button>
   <span id="counter">1 / 6</span>
@@ -696,6 +694,20 @@
     const dx = e.changedTouches[0].clientX - tx;
     if (Math.abs(dx) > 44) go(dx < 0 ? 1 : -1);
   });
+
+  const navEl = document.getElementById('nav');
+  let navHideTimer = null;
+  function showNav() {
+    navEl.classList.add('show');
+    clearTimeout(navHideTimer);
+    navHideTimer = setTimeout(() => navEl.classList.remove('show'), 2200);
+  }
+  document.addEventListener('mousemove', e => {
+    if (window.innerHeight - e.clientY < 100) showNav();
+  });
+  navEl.addEventListener('mouseenter', () => clearTimeout(navHideTimer));
+  navEl.addEventListener('mouseleave', showNav);
+  document.addEventListener('touchstart', showNav, {passive:true});
 
   setTimeout(() => hint.classList.add('hidden'), 3500);
   render();
