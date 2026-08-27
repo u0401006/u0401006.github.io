@@ -233,6 +233,27 @@
   }
   .tab-pill.active .dot { background: #F5FAF6; }
 
+  /* CAPABILITY LAYOUT — left tab rail, right browser stage */
+  .cap-layout {
+    display: flex; gap: 32px; align-items: stretch;
+    height: calc(100% - 8px); margin-top: 4px;
+  }
+  .cap-tabs {
+    display: flex; flex-direction: column; gap: 8px;
+    flex: 0 0 200px; padding-top: 4px;
+  }
+  .cap-tabs .tab-pill { width: 100%; justify-content: flex-start; }
+  .cap-stage {
+    flex: 1; min-width: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cap-stage .browser-mock { width: 100%; }
+  @media (max-width: 760px) {
+    .cap-layout { flex-direction: column; height: auto; }
+    .cap-tabs { flex-direction: row; flex-wrap: wrap; justify-content: center; flex: none; }
+    .cap-tabs .tab-pill { width: auto; justify-content: center; }
+  }
+
   /* BROWSER MOCK */
   .browser-mock {
     max-width: 731px; margin: 0 auto; border-radius: 12px; overflow: hidden;
@@ -252,7 +273,7 @@
     font-size: 12px; color: #6b7280; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   }
   .browser-body img { width: 100%; display: block; }
-  .browser-body { max-height: 62vh; overflow-y: auto; }
+  .browser-body { max-height: 80vh; overflow-y: auto; }
 
   /* SOURCE */
   .source { font-size: 13px; color: var(--muted); margin-top: 18px; }
@@ -444,18 +465,22 @@
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
-    <div class="tabs">
-      <span class="tab-pill active"><span class="dot"></span>歷史新聞</span>
-      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
-      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
-      <span class="tab-pill"><span class="dot"></span>時間軸</span>
-      <span class="tab-pill"><span class="dot"></span>懶人包</span>
-      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
-      <span class="tab-pill"><span class="dot"></span>事實查核</span>
-    </div>
-    <div class="browser-mock">
-      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
-      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/history-news.webp" alt="歷史新聞示範" loading="lazy"></div>
+    <div class="cap-layout">
+      <div class="cap-tabs">
+        <span class="tab-pill active"><span class="dot"></span>歷史新聞</span>
+        <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+        <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+        <span class="tab-pill"><span class="dot"></span>時間軸</span>
+        <span class="tab-pill"><span class="dot"></span>懶人包</span>
+        <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+        <span class="tab-pill"><span class="dot"></span>事實查核</span>
+      </div>
+      <div class="cap-stage">
+        <div class="browser-mock">
+          <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+          <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/history-news.webp" alt="歷史新聞示範" loading="lazy"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -467,18 +492,22 @@
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
-    <div class="tabs">
-      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
-      <span class="tab-pill active"><span class="dot"></span>最新新聞</span>
-      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
-      <span class="tab-pill"><span class="dot"></span>時間軸</span>
-      <span class="tab-pill"><span class="dot"></span>懶人包</span>
-      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
-      <span class="tab-pill"><span class="dot"></span>事實查核</span>
-    </div>
-    <div class="browser-mock">
-      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
-      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/latest-news.webp" alt="最新新聞示範" loading="lazy"></div>
+    <div class="cap-layout">
+      <div class="cap-tabs">
+        <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+        <span class="tab-pill active"><span class="dot"></span>最新新聞</span>
+        <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+        <span class="tab-pill"><span class="dot"></span>時間軸</span>
+        <span class="tab-pill"><span class="dot"></span>懶人包</span>
+        <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+        <span class="tab-pill"><span class="dot"></span>事實查核</span>
+      </div>
+      <div class="cap-stage">
+        <div class="browser-mock">
+          <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+          <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/latest-news.webp" alt="最新新聞示範" loading="lazy"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -490,18 +519,22 @@
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
-    <div class="tabs">
-      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
-      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
-      <span class="tab-pill active"><span class="dot"></span>新聞整理</span>
-      <span class="tab-pill"><span class="dot"></span>時間軸</span>
-      <span class="tab-pill"><span class="dot"></span>懶人包</span>
-      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
-      <span class="tab-pill"><span class="dot"></span>事實查核</span>
-    </div>
-    <div class="browser-mock">
-      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
-      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/newspaper.webp" alt="新聞整理示範" loading="lazy"></div>
+    <div class="cap-layout">
+      <div class="cap-tabs">
+        <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+        <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+        <span class="tab-pill active"><span class="dot"></span>新聞整理</span>
+        <span class="tab-pill"><span class="dot"></span>時間軸</span>
+        <span class="tab-pill"><span class="dot"></span>懶人包</span>
+        <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+        <span class="tab-pill"><span class="dot"></span>事實查核</span>
+      </div>
+      <div class="cap-stage">
+        <div class="browser-mock">
+          <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+          <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/newspaper.webp" alt="新聞整理示範" loading="lazy"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -513,18 +546,22 @@
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
-    <div class="tabs">
-      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
-      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
-      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
-      <span class="tab-pill active"><span class="dot"></span>時間軸</span>
-      <span class="tab-pill"><span class="dot"></span>懶人包</span>
-      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
-      <span class="tab-pill"><span class="dot"></span>事實查核</span>
-    </div>
-    <div class="browser-mock">
-      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
-      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/timeline.webp" alt="時間軸示範" loading="lazy"></div>
+    <div class="cap-layout">
+      <div class="cap-tabs">
+        <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+        <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+        <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+        <span class="tab-pill active"><span class="dot"></span>時間軸</span>
+        <span class="tab-pill"><span class="dot"></span>懶人包</span>
+        <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+        <span class="tab-pill"><span class="dot"></span>事實查核</span>
+      </div>
+      <div class="cap-stage">
+        <div class="browser-mock">
+          <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+          <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/timeline.webp" alt="時間軸示範" loading="lazy"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -536,18 +573,22 @@
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
-    <div class="tabs">
-      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
-      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
-      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
-      <span class="tab-pill"><span class="dot"></span>時間軸</span>
-      <span class="tab-pill active"><span class="dot"></span>懶人包</span>
-      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
-      <span class="tab-pill"><span class="dot"></span>事實查核</span>
-    </div>
-    <div class="browser-mock">
-      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
-      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/brief.webp" alt="懶人包示範" loading="lazy"></div>
+    <div class="cap-layout">
+      <div class="cap-tabs">
+        <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+        <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+        <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+        <span class="tab-pill"><span class="dot"></span>時間軸</span>
+        <span class="tab-pill active"><span class="dot"></span>懶人包</span>
+        <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+        <span class="tab-pill"><span class="dot"></span>事實查核</span>
+      </div>
+      <div class="cap-stage">
+        <div class="browser-mock">
+          <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+          <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/brief.webp" alt="懶人包示範" loading="lazy"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -559,18 +600,22 @@
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
-    <div class="tabs">
-      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
-      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
-      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
-      <span class="tab-pill"><span class="dot"></span>時間軸</span>
-      <span class="tab-pill"><span class="dot"></span>懶人包</span>
-      <span class="tab-pill active"><span class="dot"></span>知識圖譜</span>
-      <span class="tab-pill"><span class="dot"></span>事實查核</span>
-    </div>
-    <div class="browser-mock">
-      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
-      <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/knowledge-graph.webp" alt="知識圖譜示範" loading="lazy"></div>
+    <div class="cap-layout">
+      <div class="cap-tabs">
+        <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+        <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+        <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+        <span class="tab-pill"><span class="dot"></span>時間軸</span>
+        <span class="tab-pill"><span class="dot"></span>懶人包</span>
+        <span class="tab-pill active"><span class="dot"></span>知識圖譜</span>
+        <span class="tab-pill"><span class="dot"></span>事實查核</span>
+      </div>
+      <div class="cap-stage">
+        <div class="browser-mock">
+          <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+          <div class="browser-body"><img src="https://ask.cna.com.tw/ask/mcp/knowledge-graph.webp" alt="知識圖譜示範" loading="lazy"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -582,18 +627,22 @@
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
-    <div class="tabs">
-      <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
-      <span class="tab-pill"><span class="dot"></span>最新新聞</span>
-      <span class="tab-pill"><span class="dot"></span>新聞整理</span>
-      <span class="tab-pill"><span class="dot"></span>時間軸</span>
-      <span class="tab-pill"><span class="dot"></span>懶人包</span>
-      <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
-      <span class="tab-pill active"><span class="dot"></span>事實查核</span>
-    </div>
-    <div class="browser-mock">
-      <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
-      <div class="browser-body"><div class="placeholder-box" style="margin-top:0;border:none;padding:100px 24px;">圖片待補</div></div>
+    <div class="cap-layout">
+      <div class="cap-tabs">
+        <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+        <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+        <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+        <span class="tab-pill"><span class="dot"></span>時間軸</span>
+        <span class="tab-pill"><span class="dot"></span>懶人包</span>
+        <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+        <span class="tab-pill active"><span class="dot"></span>事實查核</span>
+      </div>
+      <div class="cap-stage">
+        <div class="browser-mock">
+          <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+          <div class="browser-body"><div class="placeholder-box" style="margin-top:0;border:none;padding:100px 24px;">圖片待補</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
