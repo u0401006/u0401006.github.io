@@ -292,6 +292,58 @@
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
   @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
 
+  /* PLAN CARD + QR */
+  .plan-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px 30px;
+    box-shadow: 0 1px 2px rgba(20,26,34,.06), 0 8px 28px rgba(20,26,34,.08);
+  }
+  .plan-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: #fff; font-size: 13px; font-weight: 700;
+    padding: 6px 14px; border-radius: 20px;
+  }
+  .plan-title { font-family: var(--serif); font-size: 28px; font-weight: 700; margin-top: 16px; }
+  .plan-sub { color: var(--muted); margin-top: 6px; font-size: 15px; }
+  .plan-tag { color: var(--accent); font-weight: 700; font-size: 14px; margin-top: 16px; }
+  .plan-price { font-family: var(--serif); font-size: 46px; font-weight: 700; margin-top: 10px; }
+  .plan-price span { font-size: 16px; color: var(--muted); font-weight: 400; }
+  .plan-credit-pill {
+    display: inline-flex; gap: 8px; align-items: center;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 20px;
+    padding: 6px 14px; margin-top: 14px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 14px;
+  }
+  .plan-credit-pill .old { text-decoration: line-through; color: var(--muted); }
+  .plan-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .plan-features { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .plan-feature { display: flex; gap: 10px; font-size: 15px; align-items: flex-start; line-height: 1.5; }
+  .plan-feature .check { color: var(--accent4); flex: none; font-weight: 700; }
+  .plan-feature mark {
+    background: rgba(176,132,46,.18); color: var(--accent2); font-weight: 700;
+    padding: 1px 6px; border-radius: 4px;
+  }
+  .plan-warning {
+    margin-top: 22px; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: var(--muted); line-height: 1.65;
+  }
+  .plan-warning strong { color: var(--text); }
+
+  .qr-panel {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 18px; text-align: center; height: 100%;
+  }
+  .qr-panel img {
+    width: 220px; height: 220px; border: 1px solid var(--border); border-radius: 12px;
+    background: #fff; padding: 12px;
+    box-shadow: 0 1px 2px rgba(20,26,34,.06), 0 8px 28px rgba(20,26,34,.08);
+  }
+  .qr-caption { font-size: 16px; color: var(--text); font-weight: 700; }
+  .qr-link {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12.5px;
+    color: var(--accent); word-break: break-all; max-width: 260px;
+  }
+
   @media (min-width: 768px) {
     #deck { left: 4%; right: 4%; }
     #badge { right: calc(4% + 14px); }
@@ -659,6 +711,41 @@
           <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
           <div class="browser-body"><img src="https://img-hosting.u0401006.workers.dev/i/bMFiJwl.png" alt="事實查核示範" loading="lazy"></div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 15: 現在就開始使用 CNA MCP -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">現在就開始使用<span>CNA MCP</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="two-col" style="align-items: stretch; gap: 40px;">
+      <div class="plan-card">
+        <span class="plan-badge">✓ 已選方案</span>
+        <div class="plan-title">CNA MCP</div>
+        <div class="plan-sub">把 CNA 即時新聞接到你自己的 AI 工具裡。</div>
+        <div class="plan-tag">給已經有 AI 工具的開發者</div>
+        <div class="plan-price">NT$200 <span>/ 月</span></div>
+        <div class="plan-credit-pill"><span class="old">500</span> 700 CREDIT / 月</div>
+        <div class="plan-note">10/31 前訂閱或續訂，都能享有此優惠額度。</div>
+        <div class="plan-features">
+          <div class="plan-feature"><span class="check">✓</span><span>每月 <span class="old" style="text-decoration:line-through;color:var(--muted)">500</span> 700 credit（適合個人開發＋小型工作流），<mark>限時加贈 200 credits！</mark></span></div>
+          <div class="plan-feature"><span class="check">✓</span><span>與 Claude、ChatGPT 等 AI 服務相容</span></div>
+          <div class="plan-feature"><span class="check">✓</span><span>完整工具可搜尋中央社資料</span></div>
+        </div>
+        <div class="plan-warning">
+          <strong>MCP 是「取得資料的管道」，不是 AI。</strong><br>
+          你還需要自備 Claude、ChatGPT 等 AI 工具（含其訂閱費用或 API 額度）才能使用 CNA MCP。
+        </div>
+      </div>
+      <div class="qr-panel">
+        <img src="https://img-hosting.u0401006.workers.dev/i/IoCQVoW.png" alt="CNA MCP 訂閱 QR Code">
+        <div class="qr-caption">掃描 QR Code 立即訂閱</div>
+        <div class="qr-link">ask.cna.com.tw/ask/checkout/mcp-plus</div>
       </div>
     </div>
   </div>
