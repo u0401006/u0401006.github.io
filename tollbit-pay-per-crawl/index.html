@@ -63,7 +63,7 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.2; }
   transition: filter .3s;
 }
 :root[data-theme="dark"] .logo { filter: brightness(0) invert(1); }
-body[data-tone="blue"] .logo { filter: brightness(0) invert(1); }
+body[data-tone="blue"] .logo { display: none; }
 
 .theme-toggle {
   position: fixed; top: 2vh; right: 3vw; z-index: 20;
@@ -143,7 +143,7 @@ h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; color: var(--accen
 
 .hero-title { font-size: clamp(3.5rem, 7vw, 6rem); font-weight: 900; }
 .hero-sub { font-size: clamp(1.25rem, 2.6vw, 2rem); margin-top: 2vh; opacity: .9; }
-.banner { width: min(60vw, 560px); height: auto; border-radius: 12px; margin-bottom: 4vh; }
+.banner { width: min(18vw, 168px); height: auto; border-radius: 12px; margin-bottom: 4vh; }
 .section-title { font-size: clamp(3rem, 6.5vw, 5.5rem); font-weight: 900; }
 .section-num { font-size: clamp(1.25rem, 2.2vw, 1.8rem); letter-spacing: .2em; opacity: .8; margin-bottom: 1.5vh; }
 .tk-word { font-size: clamp(6rem, 18vw, 16rem); font-weight: 900; line-height: 1.05; }
@@ -263,7 +263,17 @@ body{margin:0;font-size:clamp(1.125rem,2.2vw,1.6rem);}
   </div>
 </section>
 
-<!-- 2 TollBit intro -->
+<!-- 2 Stat (前言) -->
+<section class="slide" data-title="AI 訪客四倍成長">
+  <div class="inner center">
+    <div class="big-num" style="font-size:clamp(6rem,16vw,13rem)">4×</div>
+    <p class="lead">AI 訪客占比一季成長四倍</p>
+    <p class="muted" style="margin-top:1.5vh">每 200 位訪客有 1 位 AI（Q1）→ 每 50 位（Q2）</p>
+    <p class="small muted" style="margin-top:1vh">來源：TollBit《State of the Bots》Q2</p>
+  </div>
+</section>
+
+<!-- 3 TollBit intro -->
 <section class="slide" data-title="TollBit 是什麼">
   <div class="inner">
     <h2>TollBit 是什麼</h2>
@@ -367,7 +377,7 @@ body{margin:0;font-size:clamp(1.125rem,2.2vw,1.6rem);}
           <li><div><b>做法 B：導向代管子網域</b><span class="d">把 AI 流量導向 TollBit 代管的子網域做驗證（見服務條款）。</span></div></li>
           <li><div><b>CDN 是「執行點」</b><span class="d">真正的能力是身分驗證、計價與結算。</span></div></li>
         </ul>
-        <p class="small muted" style="margin-top:2vh">註：TollBit 完整技術文件未取得，實際部署方式需向廠商確認。</p>
+        <p class="small muted" style="margin-top:2vh">官方技術文件：docs.tollbit.com（Quickstart、Content API、Integrations）。確認做法 B：流量導向 tollbit.&lt;網域&gt; 子網域，驗證 token 與授權、符合價格後，回傳處理過的內容。</p>
       </div>
     </div>
   </div>
@@ -429,16 +439,6 @@ body{margin:0;font-size:clamp(1.125rem,2.2vw,1.6rem);}
   </div>
 </section>
 
-<!-- 11 Stat -->
-<section class="slide" data-title="AI 訪客四倍成長">
-  <div class="inner center">
-    <div class="big-num" style="font-size:clamp(6rem,16vw,13rem)">4×</div>
-    <p class="lead">AI 訪客占比一季成長四倍</p>
-    <p class="muted" style="margin-top:1.5vh">每 200 位訪客有 1 位 AI（Q1）→ 每 50 位（Q2）</p>
-    <p class="small muted" style="margin-top:1vh">來源：TollBit《State of the Bots》Q2</p>
-  </div>
-</section>
-
 <!-- 12 Section 3 -->
 <section class="slide blue section" data-title="成敗分析">
   <div class="inner center">
@@ -448,32 +448,29 @@ body{margin:0;font-size:clamp(1.125rem,2.2vw,1.6rem);}
   </div>
 </section>
 
-<!-- 13 Success -->
-<section class="slide" data-title="可能成功的原因">
+<!-- 13 Success/Fail -->
+<section class="slide" data-title="可能成功或失敗的原因">
   <div class="inner">
-    <h2>可能成功的原因</h2>
-    <div class="body">
-      <ul class="list good">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><div><b>需求是真的</b><span class="d">AI 流量快速成長，出版商有成本與談判壓力。</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><div><b>導入門檻低</b><span class="d">在 CDN 層設規則即可，不必改網站。</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><div><b>大廠都在投入</b><span class="d">Cloudflare、AWS、Akamai 同時推進，402／x402 有機會成為通用做法。</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><div><b>先量測就有價值</b><span class="d">即使不收費，也能看見誰在抓、抓多少。</span></div></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- 14 Fail -->
-<section class="slide" data-title="可能失敗的原因">
-  <div class="inner">
-    <h2>可能失敗的原因</h2>
-    <div class="body">
-      <ul class="list bad">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><div><b>擋不住刻意規避者</b><span class="d">TollBit 自家報告：近 40 家爬蟲服務商，許多宣傳能規避偵測。</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><div><b>買家少、願付的價格低</b><span class="d">市場仍早期，有出版商坦言「還沒到那個程度」。</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><div><b>曝光的代價</b><span class="d">收費可能讓部分 AI 不再引用你，流量與品牌能見度下降。</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><div><b>平台與條款風險</b><span class="d">TollBit 條款：賠償範圍廣、責任上限低、可單方終止。</span></div></li>
-      </ul>
+    <h2>可能成功或失敗的原因</h2>
+    <div class="body row" style="align-items:flex-start">
+      <div class="col">
+        <span class="pill good">可能成功</span>
+        <ul class="list good" style="margin-top:1.4vh;gap:1.2vh">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><div><b>需求是真的</b><span class="d">AI 流量快速成長，出版商有成本與談判壓力。</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><div><b>導入門檻低</b><span class="d">在 CDN 層設規則即可，不必改網站。</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><div><b>大廠都在投入</b><span class="d">Cloudflare、AWS、Akamai 同時推進 402／x402。</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><div><b>先量測就有價值</b><span class="d">即使不收費，也能看見誰在抓、抓多少。</span></div></li>
+        </ul>
+      </div>
+      <div class="col">
+        <span class="pill bad">可能失敗</span>
+        <ul class="list bad" style="margin-top:1.4vh;gap:1.2vh">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><div><b>擋不住刻意規避者</b><span class="d">近 40 家爬蟲服務商，許多宣傳能規避偵測。</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><div><b>買家少、願付的價格低</b><span class="d">市場仍早期，有出版商坦言「還沒到那個程度」。</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><div><b>曝光的代價</b><span class="d">收費可能讓部分 AI 不再引用你，流量下降。</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><div><b>平台與條款風險</b><span class="d">TollBit 條款：賠償範圍廣、責任上限低、可單方終止。</span></div></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -493,24 +490,13 @@ body{margin:0;font-size:clamp(1.125rem,2.2vw,1.6rem);}
   </div>
 </section>
 
-<!-- 16 End -->
-<section class="slide blue" data-title="結語與來源">
-  <div class="inner center">
-    <h2 class="hero-title" style="color:#fff;margin:0">先量測，再談價</h2>
-    <p class="hero-sub">謝謝</p>
-    <p class="sources" style="margin-top:4vh;max-width:900px">
-      來源：TollBit 服務條款與官網、Akamai、Cloudflare、TechCrunch、Press Gazette、Search Engine Journal、A Media Operator、TollBit《State of the Bots》、RSL 官網、heise、The Register。
-    </p>
-  </div>
-</section>
-
 </main>
 
 <div class="edge l" id="edgeL" aria-hidden="true"></div>
 <div class="edge r" id="edgeR" aria-hidden="true"></div>
 <button class="nav-btn prev" id="prev" aria-label="上一頁"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
 <button class="nav-btn next" id="next" aria-label="下一頁"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-<button class="counter" id="counter" aria-label="頁碼與縮圖">1 / 18</button>
+<button class="counter" id="counter" aria-label="頁碼與縮圖">1 / 16</button>
 <div class="hotzone"></div>
 <nav class="thumbs" id="thumbs" aria-label="投影片縮圖"></nav>
 
