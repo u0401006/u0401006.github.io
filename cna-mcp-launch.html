@@ -164,6 +164,19 @@
   .compare-table tr:nth-child(even) td { background: var(--surface); }
   .compare-table .ta-c { text-align: center; }
 
+  /* TREND CHART */
+  .chart-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; margin-top: 18px;
+  }
+  .chart-legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .chart-legend i { display: inline-block; width: 16px; height: 0; border-top: 3px solid; }
+  .chart-legend i.dash { border-top-style: dashed; }
+  .chart-legend i.dot { border-top-style: dotted; }
+  .chart-wrap { position: relative; height: 230px; }
+  .chart-cap { font-size: 12.5px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
   /* ECOSYSTEM / VALUE CARDS */
   .eco-grid {
     display: grid; gap: 14px;
@@ -434,6 +447,15 @@
   </div>
   <div class="slide-body">
     <p class="lede">8/5 封鎖 AI 訓練爬蟲後，訓練用途幾乎絕跡，但<strong>未被封鎖的 AI 搜尋／索引類爬蟲流量不減反增</strong>——內容仍被持續取用。</p>
+    <div class="chart-card">
+      <div class="chart-legend">
+        <span><i style="border-color:var(--accent)"></i>已封鎖的 AI 訓練爬蟲</span>
+        <span><i class="dash" style="border-color:var(--accent2)"></i>未封鎖的 AI 搜尋／使用者觸發</span>
+        <span><i class="dot" style="border-color:var(--accent4)"></i>已封鎖的中國搜尋引擎</span>
+      </div>
+      <div class="chart-wrap"><canvas id="chTrend"></canvas></div>
+      <p class="chart-cap">主網站每日請求數（台北時間），2026/06/01–09/30。8/5 robots.txt 生效，隔天 8/6 起已封鎖的爬蟲幾乎同時停止。資料來源：GCP Load Balancer 請求紀錄。</p>
+    </div>
     <table class="compare-table">
       <tr><th>爬蟲</th><th class="ta-c">用途</th><th class="ta-c">封鎖前／日</th><th class="ta-c">封鎖後／日</th><th class="ta-c">變化</th></tr>
       <tr><td>GPTBot</td><td class="ta-c">訓練（已封鎖）</td><td class="ta-c">19,270</td><td class="ta-c">15</td><td class="ta-c">−100%</td></tr>
@@ -912,6 +934,54 @@
 </div><!-- #deck -->
 
 <div id="kbdHint">← → 切換 · 空白鍵下一張</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+(function(){
+  const TREND_LABELS = ["06/01","06/02","06/03","06/04","06/05","06/06","06/07","06/08","06/09","06/10","06/11","06/12","06/13","06/14","06/15","06/16","06/17","06/18","06/19","06/20","06/21","06/22","06/23","06/24","06/25","06/26","06/27","06/28","06/29","06/30","07/01","07/02","07/03","07/04","07/05","07/06","07/07","07/08","07/09","07/10","07/11","07/12","07/13","07/14","07/15","07/16","07/17","07/18","07/19","07/20","07/21","07/22","07/23","07/24","07/25","07/26","07/27","07/28","07/29","07/30","07/31","08/01","08/02","08/03","08/04","08/05","08/06","08/07","08/08","08/09","08/10","08/11","08/12","08/13","08/14","08/15","08/16","08/17","08/18","08/19","08/20","08/21","08/22","08/23","08/24","08/25","08/26","08/27","08/28","08/29","08/30","08/31","09/01","09/02","09/03","09/04","09/05","09/06","09/07","09/08","09/09","09/10","09/11","09/12","09/13","09/14","09/15","09/16","09/17","09/18","09/19","09/20","09/21","09/22","09/23","09/24","09/25","09/26","09/27","09/28","09/29","09/30"];
+  const TREND_TRAIN = [95121,113537,96192,144909,190008,144140,121514,114942,130041,148832,112141,124457,158376,169709,198216,210759,182166,180922,200846,127123,123287,163049,158027,121263,131381,122614,138982,127440,165834,216545,245424,180653,95755,79940,85274,87659,99915,91052,83806,80142,166586,93734,72285,96223,100887,92965,71159,69831,116049,86018,101878,84552,128858,126256,86052,91366,114529,103582,134524,132649,114655,140546,130293,170305,212581,166837,26424,946,1126,872,649,1245,1436,2405,3477,10008,1585,1581,1527,1944,5163,5178,985,623,843,1903,2134,3899,2915,2304,1439,1381,465,529,855,673,565,590,897,466,325,513,504,455,375,722,654,571,876,392,243,642,565,2568,714,358,532,552,406,1260,654,784];
+  const TREND_SEARCH = [134757,114649,105421,120197,114498,80806,81124,99366,119647,119879,120488,112686,92342,93385,124563,134147,129852,129197,95959,97001,101827,138302,134270,151651,158580,137272,117066,125549,146402,153739,162277,160275,150773,122041,123007,151977,172611,162498,223935,146501,135477,101204,128662,136787,180022,148630,153626,103758,125866,134177,138990,122441,143127,133792,113704,109057,150002,185518,151674,163987,164253,141145,135373,172160,129295,172410,192585,207611,249289,255764,282922,254563,242121,291346,284926,294829,241712,278292,301617,305621,270149,262805,191414,192011,224967,231136,267993,265666,208831,207374,227981,210202,215610,212488,215125,188745,213864,211854,222660,216669,130742,113550,104549,125441,191012,194575,171943,194269,202863,200085,139080,146213,155390,200435,214064,222738,245637,241663,235032,267893,303238,260304];
+  const TREND_CN = [50997,39202,59952,53893,59799,151959,151954,157193,178565,111476,100042,147296,155760,205605,113036,123696,134780,149880,185203,198785,179332,125436,94189,144770,176247,183525,154976,163252,183382,169902,151634,120328,189759,151401,147740,170738,196772,156433,176966,212075,147669,70113,156202,151359,68943,119987,117114,127745,142974,115372,143154,243545,137779,148193,144140,66504,158205,291503,296632,239236,160981,139128,175080,144186,146529,86846,132,155,484,345,294,269,259,430,313,237,385,194,483,327,354,324,208,251,248,254,206,194,482,273,267,317,344,272,235,253,332,262,366,336,259,238,338,328,1237,2305,3374,2609,4666,3088,2671,3009,2360,2692,3047,3580,2979,2890,46353,26924,35446,35600];
+
+  function drawTrend(){
+    const el = document.getElementById('chTrend');
+    if (!el || !window.Chart) return;
+    const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    const mk = (label, data, color, dash) => ({
+      label, data, borderColor: css(color), backgroundColor: css(color),
+      borderWidth: 2, borderDash: dash || [], pointRadius: 0, tension: 0.2
+    });
+    new Chart(el, {
+      type: 'line',
+      data: {
+        labels: TREND_LABELS,
+        datasets: [
+          mk('已封鎖的 AI 訓練爬蟲', TREND_TRAIN, '--accent'),
+          mk('未封鎖的 AI 搜尋／使用者觸發', TREND_SEARCH, '--accent2', [6,4]),
+          mk('已封鎖的中國搜尋引擎', TREND_CN, '--accent4', [2,3])
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: c => `${c.dataset.label}：${Math.round(c.parsed.y).toLocaleString('en-US')}` } }
+        },
+        scales: {
+          x: { ticks: { color: css('--muted'), font: { size: 11 }, maxTicksLimit: 12 }, grid: { display: false } },
+          y: {
+            ticks: { color: css('--muted'), font: { size: 11 }, callback: v => v >= 10000 ? (v/10000).toFixed(0) + '萬' : v },
+            grid: { color: css('--border') }, beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', drawTrend);
+  else drawTrend();
+})();
+</script>
 
 <script>
   const slides = Array.from(document.querySelectorAll('.slide'));
