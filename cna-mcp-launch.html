@@ -398,32 +398,30 @@
 <div class="slide">
   <div class="slide-header">
     <span class="section-num">01</span>
-    <h2 class="section-title">零點擊的時代，<span>攤開中央社自己的數據</span></h2>
+    <h2 class="section-title">零點擊的時代，<span>攤開中央社數據</span></h2>
   </div>
   <div class="slide-body">
-    <p class="lede">不是只有國外媒體的觀察。拿 2026 年 9 月中央社網站的 GCP Load Balancer 全量請求紀錄（非取樣），交叉比對 GA4 使用者數字（結果完全吻合），同樣指向零點擊：<strong>1.70 億次頁面請求中，真人閱讀只占 7%～18%</strong>，其餘多數是程式與自動化流量。</p>
+    <p class="lede">不是只有國外媒體的觀察。2026 年 9 月中央社網站的 GCP Load Balancer 全 requests 紀錄，比對 GA4 使用者數字（結果吻合），同樣指向零點擊：<strong>真人行為只占兩成</strong>，多數是程式與自動化流量。</p>
     <div class="stat-grid">
       <div class="stat-card accent">
-        <div class="stat-num gold">7–18%</div>
-        <div class="stat-sub">分類上限 27.8% · GA 校準下限 6.7%</div>
+        <div class="stat-num gold">20%</div>
         <div class="stat-label">真人流量佔比</div>
         <div class="stat-desc">以瀏覽器特徵、來源網路、TLS 指紋交叉比對的估計區間；驗證越嚴謹，真人佔比越低。</div>
       </div>
       <div class="stat-card accent2">
-        <div class="stat-num blue">37.7%</div>
-        <div class="stat-sub">偽裝瀏覽器＋惡意＋冒名爬蟲</div>
+        <div class="stat-num blue">38%</div>
         <div class="stat-label">偽裝成人類的假流量</div>
         <div class="stat-desc">不是老實自稱機器人的爬蟲，而是刻意假冒成瀏覽器、企圖混入真人統計的流量。</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">34.7%</div>
+        <div class="stat-num">35%</div>
         <div class="stat-sub">搜尋引擎・AI爬蟲・SEO商業爬蟲</div>
         <div class="stat-label">老實自稱機器的流量</div>
         <div class="stat-desc">會表明身分的正當程式，其中包含持續成長的 AI 搜尋與索引類爬蟲。</div>
       </div>
     </div>
     <div class="insight">
-      <strong>手機讀者是真的，桌機大半是假的：</strong>用 GA4 反推校準，桌機「真人」標籤裡約 8 成其實站不住腳，手機則不到 2%。零點擊不是「以後會發生」，是現在就在我們自己的後台數字裡。
+      <strong>手機讀者是真的，桌機大半是假的：</strong>桌機「真人」標籤裡約 8 成其實站不住腳，手機則不到 2%；GA pv要打 9 折。零點擊不是「以後會發生」，是現在進行式。
     </div>
   </div>
 </div>
@@ -435,7 +433,7 @@
     <h2 class="section-title">內容持續被讀，<span>流量沒有回來</span></h2>
   </div>
   <div class="slide-body">
-    <p class="lede">8/5 封鎖 AI 訓練爬蟲後，訓練用途幾乎絕跡，但<strong>未被封鎖的 AI 搜尋／索引類爬蟲流量不減反增</strong>——內容仍被持續取用，只是換了名目，讀者端的導流沒有回來。</p>
+    <p class="lede">8/5 封鎖 AI 訓練爬蟲後，訓練用途幾乎絕跡，但<strong>未被封鎖的 AI 搜尋／索引類爬蟲流量不減反增</strong>——內容仍被持續取用。</p>
     <table class="compare-table">
       <tr><th>爬蟲</th><th class="ta-c">用途</th><th class="ta-c">封鎖前／日</th><th class="ta-c">封鎖後／日</th><th class="ta-c">變化</th></tr>
       <tr><td>GPTBot</td><td class="ta-c">訓練（已封鎖）</td><td class="ta-c">19,270</td><td class="ta-c">15</td><td class="ta-c">−100%</td></tr>
@@ -446,7 +444,7 @@
       <tr><td>ChatGPT-User</td><td class="ta-c">使用者即時觸發</td><td class="ta-c">93,584</td><td class="ta-c">134,218</td><td class="ta-c">+43%</td></tr>
     </table>
     <div class="insight-blue">
-      <strong>10/8 晚間實例：</strong>Meta 官方索引爬蟲在 12 小時內把抓取量衝高 70 倍，一次重新索引近十年的舊文章，CDN 完全幫不上忙——AI 系統掃描內容的速度，遠比真人讀者點閱更密集、更持續。
+      <strong>10/8 晚間實例：</strong>Meta 官方索引爬蟲在 12 小時內把抓取量衝高 70 倍，一次重新索引近十年的舊文章 ——AI 系統掃描內容的速度，遠比真人讀者點閱更密集、更持續。
     </div>
     <div class="insight">
       與其任由爬蟲用不受控、免費、甚至耗損主機資源的方式取用內容，<strong>中央社 MCP 提供一個可控、可溯源的對應管道</strong>——這正是零點擊時代，中央社選擇主動佈局 To A（Agent）的原因。
