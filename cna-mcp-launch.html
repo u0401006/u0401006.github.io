@@ -120,6 +120,18 @@
   .lede { font-size: 17px; line-height: 1.75; color: var(--muted); margin-top: 16px; max-width: 78ch; }
   .lede strong { color: var(--text); }
 
+  /* MEDIA FRAME — full slide-body width */
+  .media-frame-full {
+    width: 100%; margin-top: 22px;
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(20,26,34,.06), 0 8px 28px rgba(20,26,34,.08);
+  }
+  .media-frame-full img { width: 100%; display: block; max-height: 58vh; object-fit: contain; background: #0a0a0a; }
+  .media-frame-full video { width: 100%; display: block; max-height: 76vh; object-fit: contain; background: #0a0a0a; }
+  .media-frame-full iframe { width: 100%; display: block; border: none; height: 80vh; background: #0a0a0a; }
+  .media-caption { padding: 10px 16px; font-size: 13.5px; color: var(--muted); border-top: 1px solid var(--border); }
+
   /* QUOTE ROWS (headlines ticker) */
   .quote-rows { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
   .quote-row {
@@ -615,6 +627,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -645,6 +658,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -675,6 +689,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -705,6 +720,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -735,6 +751,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -765,6 +782,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -795,6 +813,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -825,6 +844,7 @@
         <span class="tab-pill active"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -855,6 +875,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill active"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -885,6 +906,7 @@
         <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
         <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
         <span class="tab-pill active"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill"><span class="dot"></span>看影片</span>
       </div>
       <div class="cap-stage">
         <div class="browser-mock">
@@ -892,6 +914,51 @@
           <div class="browser-body"><img src="https://img-hosting.u0401006.workers.dev/i/9qGBfrt.png" alt="取得素材授權示範" loading="lazy"></div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 16.6: 加掛能力 — 看影片 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
+  </div>
+  <div class="slide-body">
+    <div class="cap-layout">
+      <div class="cap-tabs">
+        <span class="tab-pill"><span class="dot"></span>歷史新聞</span>
+        <span class="tab-pill"><span class="dot"></span>最新新聞</span>
+        <span class="tab-pill"><span class="dot"></span>新聞整理</span>
+        <span class="tab-pill"><span class="dot"></span>時間軸</span>
+        <span class="tab-pill"><span class="dot"></span>懶人包</span>
+        <span class="tab-pill"><span class="dot"></span>知識圖譜</span>
+        <span class="tab-pill"><span class="dot"></span>事實查核</span>
+        <span class="tab-pill"><span class="dot"></span>英文問TSMC</span>
+        <span class="tab-pill"><span class="dot"></span>日文問TSMC</span>
+        <span class="tab-pill"><span class="dot"></span>取得素材授權</span>
+        <span class="tab-pill active"><span class="dot"></span>看影片</span>
+      </div>
+      <div class="cap-stage">
+        <div class="browser-mock">
+          <div class="browser-bar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="browser-title">claude.ai/chat</span></div>
+          <div class="browser-body"><img src="https://img-hosting.u0401006.workers.dev/i/AhFYcN9.png" alt="看影片示範" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 16.7: 加掛能力 — AI Agent 輔助剪輯不是生成 -->
+<div class="slide">
+  <div class="slide-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">「AI Agent 輔助剪輯」<span>不是「生成」</span></h2>
+  </div>
+  <div class="slide-body">
+    <p class="lede">我們用 Agent 處理的是<strong>既有的真實素材</strong>——自動化剪輯、組稿、排列既有畫面，不是無中生有。</p>
+    <div class="media-frame-full" style="width:70%; margin-left:auto; margin-right:auto;">
+      <iframe src="https://www.instagram.com/reel/DafRnazDsBA/embed/" allowtransparent="true" loading="lazy"></iframe>
     </div>
   </div>
 </div>
