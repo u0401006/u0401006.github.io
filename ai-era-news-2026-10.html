@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>AI 時代新聞業怎麼走｜中央社資訊暨創新中心</title>
+<title>當 AI 成為新聞中介：MCP、可信來源與媒體的下一步｜中央社資訊暨創新中心</title>
 <style>
   :root {
     --bg: #EEF0F3;
@@ -317,12 +317,34 @@
     #deck { left: 4%; right: 4%; }
     #badge { right: calc(4% + 14px); }
   }
+
+  /* Communication diagrams — reuse the deck's palette and typography */
+  .comm-frame { margin-top: 18px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+  .comm-scroll { overflow-x: auto; }
+  .comm-flow { display: flex; align-items: stretch; gap: 8px; min-width: 690px; }
+  .comm-node { flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center; padding: 12px 8px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; line-height: 1.5; }
+  .comm-node small { display: block; margin-top: 4px; font-size: 12px; color: var(--muted); }
+  .comm-node.media { border-color: var(--accent); color: var(--accent); background: rgba(49,82,128,.05); }
+  .comm-node.ai { border-color: var(--accent2); color: var(--accent2); background: rgba(176,132,46,.07); }
+  .comm-arrow { align-self: center; color: var(--muted); font-size: 20px; flex: none; }
+  .comm-feedback { margin-top: 8px; text-align: right; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+  .comm-frame .label-row { margin-bottom: 10px; }
+  .allocation-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: stretch; margin-top: 22px; }
+  .allocation-grid .eco-card { padding: 22px; }
+  .allocation-grid .eco-desc { font-size: 16px; line-height: 1.9; }
+  .trust-flow .comm-node { padding: 18px 8px; }
+  .cover-sub strong { color: var(--text); }
+  @media (max-width: 640px) {
+    .allocation-grid { grid-template-columns: 1fr; gap: 10px; }
+    .allocation-grid > .comm-arrow { justify-self: center; transform: rotate(90deg); }
+    .comm-frame { padding: 14px; }
+  }
 </style>
 </head>
 <body>
 
 <div id="progress"></div>
-<span id="badge">1 / 23</span>
+<span id="badge">1 / 28</span>
 
 <div id="deck">
 
@@ -330,17 +352,17 @@
 <div class="slide cover active">
   <div class="slide-body">
     <div class="cover-eyebrow">中央社 · 資訊暨創新中心</div>
-    <div class="cover-title">AI 時代<br><em>新聞業怎麼走</em></div>
+    <div class="cover-title">當 AI 成為<br><em>新聞中介</em></div>
     <div class="cover-sub">
-      從零點擊搜尋、AI Agent 到新聞倫理的新課題——中央社在數位轉型浪潮中，如何用可信的資料與務實的工具，找到自己的位置。
+      <strong>MCP、可信來源與媒體的下一步</strong><br>從傳播中介的轉變，談新聞來源、編輯責任與信任；當 AI 協助整理資訊，媒體如何把更多資源投入現場、追問與查證。
     </div>
     <div class="cover-meta">
       宋育泰 · 2026/10/3
       <div class="cover-tags">
         <span class="tag">AI Agent</span>
-        <span class="tag">零點擊時代</span>
+        <span class="tag">AI 中介</span>
         <span class="tag">中央社 MCP</span>
-        <span class="tag">新聞倫理</span>
+        <span class="tag">新聞信任</span>
       </div>
     </div>
   </div>
@@ -412,10 +434,48 @@
   </div>
 </div>
 
+<!-- ADDED: 傳播環境與 AI 中介 -->
+<div class="slide">
+  <div class="slide-header"><span class="section-num">04</span><h2 class="section-title">傳播的中介，<span>正在改變</span></h2></div>
+  <div class="slide-body">
+    <p class="lede">媒體原本同時組織新聞與閱讀；現在，<strong>AI 開始介入資訊選擇、重組與最後呈現</strong>。</p>
+    <div class="comm-frame">
+      <div class="label-row">過去｜媒體組織新聞與呈現</div>
+      <div class="comm-scroll"><div class="comm-flow"><div class="comm-node ">事件／來源</div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node media">記者採訪</div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node media">編輯選擇與詮釋</div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node ">新聞版面／節目</div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node ">閱聽人</div></div></div>
+      <div class="comm-feedback">閱聽人 ── 意見、投書與互動 ──→ 媒體（回饋）</div>
+    </div>
+    <div class="comm-frame">
+      <div class="label-row">現在的一條新路徑｜AI 介入閱讀入口</div>
+      <div class="comm-scroll"><div class="comm-flow"><div class="comm-node ">事件／來源</div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node media">採訪與編輯查證</div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node ">新聞資料</div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node ai">AI 選擇與重組</div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node ">使用者</div></div></div>
+      <div class="comm-feedback">政府與其他資訊來源 ──→ AI　｜　使用者 ── 提問與追問 ──→ AI（回饋）</div>
+    </div>
+    <div class="insight">媒體仍在生產新聞，但<strong>閱讀入口與最後呈現，逐漸由 AI 中介</strong>。</div>
+    <p class="source">傳播流程概念簡圖。平台推薦與直接閱讀仍然存在；AI 對話是新增的路徑。</p>
+</div>
+</div>
+
+<div class="slide">
+  <div class="slide-header"><span class="section-num">05</span><h2 class="section-title">誰決定你<span>看見什麼？</span></h2></div>
+  <div class="slide-body">
+    <p class="lede">當閱讀入口變成對話框，選擇與詮釋仍然存在，<strong>只是更不容易被看見</strong>。</p>
+    <table class="compare-table">
+      <thead><tr><th scope="col">傳播環節</th><th scope="col">從你的 AI 使用經驗追問</th></tr></thead>
+      <tbody>
+        <tr><td>守門</td><td>AI 為什麼選這些來源？誰沒有被納入？</td></tr>
+        <tr><td>框架</td><td>同一事件，被整理成經濟問題，還是人權問題？</td></tr>
+        <tr><td>回饋</td><td>你的問法，如何影響得到的答案？</td></tr>
+        <tr><td>可信度</td><td>答案很流暢，你能找到它的證據嗎？來源真的支持結論嗎？</td></tr>
+      </tbody>
+    </table>
+    <div class="big-q">從「AI 怎麼回答」再往前問：<br><em>它根據什麼回答？</em></div>
+    <div class="insight">中央社 MCP 提供一條讓 AI 取得新聞與來源資訊的管道；<strong>取得來源之後，仍須檢查脈絡與引用是否正確</strong>。</div>
+</div>
+</div>
+
 <!-- SLIDE 5: 中央社有什麼 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">04</span>
+    <span class="section-num">06</span>
     <h2 class="section-title">中央社<span>有什麼</span></h2>
   </div>
   <div class="slide-body">
@@ -446,7 +506,7 @@
 <!-- SLIDE 6: 對於未來的想像 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">05</span>
+    <span class="section-num">07</span>
     <h2 class="section-title">對於未來的<span>想像</span></h2>
   </div>
   <div class="slide-body">
@@ -463,7 +523,7 @@
 <!-- SLIDE 7: 中央社 MCP 的價值 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">06</span>
+    <span class="section-num">08</span>
     <h2 class="section-title">中央社 MCP 的<span>價值</span></h2>
   </div>
   <div class="slide-body">
@@ -490,7 +550,7 @@
 <!-- SLIDE 8: 回答品質評測標準 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">07</span>
+    <span class="section-num">09</span>
     <h2 class="section-title">回答品質<span>評測標準</span></h2>
   </div>
   <div class="slide-body">
@@ -508,7 +568,7 @@
 <!-- SLIDE 9-17: 加掛中央社 MCP可以做到什麼 (9 sub-slides) -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -536,7 +596,7 @@
 
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -564,7 +624,7 @@
 
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -592,7 +652,7 @@
 
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -620,7 +680,7 @@
 
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -648,7 +708,7 @@
 
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -676,7 +736,7 @@
 
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -704,7 +764,7 @@
 
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -732,7 +792,7 @@
 
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title">加掛中央社 MCP<span>可以做到什麼？</span></h2>
   </div>
   <div class="slide-body">
@@ -761,7 +821,7 @@
 <!-- SLIDE 18a: 這樣可以嗎？— 生成電視鏡面 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">09</span>
+    <span class="section-num">11</span>
     <h2 class="section-title">這樣<span>可以嗎？</span></h2>
   </div>
   <div class="slide-body">
@@ -776,7 +836,7 @@
 <!-- SLIDE 18b: 這樣可以嗎？— 原況照片 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">09</span>
+    <span class="section-num">11</span>
     <h2 class="section-title">這樣<span>可以嗎？</span></h2>
   </div>
   <div class="slide-body">
@@ -791,7 +851,7 @@
 <!-- SLIDE 19a: 看影片 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">10</span>
+    <span class="section-num">12</span>
     <h2 class="section-title">先<span>看影片</span></h2>
   </div>
   <div class="slide-body">
@@ -804,7 +864,7 @@
 <!-- SLIDE 19b: 我們這樣做 AI Agent輔助剪輯 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">10</span>
+    <span class="section-num">12</span>
     <h2 class="section-title">「AI Agent 輔助剪輯」<span>不是「生成」</span></h2>
   </div>
   <div class="slide-body">
@@ -812,10 +872,41 @@
   </div>
 </div>
 
+<!-- ADDED: 資源分配與新聞信任 -->
+<div class="slide">
+  <div class="slide-header"><span class="section-num">13</span><h2 class="section-title">省下的時間，<span>要放回哪裡？</span></h2></div>
+  <div class="slide-body">
+    <p class="lede">當整理既有資訊的成本下降，媒體更值得投資的，是<strong>取得新的事實</strong>。</p>
+    <div class="allocation-grid">
+      <div class="eco-card"><div class="eco-type">AI 協助處理</div><div class="eco-name">整理既有資訊</div><div class="eco-desc">逐字稿與資料初整<br>格式轉換<br>素材檢索<br>既有畫面的剪輯與排列</div></div>
+      <span class="comm-arrow" aria-hidden="true">→</span>
+      <div class="eco-card g"><div class="eco-type">媒體增加投入</div><div class="eco-name">走向更多現場</div><div class="eco-desc">現場採訪與消息來源經營<br>交叉查證與理解矛盾<br>追問尚未被回答的問題<br>長期追蹤與調查報導</div></div>
+    </div>
+    <div class="insight-blue">「更多現場」：看見資料沒有記錄的事，找到沒有被訪問的人，追問新聞稿沒有回答的問題。</div>
+    <div class="big-q">讓 AI 幫我們整理更多資料，<br><em>讓記者有時間走到更多現場。</em></div>
+</div>
+</div>
+
+<div class="slide">
+  <div class="slide-header"><span class="section-num">14</span><h2 class="section-title">信任，是怎麼<span>做出來的？</span></h2></div>
+  <div class="slide-body">
+    <p class="lede">可信度需要具體的工作與可檢驗的依據，也需要有人持續承擔<strong>編輯責任</strong>。</p>
+    <div class="comm-frame trust-flow">
+      <div class="label-row">建立信任的工作流程</div>
+      <div class="comm-scroll"><div class="comm-flow"><div class="comm-node media">親自採訪<small>接觸現場與來源</small></div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node ">留下證據<small>記錄出處與脈絡</small></div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node ">交叉查證<small>比對說法與矛盾</small></div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node ">說明已知與未知<small>揭露限制與不確定</small></div><span class="comm-arrow" aria-hidden="true">→</span><div class="comm-node media">公開更正與追蹤<small>署名並承擔責任</small></div></div></div>
+    </div>
+    <div class="two-col">
+      <div class="eco-card"><div class="eco-name">真實素材，也需要正確脈絡</div><div class="eco-desc">時間、地點與剪輯順序，都會影響讀者理解。使用真實畫面，仍須確認呈現方式。</div></div>
+      <div class="eco-card g"><div class="eco-name">有引用，也要檢查是否支持結論</div><div class="eco-desc">MCP 可協助取得資料與追溯來源；採訪、查證、編輯判斷與更正責任仍須落實。</div></div>
+    </div>
+    <div class="big-q">信任來自：<em>你如何知道，<br>以及你願意如何負責。</em></div>
+</div>
+</div>
+
 <!-- SLIDE 20: 要不要學程式？ -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">11</span>
+    <span class="section-num">15</span>
     <h2 class="section-title">要不要<span>學程式？</span></h2>
   </div>
   <div class="slide-body">
@@ -830,7 +921,7 @@
 <!-- SLIDE 21: 世界萬物皆有名字 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">12</span>
+    <span class="section-num">16</span>
     <h2 class="section-title">世界萬物皆有名字<span>有名字才能開始</span></h2>
   </div>
   <div class="slide-body">
@@ -845,7 +936,7 @@
 <!-- SLIDE 22: 大叔說教時間 -->
 <div class="slide">
   <div class="slide-header">
-    <span class="section-num">13</span>
+    <span class="section-num">17</span>
     <h2 class="section-title">大叔<span>說教時間</span></h2>
   </div>
   <div class="slide-body">
