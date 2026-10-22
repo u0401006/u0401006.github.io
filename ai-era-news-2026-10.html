@@ -355,12 +355,49 @@
   .chart-wrap { position: relative; height: 230px; }
   .chart-cap { font-size: 12.5px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
 
+
+  /* Preliminary evaluation results */
+  .eval-results .section-title { font-size: clamp(22px, 2.6vw, 32px); }
+  .eval-results .section-num { white-space: nowrap; }
+  .eval-results .slide-body { padding-top: 18px; }
+  .eval-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .eval-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; min-width: 0; }
+  .eval-card h3 { font-family: var(--serif); font-size: 22px; line-height: 1.4; }
+  .eval-meta { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin: 10px 0 14px; }
+  .eval-bar-row { display: grid; grid-template-columns: 116px minmax(0,1fr) 56px; gap: 8px; align-items: center; margin: 12px 0; font-size: 14px; }
+  .eval-bar-label { text-align: right; }
+  .eval-bar-track { height: 29px; }
+  .eval-bar-fill { height: 100%; background: #A2ADBD; border-radius: 0 6px 6px 0; }
+  .eval-highlight { color: var(--accent); font-weight: 700; }
+  .eval-highlight .eval-bar-fill { background: var(--accent); }
+  .eval-bar-value { font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 700; }
+  .eval-axis { display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 6px; margin: 8px 0 0 124px; color: var(--muted); font-size: 11.5px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .eval-note { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 16px; font-size: 14px; line-height: 1.75; }
+  .eval-note strong { color: var(--accent); }
+  .eval-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+  .eval-stat { background: var(--bg); border-radius: 10px; text-align: center; padding: 10px 3px; }
+  .eval-stat b { display: block; font-size: 26px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .eval-stat span { display: block; color: var(--muted); font-size: 12px; margin-top: 8px; }
+  .eval-sites-title { font-size: 12.5px; line-height: 1.6; margin: 12px 0 8px; }
+  .eval-sites-title span { color: var(--muted); font-weight: 400; }
+  .eval-sites .eval-bar-row { grid-template-columns: 154px minmax(0,1fr) 28px; font-size: 11px; gap: 6px; margin: 5px 0; }
+  .eval-sites .eval-bar-track { height: 12px; }
+  .eval-sites .eval-bar-label { font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .eval-sites .eval-axis { margin-left: 160px; }
+  @media (max-width: 850px) { .eval-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) {
+    .eval-card { padding: 14px; }
+    .eval-bar-row { grid-template-columns: 100px minmax(0,1fr) 48px; font-size: 12px; gap: 5px; }
+    .eval-axis { margin-left: 105px; }
+    .eval-sites .eval-bar-row { grid-template-columns: 142px minmax(0,1fr) 24px; font-size: 10px; gap: 4px; }
+    .eval-sites .eval-axis { margin-left: 146px; }
+  }
 </style>
 </head>
 <body>
 
 <div id="progress"></div>
-<span id="badge">1 / 32</span>
+<span id="badge">1 / 33</span>
 
 <div id="deck">
 
@@ -644,6 +681,41 @@
       <tr><td class="ta-c">時</td><td>美俄兩國簽署取代原「戰略武器裁減條約」的新裁減核武條約是哪一天？</td><td>2010年4月8日</td></tr>
       <tr><td class="ta-c">地</td><td>2025年世界拳擊錦標賽在哪個城市舉行？</td><td>英國利物浦</td></tr>
     </table>
+  </div>
+</div>
+
+
+<!-- ADDED: 初步回答品質評測結果 -->
+<div class="slide eval-results">
+  <div class="slide-header"><span class="section-num">初步結果</span><h2 class="section-title">MCP 在歷史資料上更準確，在即時新聞上<span>來源更可靠</span></h2></div>
+  <div class="slide-body">
+    <div class="eval-grid">
+      <div class="eval-card">
+        <h3>年鑑・單一事實題</h3>
+        <p class="eval-meta">500 題・gpt-5.4-mini（非推理）・整體作答正確率</p>
+        <div role="img" aria-label="模型加 MCP 正確率 81.0%，模型加網路搜尋 76.0%，純模型 40.6%">
+          <div class="eval-bar-row eval-highlight"><span class="eval-bar-label">模型＋MCP</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:81%"></div></div><span class="eval-bar-value">81.0%</span></div><div class="eval-bar-row"><span class="eval-bar-label">模型＋網路搜尋</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:76%"></div></div><span class="eval-bar-value">76.0%</span></div><div class="eval-bar-row"><span class="eval-bar-label">純模型</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:40.6%"></div></div><span class="eval-bar-value">40.6%</span></div>
+          <div class="eval-axis"><span>0</span><span>50</span><span>100%</span></div>
+        </div>
+        <p class="eval-note">純模型正確率不足五成；三種條件中以 <strong>MCP 正確率最高</strong>，較網路搜尋高 5 個百分點。</p>
+      </div>
+      <div class="eval-card">
+        <h3>即時新聞・跨文件整合題</h3>
+        <p class="eval-meta">前期測試 50 題・gpt-5.6-luna・2026 年 7 月新聞・整體作答正確率</p>
+        <div class="eval-stats">
+          <div class="eval-stat"><b>0%</b><span>純模型</span></div>
+          <div class="eval-stat"><b>96%</b><span>模型＋網路搜尋</span></div>
+          <div class="eval-stat"><b class="eval-highlight">94%</b><span>模型＋MCP</span></div>
+        </div>
+        <h4 class="eval-sites-title">網路搜尋最常引用的 10 個網站<span>（引用次數；共 1,790 次、388 個網站）</span></h4>
+        <div class="eval-sites">
+          <div class="eval-bar-row"><span class="eval-bar-label">reddit.com</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:92.80000000000001%"></div></div><span class="eval-bar-value">232</span></div><div class="eval-bar-row eval-highlight"><span class="eval-bar-label">cna.com.tw</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:83.2%"></div></div><span class="eval-bar-value">208</span></div><div class="eval-bar-row"><span class="eval-bar-label">zh.wikipedia.org</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:51.2%"></div></div><span class="eval-bar-value">128</span></div><div class="eval-bar-row"><span class="eval-bar-label">youtube.com</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:36.8%"></div></div><span class="eval-bar-value">92</span></div><div class="eval-bar-row"><span class="eval-bar-label">fda.gov.tw</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:34%"></div></div><span class="eval-bar-value">85</span></div><div class="eval-bar-row"><span class="eval-bar-label">en.wikipedia.org</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:18.4%"></div></div><span class="eval-bar-value">46</span></div><div class="eval-bar-row"><span class="eval-bar-label">twse.com.tw</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:17.2%"></div></div><span class="eval-bar-value">43</span></div><div class="eval-bar-row"><span class="eval-bar-label">gov.uk</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:13.200000000000001%"></div></div><span class="eval-bar-value">33</span></div><div class="eval-bar-row"><span class="eval-bar-label">hualien.forest.gov.tw</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:11.200000000000001%"></div></div><span class="eval-bar-value">28</span></div><div class="eval-bar-row"><span class="eval-bar-label">forest.gov.tw</span><div class="eval-bar-track"><div class="eval-bar-fill" style="width:10.8%"></div></div><span class="eval-bar-value">27</span></div>
+          <div class="eval-axis"><span>0</span><span>125</span><span>250 次</span></div>
+        </div>
+        <p class="eval-note">兩者正確率相近，但網路搜尋<strong>最常引用的網站是 reddit，次數高於中央社</strong>；MCP 的回答則來自中央社資料庫，以新聞報導為主，並輔以政府公開資料與法規。</p>
+      </div>
+    </div>
+    <p class="source">註：兩批測試採用的模型與題數不同，結果僅供初步參考。網路搜尋採模型內建搜尋功能。</p>
   </div>
 </div>
 
