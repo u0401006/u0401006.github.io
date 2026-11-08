@@ -392,6 +392,39 @@
     .eval-sites .eval-bar-row { grid-template-columns: 142px minmax(0,1fr) 24px; font-size: 10px; gap: 4px; }
     .eval-sites .eval-axis { margin-left: 146px; }
   }
+
+  /* CASE STUDY LAYOUT — question + numbered steps (left) / source panel (right) */
+  .case-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 36px; margin-top: 8px; align-items: start; }
+  .case-q { font-size: 15.5px; line-height: 1.7; color: var(--text); }
+  .case-answer { margin-top: 10px; font-size: 15.5px; }
+  .step-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .step-item { display: flex; gap: 14px; align-items: flex-start; }
+  .step-num {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-title { font-size: 15.5px; font-weight: 700; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .step-desc { font-size: 13.5px; color: var(--muted); margin-top: 3px; line-height: 1.55; }
+  .pill-correct {
+    display: inline-flex; align-items: center; font-size: 12px; font-weight: 700;
+    color: #fff; background: var(--accent4); padding: 2px 11px; border-radius: 20px;
+  }
+  .source-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+  .source-panel .label-row { margin-bottom: 12px; }
+  .source-bar-row { display: grid; grid-template-columns: 100px minmax(0,1fr) 26px; gap: 10px; align-items: center; margin: 9px 0; font-size: 14.5px; }
+  .source-bar-label { font-weight: 600; }
+  .source-bar-track { height: 24px; }
+  .source-bar-fill { height: 100%; border-radius: 0 6px 6px 0; background: #C3CAD3; }
+  .source-bar-row.gold .source-bar-fill { background: var(--accent2); }
+  .source-bar-row.gold .source-bar-label { color: var(--accent2); }
+  .source-bar-row.blue .source-bar-fill { background: var(--accent); }
+  .source-bar-row.blue .source-bar-label { color: var(--accent); font-weight: 700; }
+  .source-bar-value { text-align: right; font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 700; }
+  .source-quotes { margin-top: 18px; }
+  .source-quotes .quote-row .qt { font-size: 14px; }
+  .source-quotes .qt b { font-family: ui-monospace, Menlo, Consolas, monospace; color: var(--accent2); font-weight: 700; }
+  @media (max-width: 760px) { .case-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -759,68 +792,128 @@
 
 <!-- ADDED: 網路搜尋前測 二、三、四節 -->
 <div class="slide">
-  <div class="slide-header"><span class="section-num">初步結果</span><h2 class="section-title">檢索來源近三成未查證，<span>最終引用中央社最多</span></h2></div>
+  <div class="slide-header">
+    <span class="section-num">初步結果・50題綜觀</span>
+    <h2 class="section-title">檢索來源近三成未查證，<span>最終引用中央社最多</span></h2>
+  </div>
   <div class="slide-body">
-    <table class="compare-table">
-      <tr><th>來源類別</th><th class="ta-c">檢索到的來源（共1,790次）</th><th class="ta-c">最終引用的來源（共62次）</th></tr>
-      <tr><td>中央社</td><td class="ta-c">209・11.7%</td><td class="ta-c"><strong style="color:var(--accent)">26・41.9%</strong></td></tr>
-      <tr><td>台灣政府機關</td><td class="ta-c">403・22.5%</td><td class="ta-c">15・24.2%</td></tr>
-      <tr><td>其他新聞媒體</td><td class="ta-c">320・17.9%</td><td class="ta-c">10・16.1%</td></tr>
-      <tr><td>外國政府與國際組織</td><td class="ta-c">111・6.2%</td><td class="ta-c">6・9.7%</td></tr>
-      <tr><td>reddit</td><td class="ta-c">232・13.0%</td><td class="ta-c">0・0.0%</td></tr>
-      <tr><td>維基百科</td><td class="ta-c">177・9.9%</td><td class="ta-c">0・0.0%</td></tr>
-      <tr><td>YouTube</td><td class="ta-c">92・5.1%</td><td class="ta-c">0・0.0%</td></tr>
-      <tr><td>其他網站</td><td class="ta-c">246・13.7%</td><td class="ta-c">5・8.1%</td></tr>
-    </table>
-    <div class="insight">50 題中有 <strong>33 題檢索到 reddit</strong>。reddit、維基百科、YouTube 合計占檢索來源的 <strong>28.0%</strong>，但最終回答均未引用。</div>
+    <div class="case-grid">
+      <div>
+        <div class="case-q">檢索過程混雜未經查證的內容；但模型最終下筆引用時，中央社是被引用最多的來源。</div>
+        <table class="compare-table" style="margin-top:18px">
+          <tr><th>最終引用的來源</th><th class="ta-c">共 62 次</th></tr>
+          <tr><td>中央社</td><td class="ta-c"><strong style="color:var(--accent)">26・41.9%</strong></td></tr>
+          <tr><td>台灣政府機關</td><td class="ta-c">15・24.2%</td></tr>
+          <tr><td>其他新聞媒體</td><td class="ta-c">10・16.1%</td></tr>
+          <tr><td>外國政府與國際組織</td><td class="ta-c">6・9.7%</td></tr>
+          <tr><td>其他網站</td><td class="ta-c">5・8.1%</td></tr>
+          <tr><td>reddit・維基百科・YouTube</td><td class="ta-c">0・0.0%</td></tr>
+        </table>
+        <div class="insight" style="margin-top:16px">50 題中有 <strong>33 題檢索到 reddit</strong>。reddit、維基百科、YouTube 合計占檢索來源的 <strong>28.0%</strong>，但最終回答均未引用。</div>
+      </div>
+      <div class="source-panel">
+        <div class="label-row">檢索到的來源（共 1,790 次・388 個網站）</div>
+        <div class="source-bar-row blue"><span class="source-bar-label">中央社</span><div class="source-bar-track"><div class="source-bar-fill" style="width:50.5%"></div></div><span class="source-bar-value">209</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">台灣政府機關</span><div class="source-bar-track"><div class="source-bar-fill" style="width:97.3%"></div></div><span class="source-bar-value">403</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">其他新聞媒體</span><div class="source-bar-track"><div class="source-bar-fill" style="width:77.3%"></div></div><span class="source-bar-value">320</span></div>
+        <div class="source-bar-row gold"><span class="source-bar-label">reddit</span><div class="source-bar-track"><div class="source-bar-fill" style="width:56.1%"></div></div><span class="source-bar-value">232</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">其他網站</span><div class="source-bar-track"><div class="source-bar-fill" style="width:59.4%"></div></div><span class="source-bar-value">246</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">維基百科</span><div class="source-bar-track"><div class="source-bar-fill" style="width:42.8%"></div></div><span class="source-bar-value">177</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">外國政府組織</span><div class="source-bar-track"><div class="source-bar-fill" style="width:26.8%"></div></div><span class="source-bar-value">111</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">YouTube</span><div class="source-bar-track"><div class="source-bar-fill" style="width:22.2%"></div></div><span class="source-bar-value">92</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="slide">
-  <div class="slide-header"><span class="section-num">初步結果</span><h2 class="section-title">案例一｜中國潛射飛彈試射，<span>reddit多於中央社</span></h2></div>
+  <div class="slide-header">
+    <span class="section-num">案例一・MH-014</span>
+    <h2 class="section-title">中國潛射彈道飛彈試射：<span>reddit 多於中央社</span></h2>
+  </div>
   <div class="slide-body">
-    <p class="lede"><strong>題目</strong>：2026 年 7 月 6 日中國解放軍海軍戰略核潛艦向太平洋公海試射潛射彈道飛彈。從中國國防部通知日本駐北京大使館將進行發射，到中國官媒公布的實際發射時刻，相隔多久？<strong>正解：1 小時 31 分鐘</strong></p>
-    <div class="two-col">
-      <table class="compare-table">
-        <tr><th>檢索來源</th><th class="ta-c">數量</th></tr>
-        <tr><td>reddit</td><td class="ta-c">5</td></tr>
-        <tr><td>中央社</td><td class="ta-c">3</td></tr>
-        <tr><td>中國國防部</td><td class="ta-c">3</td></tr>
-        <tr><td>YouTube</td><td class="ta-c">2</td></tr>
-        <tr><td>其他</td><td class="ta-c">5</td></tr>
-      </table>
-      <div class="quote-rows">
-        <div class="quote-row"><span class="qt">r/China_irl：看鉴中国：中国核潜艇试射导弹周边国家反应强烈，是过度解读还是透明度不足</span></div>
-        <div class="quote-row"><span class="qt">r/LiberalGooseGroup：中国在太平洋试射潜射弹道导弹激怒邻国</span></div>
-        <div class="quote-row"><span class="qt">r/InsightBridge：BBC：中国试射导弹 美国质疑暗扩核武库 澳洲斥挑衅</span></div>
-        <div class="quote-row"><span class="qt">r/Taiwanese：中國核潛艦試射刻意未先知會華府傳遞新訊號 北約秘書長怒轟</span></div>
+    <div class="case-grid">
+      <div>
+        <div class="label-row">題目</div>
+        <div class="case-q">2026 年 7 月 6 日中國解放軍海軍戰略核潛艦向太平洋公海試射潛射彈道飛彈。從中國國防部通知日本駐北京大使館將進行發射，到中國官媒公布的實際發射時刻，相隔多久？</div>
+        <div class="case-answer"><strong>正解：1 小時 31 分鐘</strong></div>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div><div class="step-title">搜尋 3 次</div><div class="step-desc">關鍵字含中國國防部、日本駐北京大使館、潛射彈道飛彈</div></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div><div class="step-title">檢索 18 個來源</div><div class="step-desc">其中 reddit 5 個、中央社 3 個</div></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div><div class="step-title">回答「1 小時 31 分鐘」<span class="pill-correct">正確</span></div><div class="step-desc">最終引用：中央社 1 篇（只涵蓋部分答案）</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="source-panel">
+        <div class="label-row">檢索來源（共 18 個）</div>
+        <div class="source-bar-row gold"><span class="source-bar-label">reddit</span><div class="source-bar-track"><div class="source-bar-fill" style="width:100%"></div></div><span class="source-bar-value">5</span></div>
+        <div class="source-bar-row blue"><span class="source-bar-label">中央社</span><div class="source-bar-track"><div class="source-bar-fill" style="width:60%"></div></div><span class="source-bar-value">3</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">中國國防部</span><div class="source-bar-track"><div class="source-bar-fill" style="width:60%"></div></div><span class="source-bar-value">3</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">YouTube</span><div class="source-bar-track"><div class="source-bar-fill" style="width:40%"></div></div><span class="source-bar-value">2</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">其他</span><div class="source-bar-track"><div class="source-bar-fill" style="width:100%"></div></div><span class="source-bar-value">5</span></div>
+        <div class="label-row" style="margin-top:18px">檢索到的 reddit 貼文（節錄）</div>
+        <div class="source-quotes quote-rows">
+          <div class="quote-row"><span class="qt"><b>r/China_irl</b>　看鉴中国：中国核潜艇试射导弹周边国家反应强烈，是过度解读还是透明度不足</span></div>
+          <div class="quote-row"><span class="qt"><b>r/LiberalGooseGroup</b>　中国在太平洋试射潜射弹道导弹激怒邻国</span></div>
+          <div class="quote-row"><span class="qt"><b>r/InsightBridge</b>　BBC：中国试射导弹 美国质疑暗扩核武库 澳洲斥挑衅</span></div>
+          <div class="quote-row"><span class="qt"><b>r/Taiwanese</b>　中國核潛艦試射刻意未先知會華府傳遞新訊號 北約秘書長怒轟</span></div>
+        </div>
       </div>
     </div>
-    <div class="insight-blue">搜尋 3 次、檢索 18 個來源後，模型回答「1 小時 31 分鐘」<strong>正確</strong>；但最終只引用中央社 1 篇，且<strong>只涵蓋部分答案</strong>。</div>
   </div>
 </div>
 
 <div class="slide">
-  <div class="slide-header"><span class="section-num">初步結果</span><h2 class="section-title">案例二｜亞洲U18男排錦標賽，<span>檢索到無關的社群討論</span></h2></div>
+  <div class="slide-header">
+    <span class="section-num">案例二・MH-140</span>
+    <h2 class="section-title">亞洲U18男排錦標賽：<span>檢索到無關的社群討論</span></h2>
+  </div>
   <div class="slide-body">
-    <p class="lede"><strong>題目</strong>：在中國舉行的 2026 年亞洲 U18 男子排球錦標賽中，台灣隊從分組預賽首戰到 4 強戰（不含季軍戰）共打了 5 場比賽，這 5 場合計輸掉幾局？<strong>正解：8 局</strong></p>
-    <div class="two-col">
-      <table class="compare-table">
-        <tr><th>檢索來源</th><th class="ta-c">數量</th></tr>
-        <tr><td>reddit</td><td class="ta-c">7</td></tr>
-        <tr><td>維基百科</td><td class="ta-c">6</td></tr>
-        <tr><td>中央社</td><td class="ta-c">4</td></tr>
-        <tr><td>自由時報</td><td class="ta-c">4</td></tr>
-        <tr><td>YouTube</td><td class="ta-c">2</td></tr>
-        <tr><td>其他</td><td class="ta-c">11</td></tr>
-      </table>
-      <div class="quote-rows">
-        <div class="quote-row"><span class="qt">r/LOOK_CHINA：昨天亞運棒球臺灣3:7不敵日本，今天將要跟中國爭銅牌（棒球，非排球）</span></div>
-        <div class="quote-row"><span class="qt">r/PakSports：Reigning Asian U16 champions Pakistan placed in……（巴基斯坦U16排球）</span></div>
-        <div class="quote-row"><span class="qt">r/PBA：菲律賓職籃討論版貼文</span></div>
+    <div class="case-grid">
+      <div>
+        <div class="label-row">題目</div>
+        <div class="case-q">在中國舉行的 2026 年亞洲 U18 男子排球錦標賽中，台灣隊從分組預賽首戰到 4 強戰（不含季軍戰）共打了 5 場比賽，這 5 場合計輸掉幾局？</div>
+        <div class="case-answer"><strong>正解：8 局</strong></div>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div><div class="step-title">搜尋 2 次</div><div class="step-desc">中英文各一次，關鍵字含亞洲U18男子排球、台灣、4強</div></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div><div class="step-title">檢索 34 個來源</div><div class="step-desc">其中 reddit 7 個、維基百科 6 個、中央社 4 個</div></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div><div class="step-title">回答「8 局」<span class="pill-correct">正確</span></div><div class="step-desc">最終引用：中央社 1 篇（只涵蓋部分答案）</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="source-panel">
+        <div class="label-row">檢索來源（共 34 個）</div>
+        <div class="source-bar-row gold"><span class="source-bar-label">reddit</span><div class="source-bar-track"><div class="source-bar-fill" style="width:63.6%"></div></div><span class="source-bar-value">7</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">維基百科</span><div class="source-bar-track"><div class="source-bar-fill" style="width:54.5%"></div></div><span class="source-bar-value">6</span></div>
+        <div class="source-bar-row blue"><span class="source-bar-label">中央社</span><div class="source-bar-track"><div class="source-bar-fill" style="width:36.4%"></div></div><span class="source-bar-value">4</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">自由時報</span><div class="source-bar-track"><div class="source-bar-fill" style="width:36.4%"></div></div><span class="source-bar-value">4</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">YouTube</span><div class="source-bar-track"><div class="source-bar-fill" style="width:18.2%"></div></div><span class="source-bar-value">2</span></div>
+        <div class="source-bar-row"><span class="source-bar-label">其他</span><div class="source-bar-track"><div class="source-bar-fill" style="width:100%"></div></div><span class="source-bar-value">11</span></div>
+        <div class="label-row" style="margin-top:18px">檢索到的 reddit 貼文（節錄）</div>
+        <div class="source-quotes quote-rows">
+          <div class="quote-row"><span class="qt"><b>r/LOOK_CHINA</b>　昨天亞運棒球臺灣3:7不敵日本，今天將要跟中國爭銅牌（棒球，非排球）</span></div>
+          <div class="quote-row"><span class="qt"><b>r/PakSports</b>　Reigning Asian U16 champions Pakistan placed in……（巴基斯坦U16排球）</span></div>
+          <div class="quote-row"><span class="qt"><b>r/PBA</b>　菲律賓職籃討論版貼文</span></div>
+        </div>
       </div>
     </div>
-    <div class="insight-blue">搜尋 2 次、檢索 34 個來源後，模型回答「8 局」<strong>正確</strong>；但最終只引用中央社 1 篇（7/13 報導），而該篇發出時後 3 場比賽還沒開打——讀者照著引用查，只能驗證 5 場中的 2 場。</div>
+    <div class="insight-blue" style="margin-top:18px">該篇中央社報導發出時，後 3 場比賽還沒開打——讀者照著引用去查，只能驗證 5 場中的 2 場。</div>
   </div>
 </div>
 
